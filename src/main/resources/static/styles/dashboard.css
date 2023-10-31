@@ -1,0 +1,704 @@
+.dashboard-enL {
+  width: 100%;
+  height: 94.1298rem;
+  overflow: hidden;
+  position: relative;
+  background-color: #ffffff;
+}
+.dashboard-enL .allgroup-GYp {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.dashboard-enL .allgroup-GYp .greenbackground-tCp {
+  width: 164rem;
+  height: 94.1rem;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-color: #ecffe9;
+}
+.dashboard-enL .allgroup-GYp .menubargroup-nJC {
+  box-sizing: border-box;
+  padding: 8.204rem 2.4rem 7.793rem 2.4rem;
+  width: 25.0215rem;
+  height: 94.1rem;
+  position: absolute;
+  left: 0;
+  top: 0.0186rem;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+}
+.dashboard-enL .allgroup-GYp .menubargroup-nJC .auto-group-pogk-BbE {
+  margin: 0rem 3.967rem 32.596rem 0rem;
+  width: 15.2rem;
+  height: 39.6716rem;
+  flex-shrink: 0;
+}
+.dashboard-enL .allgroup-GYp .menubargroup-nJC .auto-group-pogk-BbE .frame-2-UaL {
+  width: 100%;
+  height: 39.3233rem;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+.dashboard-enL .allgroup-GYp .menubargroup-nJC .auto-group-pogk-BbE .frame-2-UaL .main-logo-adN {
+  width: 100%;
+  height: 7.9357rem;
+  position: relative;
+  flex-shrink: 0;
+}
+.dashboard-enL .allgroup-GYp .menubargroup-nJC .auto-group-pogk-BbE .frame-2-UaL .main-logo-adN .caption-sVz {
+  width: 13.9rem;
+  height: 2.2rem;
+  position: absolute;
+  left: 0.6833rem;
+  top: 5.7357rem;
+  font-size: 1.8rem;
+  font-weight: 500;
+  line-height: 1.2;
+  color: #b9babd;
+  font-family: Barlow, 'Source Sans Pro';
+  white-space: nowrap;
+}
+.dashboard-enL .allgroup-GYp .menubargroup-nJC .auto-group-pogk-BbE .frame-2-UaL .main-logo-adN .t-net-KMz {
+  width: 15.2rem;
+  height: 7.2rem;
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 4.8rem;
+  font-weight: 700;
+  line-height: 1.5;
+  color: #00b074;
+  font-family: Poppins, 'Source Sans Pro';
+  white-space: nowrap;
+}
+.dashboard-enL .allgroup-GYp .menubargroup-nJC .auto-group-pogk-BbE .frame-2-UaL .auto-group-jdma-dtU {
+  box-sizing: border-box;
+  padding-top: 3.3877rem;
+  width: 100%;
+  row-gap: 4.2rem;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+.dashboard-enL .allgroup-GYp .menubargroup-nJC .auto-group-pogk-BbE .frame-2-UaL .auto-group-jdma-dtU .group-30929683-ZGL {
+  margin-right: 3.2rem;
+  box-sizing: border-box;
+  padding-left: 0.25rem;
+  width: calc(100% - 3.2rem);
+  display: flex;
+  align-items: flex-start;
+  flex-shrink: 0;
+}
+.dashboard-enL .allgroup-GYp .menubargroup-nJC .auto-group-pogk-BbE .frame-2-UaL .auto-group-jdma-dtU .group-30929683-ZGL .icon-t3i {
+  margin: 0.083rem 2.65rem 0rem 0rem;
+  width: 1.5rem;
+  height: 1.6667rem;
+  object-fit: contain;
+  vertical-align: top;
+  flex-shrink: 0;
+}
+.dashboard-enL .allgroup-GYp .menubargroup-nJC .auto-group-pogk-BbE .frame-2-UaL .auto-group-jdma-dtU .group-30929683-ZGL .analytics-PmA {
+  font-size: 1.8rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #00b074;
+  font-family: Barlow, 'Source Sans Pro';
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.dashboard-enL .allgroup-GYp .menubargroup-nJC .auto-group-pogk-BbE .frame-2-UaL .auto-group-jdma-dtU .group-30929684-6Qg {
+  margin-right: 2.7rem;
+  box-sizing: border-box;
+  padding-left: 0.1667rem;
+  width: calc(100% - 2.7rem);
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+.dashboard-enL .allgroup-GYp .menubargroup-nJC .auto-group-pogk-BbE .frame-2-UaL .auto-group-jdma-dtU .group-30929684-6Qg .icon-ctp {
+  margin: 0rem 2.567rem 0.2rem 0rem;
+  width: 1.6667rem;
+  height: 1.5rem;
+  object-fit: contain;
+  vertical-align: top;
+  flex-shrink: 0;
+}
+.dashboard-enL .allgroup-GYp .menubargroup-nJC .auto-group-pogk-BbE .frame-2-UaL .auto-group-jdma-dtU .group-30929684-6Qg .board-list-ww6 {
+  font-size: 1.8rem;
+  font-weight: 500;
+  line-height: 1.2;
+  color: #464155;
+  font-family: Barlow, 'Source Sans Pro';
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.dashboard-enL .allgroup-GYp .menubargroup-nJC .auto-group-pogk-BbE .frame-2-UaL .auto-group-jdma-dtU .group-30929685-Uw2 {
+  margin-right: 2.1rem;
+  box-sizing: border-box;
+  padding-left: 0.3333rem;
+  width: calc(100% - 2.1rem);
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+.dashboard-enL .allgroup-GYp .menubargroup-nJC .auto-group-pogk-BbE .frame-2-UaL .auto-group-jdma-dtU .group-30929685-Uw2 .icon-RLU {
+  margin: 0rem 2.733rem 0.2rem 0rem;
+  width: 1.3333rem;
+  height: 1.6667rem;
+  object-fit: contain;
+  vertical-align: top;
+  flex-shrink: 0;
+}
+.dashboard-enL .allgroup-GYp .menubargroup-nJC .auto-group-pogk-BbE .frame-2-UaL .auto-group-jdma-dtU .group-30929685-Uw2 .notice-list-YR6 {
+  font-size: 1.8rem;
+  font-weight: 500;
+  line-height: 1.2;
+  color: #464155;
+  font-family: Barlow, 'Source Sans Pro';
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.dashboard-enL .allgroup-GYp .menubargroup-nJC .auto-group-pogk-BbE .frame-2-UaL .auto-group-jdma-dtU .group-30929686-H7n {
+  margin-right: 1rem;
+  box-sizing: border-box;
+  padding-left: 0.1667rem;
+  width: calc(100% - 1rem);
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+.dashboard-enL .allgroup-GYp .menubargroup-nJC .auto-group-pogk-BbE .frame-2-UaL .auto-group-jdma-dtU .group-30929686-H7n .icon-cvk {
+  margin: 0rem 2.567rem 0.159rem 0rem;
+  width: 1.6667rem;
+  height: 1.7095rem;
+  object-fit: contain;
+  vertical-align: top;
+  flex-shrink: 0;
+}
+.dashboard-enL .allgroup-GYp .menubargroup-nJC .auto-group-pogk-BbE .frame-2-UaL .auto-group-jdma-dtU .group-30929686-H7n .member-list-MNY {
+  font-size: 1.8rem;
+  font-weight: 500;
+  line-height: 1.2;
+  color: #464155;
+  font-family: Barlow, 'Source Sans Pro';
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.dashboard-enL .allgroup-GYp .menubargroup-nJC .auto-group-pogk-BbE .frame-2-UaL .auto-group-jdma-dtU .group-30929687-tNU {
+  margin-right: 3.4rem;
+  width: calc(100% - 3.4rem);
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+.dashboard-enL .allgroup-GYp .menubargroup-nJC .auto-group-pogk-BbE .frame-2-UaL .auto-group-jdma-dtU .group-30929687-tNU .icon-alert-circle-dL4 {
+  margin: 0.2rem 2.4rem 0rem 0rem;
+  width: 2rem;
+  height: 2.2rem;
+  object-fit: contain;
+  vertical-align: top;
+  flex-shrink: 0;
+}
+.dashboard-enL .allgroup-GYp .menubargroup-nJC .auto-group-pogk-BbE .frame-2-UaL .auto-group-jdma-dtU .group-30929687-tNU .complain-8Xi {
+  margin-bottom: 0.2rem;
+  font-size: 1.8rem;
+  font-weight: 500;
+  line-height: 1.2;
+  color: #464155;
+  font-family: Barlow, 'Source Sans Pro';
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.dashboard-enL .allgroup-GYp .menubargroup-nJC .menubottomletter-FMS {
+  margin-right: 4.3215rem;
+  width: 15.9rem;
+  height: 5.8359rem;
+  position: relative;
+  flex-shrink: 0;
+}
+.dashboard-enL .allgroup-GYp .menubargroup-nJC .menubottomletter-FMS .made-with-by-peterdraw-MvG {
+  width: 15.9rem;
+  height: 2.6rem;
+  position: absolute;
+  left: 0;
+  top: 3.2359rem;
+  font-size: 1.4rem;
+  font-weight: 400;
+  line-height: 1.8571428571;
+  color: #969ba0;
+  font-family: Barlow, 'Source Sans Pro';
+  white-space: nowrap;
+}
+.dashboard-enL .allgroup-GYp .menubargroup-nJC .menubottomletter-FMS .talent-networks-pronesis-3o6 {
+  width: 9.8rem;
+  height: 3.6rem;
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 1.2rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #969ba0;
+  font-family: Barlow, 'Source Sans Pro';
+}
+
+
+/* T - Net DashBoard */
+.t-net-dashboard-CJc {
+  font-size: 6.8rem;
+  color: #0a6022;
+  font-family: Capriola, 'Source Sans Pro';
+  margin-top: 29px;
+  margin-bottom: 22px;
+  text-align: center;
+}
+
+/* 카운트영역 */
+.countingarea-Mqi {
+  margin: 0rem 2.739rem 2.879rem 6.639rem;
+  width: calc(100% - 9.3778rem);
+  display: flex;
+  align-items: flex-start;
+  flex-shrink: 0;
+}
+
+/* 진행중인 수업 카운트 */
+.countingarea-Mqi .classcountinarea-sp4 {
+  margin: auto;
+  box-sizing: border-box;
+  padding: 2.366rem 2.623rem 3.481rem 6.027rem;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 0.4rem 0.4rem rgba(166, 232, 165, 0.6999999881);
+  background-color: #ffffff;
+  border-radius: 1.4rem;
+  flex-shrink: 0;
+}
+.countingarea-Mqi .classcountinarea-sp4 .icon-nRE {
+  margin: 0.241rem 2.981rem 0rem 0rem;
+  width: 8.7613rem;
+  height: 6.7514rem;
+  position: relative;
+  object-fit: contain;
+  vertical-align: top;
+  flex-shrink: 0;
+}
+.countingarea-Mqi .classcountinarea-sp4 .group-187-i3z {
+  margin: 0.593rem 1.467rem 0rem 0rem;
+  width: 5.6rem;
+  height: 7.2226rem;
+  position: relative;
+  flex-shrink: 0;
+}
+.countingarea-Mqi .classcountinarea-sp4 .group-187-i3z .item--eCY {
+  width: 5.6rem;
+  height: 2rem;
+  position: absolute;
+  left: 0;
+  top: 5.2226rem;
+  font-size: 1.6rem;
+  font-weight: 400;
+  line-height: 1.2;
+  color: #464155;
+  font-family: Barlow, 'Source Sans Pro';
+  white-space: nowrap;
+}
+.countingarea-Mqi .classcountinarea-sp4 .group-187-i3z .item-96-jDz {
+  width: 5rem;
+  height: 5.6rem;
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: flex;
+  font-size: 4.6rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #464155;
+  font-family: Barlow, 'Source Sans Pro';
+  white-space: nowrap;
+}
+.countingarea-Mqi .classcountinarea-sp4 .togle-RMi {
+  margin-bottom: 6.0352rem;
+  box-sizing: border-box;
+  padding: 0.424rem 1.244rem 0.056rem 1.351rem;
+  display: flex;
+  align-items: center;
+  border: solid 0.1rem #3d533b;
+  background-color: #ffffff;
+  border-radius: 1rem;
+  flex-shrink: 0;
+}
+.countingarea-Mqi .classcountinarea-sp4 .togle-RMi .item--MFN {
+  margin-right: 2.9533rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  line-height: 1.3625;
+  letter-spacing: 0.0215rem;
+  color: #000000;
+  font-family: Nunito Sans, 'Source Sans Pro';
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.countingarea-Mqi .classcountinarea-sp4 .togle-RMi .polygon-2-TJQ {
+  margin-bottom: 0.5108rem;
+  width: 0.8378rem;
+  height: 0.6255rem;
+  object-fit: contain;
+  vertical-align: top;
+  flex-shrink: 0;
+}
+
+/* 기부왕카운트 */
+.givekingarea-6cG {
+  margin: auto;
+  box-sizing: border-box;
+  padding: 2.197rem 2.225rem 3.971rem 5.613rem;
+  height: 13.6618rem;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 0.4rem 0.4rem #cbf1ca;
+  background-color: #ffffff;
+  border-radius: 1.4rem;
+  flex-shrink: 0;
+}
+.givekingarea-6cG .icon-QN4 {
+  margin: 0.742rem 2.67rem 0rem 0rem;
+  width: 8.7613rem;
+  height: 6.7514rem;
+  position: relative;
+  object-fit: contain;
+  vertical-align: top;
+  flex-shrink: 0;
+}
+.givekingarea-6cG .group-187-XxU {
+  margin: 0.127rem 3.19rem 0.145rem 0rem;
+  width: 5rem;
+  height: calc(100% - 0.2712rem);
+  position: relative;
+  flex-shrink: 0;
+}
+.givekingarea-6cG .group-187-XxU .item--4Bi {
+  width: 3.9rem;
+  height: 2rem;
+  position: absolute;
+  left: 0;
+  top: 5.2226rem;
+  font-size: 1.6rem;
+  font-weight: 400;
+  line-height: 1.2;
+  color: #464155;
+  font-family: Barlow, 'Source Sans Pro';
+  white-space: nowrap;
+}
+.givekingarea-6cG .group-187-XxU .item-23-AEk {
+  width: 5rem;
+  height: 5.6rem;
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: flex;
+  font-size: 4.6rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #464155;
+  font-family: Barlow, 'Source Sans Pro';
+  white-space: nowrap;
+}
+.givekingarea-6cG .togle-fSQ {
+  margin-bottom: 5.7139rem;
+  box-sizing: border-box;
+  padding: 0.424rem 1.244rem 0.056rem 1.351rem;
+  display: flex;
+  align-items: center;
+  border: solid 0.1rem #3d533b;
+  background-color: #ffffff;
+  border-radius: 1rem;
+  flex-shrink: 0;
+}
+.givekingarea-6cG .togle-fSQ .item--BvY {
+  margin-right: 3.5533rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  line-height: 1.3625;
+  letter-spacing: 0.0215rem;
+  color: #000000;
+  font-family: Nunito Sans, 'Source Sans Pro';
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.countingarea-Mqi .givekingarea-6cG .togle-fSQ .polygon-2-hP6 {
+  margin-bottom: 0.5108rem;
+  width: 0.8378rem;
+  height: 0.6255rem;
+  object-fit: contain;
+  vertical-align: top;
+  flex-shrink: 0;
+}
+
+/* 완료된 수업 카운트 */
+.completeclassarea-6AL {
+  margin: auto;
+  box-sizing: border-box;
+  padding: 2.022rem 1.319rem 3.97rem 4.46rem;
+  height: 13.6618rem;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 0.4rem 0.4rem #ccebcc;
+  background-color: #ffffff;
+  border-radius: 1.4rem;
+  flex-shrink: 0;
+}
+.completeclassarea-6AL .icon-CDN {
+  margin: 0.919rem 2.545rem 0rem 0rem;
+  width: 8.7613rem;
+  height: 6.7514rem;
+  position: relative;
+  object-fit: contain;
+  vertical-align: top;
+  flex-shrink: 0;
+}
+.completeclassarea-6AL .letter-jDJ {
+  margin: 0.549rem 5.373rem 0.249rem 0rem;
+  width: 5rem;
+  height: calc(100% - 0.798rem);
+  position: relative;
+  flex-shrink: 0;
+}
+.completeclassarea-6AL .letter-jDJ .item--f6x {
+  width: 4.6rem;
+  height: 2rem;
+  position: absolute;
+  left: 0;
+  top: 4.8724rem;
+  font-size: 1.6rem;
+  font-weight: 400;
+  line-height: 1.2;
+  color: #464155;
+  font-family: Barlow, 'Source Sans Pro';
+  white-space: nowrap;
+}
+.completeclassarea-6AL .letter-jDJ .item-38-MVa {
+  width: 5rem;
+  height: 5.6rem;
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: flex;
+  font-size: 4.6rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #464155;
+  font-family: Barlow, 'Source Sans Pro';
+  white-space: nowrap;
+}
+.completeclassarea-6AL .togle-S1E {
+  margin-bottom: 5.8905rem;
+  box-sizing: border-box;
+  padding: 0.424rem 1.244rem 0.056rem 1.351rem;
+  display: flex;
+  align-items: center;
+  border: solid 0.1rem #3d533b;
+  background-color: #ffffff;
+  border-radius: 1rem;
+  flex-shrink: 0;
+}
+.completeclassarea-6AL .togle-S1E .item--9wE {
+  margin-right: 3.3533rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  line-height: 1.3625;
+  letter-spacing: 0.0215rem;
+  color: #000000;
+  font-family: Nunito Sans, 'Source Sans Pro';
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.completeclassarea-6AL .togle-S1E .polygon-2-sMS {
+  margin-bottom: 0.5108rem;
+  width: 0.8378rem;
+  height: 0.6255rem;
+  object-fit: contain;
+  vertical-align: top;
+  flex-shrink: 0;
+}
+
+/* 차트영역 */
+.auto-group-jz1n-jeY {
+  width: 100%;
+  height: 39.843rem;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+/* 막대그래프 차트  */
+.auto-group-jz1n-jeY .bargrape-HRA {
+  margin: auto;
+  box-sizing: border-box;
+  padding: 4.411rem 4.98rem 2.666rem 4.772rem;
+  width: 49.1867rem;
+  height: calc(100% - 0.0919rem);
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0.4rem 0.4rem 0.4rem rgba(106, 223, 104, 0.25);
+  background-color: #ffffff;
+  border-radius: 1.4rem;
+  flex-shrink: 0;
+}
+
+/* 막대그래프 제목 토글 div */
+.auto-group-jz1n-jeY .bargrape-HRA .auto-group-cjhn-mbE {
+  margin: 0rem 0.121rem 5.095rem 0.207rem;
+  width: calc(100% - 0.3281rem);
+  display: flex;
+  align-items: flex-start;
+  flex-shrink: 0;
+}
+
+/* 막대그래프 제목  */
+.auto-group-jz1n-jeY .bargrape-HRA .auto-group-cjhn-mbE .item--VGL {
+  margin-right: 21.9977rem;
+  font-size: 2.4rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #464155;
+  font-family: Barlow, 'Source Sans Pro';
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* 막대그래프 토글 div */
+.auto-group-jz1n-jeY .bargrape-HRA .auto-group-cjhn-mbE .group-30929674-c64 {
+  box-sizing: border-box;
+  padding: 0.368rem 1.36rem 0.078rem 1.779rem;
+  display: flex;
+  align-items: center;
+  border: solid 0.1rem #3d533b;
+  background-color: #ffffff;
+  border-radius: 1rem;
+  flex-shrink: 0;
+  margin: auto;
+  margin-left: -50px;
+}
+
+/* 막대그래프 토글 글자 */
+.auto-group-jz1n-jeY .bargrape-HRA .auto-group-cjhn-mbE .group-30929674-c64 .item--iet {
+  margin-right: 3.0375rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  line-height: 1.3625;
+  letter-spacing: 0.0215rem;
+  color: #000000;
+  font-family: Nunito Sans, 'Source Sans Pro';
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* 토글 화살표 나중엔 필요없을지도? */
+.auto-group-jz1n-jeY .bargrape-HRA .auto-group-cjhn-mbE .group-30929674-c64 .polygon-2-zsJ {
+  margin-bottom: 0.4626rem;
+  width: 0.9323rem;
+  height: 0.6255rem;
+  object-fit: contain;
+  vertical-align: top;
+  flex-shrink: 0;
+}
+
+/* 막대그래프들어갈 자리 */
+.auto-group-jz1n-jeY .bargrape-HRA .group-184-JNC {
+  width: 100%;
+  align-items: flex-end;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+
+/* 파이차트영역 */
+.auto-group-jz1n-jeY .piechart-ojW {
+  margin: auto;
+  box-sizing: border-box;
+  padding: 3.736rem 3.116rem 3.814rem 3.43rem;
+  width: 72.8453rem;
+  height: calc(100% - 0.0919rem);
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0.4rem 0.4rem 0.4rem #dbedd8;
+  background-color: #ffffff;
+  border-radius: 1.4rem;
+  flex-shrink: 0;
+}
+
+/* 파이차트제목 */
+.auto-group-jz1n-jeY .piechart-ojW .auto-group-8seu-Wdv {
+  margin: 0rem 2.806rem 3.475rem 0.344rem;
+  width: calc(100% - 3.1493rem);
+  display: flex;
+  align-items: flex-end;
+  flex-shrink: 0;
+}
+
+/* 파이차트제목 글자 */
+.auto-group-jz1n-jeY .piechart-ojW .auto-group-8seu-Wdv .item--SXa {
+  margin: 0rem 48.826rem 0.144rem 0rem;
+  font-size: 2.4rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #464155;
+  font-family: Barlow, 'Source Sans Pro';
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* 파이차트제목 토글 */
+.auto-group-jz1n-jeY .piechart-ojW .auto-group-8seu-Wdv .group-30929675-YqW {
+  box-sizing: border-box;
+  padding: 0.424rem 1.414rem 0.056rem 1.536rem;
+  display: flex;
+  align-items: center;
+  border: 0.1rem solid rgb(61, 83, 59);
+  background-color: rgb(255, 255, 255);
+  border-radius: 1rem;
+  flex-shrink: 0;
+  margin: auto;
+  margin-left: -30px;
+}
+
+/* 파이차트토글 글자 */
+.auto-group-jz1n-jeY .piechart-ojW .auto-group-8seu-Wdv .group-30929675-YqW .item--fQL {
+  margin-right: 2.421rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  line-height: 1.3625;
+  letter-spacing: 0.0215rem;
+  color: #000000;
+  font-family: Nunito Sans, 'Source Sans Pro';
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* 파이차트토글 화살표 */
+.auto-group-jz1n-jeY .piechart-ojW .auto-group-8seu-Wdv .group-30929675-YqW .polygon-2-yfv {
+  margin-bottom: 0.5108rem;
+  width: 0.9523rem;
+  height: 0.6255rem;
+  object-fit: contain;
+  vertical-align: top;
+  flex-shrink: 0;
+}
+
+/* 파이차트 들어갈자리 */
+.auto-group-jz1n-jeY .piechart-ojW .auto-group-xle4-eGG {
+  margin-bottom: 2.797rem;
+  width: 100%;
+  height: 11.1032rem;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}

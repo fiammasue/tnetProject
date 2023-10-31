@@ -1,0 +1,69 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '2.7.18-SNAPSHOT'
+	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+}
+
+group = 'com.project.tnet'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	sourceCompatibility = '17'
+}
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+	maven { url 'https://repo.spring.io/milestone' }
+	maven { url 'https://repo.spring.io/snapshot' }
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.3.1'
+	compileOnly 'org.projectlombok:lombok'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	runtimeOnly 'com.h2database:h2'
+	//jsp
+	implementation 'javax.servlet:jstl:1.2'
+    implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
+    //database
+	runtimeOnly 'com.oracle.database.jdbc:ojdbc8:23.2.0.0'
+	implementation 'com.oracle.database.security:osdt_cert'
+	implementation 'com.oracle.database.security:oraclepki:23.2.0.0'
+	implementation 'com.oracle.database.security:osdt_core'
+	//tiles
+	implementation 'org.apache.tiles:tiles-jsp:3.0.4'
+	//security
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    testImplementation 'org.springframework.security:spring-security-test'
+    // 시큐리티 태그 라이브러리 추가
+	implementation 'org.springframework.security:spring-security-taglibs'
+	// WebSocket
+	implementation 'org.springframework.boot:spring-boot-starter-websocket'
+	// sockjs
+	implementation 'org.webjars:sockjs-client:1.5.1'
+	// stomp
+	implementation 'org.webjars:stomp-websocket:2.3.4'
+	// gson
+	implementation 'com.google.code.gson:gson:2.9.0'
+	// sms연동
+	implementation 'net.nurigo:sdk:4.3.0'
+	//google API
+	//implementation 'com.google.oauth-client:google-oauth-client:1.18.0-rc'
+	//implementation 'com.google.oauth-client:google-oauth-client-servlet:1.18.0-rc'
+	//implementation 'com.google.apis:google-api-services-calendar:v3-rev305-1.23.0'
+	
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:2.3.1'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}

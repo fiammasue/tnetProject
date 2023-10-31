@@ -1,0 +1,613 @@
+a {
+  text-decoration: none;
+}
+
+html {
+	font-size:62.5%;
+}
+* {
+	margin: 0;
+	padding: 0;
+}
+ul, li {
+	list-style: none;
+}
+
+
+.memberlist-Bwn {
+  width: 100%;
+  height: 94.1rem;
+  overflow: hidden;
+  position: relative;
+  background-color: #ffffff;
+}
+.memberlist-Bwn .allgroup-Lpg {
+  width: 178.4489rem;
+  height: 100%;
+  position: relative;
+}
+.memberlist-Bwn .allgroup-Lpg .greenbackground-sZi {
+  width: 100%;
+  height: 94.1rem;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-color: #ecffe9;
+}
+.memberlist-Bwn .allgroup-Lpg .menubargroup-nwa {
+  box-sizing: border-box;
+  padding: 8.204rem 2.4rem 7.793rem 2.4rem;
+  width: 25.0215rem;
+  height: 94.1rem;
+  position: absolute;
+  left: 0;
+  top: 0;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+}
+.memberlist-Bwn .allgroup-Lpg .menubargroup-nwa .auto-group-tqda-4PJ {
+  margin: 0rem 3.967rem 32.596rem 0rem;
+  width: 15.2rem;
+  height: 39.6716rem;
+  flex-shrink: 0;
+}
+.memberlist-Bwn .allgroup-Lpg .menubargroup-nwa .auto-group-tqda-4PJ .frame-2-naC {
+  width: 100%;
+  height: 39.3233rem;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+.memberlist-Bwn .allgroup-Lpg .menubargroup-nwa .auto-group-tqda-4PJ .frame-2-naC .main-logo-LLp {
+  width: 100%;
+  height: 7.9357rem;
+  position: relative;
+  flex-shrink: 0;
+}
+.memberlist-Bwn .allgroup-Lpg .menubargroup-nwa .auto-group-tqda-4PJ .frame-2-naC .main-logo-LLp .caption-6Kz {
+  width: 13.9rem;
+  height: 2.2rem;
+  position: absolute;
+  left: 0.6833rem;
+  top: 5.7357rem;
+  font-size: 1.8rem;
+  font-weight: 500;
+  line-height: 1.2;
+  color: #b9babd;
+  font-family: Barlow, 'Source Sans Pro';
+  white-space: nowrap;
+}
+.memberlist-Bwn .allgroup-Lpg .menubargroup-nwa .auto-group-tqda-4PJ .frame-2-naC .main-logo-LLp .t-net-zRN {
+  width: 15.2rem;
+  height: 7.2rem;
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 4.8rem;
+  font-weight: 700;
+  line-height: 1.5;
+  color: #00b074;
+  font-family: Poppins, 'Source Sans Pro';
+  white-space: nowrap;
+}
+.memberlist-Bwn .allgroup-Lpg .menubargroup-nwa .auto-group-tqda-4PJ .frame-2-naC .auto-group-e7b6-7Vz {
+  box-sizing: border-box;
+  padding-top: 3.3877rem;
+  width: 100%;
+  row-gap: 4.2rem;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+.memberlist-Bwn .allgroup-Lpg .menubargroup-nwa .auto-group-tqda-4PJ .frame-2-naC .auto-group-e7b6-7Vz .group-30929683-3uS {
+  margin-right: 3.5rem;
+  box-sizing: border-box;
+  padding-left: 0.25rem;
+  width: calc(100% - 3.5rem);
+  display: flex;
+  align-items: flex-start;
+  flex-shrink: 0;
+}
+.memberlist-Bwn .allgroup-Lpg .menubargroup-nwa .auto-group-tqda-4PJ .frame-2-naC .auto-group-e7b6-7Vz .group-30929683-3uS .icon-yo6 {
+  margin: 0.083rem 2.65rem 0rem 0rem;
+  width: 1.5rem;
+  height: 1.6667rem;
+  object-fit: contain;
+  vertical-align: top;
+  flex-shrink: 0;
+}
+.memberlist-Bwn .allgroup-Lpg .menubargroup-nwa .auto-group-tqda-4PJ .frame-2-naC .auto-group-e7b6-7Vz .group-30929683-3uS .analytics-uRr {
+  font-size: 1.8rem;
+  font-weight: 500;
+  line-height: 1.2;
+  color: #464155;
+  font-family: Barlow, 'Source Sans Pro';
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.memberlist-Bwn .allgroup-Lpg .menubargroup-nwa .auto-group-tqda-4PJ .frame-2-naC .auto-group-e7b6-7Vz .group-30929684-Ruz {
+  margin-right: 2.7rem;
+  box-sizing: border-box;
+  padding-left: 0.1667rem;
+  width: calc(100% - 2.7rem);
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+.memberlist-Bwn .allgroup-Lpg .menubargroup-nwa .auto-group-tqda-4PJ .frame-2-naC .auto-group-e7b6-7Vz .group-30929684-Ruz .icon-NKS {
+  margin: 0rem 2.567rem 0.2rem 0rem;
+  width: 1.6667rem;
+  height: 1.5rem;
+  object-fit: contain;
+  vertical-align: top;
+  flex-shrink: 0;
+}
+.memberlist-Bwn .allgroup-Lpg .menubargroup-nwa .auto-group-tqda-4PJ .frame-2-naC .auto-group-e7b6-7Vz .group-30929684-Ruz .board-list-u4U {
+  font-size: 1.8rem;
+  font-weight: 500;
+  line-height: 1.2;
+  color: #464155;
+  font-family: Barlow, 'Source Sans Pro';
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.memberlist-Bwn .allgroup-Lpg .menubargroup-nwa .auto-group-tqda-4PJ .frame-2-naC .auto-group-e7b6-7Vz .group-30929685-3Ag {
+  margin-right: 2.1rem;
+  box-sizing: border-box;
+  padding-left: 0.3333rem;
+  width: calc(100% - 2.1rem);
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+.memberlist-Bwn .allgroup-Lpg .menubargroup-nwa .auto-group-tqda-4PJ .frame-2-naC .auto-group-e7b6-7Vz .group-30929685-3Ag .icon-Nye {
+  margin: 0rem 2.733rem 0.2rem 0rem;
+  width: 1.3333rem;
+  height: 1.6667rem;
+  object-fit: contain;
+  vertical-align: top;
+  flex-shrink: 0;
+}
+.memberlist-Bwn .allgroup-Lpg .menubargroup-nwa .auto-group-tqda-4PJ .frame-2-naC .auto-group-e7b6-7Vz .group-30929685-3Ag .notice-list-WKA {
+  font-size: 1.8rem;
+  font-weight: 500;
+  line-height: 1.2;
+  color: #464155;
+  font-family: Barlow, 'Source Sans Pro';
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.memberlist-Bwn .allgroup-Lpg .menubargroup-nwa .auto-group-tqda-4PJ .frame-2-naC .auto-group-e7b6-7Vz .group-30929686-eRN {
+  margin-right: 1rem;
+  box-sizing: border-box;
+  padding-left: 0.1667rem;
+  width: calc(100% - 1rem);
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+.memberlist-Bwn .allgroup-Lpg .menubargroup-nwa .auto-group-tqda-4PJ .frame-2-naC .auto-group-e7b6-7Vz .group-30929686-eRN .icon-Pdr {
+  margin: 0rem 2.567rem 0.159rem 0rem;
+  width: 1.6667rem;
+  height: 1.7095rem;
+  object-fit: contain;
+  vertical-align: top;
+  flex-shrink: 0;
+}
+.memberlist-Bwn .allgroup-Lpg .menubargroup-nwa .auto-group-tqda-4PJ .frame-2-naC .auto-group-e7b6-7Vz .group-30929686-eRN .member-list-8LY {
+  font-size: 1.8rem;
+  font-weight: 500;
+  line-height: 1.2;
+  color: #464155;
+  font-family: Barlow, 'Source Sans Pro';
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.memberlist-Bwn .allgroup-Lpg .menubargroup-nwa .auto-group-tqda-4PJ .frame-2-naC .auto-group-e7b6-7Vz .group-30929687-Ghe {
+  margin-right: 3.4rem;
+  width: calc(100% - 3.4rem);
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+.memberlist-Bwn .allgroup-Lpg .menubargroup-nwa .auto-group-tqda-4PJ .frame-2-naC .auto-group-e7b6-7Vz .group-30929687-Ghe .icon-alert-circle-1v8 {
+  margin: 0.2rem 2.4rem 0rem 0rem;
+  width: 2rem;
+  height: 2.2rem;
+  object-fit: contain;
+  vertical-align: top;
+  flex-shrink: 0;
+}
+.memberlist-Bwn .allgroup-Lpg .menubargroup-nwa .auto-group-tqda-4PJ .frame-2-naC .auto-group-e7b6-7Vz .group-30929687-Ghe .complain-LSc {
+  margin-bottom: 0.2rem;
+  font-size: 1.8rem;
+  font-weight: 500;
+  line-height: 1.2;
+  color: #464155;
+  font-family: Barlow, 'Source Sans Pro';
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.memberlist-Bwn .allgroup-Lpg .menubargroup-nwa .menubottomletter-rQx {
+  margin-right: 4.3215rem;
+  width: 15.9rem;
+  height: 5.8359rem;
+  position: relative;
+  flex-shrink: 0;
+}
+.memberlist-Bwn .allgroup-Lpg .menubargroup-nwa .menubottomletter-rQx .made-with-by-peterdraw-abr {
+  width: 15.9rem;
+  height: 2.6rem;
+  position: absolute;
+  left: 0;
+  top: 3.2359rem;
+  font-size: 1.4rem;
+  font-weight: 400;
+  line-height: 1.8571428571;
+  color: #969ba0;
+  font-family: Barlow, 'Source Sans Pro';
+  white-space: nowrap;
+}
+.memberlist-Bwn .allgroup-Lpg .menubargroup-nwa .menubottomletter-rQx .talent-networks-pronesis-Ux8 {
+  width: 9.8rem;
+  height: 3.6rem;
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 1.2rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #969ba0;
+  font-family: Barlow, 'Source Sans Pro';
+}
+.memberlist-Bwn .allgroup-Lpg .whitearea-Nnc {
+  width: 130.9009rem;
+  height: 81.7955rem;
+  position: absolute;
+  left: 32.5778rem;
+  top: 6.8523rem;
+  background-color: #ffffff;
+  border-radius: 9.3rem;
+  text-align: center;
+}
+
+/*제목*/
+.memberlist-Bwn .allgroup-Lpg .member-list-VMS { 
+    font-size: 6.8rem;
+    color: #0a6022;
+    font-family: Capriola, 'Source Sans Pro';
+    margin-top: 29px;
+    margin-bottom: 22px;
+    text-align: center;
+}
+
+/*테이블 위치*/
+table {
+  margin: auto;
+}
+
+
+.memberlist-Bwn .allgroup-Lpg .button-bQU {
+  width: 5.4626rem;
+  height: 2.9rem;
+  position: absolute;
+  left: 46.2343rem;
+  top: 80.4428rem;
+  text-align: center;
+  font-size: 1.4rem;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: -0.014rem;
+  color: #646464;
+  font-family: Poppins, 'Source Sans Pro';
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: solid 0.1rem #646464;
+  box-sizing: border-box;
+  background-color: #f5f5f5;
+  border-radius: 0.4rem;
+}
+.memberlist-Bwn .allgroup-Lpg .pagination-qpc {
+  box-sizing: border-box;
+  padding: 1.138rem 38.634rem 1.162rem 0rem;
+  width: 85.5rem;
+  height: 5.1rem;
+  position: absolute;
+  left: 92.9489rem;
+  top: 79.0894rem;
+  display: flex;
+  align-items: center;
+  border: solid 0.1rem #ffffff;
+}
+.memberlist-Bwn .allgroup-Lpg .pagination-qpc .group-30929646-M2G {
+  margin-right: 0.4911rem;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  border-radius: 0.4rem;
+  flex-shrink: 0;
+}
+.memberlist-Bwn .allgroup-Lpg .pagination-qpc .group-30929646-M2G .exibindo-por-pgina-JTJ {
+  margin-right: 1.6rem;
+  font-size: 1.4rem;
+  font-weight: 400;
+  line-height: 1.4000000272;
+  color: #797d87;
+  font-family: Roboto, 'Source Sans Pro';
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.memberlist-Bwn .allgroup-Lpg .pagination-qpc .group-30929646-M2G .frame-30929652-DqA {
+  box-sizing: border-box;
+  padding: 0.4rem 1.376rem 0.4rem 1rem;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  border: solid 0.1rem #797d87;
+  border-radius: 0.4rem;
+  flex-shrink: 0;
+}
+.memberlist-Bwn .allgroup-Lpg .pagination-qpc .group-30929646-M2G .frame-30929652-DqA .item-10-9ip {
+  margin-right: 1.9757rem;
+  font-size: 1.4rem;
+  font-weight: 400;
+  line-height: 1.4000000272;
+  color: #797d87;
+  font-family: Roboto, 'Source Sans Pro';
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.memberlist-Bwn .allgroup-Lpg .pagination-qpc .group-30929646-M2G .frame-30929652-DqA .frame-gik {
+  margin-top: 0.0148rem;
+  width: 0.8485rem;
+  height: 0.5185rem;
+  object-fit: contain;
+  vertical-align: top;
+  flex-shrink: 0;
+}
+.memberlist-Bwn .allgroup-Lpg .pagination-qpc .group-299-zDe {
+  margin-top: 0.2008rem;
+  height: 2.4rem;
+  display: flex;
+  align-items: center;
+  border-radius: 0.4rem;
+  flex-shrink: 0;
+}
+.memberlist-Bwn .allgroup-Lpg .pagination-qpc .group-299-zDe .frame-298-jBE {
+  margin-right: 0.979rem;
+  width: 2.6rem;
+  height: 100%;
+  font-size: 1.2rem;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.012rem;
+  color: #000000;
+  font-family: Poppins, 'Source Sans Pro';
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: solid 0.1rem #eeeeee;
+  box-sizing: border-box;
+  background-color: #f5f5f5;
+  border-radius: 0.4rem;
+  flex-shrink: 0;
+}
+.memberlist-Bwn .allgroup-Lpg .pagination-qpc .group-299-zDe .frame-292-QYG {
+  margin-right: 0.9848rem;
+  width: 2.5rem;
+  height: 100%;
+  font-size: 1.2rem;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.012rem;
+  color: #000000;
+  font-family: Poppins, 'Source Sans Pro';
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(165, 232, 195, 0.7099999785);
+  border-radius: 0.4rem;
+  flex-shrink: 0;
+}
+.memberlist-Bwn .allgroup-Lpg .pagination-qpc .group-299-zDe .frame-293-6AC {
+  margin-right: 0.9847rem;
+  width: 2.5rem;
+  height: 100%;
+  font-size: 1.2rem;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.012rem;
+  color: #000000;
+  font-family: Poppins, 'Source Sans Pro';
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: solid 0.1rem #eeeeee;
+  box-sizing: border-box;
+  background-color: #f5f5f5;
+  border-radius: 0.4rem;
+  flex-shrink: 0;
+}
+.memberlist-Bwn .allgroup-Lpg .pagination-qpc .group-299-zDe .frame-294-mn8 {
+  margin-right: 0.9906rem;
+  width: 2.4rem;
+  height: 100%;
+  font-size: 1.2rem;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.012rem;
+  color: #000000;
+  font-family: Poppins, 'Source Sans Pro';
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: solid 0.1rem #eeeeee;
+  box-sizing: border-box;
+  background-color: #f5f5f5;
+  border-radius: 0.4rem;
+  flex-shrink: 0;
+}
+.memberlist-Bwn .allgroup-Lpg .pagination-qpc .group-299-zDe .frame-295-T9A {
+  margin-right: 0.979rem;
+  width: 2.6rem;
+  height: 100%;
+  font-size: 1.2rem;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.012rem;
+  color: #000000;
+  font-family: Poppins, 'Source Sans Pro';
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: solid 0.1rem #eeeeee;
+  box-sizing: border-box;
+  background-color: #f5f5f5;
+  border-radius: 0.4rem;
+  flex-shrink: 0;
+}
+.memberlist-Bwn .allgroup-Lpg .pagination-qpc .group-299-zDe .item--LTr {
+  margin: 0.153rem 1.078rem 0rem 0rem;
+  font-size: 1.2rem;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.012rem;
+  color: #000000;
+  font-family: Poppins, 'Source Sans Pro';
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.memberlist-Bwn .allgroup-Lpg .pagination-qpc .group-299-zDe .frame-296-Smn {
+  margin-right: 1.379rem;
+  width: 2.2rem;
+  height: 100%;
+  font-size: 1.2rem;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.012rem;
+  color: #000000;
+  font-family: Poppins, 'Source Sans Pro';
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: solid 0.1rem #eeeeee;
+  box-sizing: border-box;
+  background-color: #f5f5f5;
+  border-radius: 0.4rem;
+  flex-shrink: 0;
+}
+.memberlist-Bwn .allgroup-Lpg .pagination-qpc .group-299-zDe .frame-297-vwr {
+  width: 2.6rem;
+  height: 100%;
+  font-size: 1.2rem;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.012rem;
+  color: #000000;
+  font-family: Poppins, 'Source Sans Pro';
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: solid 0.1rem #eeeeee;
+  box-sizing: border-box;
+  background-color: #f5f5f5;
+  border-radius: 0.4rem;
+  flex-shrink: 0;
+}
+
+
+#white_footer_area {
+  display: flex; /* 요소들을 가로로 나열합니다. */
+  justify-content: space-between; /* 요소들을 양쪽으로 정렬합니다. */
+  padding: 10px; /* 필요에 따라 여백을 조절합니다. */
+  position: absolute;
+  bottom: 0;
+  margin-bottom : 40px;
+}
+
+div#crud_buttons {
+  margin-left: 93px;
+}
+
+#crud_buttons {
+  display: flex; /* 버튼들을 가로로 나열합니다. */
+}
+
+#crud_buttons input[type="button"] {
+  background-color: lightgray;
+  margin-right: 5px;
+  border: solid 1px lightgray;
+  padding: 7px;
+  border-radius: 10px;
+}
+
+#paging {
+  display: flex;
+  align-items: center;
+  margin-left: 71rem;
+}
+
+#Change number {
+  display: flex; /* 요소들을 가로로 나열합니다. */
+  align-items: center; /* 요소들을 수직 가운데로 정렬합니다. */
+}
+
+#Change number input[type="checkbox"] {
+  margin-right: 5px; /* 체크박스와 텍스트 사이 간격을 설정합니다. */
+}
+
+#page_switch_buttons input[type="button"] {
+  background-color: lightgray;
+  border: solid 1px lightgray;
+  border-radius: 32%;
+  padding: 5px;
+}
+
+div#crud_buttons {
+  margin-left: 70px;
+}
+
+
+div#Change\ number {
+  margin-right: 5px;
+}
+
+div#page_switch_buttons {
+  margin-right: 100px;
+}
+
+#paging input[type="text"] {
+  width: 50px; 
+}
+
+
+/* 테이블 */
+table {
+  margin: 0px auto;
+  border-collapse: collapse;
+  border-bottom: 1px solid rgb(204, 204, 204);
+}
+
+/* 테이블 제목 부분 */
+tr#table_title_bar {
+  border-bottom: solid 1px;
+}
+
+/* 테이블 */
+table th,
+table td {
+  padding: 8px 12px; /* 셀 내부 패딩 설정 */
+  text-align: center; /* 텍스트 가운데 정렬 */
+}
+
