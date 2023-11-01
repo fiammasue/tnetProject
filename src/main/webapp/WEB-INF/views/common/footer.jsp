@@ -23,7 +23,6 @@
         <p>상호명 T-net. 대표자 이연수</p>    
         <p>서울 종로구 창경궁로 254 7층 T-net. (대표전화) 123-456-7890</p> 
       </div>   
-      <script src="/scripts/main.js"></script>  
     </footer>  
   </div>
 </body>
