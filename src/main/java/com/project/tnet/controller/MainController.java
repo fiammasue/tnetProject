@@ -44,7 +44,12 @@ public class MainController {
 	
 	@RequestMapping("/admin/home")
 	public String admin() {
-		return "admin/Tap_apply_frame";
+		return "admin/dashboard";
+	}
+	
+	@RequestMapping("/admin/loginform")
+	public String admin_login() {
+		return "admin/adminLogin";
 	}
 	
 }
