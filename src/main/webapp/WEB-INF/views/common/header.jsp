@@ -5,14 +5,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link rel="stylesheet" href="/styles/main.css">
+  <title>Document</title>  
 </head>
 <body>
   <div id="container">    
     <header>
       <a href="#"><img id="logo" src="/assets/logo.png" alt="" ></a>
-      <nav>
+      <nav id="menubar">
         <ul id="topMenu">
           <li><a href="#">join </a></li>
           <li><a href="#">login </a></li>

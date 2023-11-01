@@ -7,6 +7,7 @@
 a {
   text-decoration:none;  /* 텍스트 링크 밑줄 없애기 */ 
 }
+
 ul {
   list-style: none;
 }
@@ -24,6 +25,7 @@ header{
   width:100%;    /*  너비 */
   height:70px;   /* 높이 */ 
   background-color:whitesmoke;
+  box-sizing: border-box;   /* 박스 영역은 테두리까지 */ 
 }
 
 /* 로고 */
@@ -36,7 +38,7 @@ header{
 }
 
 /* 내비게이션 */
-nav{  
+#menubar{  
   float:left;   /* 오른쪽으로 플로팅 */
   width:900px;   /*   너비 */  
   height:70px;   /* 메뉴 영역 높이 */  
@@ -127,7 +129,7 @@ nav{
   float:left;  /* 가로로 배치 */
 }
 
-button{
+.slideShowButton{
   position: absolute;
   height:100%;  /* 위아래 가득 차게 */ 
   top:0;
@@ -145,13 +147,13 @@ button{
 #next {
   right:0;  /* 오른쪽으로 붙여서 */ 
 }
-button:hover {
+.slideShowButton:hover {
   background-color:#222;  /* 짙은 회색 배경 */
   color:#fff;   /* 흰색 화살표 */ 
   opacity:0.6;   /* 불투명도를 조금 높임 */ 
   cursor:pointer;  /* 커서 모양을 포인터로 */ 
 }
-button:focus {
+.slideShowButton:focus {
   outline:0;  /* 아웃트라인 없앰 */
 }
 
@@ -250,11 +252,6 @@ img.icon:hover {
   align-items: center;
 }
 
-table td {
-  padding-left: 10px; /* 왼쪽 패딩 설정 */
-  padding-right: 10px; /* 오른쪽 패딩 설정 */
-}
-
 /**************************************/
 /* 카드섹션 영역 */
 /**************************************/
@@ -286,8 +283,6 @@ table td {
   color: inherit; /* 부모 요소의 글자 색을 상속 */
 }
 
-
-
 .lesson-details {
   padding: 16px;
 }
@@ -305,8 +300,6 @@ table td {
 }
 
 .lesson-meta {
-  
-  
   font-size: 0.875rem;
   color: #555;
 }
