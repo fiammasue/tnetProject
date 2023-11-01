@@ -15,16 +15,16 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A400%2C500%2C700"/>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins%3A500%2C700"/>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Capriola%3A400"/>
-  <link rel="stylesheet" href="./styles/memberlist.css"/>
-  <link rel="stylesheet" href="./styles/dashboard.css"/>
+  <link rel="stylesheet" href="/styles/memberlist.css"/>
+  <link rel="stylesheet" href="/styles/dashboard.css"/>
 </head>
 <body>
 <div class="memberlist-Bwn">
   <div class="allgroup-Lpg">
-    <!-- ì´ë¡ì ë°°ê²½ -->
+    <!-- 초록색 배경 -->
     <div class="greenbackground-sZi">
     </div>
-      <!-- ë©ë´ë° -->
+      <!-- 메뉴바 -->
     <div class="menubargroup-nwa">
       <div class="auto-group-tqda-4PJ">
         <div class="frame-2-naC">
@@ -34,56 +34,56 @@
           </div>
           <div class="auto-group-e7b6-7Vz tab_menu">
             <div class="group-30929683-3uS defaultarea">
-              <img class="icon-yo6" src="./assets/icon-RhJ.png"/>
+              <img class="icon-yo6" src="/assets/icon-RhJ.png"/>
               <a class="analytics-uRr" href="#tab1">Analytics</a>
             </div>
             <div class="group-30929684-Ruz">
-              <img class="icon-NKS" src="./assets/icon-E2L.png"/>
+              <img class="icon-NKS" src="/assets/icon-E2L.png"/>
               <a class="board-list-u4U" href="#tab2" >Board List</a>
             </div>
             <div class="group-30929685-3Ag">
-              <img class="icon-Nye" src="./assets/icon-j28.png"/>
+              <img class="icon-Nye" src="/assets/icon-j28.png"/>
               <a class="notice-list-WKA"  href="#tab3">Notice List</a>
             </div>
             <div class="group-30929686-eRN">
-              <img class="icon-Pdr" src="./assets/icon-p7z.png"/>
+              <img class="icon-Pdr" src="/assets/icon-p7z.png"/>
               <a class="member-list-8LY" href="#tab4" >Member List</a>
             </div>
             <div class="group-30929687-Ghe">
-              <img class="icon-alert-circle-1v8" src="./assets/icon-alert-circle-HqJ.png"/>
+              <img class="icon-alert-circle-1v8" src="/assets/icon-alert-circle-HqJ.png"/>
               <p class="complain-LSc">Complain</p>
             </div>
           </div>
         </div>
       </div>
       <div class="menubottomletter-rQx">
-        <p class="made-with-by-peterdraw-abr">Made with â¥ by Peterdraw</p>
+        <p class="made-with-by-peterdraw-abr">Made with ♥ by Peterdraw</p>
         <p class="talent-networks-pronesis-Ux8">
-        Talent -NetWorkâs  
+        Talent -NetWork’s  
         <br/>
         @pro_nesis
         </p>
       </div>
 
-        <!-- Member List í°ì ìì­ -->
+        <!-- Member List 흰색 영역 -->
         <div class="whitearea-Nnc  tap_content" id="tab4">
           <p class="member-list-VMS">Member List</p>
-          <!-- íì´ë¸ -->
+          <!-- 테이블 -->
           <div>
             <table >
                 <tr id = "table_title_bar">
-                  <th>ì í</th>
-                  <th>ëë¤ì</th>
-                  <th>ì´ë©ì¼</th>
-                  <th>ëì´</th>
-                  <th>ì íë²í¸</th>
-                  <th>ììë¡ê·¸ì¸</th>
-                  <th>í´ë©´ê³ì </th>
-                  <th>ê°ìë ì§</th>
-                  <th>ì ì</th>
-                  <th>ì ê³ ì</th>
+                  <th>선택</th>
+                  <th>닉네임</th>
+                  <th>이메일</th>
+                  <th>나이</th>
+                  <th>전화번호</th>
+                  <th>소셜로그인</th>
+                  <th>휴면계정</th>
+                  <th>가입날짜</th>
+                  <th>점수</th>
+                  <th>신고수</th>
                 </tr>
-                    <!-- ëì¤ì ìì -->
+                    <!-- 나중에 수정-->
                 <c:forEach items="${result.List}" var="member">
                   <tr id = "table_contents">
                   <td>${member.boardid}</td>
@@ -99,20 +99,20 @@
                   </tr>
                 </c:forEach>                        
               </table>
-          </div> <!-- íì´ë¸ -->
+          </div> <!-- 테이블 -->
 
-          <!-- ë²í¼ì´ë íì´ì§ í¨ê»-->
+          <!-- 버튼이랑 페이징 함께-->
           <div id = "white_footer_area">
-            <!-- ë²í¼ -->
+            <!-- 버튼 -->
             <div id = "crud_buttons">
-            <input type="button" id ="button-bQU" value="íìíí´"/>
-            <input type="button" id ="button-bQU" value="ì¶ê°ë²í¼"/>
+            <input type="button" id ="button-bQU" value="회원탈퇴"/>
+            <input type="button" id ="button-bQU" value="추가버튼"/>
             </div>
 
-            <!-- íì´ì§ë¶ë¶ -->
+            <!-- 페이징부분 -->
             <div id ="paging">
               <div id = "Change number">
-              ê±´ì : <input type="text" id ="button-bQU" value="10"/></div>
+              건수 : <input type="text" id ="button-bQU" value="10"/></div>
              
               <div class="group-299-zDe" id="page_switch_buttons">
                 <input class="frame-298-jBE" type ="button" value="&lt;"/>
@@ -126,10 +126,11 @@
             </div>
           </div>
 
-        </div> <!-- Member List í°ì ìì­ë -->
+        </div> <!-- Member List 흰색 영역끝 -->
 
 
-    </div>    <!-- ë©ë´ë° ë -->
-  </div><!--ìì­ë ì§ì°ë©´ ìë¨ -->
-</div><!-- ìì­ë ì§ì°ë©´ ìë¨-->
+    </div>    <!-- 메뉴바 끝 -->
+  </div><!--영역끝 지우면 안됨 -->
+</div><!-- 영역끝 지우면 안됨-->
 </body>
+</html>

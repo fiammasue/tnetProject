@@ -1,0 +1,137 @@
+
+html {
+	font-size:62.5%;
+  display: flex; 
+}
+* {
+	margin: auto;
+	padding: 0;
+}
+ul, li {
+	list-style: none;
+}
+input {
+	border: none;
+}
+body {
+  width: 169rem;
+}.group-30929655-teU {
+  width: 100%;
+  height: 95rem;
+}
+.group-30929655-teU .group-194-cqN {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background-color: #ffffff;
+}
+.group-30929655-teU .group-194-cqN .group-30929654-9aQ {
+  width: 71.0349rem;
+  height: 59.9579rem;
+  position: absolute;
+  left: 49.6062rem;
+  top: 18.9rem;
+  object-fit: contain;
+  vertical-align: top;
+}
+.group-30929655-teU .group-194-cqN .rectangle-169-f2x {
+  width: 6.292rem;
+  height: 5.0279rem;
+  position: absolute;
+  left: 110.9896rem;
+  top: 28.0869rem;
+  background-color: #ffffff;
+}
+.group-30929655-teU .group-194-cqN .icon-x-letter-afi {
+  width: 4.4623rem;
+  height: 3.3519rem;
+  position: absolute;
+  left: 111.9727rem;
+  top: 29.0572rem;
+  object-fit: contain;
+  vertical-align: top;
+}
+
+
+/*ID 인풋 박스*/
+.group-30929655-teU .group-194-cqN .rectangle-170-hEY {
+	width: 34.6928rem;
+    height: 4.7623rem;
+    position: absolute;
+    left: 76.2798rem;
+    top: 39.68rem;
+    border: solid 0.1rem #a1a3a8;
+    box-sizing: border-box;
+    backdrop-filter: blur(0.25rem);
+    background-color: #ffffff;
+    font-size: 25px;
+}
+
+/*아이디 글자*/
+.group-30929655-teU .group-194-cqN .id-b52 {
+	position: absolute;
+    left: 59.1rem;
+    top: 41.4rem;
+    font-weight: 400;
+    line-height: 0.3076923077;
+    color: #82848a;
+    font-family: Capriola, 'Source Sans Pro';
+    white-space: nowrap;
+    font-size: 50px;
+}
+
+/*패스워드 글자*/
+.group-30929655-teU .group-194-cqN .pass-UuW {
+    position: absolute;
+    left: 59.1rem;
+    top: 52.6007rem;
+    font-weight: 400;
+    line-height: 0.3076923077;
+    color: #82848a;
+    font-family: Capriola, 'Source Sans Pro';
+    white-space: nowrap;
+    font-size: 50px;
+}
+
+
+/*PASS 인풋 박스*/
+.group-30929655-teU .group-194-cqN .rectangle-171-PWg {
+	width: 34.6928rem;
+    height: 4.7623rem;
+    position: absolute;
+    left: 76.2798rem;
+    top: 50.8253rem;
+    border: solid 0.1rem #a1a3a8;
+    box-sizing: border-box;
+    background-color: #ffffff;
+    font-size: 25px;
+}
+
+/*관리자 로그인 버튼*/
+.group-30929655-teU .group-194-cqN .rectangle-172-7Bn {
+    width: 36.7487rem;
+    height: 6.7326rem;
+    position: absolute;
+    left: 67.508rem;
+    top: 60.7447rem;
+    background-color: rgb(237, 255, 234);
+    border-radius: 20px;
+    font-size: 29px;
+    color: gray;
+}
+
+
+.group-30929655-teU .group-194-cqN .item--FHz {
+  width: 25.1rem;
+  height: 2.4rem;
+  position: absolute;
+  left: 60rem;
+  top: 68.6rem;
+  font-size: 7.8rem;
+  font-weight: 400;
+  line-height: 0.3076923077;
+  color: #81848a;
+  font-family: Charmonman, 'Source Sans Pro';
+  white-space: nowrap;
+}
+
