@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>    
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -250,12 +250,10 @@
                 <img src="/assets/locationicon.png">
                 <span class="lesson-location">서울 관악구</span>
                 <input type="button" id="detail" value="DETAIL"></input>
-            </div>
+            </div>'
         </div>
       </li>
     </ul>
   </div>
-  
-  <script src="/scripts/main.js"></script>
 </body>
 </html>
