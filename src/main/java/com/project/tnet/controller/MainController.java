@@ -42,6 +42,27 @@ public class MainController {
 		return "notice/noticeWrite";
 	}
 	
+	@RequestMapping("/myPage/userInfo")
+	public String myPage_userInfo() {
+		return "myPage/myPage_userInfo";
+	}
+	@RequestMapping("/myPage/course_proceeding")
+	public String myPage_course_proceeding() {
+		return "myPage/myPage_course_proceeding";
+	}
+	@RequestMapping("/myPage/course_recruiting")
+	public String myPage_course_recruiting() {
+		return "myPage/myPage_course_recruiting";
+	}
+	@RequestMapping("/myPage/calendar")
+	public String myPage_calendar() {
+		return "myPage/myPage_calendar";
+	}
+	@RequestMapping("/myPage/chatRoom")
+	public String myPage_chatRoom() {
+		return "myPage/myPage_chatRoom";
+	}
+	
 	@RequestMapping("/admin/home")
 	public String admin() {
 		return "admin/dashboard";
