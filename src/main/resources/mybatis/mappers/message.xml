@@ -34,7 +34,7 @@
 		where room_id=#{room_id}
 	</update>
 	
-	<select id="selectMessageList" resultType="Message">
+	<select id="selectMessageList" resultType="com.project.tnet.dto.Message">
 		select message_id
 				,message
 				,read_yn
