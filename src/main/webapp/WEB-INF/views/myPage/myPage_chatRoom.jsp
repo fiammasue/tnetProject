@@ -53,10 +53,10 @@
 			<!-- MAIN CONTENT -->
 			<div class="main-content">
 				<div class="panel-heading">
-					<h1 class="panel-title recruiting">채팅방 목록</h3>
+					<h2 class="panel-title recruiting">채팅방 목록</h3>
 				</div>
 				<div class="container-fluid">
-					<div class="chat-room-list">
+					<div class="panel chat-room-list">
 						<div class="chat-frames">
 							<div class="chat-room">
 								<div class="user-info">
