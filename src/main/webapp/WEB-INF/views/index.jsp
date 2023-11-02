@@ -5,17 +5,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link rel="stylesheet" href="/styles/main.css">
+  <title>Document</title>  
 </head>
 <body>
   <div id="container">    
   <div id="slideShow">
     <div id="slides">
-      <img src="/assets/slideshow1.jpg" alt="">
-      <img src="/assets/slideshow2.jpg" alt="">
-      <img src="/assets/slideshow3.jpg" alt="">
-      <img src="/assets/slideshow4.jpg" alt="">
+    
+      <img src="/assets/slideshow6.jpg" alt="">
+      <img src="/assets/slideshow7.jpg" alt="">
+      <img src="/assets/slideshow8.jpg" alt="">
+      <img src="/assets/slideshow9.jpg" alt="">
       <button id="prev">&lang;</button>
       <button id="next">&rang;</button>
     </div>
@@ -32,17 +32,17 @@
 
             <ul class="cls">
               <li><a href="#">영어</a></li>
+              <li><a href="#">한국어</a></li>
               <li><a href="#">일본어</a></li>
               <li><a href="#">중국어</a></li>
-              <li><a href="#">한국어</a></li>
-              <li><a href="#">프랑스어</a></li>
               <li><a href="#">독일어</a></li>
-              <li><a href="#">스페인어</a></li>              
+              <li><a href="#">프랑스어</a></li>              
+              <li><a href="#">스페인어</a></li>
+              <li><a href="#">아랍어</a></li>              
               <li><a href="#">러시아어</a></li>
-              <li><a href="#">이탈리아어</a></li>
-              <li><a href="#">태국어</a></li>
-              <li><a href="#">베트남어</a></li>
-              <li><a href="#">그리스어</a></li>
+              <li><a href="#">터키어</a></li>
+              <li><a href="#">힌디어</a></li>
+              <li><a href="#">포루투칼어</a></li>             
             </ul>
           </li>
           <li>
@@ -51,19 +51,11 @@
               <p>art</p>
             </a>  
             <ul class="cls">
-              <li><a href="#">미술</a></li>
-              <li><a href="#">디자인</a></li>
-              <li><a href="#">마술</a></li>
-              <li><a href="#">사진찍기</a></li>
-              <li><a href="#">요리</a></li>
-              <li><a href="#">뷰티</a></li>
-              <li><a href="#">글쓰기</a></li>
-              <li><a href="#">커피</a></li>          
-              <li><a href="#">바둑</a></li>
-              <li><a href="#">패션</a></li>
-              <li><a href="#">댄스</a></li>
-              <li><a href="#">연기</a></li>
-              <li><a href="#">꽃곶이</a></li>
+              <li><a href="#">그림</a></li>
+              <li><a href="#">꽃꽂이</a></li>
+              <li><a href="#">도예</a></li>
+              <li><a href="#">POP</a></li>
+              <li><a href="#">헬스</a></li>             
             </ul>          
           </li>
           <li>
@@ -72,11 +64,15 @@
               <p>computer</p>
             </a>
             <ul class="cls">
-              <li><a href="#">프로그래밍</a></li>
-              <li><a href="#">3D/CAD</a></li>
-              <li><a href="#">쇼핑몰</a></li>
-              <li><a href="#">포토샵</a></li>
-              <li><a href="#">MS 오피스</a></li>
+              <li><a href="#">JAVA</a></li>
+              <li><a href="#">C언어</a></li>
+              <li><a href="#">C++</a></li>
+              <li><a href="#">python</a></li>
+              <li><a href="#">javascript</a></li>
+              <li><a href="#">html</a></li>
+              <li><a href="#">css</a></li>
+              <li><a href="#">spring</a></li>
+              <li><a href="#">jsp</a></li>
             </ul>             
           </li>
           <li>
@@ -85,16 +81,18 @@
               <p>exercise</p>
             </a>
             <ul class="cls">
-              <li><a href="#">수영</a></li>
-              <li><a href="#">요가</a></li>
-              <li><a href="#">필라테스</a></li>
-              <li><a href="#">스키</a></li>
-              <li><a href="#">드라이빙</a></li>
-              <li><a href="#">볼링</a></li>
-              <li><a href="#">스키</a></li>
-              <li><a href="#">테니스</a></li>
-              <li><a href="#">골프</a></li>
               <li><a href="#">헬스</a></li>
+              <li><a href="#">자전거</a></li>
+              <li><a href="#">태권도</a></li>
+              <li><a href="#">권투</a></li>
+              <li><a href="#">배드민턴</a></li>
+              <li><a href="#">주짓수</a></li>
+              <li><a href="#">탁구</a></li>
+              <li><a href="#">요가</a></li>
+              <li><a href="#">축구</a></li>
+              <li><a href="#">골프</a></li>
+              <li><a href="#">테니스</a></li>
+              <li><a href="#">필라테스</a></li>
             </ul>             
           </li>
           <li>
@@ -104,15 +102,11 @@
             </a>
             <ul class="cls">
               <li><a href="#">피아노</a></li>
-              <li><a href="#">기타</a></li>
-              <li><a href="#">재즈</a></li>
-              <li><a href="#">플루트</a></li>
-              <li><a href="#">클라리넷</a></li>
+              <li><a href="#">플룻</a></li>
+              <li><a href="#">바이올린</a></li>
               <li><a href="#">보컬</a></li>
-              <li><a href="#">섹소폰</a></li>
-              <li><a href="#">드럼</a></li>
-              <li><a href="#">첼로</a></li>
-              <li><a href="#">베이스</a></li>
+              <li><a href="#">드럽</a></li>
+              <li><a href="#">첼로</a></li>      
             </ul>             
           </li>
           <li>
@@ -122,12 +116,11 @@
             
             <ul class="cls">
               <li><a href="#">수학</a></li>
-              <li><a href="#">심리학</a></li>
               <li><a href="#">역사</a></li>
-              <li><a href="#">의학</a></li>
-              <li><a href="#">마케팅</a></li>
-              <li><a href="#">물리학</a></li>
-              <li><a href="#">경제학</a></li>
+              <li><a href="#">문학</a></li>
+              <li><a href="#">주식</a></li>
+              <li><a href="#">정치</a></li>
+              <li><a href="#">성경</a></li>
             </ul>     
           </li>
         </ul>

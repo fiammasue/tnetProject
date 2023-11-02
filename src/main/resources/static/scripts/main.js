@@ -28,9 +28,9 @@ document.addEventListener("DOMContentLoaded", function () {
     showSlides(current);
   }
 
-
+});
 // ----------------------------------------- 토글관련 스크립트코드  ----------------------------------------- 
-
+document.addEventListener("DOMContentLoaded", function () {
   const liElements = document.querySelectorAll('#links ul li');
 
   liElements.forEach(function(li) {

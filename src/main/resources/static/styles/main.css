@@ -14,7 +14,7 @@ ul {
 
 #container {
   margin:0 auto;  /* 화면 중앙에 배치 */
-  width:1200px;    /* 너비 */
+  width:100%;    /* 너비 */
 }
 
 /*********************************/
@@ -31,21 +31,25 @@ header{
 /* 로고 */
 #logo{ 
   float:left;   /* 왼쪽으로 플로팅 */ 
-  width:250px;   /*  너비 */ 
+  width:16.5%;   /*  너비 */ 
+  /*width:250px;   /*  너비 */ 
   height:40px;   /* 높이 */
   margin-top: 1.25%;
-  padding-left:20px;  /* 왼쪽에 여백 */
+  margin-left: 2%;
+  padding-left:30px;  /* 왼쪽에 여백 */
 }
 
 /* 내비게이션 */
 #menubar{  
   float:left;   /* 오른쪽으로 플로팅 */
-  width:900px;   /*   너비 */  
+  width:75%;   /*   너비 */  
   height:70px;   /* 메뉴 영역 높이 */  
   margin-left: 4%;
 }
 #topMenu {  
-  height:60px; 
+  height:70px; 
+  width: 100%;
+  margin-left: 6%;
 }
 
 #bell {
@@ -69,7 +73,7 @@ header{
   color: black;  /* 글자 색 */
   font-weight:500;  /* 글자 굵기 */
   text-shadow:0 1px gainsboro;  /* 그림자 추가 */
-  padding:20px 40px;  /* 패딩 */ 
+  padding: 20px 55px;  /* 패딩 */ 
   height: 60px; /* 높이로 수정 */
   line-height: 30px; /* 수직 중앙 정렬 */
   font-size: 25px; /* 글자 크기 추가 또는 수정 */
@@ -85,7 +89,6 @@ header{
 #topMenu > li > ul { /* 서브 메뉴 스타일 */
   display: none;  /* 서브 메뉴 처음에는 화면에 안 보이게 */ 
   position:absolute;  /* 서브 메뉴 포지셔닝 */ 
-  width:160px;
   background:rgba(255,255,255,0.6);  /* 슬라이드 쇼 비치도록 배경 색 조절 */
   left:20px;     
   margin:0;
@@ -117,7 +120,8 @@ header{
 #slideShow {   
   clear:both;   /* 플로팅 해제 */
   width:100%;    /* 너비 */ 
-  height:350px;   /* 높이 */ 
+  /*height:400px;    높이 */ 
+  height: calc(100vw/3.8); 
   overflow:hidden;   /* 영역 넘치면 감춤 */ 
   position: relative;
 }
@@ -164,7 +168,7 @@ header{
 
 /* 아이콘 메뉴 */ 
 #links{    
-  width:1200px;   /* 너비 */
+  width:100%;   /* 너비 */
   height:100%;   /* 높이 */
   margin-top:20px;  /* 마진 추가 */
 }
@@ -197,7 +201,7 @@ ul.cls {
   position: absolute; /*하단 밀려나는 문제때문에 추가*/
   z-index:1;          /*하단 밀려나는 문제때문에 추가*/
   display: none;
-  width:180px;
+  width:90%;
   background:#f5f5f5;  /* 슬라이드 쇼 비치도록 배경 색 조절 */ 
   margin-left: 3%;
   border: solid 2px;
