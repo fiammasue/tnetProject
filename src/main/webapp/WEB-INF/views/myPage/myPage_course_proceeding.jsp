@@ -59,7 +59,7 @@
 							<div class="tab-button active" onclick="openTab('tab1', 'tab2')" id="tab-button1">진행 중인 강의</div>
 							<div class="tab-button" onclick="openTab('tab2', 'tab1')" id="tab-button2">완료된 강의</div>
 						</div>
-						<div class="tab-content active" id="tab1">
+						<div class="panel tab-content active" id="tab1">
 							<div class="row">
 								<div class="kanban-board">
 									<div class="bucket accept">
@@ -178,7 +178,7 @@
 							</div>
 						</div>
 
-						<div class="tab-content" id="tab2">
+						<div class="panel tab-content" id="tab2">
 							<div class="row">
 								<div class="kanban-board">
 									<div class="bucket completed">

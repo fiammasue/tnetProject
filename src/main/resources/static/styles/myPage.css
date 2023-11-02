@@ -85,7 +85,7 @@ footer {
 
 #wrapper #sidebar-nav,
 #wrapper .main {
-  padding-top: 70px; }
+  padding-top: 60px; }
 
 @media screen and (max-width: 767px) {
   #wrapper #sidebar-nav,
@@ -125,7 +125,7 @@ footer {
     display: none; } }
 
 .main-content {
-  padding: 28px 20px; }
+  padding: 15px 100px; }
 
 .navbar + .main-content {
   padding: 105px 0 28px 5px; }
@@ -227,9 +227,6 @@ html.fullscreen-bg #wrapper {
 .navbar-nav .icon-menu {
   display: inline-block;
   vertical-align: middle;
-  *vertical-align: auto;
-  *zoom: 1;
-  *display: inline;
   padding-top: 28px;
   padding-bottom: 28px;
   position: relative; }
@@ -319,9 +316,6 @@ html.fullscreen-bg #wrapper {
   border-radius: 50%;
   display: inline-block;
   vertical-align: middle;
-  *vertical-align: auto;
-  *zoom: 1;
-  *display: inline;
   width: 10px;
   height: 10px;
   content: '';
@@ -374,9 +368,6 @@ ul.notifications > li {
     .sidebar .nav > li > a[data-toggle="collapse"] .icon-submenu {
       display: inline-block;
       vertical-align: middle;
-      *vertical-align: auto;
-      *zoom: 1;
-      *display: inline;
       -webkit-transition: all 0.2s ease-out;
       -moz-transition: all 0.2s ease-out;
       -ms-transition: all 0.2s ease-out;
@@ -482,18 +473,12 @@ ul.list-justify > li {
     .fancy-checkbox input[type="checkbox"] + span {
       display: inline-block;
       vertical-align: middle;
-      *vertical-align: auto;
-      *zoom: 1;
-      *display: inline;
       cursor: pointer;
       position: relative;
       font-size: 13px; }
       .fancy-checkbox input[type="checkbox"] + span:before {
         display: inline-block;
         vertical-align: middle;
-        *vertical-align: auto;
-        *zoom: 1;
-        *display: inline;
         position: relative;
         bottom: 1px;
         width: 18px;
@@ -531,9 +516,6 @@ ul.list-justify > li {
       .fancy-radio input[type="radio"] + span i {
         display: inline-block;
         vertical-align: middle;
-        *vertical-align: auto;
-        *zoom: 1;
-        *display: inline;
         -webkit-border-radius: 8px;
         -moz-border-radius: 8px;
         border-radius: 8px;
@@ -831,9 +813,6 @@ ul.activity-list > li {
   .todo-list > li p {
     display: inline-block;
     vertical-align: middle;
-    *vertical-align: auto;
-    *zoom: 1;
-    *display: inline;
     width: 90%;
     margin: 0;
     padding: 20px 0 20px 35px; }
@@ -900,10 +879,7 @@ ul.activity-list > li {
 /* tabs */
 .custom-tabs-line ul {
   display: inline-block;
-  vertical-align: middle;
-  *vertical-align: auto;
-  *zoom: 1;
-  *display: inline; }
+  vertical-align: middle; }
   .custom-tabs-line ul > li {
     float: left; }
     .custom-tabs-line ul > li a {
@@ -957,9 +933,6 @@ ul.activity-list > li {
   .easy-pie-chart .percent {
     display: inline-block;
     vertical-align: middle;
-    *vertical-align: auto;
-    *zoom: 1;
-    *display: inline;
     line-height: 110px;
     z-index: 2; }
     .easy-pie-chart .percent:after {
@@ -988,18 +961,12 @@ ul.activity-list > li {
   .auth-box:before {
     display: inline-block;
     vertical-align: middle;
-    *vertical-align: auto;
-    *zoom: 1;
-    *display: inline;
     content: ' ';
     vertical-align: middle;
     height: 100%; }
   .auth-box .content {
     display: inline-block;
     vertical-align: middle;
-    *vertical-align: auto;
-    *zoom: 1;
-    *display: inline;
     width: 99%;
     vertical-align: middle; }
   .auth-box .left {
@@ -1011,9 +978,6 @@ ul.activity-list > li {
     .auth-box .left:before {
       display: inline-block;
       vertical-align: middle;
-      *vertical-align: auto;
-      *zoom: 1;
-      *display: inline;
       content: ' ';
       vertical-align: middle;
       height: 100%; }
@@ -1028,9 +992,6 @@ ul.activity-list > li {
     .auth-box .right:before {
       display: inline-block;
       vertical-align: middle;
-      *vertical-align: auto;
-      *zoom: 1;
-      *display: inline;
       content: ' ';
       vertical-align: middle;
       height: 100%; }
@@ -1142,11 +1103,10 @@ ul.activity-list > li {
   position: relative; }
 
 .profile-left {
-  padding: 100px 0;
+  padding: 40px 0;
   float: left;
   width: 35%;
   height: 100%;
-  position: absolute;
   background-color: #F8F8F8; }
 
 .profile-right {
@@ -1238,9 +1198,6 @@ ul.activity-list > li {
       border-radius: 50%;
       display: inline-block;
       vertical-align: middle;
-      *vertical-align: auto;
-      *zoom: 1;
-      *display: inline;
       content: '';
       width: 8px;
       height: 8px;
@@ -1270,12 +1227,9 @@ ul.activity-list > li {
     .profile-header .profile-stat .stat-item:after {
       display: none; } }
 
-.profile-detail {
-  padding-bottom: 30px; }
-
 .profile-info {
   padding: 0 20px;
-  margin: 40px 0; }
+  margin: 45px 0; }
   .profile-info .heading {
     margin: 0 0 10px 0;
     font-weight: 600; }
@@ -1289,9 +1243,6 @@ ul.activity-list > li {
     .social-icons > li > a {
       display: inline-block;
       vertical-align: middle;
-      *vertical-align: auto;
-      *zoom: 1;
-      *display: inline;
       -webkit-border-radius: 3px;
       -moz-border-radius: 3px;
       border-radius: 3px;
@@ -1715,9 +1666,6 @@ ul.activity-list > li {
 .award-item {
   display: inline-block;
   vertical-align: middle;
-  *vertical-align: auto;
-  *zoom: 1;
-  *display: inline;
   text-align: center;
   margin-bottom: 30px; }
   .award-item .hexagon {
@@ -1760,9 +1708,6 @@ ul.activity-timeline > li {
   ul.activity-timeline > li .activity-icon {
     display: inline-block;
     vertical-align: middle;
-    *vertical-align: auto;
-    *zoom: 1;
-    *display: inline;
     -webkit-border-radius: 30px;
     -moz-border-radius: 30px;
     border-radius: 30px;
@@ -1908,6 +1853,12 @@ button:hover {
   border-top-left-radius: 5px;
   border: 1px solid #ccc;
   text-align: center;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+
+.tab-button:hover {
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 }
 .tab-content {
   display: none;
@@ -1926,11 +1877,14 @@ button:hover {
   background-color: #00b074;
   color: white;
   font-weight: bold;
+  border: 1.5px solid black;
 }
+
 .tab-button:last-child.active {
   background-color: #4f87f5;
   color: white;
   font-weight: bold;
+  border: 1.5px solid black;
 }
 
 /* 진행중 탭버튼 완료*/
@@ -2153,7 +2107,7 @@ button:hover {
 
 /* 채팅방 */
 .chat-room-list {
-  background-color: #f0f0f0;
+  background-color: #f2f2f2;
   padding: 20px;
 }
 
@@ -2177,6 +2131,10 @@ button:hover {
   background-color: #fff;
   display: flex;
   align-items: center;
+}
+
+.chat-room:hover {
+  background-color: #f6f6f6;
 }
 
 .user-avatar {

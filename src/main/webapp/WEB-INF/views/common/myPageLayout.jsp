@@ -9,13 +9,17 @@
 <meta charset="UTF-8">
 <title><tiles:insertAttribute name="title"/></title>
 
-
+<link rel="stylesheet" href="/styles/main.css"/>
 
 <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script> 
 </head>
 <body>
 	<div id="container">
+	
+		<div id="header">
+			<tiles:insertAttribute name="header"/>	
+		</div>
 		<div id="content">
 			<tiles:insertAttribute name="body"/>
 		</div>		
