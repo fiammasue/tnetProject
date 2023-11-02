@@ -260,11 +260,12 @@
 
 /* 카운트영역 */
 .countingarea-Mqi {
-  margin: 0rem 2.739rem 2.879rem 6.639rem;
-  width: calc(100% - 9.3778rem);
-  display: flex;
-  align-items: flex-start;
-  flex-shrink: 0;
+    margin: auto;
+    width: calc(100% - 7.3778rem);
+    display: flex;
+    align-items: flex-start;
+    margin-top: 46px;
+
 }
 
 /* 진행중인 수업 카운트 */
@@ -529,12 +530,15 @@
 
 /* 차트영역 */
 .auto-group-jz1n-jeY {
-  width: 100%;
-  height: 39.843rem;
-  display: flex;
-  align-items: center;
-  flex-shrink: 0;
+    width: 100%;
+    height: 39.843rem;
+    display: flex;
+    align-items: center;
+    margin: auto;
+    flex-shrink: 0;
+    margin-top: 61px;
 }
+
 
 /* 막대그래프 차트  */
 .auto-group-jz1n-jeY .bargrape-HRA {

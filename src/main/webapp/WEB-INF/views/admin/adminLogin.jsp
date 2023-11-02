@@ -26,10 +26,23 @@
     <div class="rectangle-170-hEY">
     </div>
     <div>
-      <p class="id-b52">ID</p><input type="text" class="rectangle-170-hEY">
-      <p class="pass-UuW">PASS</p><input type="password" class="rectangle-171-PWg">
+      <p class="id-b52">ID</p><input type="text" class="rectangle-170-hEY" id="ID">
+      <p class="pass-UuW">PASS</p><input type="password" class="rectangle-171-PWg" id="PASS">
     </div>
-    <input class="rectangle-172-7Bn" type ="button" value="관리자 로그인"/>
+    <input class="rectangle-172-7Bn admin_login_button" type ="button" value="관리자 로그인"/>
   </div>
 </div>
+<script>
+
+const button = $(#admin_login_button);
+button.on("click", admin_login);
+
+function admin_login(){
+	
+	const admin_id = $(#ID).val();
+	const admin_pass = $(#PASS).val();	
+	
+}
+
+</script>
 </body>

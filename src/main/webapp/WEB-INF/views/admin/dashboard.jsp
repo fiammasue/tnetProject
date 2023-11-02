@@ -36,19 +36,19 @@
           <div class="auto-group-e7b6-7Vz tab_menu">
             <div class="group-30929683-3uS defaultarea">
               <img class="icon-yo6" src="/assets/icon-RhJ.png"/>
-              <a class="analytics-uRr" href="#tab1">Analytics</a>
+              <a class="analytics-uRr" href="<c:url value='/admin/home'/>">Analytics</a>
             </div>
             <div class="group-30929684-Ruz">
               <img class="icon-NKS" src="/assets/icon-E2L.png"/>
-              <a class="board-list-u4U" href="#tab2" >Board List</a>
+              <a class="board-list-u4U" href="<c:url value='/admin/boardlist'/>" >Board List</a>
             </div>
             <div class="group-30929685-3Ag">
               <img class="icon-Nye" src="/assets/icon-j28.png"/>
-              <a class="notice-list-WKA"  href="#tab3">Notice List</a>
+              <a class="notice-list-WKA"  href="<c:url value='/admin/noticelist'/>">Notice List</a>
             </div>
             <div class="group-30929686-eRN">
               <img class="icon-Pdr" src="/assets/icon-p7z.png"/>
-              <a class="member-list-8LY" href="#tab4" >Member List</a>
+              <a class="member-list-8LY" href="<c:url value='/admin/memberlist'/>" >Member List</a>
             </div>
             <div class="group-30929687-Ghe">
               <img class="icon-alert-circle-1v8" src="/assets/icon-alert-circle-HqJ.png"/>
