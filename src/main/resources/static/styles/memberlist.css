@@ -545,11 +545,12 @@ div#crud_buttons {
 }
 
 #crud_buttons input[type="button"] {
-  background-color: lightgray;
-  margin-right: 5px;
-  border: solid 1px lightgray;
-  padding: 7px;
-  border-radius: 10px;
+	background-color: lightgray;
+    /* margin-right: 18px; */
+    margin-left: 5px;
+    border: solid 1px lightgray;
+    padding: 7px;
+    border-radius: 10px;
 }
 
 #paging {
@@ -557,6 +558,33 @@ div#crud_buttons {
   align-items: center;
   margin-left: 71rem;
 }
+
+#paging input[type="text"] {
+  width: 50px; 
+}
+
+#board_paging {
+  display: flex;
+  align-items: center;
+  margin-left: 81rem;
+}
+
+#board_paging input[type="text"] {
+  width: 50px; 
+}
+
+
+#member_paging {
+  display: flex;
+  align-items: center;
+  margin-left: 76rem;
+}
+
+#member_paging input[type="text"] {
+  width: 50px; 
+}
+
+
 
 #Change number {
   display: flex; /* 요소들을 가로로 나열합니다. */
@@ -585,10 +613,6 @@ div#Change\ number {
 
 div#page_switch_buttons {
   margin-right: 100px;
-}
-
-#paging input[type="text"] {
-  width: 50px; 
 }
 
 
