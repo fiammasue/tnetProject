@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
+
 <!doctype html>
 <html lang="ko">
 
@@ -76,15 +79,25 @@
 										<th class="column-header">받을 재능</th>
 										<th class="column-header">삭제여부</th>
 										</tr>
+										
+										<c:forEach var="kanban" items="${kanbanList}">
 										<tr>
 										<td class="data-cell"><input type="checkbox" class="checkbox-input"></td>
-										<td class="data-cell">01</td>
-										<td class="data-cell title">영어를 배우고 싶습니다</td>
-										<td class="data-cell">국어</td>
+										<td class="data-cell">${kanban.board_id}</td>
+										<td class="data-cell title">${kanban.title}</td>
+										<td class="data-cell">${kanban.give_talent}</td>
 										<td class="data-cell"><img class="give-and-take-icon" src="/assets/giveAndTake.png"/></td>
-										<td class="data-cell">영어</td>
+										<td class="data-cell">${kanban.receive_talent}</td>
 										<td class="data-cell"><button>삭제</button></td>
 										</tr>
+										</c:forEach>
+										
+										<c:if test="${empty kanbanList}">
+						            	<tr>
+						            		<td class="search">검색결과가 없습니다</td>
+						             	</tr>
+							            </c:if>
+							            <!-- 
 										<tr>
 										<td class="data-cell"><input type="checkbox" class="checkbox-input"></td>
 										<td class="data-cell">02</td>
@@ -120,7 +133,7 @@
 										<td class="data-cell"><img class="give-and-take-icon" src="/assets/giveAndTake.png"/></td>
 										<td class="data-cell">피아노</td>
 										<td class="data-cell"><button>삭제</button></td>
-										</tr>
+										</tr> -->
 									</table>
 									
 								</div>  

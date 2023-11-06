@@ -102,7 +102,6 @@
 									<button class="edit">회원정보 수정하기</button>
 									<button class="exit">회원 탈퇴</button>
 									<button class="logout">로그아웃</button>
-								  </div>
 								</div>
 								<!-- END AWARDS -->
 								
@@ -116,7 +115,7 @@
 		</div>
 	</div>
 	<!-- END WRAPPER -->
-	<!-- Javascript -->
+	<!-- JavaScript -->
 	<script src="/vendor/jquery/jquery.min.js"></script>
 	<script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
 	<script src="/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
