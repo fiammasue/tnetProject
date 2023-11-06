@@ -42,7 +42,7 @@ dependencies {
 	//security
     implementation 'org.springframework.boot:spring-boot-starter-security'
     testImplementation 'org.springframework.security:spring-security-test'
-    // 시큐리티 태그 라이브러리 추가
+    // 시큐리티 태그 라이브러리 추가하면 JSP에서 taglib를 import해서 사용할 수 있음.
 	implementation 'org.springframework.security:spring-security-taglibs'
 	// WebSocket
 	implementation 'org.springframework.boot:spring-boot-starter-websocket'
