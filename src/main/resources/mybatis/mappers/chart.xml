@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.project.tnet.dao.ChartDAO">
+
+		
+<!--파이차트 데이터 -->
+		<select id="getChartdata" resultType="com.project.tnet.dto.ChartDTO">
+			SELECT age_group, low_name, COUNT(*) AS count
+			FROM (SELECT
+						CASE
+						     WHEN age BETWEEN 0 AND 19 THEN 'underteenager'
+		                     WHEN age BETWEEN 20 AND 29 THEN 'twenties'
+		                     WHEN age BETWEEN 30 AND 39 THEN 'thirties'
+		                     ELSE 'overforties'
+						END AS age_group,low_name,age,gender
+				  FROM (SELECT receive_talent,low_name, age, gender
+					    FROM board b
+					    INNER JOIN member m ON b.writer_nickname = m.nickname
+					    INNER JOIN talent_small t ON b.receive_talent = t.low_code)
+			        )
+			GROUP BY age_group, low_name
+			having age_group =   #{age_group}
+		</select>
+		
+		
+<!--chart test age_group -->
+		<select id="getAgeGroup" resultType="com.project.tnet.dto.ChartDTO">
+		SELECT DISTINCT (age_group)
+		FROM (SELECT
+		                CASE
+		                    WHEN age BETWEEN 0 AND 19 THEN 'underteenager'
+		                    WHEN age BETWEEN 20 AND 29 THEN 'twenties'
+		                    WHEN age BETWEEN 30 AND 39 THEN 'thirties'
+		                    ELSE 'overforties'
+		                END AS age_group, RECEIVE_TALENT
+		        FROM (SELECT RECEIVE_TALENT, age, gender
+		        FROM board b
+		        INNER JOIN member m ON b.writer_nickname = m.nickname)
+		        )
+		GROUP BY age_group, RECEIVE_TALENT
+		ORDER BY age_group
+		</select>
+		
+	
+<!--파이차트 데이터 성별 -->
+		<select id="getChartgenderdata" resultType="com.project.tnet.dto.ChartDTO">
+			SELECT gender_group, low_name, COUNT(*) AS count
+			FROM (SELECT
+                        CASE
+		                    WHEN gender in('F','female') THEN 'Female'
+		                    WHEN gender in('M','male') THEN 'Male'
+		                    ELSE 'mid'
+						END AS gender_group,low_name,age,gender
+				  FROM (SELECT receive_talent,low_name, age, gender
+					    FROM board b
+					    INNER JOIN member m ON b.writer_nickname = m.nickname
+					    INNER JOIN talent_small t ON b.receive_talent = t.low_code)
+			        )
+			GROUP BY gender_group, low_name
+			having gender_group =  #{gender_group}
+		</select>
+		
+<!--chart test age_group -->
+		<select id="getGenderGroup" resultType="com.project.tnet.dto.ChartDTO">
+		SELECT DISTINCT (gender_group)
+		FROM (SELECT
+		                CASE
+		                    WHEN gender in('F','female') THEN 'Female'
+		                    WHEN gender in('M','male') THEN 'Male'
+		                    ELSE 'overforties'
+		                END AS gender_group, RECEIVE_TALENT
+		        FROM (SELECT RECEIVE_TALENT, age, gender
+		        FROM board b
+		        INNER JOIN member m ON b.writer_nickname = m.nickname)
+		        )
+		GROUP BY gender_group, RECEIVE_TALENT
+		ORDER BY gender_group
+		</select>
+		
+<!-- 년도별 유저수와 완료된수업 가져오기 --> 
+		<select id="getLinegrape" resultType="com.project.tnet.dto.ChartDTO">
+			SELECT TO_CHAR(analysis_date, 'YYYY') AS line_year, total_user, completed_class
+			FROM aggregate a
+			order by line_year
+		</select>
+
+		
+</mapper>

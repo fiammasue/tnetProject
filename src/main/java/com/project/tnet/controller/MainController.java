@@ -1,9 +1,15 @@
 package com.project.tnet.controller;
 
+import java.util.Map;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-
+import org.springframework.web.servlet.ModelAndView;
+import com.project.tnet.dto.ChartDTO;
+import com.project.tnet.service.ChartService;
 import com.project.tnet.config.auth.PrincipalDetails;
 import com.project.tnet.dto.MemberVO;
 
@@ -79,12 +85,6 @@ public class MainController {
 		return "admin/adminLogin";
 	}
 	
-	// 관리자 대시 보드 페이지
-	@RequestMapping("/admin/home")
-	public String admin() {
-		return "admin/dashboard";
-	}	
-	
 	//관리자 게시판 목록 페이지
 	@RequestMapping("/admin/boardlist")
 	public String admin_boardlist() {
@@ -98,9 +98,33 @@ public class MainController {
 	}
 	
 	//관리자 회원관리 페이지
-	@RequestMapping("/admin/memberlist")
-	public String admin_memberlist() {
-		return "admin/memberlist";
-	}	
+	@Autowired
+	private ChartService chartService;
 	
+	
+	//관리자 대시보드 페이지로 가기
+	@RequestMapping("/admin/home")
+	public ModelAndView  GetChart(ChartDTO chart, Model model) throws Exception {
+    	System.out.println("main-chart-controller");
+
+    	ModelAndView modelAndView=new ModelAndView();
+		modelAndView.setViewName("admin/dashboard");
+
+		//파이차트 데이터 가져오기
+		Map<String, Object> result = chartService.getChartData(chart);
+		Map<String, Object> line_result = chartService.getLineChart(chart);
+		
+		
+		System.out.println("result : " + result);
+		System.out.println("line_result : " + line_result.get("line_datas"));
+		modelAndView.addObject("strlist", result.get("str"));
+		modelAndView.addObject("titlelist", result.get("title"));
+//		modelAndView.addObject("line_data_class", line_result.get("line_data_class"));
+//		modelAndView.addObject("line_data_user", line_result.get("line_data_user"));
+		modelAndView.addObject("line_datas",  line_result.get("line_datas"));
+		
+
+		return modelAndView;		
+	} 		
+
 }
