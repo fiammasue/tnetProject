@@ -113,7 +113,6 @@
 			</div>
 			<!-- END MAIN CONTENT -->
 		</div>
-	</div>
 	<!-- END WRAPPER -->
 	<!-- JavaScript -->
 	<script src="/vendor/jquery/jquery.min.js"></script>
