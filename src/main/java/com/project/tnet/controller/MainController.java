@@ -1,21 +1,32 @@
 package com.project.tnet.controller;
 
 import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-
 import com.project.tnet.dto.ChartDTO;
 import com.project.tnet.service.ChartService;
+import com.project.tnet.config.auth.PrincipalDetails;
+import com.project.tnet.dto.MemberVO;
 
 @Controller
 public class MainController {
 	@RequestMapping("/")
-	public String main() {
+	public String main(Authentication authentication) {
+
+		if (authentication != null) {
+			PrincipalDetails principalDetails = (PrincipalDetails)authentication.getPrincipal();
+			System.out.println("PrincipalDetails = " + principalDetails);
+			if (principalDetails.getUser() != null) {
+				MemberVO memberVO = principalDetails.getUser();
+				System.out.println("memberVO = " + memberVO);
+				
+			}
+		}
 		return "index";
 	}
 	@RequestMapping("/board/list")
@@ -58,10 +69,6 @@ public class MainController {
 	@RequestMapping("/myPage/course_proceeding")
 	public String myPage_course_proceeding() {
 		return "myPage/myPage_course_proceeding";
-	}
-	@RequestMapping("/myPage/course_recruiting")
-	public String myPage_course_recruiting() {
-		return "myPage/myPage_course_recruiting";
 	}
 	@RequestMapping("/myPage/calendar")
 	public String myPage_calendar() {
