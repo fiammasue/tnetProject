@@ -11,13 +11,12 @@
   <div id="container">    
   <div id="slideShow">
     <div id="slides">
-    
       <img src="/assets/slideshow6.jpg" alt="">
       <img src="/assets/slideshow7.jpg" alt="">
       <img src="/assets/slideshow8.jpg" alt="">
       <img src="/assets/slideshow9.jpg" alt="">
-      <button id="prev">&lang;</button>
-      <button id="next">&rang;</button>
+      <button class="slideShowButton" id="prev">&lang;</button>
+      <button class="slideShowButton" id="next">&rang;</button>
     </div>
   </div>
 
@@ -192,24 +191,6 @@
             </div>
         </div>
       </li>
-
-      <li class="lesson-card">
-        <div class="lesson-image">
-            <img src="/assets/usericon1.png">
-            <a href="#"><span>영어</span></a>
-            <img src="/assets/exchageicon.png">
-            <a href="#"><span>피아노</span></a>
-            <img src="/assets/usericon2.png">
-        </div>
-        <div class="lesson-details">
-            <p class="lesson-description">저는 어디어디살고요 어떤 재능이 필요한데 그 재능을 ...</p>
-            <div class="lesson-meta">
-                <img src="/assets/locationicon.png">
-                <span class="lesson-location">서울 관악구</span>
-                <input type="button" id="detail" value="DETAIL"></input>
-            </div>
-        </div>
-      </li>
       
       <li class="lesson-card">
         <div class="lesson-image">
@@ -223,8 +204,26 @@
             <p class="lesson-description">저는 어디어디살고요 어떤 재능이 필요한데 그 재능을 ...</p>
             <div class="lesson-meta">
                 <img src="/assets/locationicon.png">
-                <span class="lesson-location">서울 관악구</span>
+                <span class="lesson-location">서울시 관악구</span>
                 <input type="button" id="detail" value="DETAIL"></input>
+            </div>
+        </div>
+      </li>
+
+      <li class="lesson-card">
+        <div class="lesson-image">
+            <img src="/assets/usericon1.png">
+            <a href="#"><span id="leftLesson">영어</span></a>
+            <img src="/assets/exchageicon.png">
+            <a href="#"><span>피아노</span></a>
+            <img src="/assets/usericon2.png">
+        </div>
+        <div class="lesson-details">
+            <p class="lesson-description">저는 어디어디살고요 어떤 재능이 필요한데 그 재능을 ...</p>
+            <div class="lesson-meta">            
+              <img src="/assets/locationicon.png">  
+              <span>서울 관악구</span>
+              <input type="button" id="detail" value="DETAIL"></input>
             </div>
         </div>
       </li>
@@ -243,9 +242,10 @@
                 <img src="/assets/locationicon.png">
                 <span class="lesson-location">서울 관악구</span>
                 <input type="button" id="detail" value="DETAIL"></input>
-            </div>'
+            </div>
         </div>
       </li>
+   
     </ul>
   </div>
 </body>

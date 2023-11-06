@@ -3,17 +3,21 @@ package com.project.tnet.service;
 import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.project.tnet.dao.MemberDAO;
+import com.project.tnet.dto.MemberVO;
 import com.project.tnet.exception.ExistMemberException;
 import com.project.tnet.exception.NotExistMemberException;
-import com.project.tnet.dto.MemberVO;
-
 
 @Service
-public class MessageService {
+public class MemberService{
 
 	@Autowired
 	private MemberDAO memberDAO;
@@ -38,11 +42,11 @@ public class MessageService {
 			if (existMember != null && !Objects.isNull(memberVO.getEmail())) {
 				throw new ExistMemberException(memberVO.getEmail());
 			}
-			//비밀번호는 null일경우에만 암호화 한다
+			//비밀번호는 null일경우(카카오API가 아닌 자체 회원가입일 진행한 경우)에만 암호화 한다
 			if (Objects.isNull(memberVO.getOauth())) {
 				memberVO.setPwd(passwordEncoder.encode(memberVO.getPwd()));
 			}
-			memberDAO.insertMember(memberVO);
+			memberDAO.insertMember(memberVO);	
 			System.out.println(memberVO);
 		} catch (Exception ex) {
 //			ex.printStackTrace();
@@ -75,4 +79,5 @@ public class MessageService {
 			return false;
 		}
 	}
+	
 }

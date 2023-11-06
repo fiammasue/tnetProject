@@ -1,12 +1,26 @@
 package com.project.tnet.controller;
 
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.project.tnet.config.auth.PrincipalDetails;
+import com.project.tnet.dto.MemberVO;
 
 @Controller
 public class MainController {
 	@RequestMapping("/")
-	public String main() {
+	public String main(Authentication authentication) {
+
+		if (authentication != null) {
+			PrincipalDetails principalDetails = (PrincipalDetails)authentication.getPrincipal();
+			System.out.println("PrincipalDetails = " + principalDetails);
+			if (principalDetails.getUser() != null) {
+				MemberVO memberVO = principalDetails.getUser();
+				System.out.println("memberVO = " + memberVO);
+				
+			}
+		}
 		return "index";
 	}
 	@RequestMapping("/board/list")
