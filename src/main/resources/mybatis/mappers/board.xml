@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.project.tnet.dao.BoardDAO">
+	
+	
+	
+	
+	
+	<!-- 마이페이지 본인 게시글 모집중리스트 -->
+<!-- 	<select id="getKanbanList" resultType="Board">
+		SELECT k.board_id, k.title, ts1.low_name AS give_talent, ts2.low_name AS receive_talent, k.status_code
+		FROM board k
+		JOIN talent_small ts1 ON k.give_talent = ts1.low_code
+		JOIN talent_small ts2 ON k.receive_talent = ts2.low_code
+		WHERE k.status_code IN ('SC01', 'SC02', 'SC03')
+		AND k.writer_nickname = #{nickname}
+	</select> -->
+
+</mapper>

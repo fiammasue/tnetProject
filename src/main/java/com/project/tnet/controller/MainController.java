@@ -64,10 +64,6 @@ public class MainController {
 	public String myPage_course_proceeding() {
 		return "myPage/myPage_course_proceeding";
 	}
-	@RequestMapping("/myPage/course_recruiting")
-	public String myPage_course_recruiting() {
-		return "myPage/myPage_course_recruiting";
-	}
 	@RequestMapping("/myPage/calendar")
 	public String myPage_calendar() {
 		return "myPage/myPage_calendar";

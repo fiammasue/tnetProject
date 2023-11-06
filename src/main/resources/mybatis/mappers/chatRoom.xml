@@ -3,7 +3,7 @@
       PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.project.boot.dao.ChatRoomDAO">
+<mapper namespace="com.project.tnet.dao.ChatRoomDAO">
 
 <!-- 	<resultMap id="fileMap" type="AttachFile">
 		<result property="fileNo" column="fileno" />
