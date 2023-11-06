@@ -42,6 +42,33 @@ function admin_login(){
 	const admin_id = $(#ID).val();
 	const admin_pass = $(#PASS).val();	
 	
+	console.log("admin_id:", admin_id);
+	console.log("admin_pass:", admin_pass);
+
+    // 서버로 보낼 데이터 객체 생성
+    const param = {
+      name: admin_id,
+      password: admin_pass
+    };
+
+    // 서버로 POST 요청 보내기
+    $.ajax({
+      url: "/login.do", 
+      method: "POST",
+      data: param,
+      success: function (json) {
+        alert(json.message);
+        if (json.status) {
+          // 로그인이 성공하면 원하는 동작을 수행 (예: 리디렉션)
+          location.href = "<c:url value='/admin/home'/>";
+        }
+      },
+      error: function (error) {
+        console.error("Error:", error);
+      }
+    });
+	  
+	
 }
 
 </script>
