@@ -54,7 +54,7 @@
 		          <li><a href="/logout.do">logout </a></li>
 		          <li><a href="#">notice</a></li>
 		          <li><a href="#">lesson</a></li>
-		          <li><a href="#">mypage</a></li>
+		          <li><a href="/myPage/userInfo">mypage</a></li>
 		          <li><a href="#"><img id="bell" src="/assets/bell3(3).png" alt=""></a></li>
 		        </ul>
 		      </nav>
