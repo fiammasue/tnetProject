@@ -34,13 +34,13 @@
   		<c:when test="${empty principal}">
   		
 		    <header>
-		      <a href="#"><img id="logo" src="/assets/logo.png" alt="" ></a>
+		      <a href='<c:url value="/"/>'><img id="logo" src="/assets/logo.png" alt="" ></a>
 		      <nav id="menubar">
 		        <ul id="topMenu">
 		          <li><a href="#">join </a></li>
 		          <li><a id="loginForm" href="javascript:void(0)">login </a></li>
 		          <li><a href="#">notice</a></li>
-		          <li><a href="#">lesson</a></li>
+		          <li><a href='<c:url value="/board/list"/>'>lesson</a></li>
 		          <li><a href="#"><img id="bell" src="/assets/bell3(3).png" alt=""></a></li>
 		        </ul>
 		      </nav>
@@ -48,12 +48,12 @@
 	    </c:when>
 	    <c:otherwise>
 	    	<header>
-		      <a href="#"><img id="logo" src="/assets/logo.png" alt="" ></a>
+		      <a href='<c:url value="/"/>'><img id="logo" src="/assets/logo.png" alt="" ></a>
 		      <nav id="menubar">
 		        <ul id="topMenu">
 		          <li><a href="/logout.do">logout </a></li>
 		          <li><a href="#">notice</a></li>
-		          <li><a href="#">lesson</a></li>
+		          <li><a href='<c:url value="/board/list"/>'>lesson</a></li>
 		          <li><a href="/myPage/userInfo">mypage</a></li>
 		          <li><a href="#"><img id="bell" src="/assets/bell3(3).png" alt=""></a></li>
 		        </ul>

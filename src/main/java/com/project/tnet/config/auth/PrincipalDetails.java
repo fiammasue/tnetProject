@@ -22,6 +22,14 @@ public class PrincipalDetails implements UserDetails {
         return user;
     }
 
+    public String getAge_range(MemberVO user) {
+    	return user.getAge_range();
+    }
+    
+    public String getGender(MemberVO user) {
+    	return user.getGender();
+    }
+    
     @Override
     public String getPassword() {
         return user != null ? user.getPwd() : "";
