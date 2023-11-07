@@ -178,4 +178,54 @@ public class ChartService {
 		 * 
 		 * return map; }
 		 */
+		
+		//처음 한번에 다가져오기
+		public Map<String, Object> getCounts(ChartDTO chart) {
+			System.out.println("기간조회로 카운트 가져오기 서비스");
+			System.out.println("시작 시간 : "+ chart.getStart_date() + " 끝나는 시간: "+ chart.getEnd_date());
+			
+			int completed = chartdao.CompletedClass(chart);
+			int inprogress = chartdao.InProgressClass(chart);
+			int donationking = chartdao.DonationKing(chart);
+			
+			System.out.println(completed);
+		
+			
+			Map<String, Object> map = new HashMap<>();
+			map.put("completed", completed);
+			map.put("inprogress", inprogress);
+			map.put("donationking", donationking);
+			
+			return map;
+		}
+		
+		
+		//kind값을 받아서 count로 한개값만 넘겨주기
+		public Map<String, Object> getCounts_byKind(ChartDTO chart) {
+			System.out.println("기간조회로 개별 카운트 가져오기 서비스");
+			System.out.println("차트를 못받아오나?"+ chart.getCount_kind());
+			System.out.println("날짜를 못받아온다"+  chart.getStart_date());
+
+			
+			Map<String, Object> map = new HashMap<>();			
+			if("inprogress".equals(chart.getCount_kind())) {
+				int inprogress = chartdao.InProgressClass(chart);
+				System.out.println("inprogress : "+inprogress);
+				map.put("count", inprogress);
+			}else if("completed".equals(chart.getCount_kind())){
+				int completed = chartdao.CompletedClass(chart);
+				map.put("count", completed);
+				System.out.println("completed : "+completed);
+			}else {
+				int donationking = chartdao.DonationKing(chart);
+				map.put("count", donationking);
+				System.out.println("donationking : "+donationking);
+			}
+			
+			return map;
+		}
+		
+		
+		
+		
 }

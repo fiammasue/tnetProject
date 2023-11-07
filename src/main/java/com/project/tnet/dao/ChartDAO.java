@@ -22,4 +22,10 @@ public interface ChartDAO {
 
 	List<ChartDTO> getChartgenderdata(ChartDTO chartAge);
 
+	int CompletedClass(ChartDTO chart);
+
+	int InProgressClass(ChartDTO chart);
+
+	int DonationKing(ChartDTO chart);
+
 }

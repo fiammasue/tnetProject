@@ -122,6 +122,7 @@ public class MainController {
 //		modelAndView.addObject("line_data_class", line_result.get("line_data_class"));
 //		modelAndView.addObject("line_data_user", line_result.get("line_data_user"));
 		modelAndView.addObject("line_datas",  line_result.get("line_datas"));
+		modelAndView.addObject("count", chartService.getCounts(chart));
 		
 
 		return modelAndView;		

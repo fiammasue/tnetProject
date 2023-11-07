@@ -87,6 +87,29 @@
 			FROM aggregate a
 			order by line_year
 		</select>
+		
+<!-- 기간조회로 완료된수업 가져오기 --> 
+		<select id="CompletedClass" resultType="java.lang.Integer">
+			SELECT COUNT(*)
+			FROM course
+			where TO_CHAR(end_date, 'YYYY-MM-DD') BETWEEN #{start_date} AND #{end_date}
+		</select>
+		
+<!-- 기간조회로 진행중인 수업 가져오기 --> 
+		<select id="InProgressClass" resultType="java.lang.Integer">
+			SELECT count(*) as inprogress
+			FROM course
+			WHERE TO_CHAR(start_date, 'YYYY-MM-DD') BETWEEN #{start_date} AND #{end_date}
+			      and WRITER_STATUS_CODE IN ('SC04', 'SC05', 'SC07', 'SC08') OR APPLYER_STATUS_CODE IN ('SC04', 'SC05', 'SC07', 'SC08')
+		</select>
+		
+<!-- 기부왕 멤버 가져오기 --> 
+		<select id="DonationKing" resultType="java.lang.Integer">
+			select count(*)
+			from member
+			where temperature >= 65
+				  and TO_CHAR(join_date, 'YYYY-MM-DD') BETWEEN #{start_date} AND #{end_date}
+		</select>
 
 		
 </mapper>
