@@ -67,7 +67,7 @@ public class MemberController {
 	@GetMapping("/auth/kakao/callback")
 	public String kakaoCallback(String code) { // Data를 리턴해주는 컨트롤러 함수
 		
-		System.out.println("code: " + code);
+//		System.out.println("code: " + code);
 		
 		// 클라이언트에서 자바로 데이터를 요청할 수있는방법 4가지
 		// POST방식으로 key=value 데이터를 요청 (카카오쪽으로)
@@ -105,7 +105,7 @@ public class MemberController {
 		
 		//응답 결과 body 출력
 		//서버에서 응답받은 데이터는 2개(header, body)를 JSON으로 읽어온다. -> 우리는 body를 읽어서 확인해본 것이다.		
-		System.out.println("https://kauth.kakao.com/oauth/token의 body = " + response.getBody());
+//		System.out.println("https://kauth.kakao.com/oauth/token의 body = " + response.getBody());
 		
 		// 서버에서 받은 카카오data는 JSON형태인데 ObjectMapper를 통해 객체로 변형시킨다.		
 		// Gson, Json Simple, ObjectMapper를 통해 객체를 생성할 수 있다.
@@ -119,7 +119,7 @@ public class MemberController {
 			e.printStackTrace();
 		}
 		
-		System.out.println("카카오 엑세스 토큰 : "+oauthToken.getAccess_token()); //JSON으로 읽어온 data가 객체로 변경되었다.
+//		System.out.println("카카오 엑세스 토큰 : "+oauthToken.getAccess_token()); //JSON으로 읽어온 data가 객체로 변경되었다.
 		
 		RestTemplate rt2 = new RestTemplate();
 		
@@ -139,7 +139,7 @@ public class MemberController {
 				kakaoProfileRequest2,
 				String.class	// String으로 사용자의 상세정보가 나온다.
 		);
-		System.out.println("response2.getBody(): " + response2.getBody());
+//		System.out.println("response2.getBody(): " + response2.getBody());
 		
 		ObjectMapper objectMapper2 = new ObjectMapper();
 //	제일 전체를 카카오프로필로 만들었다.	
