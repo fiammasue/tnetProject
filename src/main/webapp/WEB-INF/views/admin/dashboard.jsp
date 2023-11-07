@@ -19,6 +19,11 @@
   <link rel="stylesheet" href="/styles/memberlist.css"/>
   <link rel="stylesheet" href="/styles/dashboard.css"/>
   
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+  
 <!-- 구글차트 연동을 위한 script head부분에 추가해야함  -->
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
@@ -188,18 +193,16 @@ function drawChart(line_data,id_value) {
               <img class="icon-nRE" src="/assets/icon-k5E.png"/>
               <div class="group-187-i3z">
                 <p class="item--eCY">진행중인 수업</p>
-                <div class="item-96-jDz">96</div>
+                <div class="item-96-jDz count_number">${count.inprogress}</div>
               </div>
-                <div class="togle-RMi custom-select">
-                   <select class="form-select" aria-label="Default select example">
-				    <option selected class="item--iet" >년</option>
-				    <option value="1" class="item--iet" >월</option>
-				    <option value="2" class="item--iet" >주</option>
-				  </select>
-				  <div class="arrow">
-				    <img  src="/assets/polygon-2-Kip.png" alt="Dropdown Arrow">
-				  </div>
-               </div>
+              <div class="togle-RMi custom-select"> 
+			   <div class="search_date" >
+			  	기간을 선택해주세요
+				  <input type="date" name="start_date" placeholder="시작일" value={props.date} required style="display: none;">
+				  <input type="date" name="end_date" placeholder="종료일"  value={props.date} required style="display: none;">
+				  <input type="hidden"  clss ="count_kind"  value="inprogress"/>
+			   </div>
+              </div>
             </div>
 
             <!-- 완료된 수업 카운트 -->
@@ -207,36 +210,32 @@ function drawChart(line_data,id_value) {
               <img class="icon-CDN" src="/assets/icon-stt.png"/>
               <div class="letter-jDJ">
                 <p class="item--f6x">완료된 수업</p>
-                <div class="item-38-MVa">38</div>
+                <div class="item-38-MVa count_number">${count.completed}</div>
               </div>
-                            <div class="togle-S1E custom-select">
-                   <select class="form-select" aria-label="Default select example">
-				    <option selected class="item--9wE" >년</option>
-				    <option value="1" class="item--iet" >월</option>
-				    <option value="2" class="item--iet" >주</option>
-				  </select>
-				  <div class="arrow">
-				    <img  src="/assets/polygon-2-Kip.png" alt="Dropdown Arrow">
-				  </div>
-               </div>
+              <div class="togle-S1E custom-select">
+                 <div class="search_date" >
+				  기간을 선택해주세요
+				  <input type="date" name="start_date" placeholder="시작일" value={props.date} required style="display: none;">
+				  <input type="date" name="end_date" placeholder="종료일"  value={props.date} required style="display: none;">
+				  <input type="hidden"  clss ="count_kind" value="completed"/>
+				 </div>
+              </div>
             </div>
 
             <!-- 기부왕 카운트 -->
             <div class="givekingarea-6cG">
               <img class="icon-QN4" src="/assets/icon.png"/>
               <div class="group-187-XxU">
-                <p class="item--4Bi">기부왕왕</p>
-                <div class="item-23-AEk">23</div>
+                <p class="item--4Bi ">기부왕왕</p>
+                <div class="item-23-AEk count_number">${count.donationking}</div>
               </div>
                <div class="togle-fSQ custom-select">
-                   <select class="form-select" aria-label="Default select example">
-				    <option selected class="item--9wE" >년</option>
-				    <option value="1" class="item--iet" >월</option>
-				    <option value="2" class="item--iet" >주</option>
-				  </select>
-				  <div class="arrow">
-				    <img  src="/assets/polygon-2-Kip.png" alt="Dropdown Arrow">
-				  </div>
+                 <div class="search_date" >
+				  기간을 선택해주세요
+				  <input type="date" name="start_date" placeholder="시작일" value={props.date} required style="display: none;">
+				  <input type="date" name="end_date" placeholder="종료일"  value={props.date} required style="display: none;">
+				  <input type="hidden"  clss ="count_kind" value="donationking"/>
+				 </div>
                </div>
             </div>
           </div><!-- 카운트 영역 끝 -->
@@ -274,8 +273,8 @@ function drawChart(line_data,id_value) {
                 <p class="item--SXa ">인기 과목</p>
 	              <div class="group-30929675-YqW custom-select">
                    <select class="form-select" id="pieCharttoggle">
-				    <option selected value="0">나이</option>
-				    <option value="1">성별</option>
+				    <option selected value="age">나이</option>
+				    <option value="gender">성별</option>
 				   </select>
 				   <div class="arrow">
 				    <img  src="/assets/polygon-2-Kip.png" alt="Dropdown Arrow">
@@ -337,12 +336,15 @@ $('#linechart_toggle select').on('change', function() {
 //파이차트 토글 변경되면 파이차트 그래프 변경하기
 $('#pieCharttoggle').on('change', function() {
 	
+	var group_kind = $(this).val();
+	console.log("group_kind : ", group_kind);
+	
 	//div영역에 있는 차트 지우기
 	$('#chart_area .chart_div').each(function() {
     	$(this).remove();
     });
 	
-	updatePieCharts();
+	updatePieCharts(group_kind);
 	
 });
 
@@ -350,48 +352,157 @@ $('#pieCharttoggle').on('change', function() {
 //그럴러면 ... 이게 어떤 주제로 뭘가져와야할지 알아야함
 // 그러면 piesubject 해서 성별 인지 연령대인지 알려줘야함...!변수를 주면 될듯
 //그리고 나중에 주제가 추가되면 xml만 바꾸면 잘 돌아가게.. ㅇ으응...
-function updatePieCharts(){
-	$.ajax({
-	      url: "/piechart.do", 
-	      method: "POST",
-	      success: function (json) {
-	        //if (json.status) {
-	        	google.charts.setOnLoadCallback(function() {
-	        		var strList = json.genderstr;
-	        		var titleList = json.gendertitle;
-	        		console.log("ajax strList : ",strList)
-	        		 $('#chart_area').html("");
-	        		for (var i = 0; i < titleList.length; i++) {
-	        			  var title = titleList[i];
-	        			  console.log("ajax title : ",title);
-	        			  var chartDiv = document.createElement("div");
-	        		      chartDiv.className = "chart_div";
-	        		      chartDiv.id = title;
-	        		      var chartArea = document.getElementById("chart_area");
-	        		      chartArea.appendChild(chartDiv);
+function updatePieCharts(group_kind) {
+    if (group_kind === "age") {
+        // "age" 그룹의 데이터를 가져오는 AJAX 요청
+        $.ajax({
+            url: "/piechart/age_group.do",
+            method: "POST",
+            success: function (json) {
+                google.charts.setOnLoadCallback(function () {
+                    var strList = json.str;  // JSON 데이터 문자열 목록
+                    var titleList = json.title;  // 차트 제목 목록
+                    console.log("ajax strList : ", strList);
 
-	        			  // DOM 요소를 직접 선택하여 전달
-	        			  var chartDiv = document.getElementById(title);
-	        			  strList[i] = strList[i].replace(/'/g, '"');
-	        			  var strListArray = JSON.parse(strList[i]);
-	        			  flag = 2;
-	    
-	        			  drawPieChart(title, strListArray, chartDiv,flag);
-	        			    
-	        			}
-	        		
-	        		});
+                    // 새로운 차트를 추가하기 전에 "chart_area" div를 지우기
+                    $('#chart_area').html("");
 
-	      //  }else{
-	       // 	alert("데이터불ㄹ오기 실패!")
-	        //}
-	      },
-	      error: function (error) {
-	        console.error("Error:", error);
-	      }
-	    });
-	
+                    for (var i = 0; i < titleList.length; i++) {
+                        var title = titleList[i];
+                        console.log("ajax title : ", title);
+
+                        // 새로운 차트 div 엘리먼트를 생성
+                        var chartDiv = document.createElement("div");
+                        chartDiv.className = "chart_div";
+                        chartDiv.id = title;
+                        var chartArea = document.getElementById("chart_area");
+                        chartArea.appendChild(chartDiv);
+
+                        // JSON 데이터 파싱
+                        strList[i] = strList[i].replace(/'/g, '"');
+                        var strListArray = JSON.parse(strList[i]);
+                        var flag = 2;
+
+                        // 파이 차트를 그리는 함수 호출
+                        drawPieChart(title, strListArray, chartDiv, flag);
+                    }
+                });
+            },
+            error: function (error) {
+                console.error("에러:", error);
+            }
+        });
+    } else {
+        // 다른 그룹의 데이터를 가져오는 AJAX 요청
+        $.ajax({
+            url: "/piechart/gender_group.do",
+            method: "POST",
+            success: function (json) {
+                google.charts.setOnLoadCallback(function () {
+                    var strList = json.genderstr;  // JSON 데이터 문자열 목록
+                    var titleList = json.gendertitle;  // 차트 제목 목록
+                    console.log("ajax strList : ", strList);
+
+                    // 새로운 차트를 추가하기 전에 "chart_area" div를 지우기
+                    $('#chart_area').html("");
+
+                    for (var i = 0; i < titleList.length; i++) {
+                        var title = titleList[i];
+                        console.log("ajax title : ", title);
+
+                        // 새로운 차트 div 엘리먼트를 생성
+                        var chartDiv = document.createElement("div");
+                        chartDiv.className = "chart_div";
+                        chartDiv.id = title;
+                        var chartArea = document.getElementById("chart_area");
+                        chartArea.appendChild(chartDiv);
+
+                        // JSON 데이터 파싱
+                        strList[i] = strList[i].replace(/'/g, '"');
+                        var strListArray = JSON.parse(strList[i]);
+                        var flag = 2;
+
+                        // 파이 차트를 그리는 함수 호출
+                        drawPieChart(title, strListArray, chartDiv, flag);
+                    }
+                });
+            },
+            error: function (error) {
+                console.error("에러:", error);
+            }
+        });
+    }
 }
+
+// 기간선택 클릭시 달력 날짜 기간조회 뜨게
+$('.search_date').on("click", function() {
+    var date =$(this).find('input[type="date"]');
+    date.css('display', 'block');
+    
+    // 이미 열려 있는 .search_date 요소를 숨김
+    $('.search_date').not(this).find('input[type="date"]').css('display', 'none');
+});
+  
+
+// 클릭된 요소가 .search_date 클래스를 가진 요소가 아닌 경우 다시 돌아가기
+$(document).on("click", function(event) {
+    if (!$(event.target).closest('.search_date').length) {
+        $('.search_date input[type="date"]').css('display', 'none');
+    }
+});
+
+
+//날짜 클릭하면
+$('input[type="date"]').on('change', function() {
+    var startDate = $(this).parent().find('input[name^="start_date"]').val();
+    var endDate = $(this).parent().find('input[name^="end_date"]').val();
+    console.log("startDate : ",startDate);
+    console.log("endDate : ",endDate);
+    
+    // 시작 날짜와 종료 날짜 모두 선택한 경우에만 처리
+    if (startDate && endDate) {
+    	// 숫자 자리 찾아서
+    	 var count_text_div =  $(this).parent().parent().parent().closest('div').find('.count_number');
+       	console.log("count_text_div: ",count_text_div);
+       	
+       	var count_kind = $(this).siblings('input[type="hidden"][clss="count_kind"]').val();
+       	console.log("count_kind: ", count_kind);
+       	
+    data={
+    	start_date : startDate,
+    	end_date : endDate,
+    	count_kind : count_kind
+       };
+    
+    console.log("data : ", data);
+       
+        $.ajax({
+           url: "/admin/counts.do",
+           method: "POST",
+           contentType: "application/json; charset=UTF-8",
+           data: JSON.stringify(data),
+           success: function (json) {
+
+					//새로 넣어주기
+					console.log("json.count : ",json.count);
+					count_text_div.empty();
+        		    count_text_div.text(json.count);
+               
+           },
+           error: function (error) {
+               console.error("에러:", error);
+           }
+       }); 
+       
+       
+       
+       
+       //선택된 날짜값 지우는거 나중에 ajax로 count값 변환한뒤 다른데 클릭하면 날짜값 지우게 해야지
+		//$(this).parent().find('input[name^="start_date"]').val('');
+       // $(this).parent().find('input[name^="end_date"]').val(''); 
+   
+    }
+});
 
 </script>
 

@@ -270,24 +270,27 @@
 
 /* 진행중인 수업 카운트 */
 .countingarea-Mqi .classcountinarea-sp4 {
-  margin: auto;
-  box-sizing: border-box;
-  padding: 2.366rem 2.623rem 3.481rem 6.027rem;
-  display: flex;
-  align-items: center;
-  box-shadow: 0 0.4rem 0.4rem rgba(166, 232, 165, 0.6999999881);
-  background-color: #ffffff;
-  border-radius: 1.4rem;
-  flex-shrink: 0;
+	margin: auto;
+    box-sizing: border-box;
+    padding: 3.066rem 2.966rem 3.066rem 2.966rem;
+    height: 13.6618rem;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 0.4rem 0.4rem #ccebcc;
+    background-color: #ffffff;
+    border-radius: 1.4rem;
+    flex-shrink: 0;
 }
+
+/* 진행중인 수업 이미지 */
 .countingarea-Mqi .classcountinarea-sp4 .icon-nRE {
-  margin: 0.241rem 2.981rem 0rem 0rem;
-  width: 8.7613rem;
-  height: 6.7514rem;
-  position: relative;
-  object-fit: contain;
-  vertical-align: top;
-  flex-shrink: 0;
+	margin: 0.241rem 2.281rem 0rem 0rem;
+    width: 7.7613rem;
+    height: 6.7514rem;
+    position: relative;
+    object-fit: contain;
+    vertical-align: top;
+    flex-shrink: 0;
 }
 .countingarea-Mqi .classcountinarea-sp4 .group-187-i3z {
   margin: 0.593rem 1.467rem 0rem 0rem;
@@ -309,6 +312,7 @@
   font-family: Barlow, 'Source Sans Pro';
   white-space: nowrap;
 }
+/* 진행중인 수업 숫자 */
 .countingarea-Mqi .classcountinarea-sp4 .group-187-i3z .item-96-jDz {
   width: 5rem;
   height: 5.6rem;
@@ -316,7 +320,7 @@
   left: 0;
   top: 0;
   display: flex;
-  font-size: 4.6rem;
+  font-size: 4.0rem;
   font-weight: 700;
   line-height: 1.2;
   color: #464155;
@@ -403,7 +407,7 @@
   left: 0;
   top: 0;
   display: flex;
-  font-size: 4.6rem;
+  font-size: 4.0rem;
   font-weight: 700;
   line-height: 1.2;
   color: #464155;
@@ -445,7 +449,7 @@
 .completeclassarea-6AL {
   margin: auto;
   box-sizing: border-box;
-  padding: 2.022rem 1.319rem 3.97rem 4.46rem;
+  padding: 3.066rem 2.966rem 3.066rem 2.966rem;
   height: 13.6618rem;
   display: flex;
   align-items: center;
@@ -454,14 +458,16 @@
   border-radius: 1.4rem;
   flex-shrink: 0;
 }
+
+/* 완료된 수업 이미지 */
 .completeclassarea-6AL .icon-CDN {
-  margin: 0.919rem 2.545rem 0rem 0rem;
-  width: 8.7613rem;
-  height: 6.7514rem;
-  position: relative;
-  object-fit: contain;
-  vertical-align: top;
-  flex-shrink: 0;
+	margin: 0.241rem 2.281rem 0rem 0rem;
+    width: 7.4213rem;
+    height: 5.7514rem;
+    position: relative;
+    object-fit: contain;
+    vertical-align: top;
+    flex-shrink: 0;
 }
 .completeclassarea-6AL .letter-jDJ {
   margin: 0.549rem 5.373rem 0.249rem 0rem;
@@ -471,17 +477,17 @@
   flex-shrink: 0;
 }
 .completeclassarea-6AL .letter-jDJ .item--f6x {
-  width: 4.6rem;
-  height: 2rem;
-  position: absolute;
-  left: 0;
-  top: 4.8724rem;
-  font-size: 1.6rem;
-  font-weight: 400;
-  line-height: 1.2;
-  color: #464155;
-  font-family: Barlow, 'Source Sans Pro';
-  white-space: nowrap;
+	width: 5.6rem;
+    height: 2rem;
+    position: absolute;
+    left: 0;
+    top: 5.2226rem;
+    font-size: 1.6rem;
+    font-weight: 400;
+    line-height: 1.2;
+    color: #464155;
+    font-family: Barlow, 'Source Sans Pro';
+    white-space: nowrap;
 }
 .completeclassarea-6AL .letter-jDJ .item-38-MVa {
   width: 5rem;
@@ -490,23 +496,25 @@
   left: 0;
   top: 0;
   display: flex;
-  font-size: 4.6rem;
+  font-size: 4.0rem;
   font-weight: 700;
   line-height: 1.2;
   color: #464155;
   font-family: Barlow, 'Source Sans Pro';
   white-space: nowrap;
 }
+
+/* 완료된 수업 날짜선택*/
 .completeclassarea-6AL .togle-S1E {
-  margin-bottom: 5.8905rem;
-  box-sizing: border-box;
-  padding: 0.424rem 1.244rem 0.056rem 1.351rem;
-  display: flex;
-  align-items: center;
-  border: solid 0.1rem #3d533b;
-  background-color: #ffffff;
-  border-radius: 1rem;
-  flex-shrink: 0;
+	margin-bottom: 6.0352rem;
+    box-sizing: border-box;
+    padding: 0.424rem 1.244rem 0.056rem 1.351rem;
+    display: flex;
+    align-items: center;
+    border: solid 0.1rem #3d533b;
+    background-color: #ffffff;
+    border-radius: 1rem;
+    flex-shrink: 0;
 }
 .completeclassarea-6AL .togle-S1E .item--9wE {
   margin-right: 3.3533rem;
@@ -803,3 +811,42 @@ select::-ms-expand{
 svg {
     padding: 10px;
 }
+
+
+input[type='date']::before {
+  content: attr(placeholder); 
+  width: 100%;
+  height: 100%;
+  font-size: 0.9rem;
+  font-weight: 600;
+  line-height: 1.3625;
+  letter-spacing: 0.0215rem;
+  color: #2b2b2b;
+  font-family: Nunito Sans, 'Source Sans Pro';
+}
+
+input[type='date']:valid::before {
+  display: none;  /*유효값이 입력된 경우 before에 있는 것을 사라지게 한다. 즉, placeholder를 사라지게 한다.*/
+}
+
+.search_date {
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 600;
+    line-height: 1.3625;
+    letter-spacing: 0.0215rem;
+    color: #2b2b2b;
+    font-family: Nunito Sans, 'Source Sans Pro';
+}
+
+input[type="date"] {
+    font-size: 10px;
+    font-weight: 600;
+    line-height: 1.3625;
+    letter-spacing: 0.0215rem;
+    color: #2b2b2b;
+    font-family: Nunito Sans, 'Source Sans Pro';
+    width :72px;
+    margin: 5px;
+}
+
