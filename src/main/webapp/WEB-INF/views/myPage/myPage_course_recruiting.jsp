@@ -66,74 +66,40 @@
 								<div class="table_course">
 									
 									<div class="delete-button">
-										<button class="allDelete">선택삭제</button>
+										<button class="allDelete" onclick="deleteSelectedKanban()">선택삭제</button>
 									</div>
 
 									<table class="group-table">
 										<tr>
-										<th class="column-header"><input type="checkbox" class="checkbox-input"></th>
+										<th class="column-header"><input type="checkbox" class="checkbox-input" id="select_all_checkbox" onclick="checkSelectAll()"></th>
 										<th class="column-header">게시글 번호</th>
 										<th class="column-header">게시글 제목</th>
 										<th class="column-header">주는 재능</th>
 										<th class="column-header">&</th>
 										<th class="column-header">받을 재능</th>
+										<th class="column-header">진행상태</th>
 										<th class="column-header">삭제여부</th>
 										</tr>
 										
 										<c:forEach var="kanban" items="${kanbanList}">
 										<tr>
-										<td class="data-cell"><input type="checkbox" class="checkbox-input"></td>
+										<td class="data-cell"><input type="checkbox" class="checkbox-input" name="delete_checkbox" value="${kanban.board_id}" onclick="checkSelect()"></td>
 										<td class="data-cell">${kanban.board_id}</td>
 										<td class="data-cell title">${kanban.title}</td>
 										<td class="data-cell">${kanban.give_talent}</td>
 										<td class="data-cell"><img class="give-and-take-icon" src="/assets/giveAndTake.png"/></td>
 										<td class="data-cell">${kanban.receive_talent}</td>
-										<td class="data-cell"><button>삭제</button></td>
+										<td class="data-cell">${kanban.status_code}</td>
+										<td class="data-cell"><button type="button" class="delete_kanban" data-board-id="${kanban.board_id}">삭제</button></td>
 										</tr>
 										</c:forEach>
 										
 										<c:if test="${empty kanbanList}">
-						            	<tr>
-						            		<td class="search">검색결과가 없습니다</td>
-						             	</tr>
+											<tr>
+												<td class="empty" colspan="8" style="text-align:center; padding:30px;">검색결과가 없습니다</td>
+											</tr>
 							            </c:if>
-							            <!-- 
-										<tr>
-										<td class="data-cell"><input type="checkbox" class="checkbox-input"></td>
-										<td class="data-cell">02</td>
-										<td class="data-cell title">고등 수학 가르쳐 주실 분 구합니다</td>
-										<td class="data-cell">과탐</td>
-										<td class="data-cell"><img class="give-and-take-icon" src="/assets/giveAndTake.png"/></td>
-										<td class="data-cell">수학</td>
-										<td class="data-cell"><button>삭제</button></td>
-										</tr>
-										<tr>
-										<td class="data-cell"><input type="checkbox" class="checkbox-input"></td>
-										<td class="data-cell">03</td>
-										<td class="data-cell title">피아노 가르쳐 주실 분 구합니다. 보컬수 ...</td>
-										<td class="data-cell">보컬</td>
-										<td class="data-cell"><img class="give-and-take-icon" src="/assets/giveAndTake.png"/></td>
-										<td class="data-cell">피아노</td>
-										<td class="data-cell"><button>삭제</button></td>
-										</tr>
-										<tr>
-										<td class="data-cell"><input type="checkbox" class="checkbox-input"></td>
-										<td class="data-cell">04</td>
-										<td class="data-cell title">운전 연수해주실 분</td>
-										<td class="data-cell">코딩</td>
-										<td class="data-cell"><img class="give-and-take-icon" src="/assets/giveAndTake.png"/></td>
-										<td class="data-cell">운전</td>
-										<td class="data-cell"><button>삭제</button></td>
-										</tr>
-										<tr>
-										<td class="data-cell"><input type="checkbox" class="checkbox-input"></td>
-										<td class="data-cell">05</td>
-										<td class="data-cell title">피아노 가르쳐 주실 분 구합니다. 보컬수 ...</td>
-										<td class="data-cell">보컬</td>
-										<td class="data-cell"><img class="give-and-take-icon" src="/assets/giveAndTake.png"/></td>
-										<td class="data-cell">피아노</td>
-										<td class="data-cell"><button>삭제</button></td>
-										</tr> -->
+							            
 									</table>
 									
 								</div>  
@@ -147,10 +113,21 @@
 			<!-- END MAIN CONTENT -->
 		</div>
 	</div>
-	<!-- Javascript -->
+	
+	
+	<!-- 글삭제 ======================================================================== -->
+	<div id="deleteKanbanForm" class="deleteForm" title="게시글 삭제" style="display:none">
+		<p>해당 게시글을 삭제하시겠습니까?</p>
+	</div>
+	<!-- ============================================================================= -->
+	
+	
+	<!-- JavasSript -->
+	<script src="/scripts/kanbanCheckbox.js"></script>
 	<script src="/vendor/jquery/jquery.min.js"></script>
 	<script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
 	<script src="/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </body>
 
 </html>

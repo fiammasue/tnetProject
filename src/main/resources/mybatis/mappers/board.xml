@@ -8,7 +8,7 @@
 	
 	
 	
-	
+
 	<!-- 마이페이지 본인 게시글 모집중리스트 -->
 <!-- 	<select id="getKanbanList" resultType="Board">
 		SELECT k.board_id, k.title, ts1.low_name AS give_talent, ts2.low_name AS receive_talent, k.status_code
@@ -53,4 +53,300 @@
 		</select>	
 	
 
+	<!-- 마이페이지 모집중리스트 -->
+	<select id="getKanbanList" resultType="com.project.tnet.dto.Board">
+		SELECT b.board_id, b.title, ts1.low_name AS give_talent, ts2.low_name AS receive_talent, s.status_contents AS status_code
+		FROM board b
+		JOIN talent_small ts1 ON b.give_talent = ts1.low_code
+		JOIN talent_small ts2 ON b.receive_talent = ts2.low_code
+		JOIN status s ON b.status_code = s.status_code
+		WHERE b.status_code IN ('SC01', 'SC02', 'SC03')
+		AND b.writer_nickname = #{nickname}
+		AND delete_yn = 'N'
+	</select>
+
+
+	<!-- 마이페이지 모집중리스트 삭제 -->
+	<update id="deleteKanban" parameterType="java.util.List">
+	    UPDATE board
+	    SET delete_yn = 'Y'
+	    WHERE board_id IN
+	    <foreach collection="list" item="item" open="(" separator="," close=")">
+	        #{item}
+	    </foreach>
+	</update>
+	
+	<!-- 칸반보드 수락 리스트 -->
+	<select id="getKanbanBoardAccept" resultType="com.project.tnet.dto.Course">
+		SELECT
+		    CASE
+		        WHEN c.writer_status_code IN ('SC07', 'SC08', 'SC10') AND c.writer_nickname = #{nickName} THEN s1.status_contents
+		        WHEN c.applyer_status_code IN ('SC07', 'SC08', 'SC10') AND c.applyer_nickname = #{nickName} THEN s2.status_contents
+		        ELSE NULL
+		    END AS status_code,
+		    c.course_id,
+		    c.writer_nickname, c.applyer_nickname,
+		    c.board_id,
+		    b.title AS title,
+		    c.start_date
+		FROM course c
+		JOIN board b ON c.board_id = b.board_id
+		JOIN status s1 ON c.writer_status_code = s1.status_code
+		JOIN status s2 ON c.applyer_status_code = s2.status_code
+		WHERE
+		    (c.writer_status_code IN ('SC07', 'SC08', 'SC10') AND c.writer_nickname = #{nickName})
+		    OR
+		    (c.applyer_status_code IN ('SC07', 'SC08', 'SC10') AND c.applyer_nickname = #{nickName})
+		    AND b.delete_yn = 'N'
+	</select>
+	
+	<!-- 칸반보드 대기 리스트 -->
+	<select id="getKanbanBoardWaiting" resultType="com.project.tnet.dto.Course">
+		SELECT
+		    CASE
+		        WHEN c.writer_status_code IN ('SC02', 'SC03') AND c.writer_nickname = #{nickName} THEN s1.status_contents
+		        WHEN c.applyer_status_code IN ('SC02', 'SC03') AND c.applyer_nickname = #{nickName} THEN s2.status_contents
+		        ELSE NULL
+		    END AS status_code,
+		    c.course_id,
+		    c.writer_nickname, c.applyer_nickname,
+		    c.board_id,
+		    b.title AS title,
+		    c.start_date
+		FROM course c
+		JOIN board b ON c.board_id = b.board_id
+		JOIN status s1 ON c.writer_status_code = s1.status_code
+		JOIN status s2 ON c.applyer_status_code = s2.status_code
+		WHERE
+		    (c.writer_status_code IN ('SC02', 'SC03') AND c.writer_nickname = #{nickName})
+		    OR
+		    (c.applyer_status_code IN ('SC02', 'SC03') AND c.applyer_nickname = #{nickName})
+		    AND b.delete_yn = 'N'
+	</select>
+	
+	<!-- 칸반보드 거절 리스트 -->
+	<select id="getKanbanBoardReject" resultType="com.project.tnet.dto.Course">
+		SELECT
+		    CASE
+		        WHEN c.writer_status_code = 'SC11' AND c.writer_nickname = #{nickName} THEN s1.status_contents
+		        WHEN c.applyer_status_code = 'SC11' AND c.applyer_nickname = #{nickName} THEN s2.status_contents
+		        ELSE NULL
+		    END status_code,
+		    c.course_id,
+		    c.writer_nickname, c.applyer_nickname,
+		    c.board_id,
+		    b.title AS title,
+		    c.start_date
+		FROM course c
+		JOIN board b ON c.board_id = b.board_id
+		JOIN status s1 ON c.writer_status_code = s1.status_code
+		JOIN status s2 ON c.applyer_status_code = s2.status_code
+		WHERE
+		    (c.writer_status_code = 'SC11' AND c.writer_nickname = #{nickName})
+		    OR
+		    (c.applyer_status_code = 'SC11' AND c.applyer_nickname = #{nickName})
+		    AND b.delete_yn = 'N'
+	</select>
+	
+	<!-- 칸반보드 완료 리스트 -->
+	<select id="getKanbanBoardCompleted" resultType="com.project.tnet.dto.Course">
+		SELECT
+		    CASE
+		        WHEN c.writer_status_code = 'SC06' AND c.writer_nickname = #{nickName} THEN s1.status_contents
+		        WHEN c.applyer_status_code = 'SC06' AND c.applyer_nickname = #{nickName} THEN s2.status_contents
+		        ELSE NULL
+		    END status_code,
+		    c.course_id,
+		    c.writer_nickname, c.applyer_nickname,
+		    b.title AS title,
+		    c.start_date
+		FROM course c
+		JOIN board b ON c.board_id = b.board_id
+		JOIN status s1 ON c.writer_status_code = s1.status_code
+		JOIN status s2 ON c.applyer_status_code = s2.status_code
+		WHERE
+		    (c.writer_status_code = 'SC06' AND c.writer_nickname = #{nickName})
+		    OR
+		    (c.applyer_status_code = 'SC06' AND c.applyer_nickname = #{nickName})
+		    AND b.delete_yn = 'N'
+	</select>
+	
+	<!-- 칸반보드 완료대기 리스트 -->
+	<select id="getKanbanBoardCompleted_Waiting" resultType="com.project.tnet.dto.Course">
+		SELECT
+			    CASE
+			        WHEN c.writer_status_code IN ('SC04', 'SC05') AND c.writer_nickname = #{nickName} THEN s1.status_contents
+			        WHEN c.applyer_status_code IN ('SC04', 'SC05') AND c.applyer_nickname = #{nickName} THEN s2.status_contents
+			        ELSE NULL
+			    END AS status_code,
+		    	c.course_id,
+			    c.writer_nickname, c.applyer_nickname,
+			    b.title AS title,
+			    c.start_date
+			FROM course c
+			JOIN board b ON c.board_id = b.board_id
+			JOIN status s1 ON c.writer_status_code = s1.status_code
+			JOIN status s2 ON c.applyer_status_code = s2.status_code
+			WHERE
+			    (c.writer_status_code IN ('SC04', 'SC05') AND c.writer_nickname = #{nickName})
+			    OR
+			    (c.applyer_status_code IN ('SC04', 'SC05') AND c.applyer_nickname = #{nickName})
+			    AND b.delete_yn = 'N'
+	</select>
+	
+	<!-- 칸반보드 휴지통 리스트 -->
+	<select id="getKanbanBoardTrash" resultType="com.project.tnet.dto.Course">
+		SELECT
+		    CASE
+		        WHEN c.writer_status_code = 'SC09' AND c.writer_nickname = #{nickName} THEN s1.status_contents
+		        WHEN c.applyer_status_code = 'SC09' AND c.applyer_nickname = #{nickName} THEN s2.status_contents
+		        ELSE NULL
+		    END AS status_code,
+		    c.course_id,
+		    c.writer_nickname, c.applyer_nickname,
+		    b.title AS title,
+		    c.start_date
+		FROM course c
+		JOIN board b ON c.board_id = b.board_id
+		JOIN status s1 ON c.writer_status_code = s1.status_code
+		JOIN status s2 ON c.applyer_status_code = s2.status_code
+		WHERE
+		    (c.writer_status_code = 'SC09' AND c.writer_nickname = #{nickName})
+		    OR
+		    (c.applyer_status_code = 'SC09' AND c.applyer_nickname = #{nickName})
+		    AND b.delete_yn = 'N'
+	</select>
+	
+	
+	<update id="updateAccept" parameterType="int">
+	  <![CDATA[
+	  BEGIN
+	    UPDATE course
+	    SET
+	        writer_status_code =
+	            CASE
+	                WHEN writer_status_code = 'SC02' THEN 'SC07'
+	                ELSE
+	                    CASE
+	                        WHEN writer_status_code = 'SC02' THEN 'SC11'
+	                        ELSE writer_status_code
+	                    END
+	            END,
+	        applyer_status_code =
+	            CASE
+	                WHEN writer_status_code = 'SC02' THEN 'SC07'
+	                WHEN applyer_status_code = 'SC03' THEN 'SC07'
+	                ELSE
+	                    CASE
+	                        WHEN writer_status_code = 'SC02' THEN 'SC11'
+	                        ELSE
+	                            CASE
+	                                WHEN applyer_status_code = 'SC02' THEN 'SC11'
+	                                ELSE applyer_status_code
+	                            END
+	                    END
+	            END,
+	        start_date =
+	            CASE
+	                WHEN writer_status_code = 'SC02' THEN sysdate
+	                ELSE
+	                    CASE
+	                        WHEN writer_status_code = 'SC02' THEN sysdate
+	                        ELSE start_date
+	                    END
+	            END
+	    WHERE
+	        writer_status_code = 'SC02'
+	        AND course_id = #{course_id};
+	        
+	    UPDATE course
+	    SET
+	        writer_status_code = 'SC11',
+	        applyer_status_code = 'SC11'
+	    WHERE
+	        writer_status_code = 'SC02'
+	        AND board_id = (SELECT board_id FROM course WHERE course_id = #{course_id});
+	        
+	    UPDATE board
+	    SET
+	        status_code = 'SC07'
+	    WHERE
+	        board_id = (SELECT board_id FROM course WHERE course_id = #{course_id});
+	  END;
+	  ]]>
+	</update>
+	
+	
+	<update id="updateReject" parameterType="java.util.Map">
+	<![CDATA[
+	  BEGIN
+	    UPDATE course
+	    SET
+	        writer_status_code = CASE
+	            WHEN writer_status_code = 'SC02' THEN 'SC11'
+	            ELSE writer_status_code
+	        END,
+	        applyer_status_code = CASE
+	            WHEN writer_status_code = 'SC02' THEN 'SC11'
+	            WHEN applyer_status_code = 'SC03' THEN 'SC11'
+	            ELSE applyer_status_code
+	        END
+	    WHERE
+	        writer_status_code = 'SC02'
+	        AND course_id = #{course_id};
+	
+	    UPDATE board
+	    SET
+	      status_code = 'SC01'
+	    WHERE
+	      board_id = (SELECT board_id FROM course WHERE course_id = #{course_id});
+	  END;
+	  ]]>
+    </update>
+    
+    <update id="updateWaiting" parameterType="java.util.Map">
+		
+	    <![CDATA[
+			UPDATE course
+			SET
+			writer_status_code = 'SC02',
+			applyer_status_code = 'SC03'
+			
+			WHERE
+			    course_id = #{course_id}
+	    ]]>
+	</update>
+	
+	<update id="updateCompleted" parameterType="java.util.Map">
+		
+	    <![CDATA[
+			UPDATE course
+			SET
+			writer_status_code = 'SC06',
+			applyer_status_code = 'SC06'
+			
+			WHERE
+			    course_id = #{course_id}
+	    ]]>
+	</update>
+	
+	<update id="updateTrash" parameterType="java.util.Map">
+		
+	    <![CDATA[
+			UPDATE course
+	        SET
+	            writer_status_code = CASE
+	                WHEN writer_status_code = 'SC06' THEN 'SC09'
+	                ELSE writer_status_code
+	            END,
+	            applyer_status_code = CASE
+	                WHEN applyer_status_code = 'SC06' THEN 'SC09'
+	                ELSE applyer_status_code
+	            END
+	        WHERE
+	            course_id = #{course_id}
+
+	    ]]>
+	</update>
+    
 </mapper>

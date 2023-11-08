@@ -20,7 +20,7 @@ public class Board {
 	private Date register_date;		
 	private Date update_date;		
 	private String status_code;
-	private int destrict_code;
+	private int district_code;
 	private int city_code;
 	private String give_talent;		
 	private String receive_talent;
