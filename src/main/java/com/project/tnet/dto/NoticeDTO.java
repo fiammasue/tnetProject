@@ -11,25 +11,20 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Board {
-	private int board_id; 			
-	private String title;		
-	private String contents;		
-	private String writer_nickname;
-	private int read_count;		
-	private Date register_date;		
-	private Date update_date;		
-	private String status_code;
-	private int destrict_code;
-	private int city_code;
-	private String give_talent;		
-	private String receive_talent;
-	private String delete_yn;
+public class NoticeDTO {
 	
-	private String givtalent; //  주는재능 이름
-	private String cityname; // 도시이름
-	private String recivetalent; // 받는 재능 이름
-	private String STATUS_CONTENTS; // 상태 이름
+	private int notice_no;
+	private String title;
+	private String contents;
+	private String nickname;
+	private Date reg_date;
+	private String fixed_yn;
+	private String deleted_yn;
+	
+private String [] ids;         // 삭제시 사용될 아이디들
+	
+	//검색필드
+	private String searchTitle = "";
 	
 	//페이징필드
 	private int pageNo = 1;     // 현재 페이지 번호
@@ -80,4 +75,6 @@ public class Board {
 	
 		endnum = pageNo * pageLength; 
 	} //getEndNo
+	
+
 }

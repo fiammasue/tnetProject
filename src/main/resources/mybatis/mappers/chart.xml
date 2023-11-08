@@ -105,10 +105,12 @@
 		
 <!-- 기부왕 멤버 가져오기 --> 
 		<select id="DonationKing" resultType="java.lang.Integer">
-			select count(*)
-			from member
-			where temperature >= 65
-				  and TO_CHAR(join_date, 'YYYY-MM-DD') BETWEEN #{start_date} AND #{end_date}
+			    select count(*)
+			    from member
+			    where temperature >= 65
+			   <![CDATA[
+			    and TO_CHAR(join_date, 'YYYY-MM-DD') <  #{end_date}
+			  ]]>
 		</select>
 
 		

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>  
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
@@ -25,57 +26,18 @@
     <div class="greenbackground-sZi">
     </div>
       <!-- 메뉴바 -->
-    <div class="menubargroup-nwa">
-            <div class="auto-group-tqda-4PJ">
-        <div class="frame-2-naC">
-          <div class="main-logo-LLp">
-            <p class="caption-6Kz">Admin Dashboard</p>
-            <p class="t-net-zRN">T-net.</p>
-          </div>
-          <div class="auto-group-e7b6-7Vz tab_menu">
-            <div class="group-30929683-3uS defaultarea">
-              <img class="icon-yo6" src="/assets/icon-RhJ.png"/>
-              <a class="analytics-uRr" href="<c:url value='/admin/home'/>">Analytics</a>
-            </div>
-            <div class="group-30929684-Ruz">
-              <img class="icon-NKS" src="/assets/icon-E2L.png"/>
-              <a class="board-list-u4U" href="<c:url value='/admin/boardlist'/>" >Board List</a>
-            </div>
-            <div class="group-30929685-3Ag">
-              <img class="icon-Nye" src="/assets/icon-j28.png"/>
-              <a class="notice-list-WKA"  href="<c:url value='/admin/noticelist'/>">Notice List</a>
-            </div>
-            <div class="group-30929686-eRN">
-              <img class="icon-Pdr" src="/assets/icon-p7z.png"/>
-              <a class="member-list-8LY" href="<c:url value='/admin/memberlist'/>" >Member List</a>
-            </div>
-            <div class="group-30929687-Ghe">
-              <img class="icon-alert-circle-1v8" src="/assets/icon-alert-circle-HqJ.png"/>
-              <p class="complain-LSc">Complain</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="menubottomletter-rQx">
-        <p class="made-with-by-peterdraw-abr">Made with ♥ by Peterdraw</p>
-        <p class="talent-networks-pronesis-Ux8">
-        Talent -NetWork’s  
-        <br/>
-        @pro_nesis
-        </p>
-      </div>
-
-       <!-- 콘텐츠 영역 탭누르면 바뀌는 부분 -->
-
+    <tiles:insertDefinition name="menuBar" /> 
+    
         <!-- Board List 흰색 영역 -->
         <div class="whitearea-Nnc  tap_content defaultarea" id="tab2">
           <p class="member-list-VMS">Board List</p>
           <!-- 테이블 -->
-          <div>
+          <div id="table">
             <table >
                 <tr id = "table_title_bar">
                   <th>선택</th>
                   <th>번호</th>
+                  <th>제목</th>
                   <th>기부재능</th>
                   <th>받는재능</th>
                   <th>작성자</th>
@@ -85,21 +47,22 @@
                   <th>등록일</th>
                   <th>진행상태</th>
                   </tr>
-                  <c:forEach items="${result.List}" var="board">
+                  <c:forEach items="${result.list}" var="board">
                   <tr id = "table_contents">
-                    <td>${board.boardid}</td>
+                  	<td><input type="checkbox" class="checkbox" value="${board.board_id}" ></td>
+                    <td>${board.board_id}</td>
                     <td >${board.title}</td>
-                    <td>${board.writer_uid}</td>
-                    <td>${board.reg_date}</td>
-                    <td>${board.view_count}</td>
-                    <td >${board.title}</td>
-                    <td>${board.writer_uid}</td>
-                    <td>${board.reg_date}</td>
-                    <td>${board.view_count}</td>
-                    <td>${board.writer_uid}</td>
+                    <td>${board.givtalent}</td>
+                    <td>${board.recivetalent}</td>
+                    <td >${board.writer_nickname}</td>
+                    <td >${board.cityname}</td>
+                    <td>${board.destrict_code}</td>
+                    <td>${board.register_date}</td>
+                    <td >${board.read_count}</td>
+                    <td >${board.STATUS_CONTENTS}</td>
                   </tr>
                 </c:forEach>                        
-              </table>
+            </table>
           </div> <!-- 테이블 -->
 
           <!-- 버튼이랑 페이징 함께-->
@@ -110,28 +73,75 @@
             </div>
 
             <!-- 페이징부분 -->
-            <div id ="board_paging">
+            <div id ="paging">
+              <form name="mForm" id="mForm" action="<c:url value='/admin/boardlist'/>" method="post" >
+		     	<input type="hidden" id="pageNo" name="pageNo" />  
+		     	<input type="hidden" id="pageLength" name="pageLength" />
+		      </form>
               <div id = "Change number">
-              건수 : <input type="text" id ="button-bQU" value="10"/></div>
-             
+              건수 : 
+              <select id="button-bQU">
+				    <option selected value="10">10</option>
+				    <option value="20">20</option>
+				    <option value="30">30</option>
+			  </select>
+              </div>
+              
               <div class="group-299-zDe" id="page_switch_buttons">
-                <input class="frame-298-jBE" type ="button" value="&lt;"/>
-                <input class="frame-292-QYG" type ="button" value="1"/>
-                <input class="frame-295-T9A" type ="button" value="2"/>
-                <input class="frame-294-mn8" type ="button" value="3"/>
-                <input class="frame-295-T9A" type ="button" value="4"/>
-                <input class="frame-295-T9A" type ="button" value="5"/>
-                <input class="frame-297-vwr" type ="button" value="&gt;"/>
+				<c:if test="${result.board.navStart != 1}">
+	           		<input type="submit" id="pagenum" onclick="changePage(${result.board.navStart-1})" value="&lt;"/> 
+	           	</c:if>
+		        <c:forEach var="page_num" begin="${result.board.navStart}" end="${result.board.navEnd}">	           	
+		           	<input type="submit" id="pagenum" onclick="changePage(${page_num})" value="${page_num}"/> 
+				</c:forEach>
+		        <c:if test="${result.board.navEnd != result.board.totalPageSize}">
+		           	<input type="submit" id="pagenum" onclick="changePage(${result.board.navEnd+1})" value="&gt;"/> 
+		        </c:if> 
               </div>
             </div>
           </div>
-
         </div> <!-- Board List 흰색 영역끝 -->
 
-
-
-    </div>    <!-- 메뉴바 끝 -->
   </div><!--영역끝 지우면 안됨 -->
 </div><!-- 영역끝 지우면 안됨-->
+
+<script>                                   
+function changePage(pageNo) {	
+	console.log("페이지 번호 : ", pageNo);
+    var length = $('#paging select option:selected').val().toString(); // pageLength 값을 가져옴
+  
+	document.querySelector("#pageNo").value = pageNo;
+	document.querySelector("#pageLength").value = length;  // pageLength 값을 설정
+	document.querySelector("#mForm").submit();
+}
+
+// 건수가 선택되면 
+$('#paging select').on('change', function(){
+  var length = $(this).find('option:selected').val(); // 옵션의 값을 가져와야 합니다.
+  console.log("선택된 건수 : ", length);
+  
+  //그냥 건수설정하면 무조건 첫 페이지로 가게
+  var pageNo =1
+  // 로컬 스토리지에 저장
+  localStorage.setItem('selectedPageLength', length);
+  
+  document.querySelector("#pageNo").value = pageNo;
+  document.querySelector("#pageLength").value = length;  // pageLength 값을 설정
+  document.querySelector("#mForm").submit();
+});
+
+//페이지 로드 시 로컬 스토리지에 저장된 건수로 설정
+document.addEventListener("DOMContentLoaded", function() {
+    var selectedPageLength = localStorage.getItem('selectedPageLength');
+    if (selectedPageLength) {
+    	 $('#paging select option').each(function() {
+             if ($(this).val() === selectedPageLength) {
+                 $(this).prop('selected', true);
+             }
+         });
+    }
+});
+</script>
+
 </body>
 </html>

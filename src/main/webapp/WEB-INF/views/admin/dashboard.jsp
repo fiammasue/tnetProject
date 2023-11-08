@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %> 
 
 
 <!DOCTYPE html>
@@ -140,48 +141,8 @@ function drawChart(line_data,id_value) {
     <div class="greenbackground-sZi">
     </div>
       <!-- 메뉴바 -->
-    <div class="menubargroup-nwa">
-      <div class="auto-group-tqda-4PJ">
-        <div class="frame-2-naC">
-          <div class="main-logo-LLp">
-            <p class="caption-6Kz">Admin Dashboard</p>
-            <p class="t-net-zRN">T-net.</p>
-          </div>
-          <div class="auto-group-e7b6-7Vz tab_menu">
-            <div class="group-30929683-3uS defaultarea">
-              <img class="icon-yo6" src="/assets/icon-RhJ.png"/>
-              <a class="analytics-uRr" href="<c:url value='/admin/home'/>">Analytics</a>
-            </div>
-            <div class="group-30929684-Ruz">
-              <img class="icon-NKS" src="/assets/icon-E2L.png"/>
-              <a class="board-list-u4U" href="<c:url value='/admin/boardlist'/>" >Board List</a>
-            </div>
-            <div class="group-30929685-3Ag">
-              <img class="icon-Nye" src="/assets/icon-j28.png"/>
-              <a class="notice-list-WKA"  href="<c:url value='/admin/noticelist'/>">Notice List</a>
-            </div>
-            <div class="group-30929686-eRN">
-              <img class="icon-Pdr" src="/assets/icon-p7z.png"/>
-              <a class="member-list-8LY" href="<c:url value='/admin/memberlist'/>" >Member List</a>
-            </div>
-            <div class="group-30929687-Ghe">
-              <img class="icon-alert-circle-1v8" src="/assets/icon-alert-circle-HqJ.png"/>
-              <p class="complain-LSc">Complain</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="menubottomletter-rQx">
-        <p class="made-with-by-peterdraw-abr">Made with ♥ by Peterdraw</p>
-        <p class="talent-networks-pronesis-Ux8">
-        Talent -NetWork’s  
-        <br/>
-        @pro_nesis
-        </p>
-      </div>
-
-       <!-- 콘텐츠 영역 탭누르면 바뀌는 부분 -->
-
+	  <tiles:insertDefinition name="menuBar" />
+		  
         <!-- Dash board -->
         <div class="whitearea-Nnc tap_content " id="tab1">
           <p class="t-net-dashboard-CJc">T - Net DashBoard</p>
@@ -289,7 +250,7 @@ function drawChart(line_data,id_value) {
 
         </div><!-- Dash board 흰배경 부분 끝-->
 
-    </div><!-- 메뉴바 끝 -->
+
   </div><!--영역끝 지우면 안됨 -->
 </div><!-- 영역끝 지우면 안됨-->
 

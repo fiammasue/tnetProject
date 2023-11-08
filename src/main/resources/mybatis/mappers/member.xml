@@ -70,4 +70,24 @@
 			</if>
 		where email = #{email}
 	</update>
+	
+	
+	<!-- 멤버 페이징  -->
+	<select id="getMemberList" resultType="com.project.tnet.dto.MemberVO" >
+				<![CDATA[
+			select *
+			from (select ROWNUM as rnum , B.*
+			        from(   SELECT  m.*
+			                FROM member m
+			                WHERE ACCOUNTEXPIRED = 'N'
+			                ORDER BY COMPLAIN desc) B)C
+			where rnum between ${startnum} and ${endnum}
+		]]>
+
+	</select>
+	
+<!--총 회원수 -->
+		<select id="totalcount" resultType="java.lang.Integer" >
+			select count(*) from member WHERE ACCOUNTEXPIRED = 'N'
+		</select>	
 </mapper>

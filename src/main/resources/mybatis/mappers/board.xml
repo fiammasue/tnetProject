@@ -18,5 +18,39 @@
 		WHERE k.status_code IN ('SC01', 'SC02', 'SC03')
 		AND k.writer_nickname = #{nickname}
 	</select> -->
+	
+	
+<!--페이징해서 게시판 리스트 가져오기 -->
+<select id="getBoardList" resultType="com.project.tnet.dto.Board" >
+		<![CDATA[
+			select *
+			from (select ROWNUM as rnum , A.*
+			        from(   SELECT  b.board_id,
+			                        b.title,
+			                        t.low_name as givtalent, 
+			                        c.city_name as cityname, 
+			                        t2.low_name as recivetalent,
+			                        b.writer_nickname,
+			                        b.read_count,
+			                        b.register_date,
+			                        s.STATUS_CONTENTS        
+			                FROM board b
+			                INNER JOIN talent_small t ON b.receive_talent = t.low_code
+			                INNER JOIN talent_small t2 ON b.give_talent = t2.low_code
+			                INNER JOIN status s ON b.status_code = s.STATUS_CODE
+			                INNER JOIN city c ON b.city_code = c.CITY_CODE
+			                INNER JOIN city c ON b.city_code = c.CITY_CODE
+			                WHERE DELETE_YN = 'N'
+			                ORDER BY READ_COUNT desc, BOARD_ID desc) A)C
+	          where rnum between ${startnum} and ${endnum}
+		]]>
+
+	</select>
+	
+<!--총 공지사항 갯수 -->
+		<select id="totalcount" resultType="java.lang.Integer" >
+			select count(*) from notice where deleted_yn ='N'
+		</select>	
+	
 
 </mapper>
