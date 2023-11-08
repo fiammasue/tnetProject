@@ -1967,8 +1967,22 @@ button:hover {
   min-width: 250px;
 }
 
+.task-card.dontMove {
+  background-color: #fff;
+  border: 1px solid #aaaaaa;
+  margin-bottom: 10px;
+  padding: 7px 7px 0 7px;
+  min-width: 250px;
+}
+
 .task-name {
   color: black;
+  font-size: 17px;
+  font-weight: bold;
+}
+
+.task-name.dontMove {
+  color: rgba(0, 0, 0, 0.6);
   font-size: 17px;
   font-weight: bold;
 }
@@ -1982,6 +1996,7 @@ button:hover {
   padding: 4px 12px; /* 여백 추가 */
   margin-bottom: 10px;
 }
+
 .status.waiting {
   display: inline-block;
   background-color: #eb5757; /* 요청 기다리는중! 배경색 */
@@ -1991,9 +2006,28 @@ button:hover {
   padding: 4px 12px; /* 여백 추가 */
   margin-bottom: 10px;
 }
+.status.waiting.dontMove {
+  display: inline-block;
+  background-color: rgb(128, 0, 0, 0.5); /* 요청 기다리는중! 배경색 */
+  color: #fff; /* 글자 색상 */
+  font-size: 12px;
+  font-weight: bold;
+  padding: 4px 12px; /* 여백 추가 */
+  margin-bottom: 10px;
+}
+
 .status.reject {
   display: inline-block;
   background-color: #4f87f5; /* 진행 거절.. 배경색 */
+  color: #fff; /* 글자 색상 */
+  font-size: 12px;
+  font-weight: bold;
+  padding: 4px 12px; /* 여백 추가 */
+  margin-bottom: 10px;
+}
+.status.reject.dontMove {
+  display: inline-block;
+  background-color: rgb(79, 135, 245, 0.6); /* 진행 거절.. 배경색 */
   color: #fff; /* 글자 색상 */
   font-size: 12px;
   font-weight: bold;
