@@ -12,7 +12,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-    
+    	<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.0/sockjs.min.js" ></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.2.0/stomp.min.js"></script>
    <style>
       .or-divider {
             display: flex;
@@ -109,6 +110,81 @@
 	$("#loginForm").on("click", function() {
 		loginDialog.dialog("open");
 	});
+	
+	//웹소켓 연결
+	var sock = new SockJS("/ws-stomp");
+	var ws = Stomp.over(sock);
+	var subscription = null;
+	const sender = "${principal.user.nickName}";
+	
+	if(sender != ""){
+		ws.connect({},function(frame){
+			subscription = ws.subscribe("/sub/member/userId/"+sender
+					,message => {//구독한곳에서 메시지가 오면
+						const recv = JSON.parse(message.body);//메시지 파싱
+						chatRecvMessage(recv);
+					}, {sender:sender});//보내는 사람을 등록할필요가 있나?
+		},error => {
+			alert("error "+error);
+		});
+	}
+
+	function chatRecvMessage(recv) {
+		console.log(recv)
+		//시간 자르기
+			 var timestampString = recv.reg_date;
+
+			// "T" 문자를 기준으로 문자열을 분할하고 두 번째 부분을 선택
+			var timePart = timestampString.split("T")[1];
+
+			// 시:분 부분만 선택
+			var time = timePart.substring(0, 5);
+			
+		if (recv.type_string==="ALARM") {
+			alert("ALARM");
+			alert(recv.contents, recv.receiver)
+		}
+		else if (recv.type_string==="TALK") {
+			alert("TALK");
+			var chatListInfo = "";
+			 if(recv.sender != "${principal.user.nickName}"){
+	    			 chatListInfo+=`<div class="chat ch1">
+				    		            <div class="textbox">`+decodeURIComponent(recv.message)+`</div>
+				    		            <div class="sender-time">`+time+`</div>`;
+				   	if(recv.read_yn=='N'){
+	    		      chatListInfo+=` <div class="sender-readCount">1</div>`;
+				   		
+				   	}
+				   	chatListInfo+=`</div>`;
+			 }	
+			 else{
+				  	chatListInfo += `<div class="chat ch2">
+				    		            <div class="textbox">`+decodeURIComponent(recv.message)+`</div>
+				    		            <div class="receiver-time">`+time+`</div>`
+				   	if(recv.read_yn=='N'){
+		    		   chatListInfo+=` <div class="receiver-readCount">1</div>`;
+				   		
+				   	}
+				    	chatListInfo+=`</div>`;
+				 
+			 }
+			$('.wrap').append(chatListInfo); 
+			var divElement = $(".wrap");
+   			$(".wrap").scrollTop(divElement[0].scrollHeight);
+		}
+		else if (recv.type_string==="ENTER") {
+			alert("입장");
+			var chatListInfo = `<span class="badge rounded-pill text-bg-warning">`+recv.message+`</span>`
+			$("#chatList").append(chatListInfo);
+		}
+		else if (recv.type_string==="LEAVE") {
+			alert("퇴장");
+			var chatListInfo = `<span class="badge rounded-pill text-bg-warning">`+recv.message+`</span>`
+			$("#chatList").append(chatListInfo);
+		}
+		
+		
+	}
 	
 </script>
 </body>

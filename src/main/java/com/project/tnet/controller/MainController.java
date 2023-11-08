@@ -74,10 +74,10 @@ public class MainController {
 	public String myPage_calendar() {
 		return "myPage/myPage_calendar";
 	}
-	@RequestMapping("/myPage/chatRoom")
-	public String myPage_chatRoom() {
-		return "myPage/myPage_chatRoom";
-	}
+//	@RequestMapping("/myPage/chatRoom")
+//	public String myPage_chatRoom() {
+//		return "myPage/myPage_chatRoom";
+//	}
 	
 	// 관리자 로그인 페이지
 	@RequestMapping("/admin/loginform")

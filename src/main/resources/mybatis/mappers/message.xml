@@ -10,20 +10,18 @@
 		<result property="boardId" column="boardid" />
     </resultMap> -->
 	
-	<insert id="insertMessage">
+	<insert id="insertMessage"> 
 		insert into message(
 						message_id
 						,message
-						,read_yn
-						,reg_date
 						,sender
+						,read_yn
 						,room_id
 					) values(
 						message_num.nextval
 						,#{message}
-						,#{read_yn}
-						,#{reg_date}
 						,#{sender}
+						,#{read_yn}
 						,#{room_id}
 					)
 	</insert>
@@ -43,5 +41,6 @@
 				,room_id
 		from message
 		where room_id=#{room_id}
+		order by reg_date asc
 	</select>
 </mapper>

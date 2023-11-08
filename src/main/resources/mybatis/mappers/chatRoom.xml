@@ -32,6 +32,28 @@
 			,receiver
 			,sender
 		from chat_room
-		where receiver=#{receiver} or sender=#{sender}
+		where receiver=#{user_id} or sender=#{user_id}
 	</select>
+	
+	<select id="findRoomById">
+		select room_id
+				,room_name
+				,receiver
+				,sender
+				,connected_count
+		from chat_room
+		where room_id=#{roomId}
+	
+	</select>
+	
+	<update id="upToConnectedCountById">
+		update chat_room
+		set connected_count = connected_count + 1
+		where room_id = #{room_id}
+	</update>
+	<update id="downToConnectedCountById">
+		update chat_room
+		set connected_count = connected_count - 1
+		where room_id = #{room_id}
+	</update>
 </mapper>

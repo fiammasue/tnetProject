@@ -1,78 +1,30 @@
 package com.project.tnet.service;
 
-import java.util.Objects;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.project.tnet.dao.MemberDAO;
-import com.project.tnet.exception.ExistMemberException;
-import com.project.tnet.exception.NotExistMemberException;
-import com.project.tnet.dto.MemberVO;
+import com.project.tnet.dao.MessageDAO;
+import com.project.tnet.dto.Message;
+
 
 
 @Service
 public class MessageService {
-
-	@Autowired
-	private MemberDAO memberDAO;
 	
 	@Autowired
-	private PasswordEncoder passwordEncoder;
-
-
-	public MemberVO findByEmail(String email) {
-		return memberDAO.findByEmail(email);
-	}
+	private MessageDAO messageDAO;
 	
-	public void insertMember(MemberVO memberVO) throws Exception {
-		try {
-			if (memberVO == null ||
-				Objects.isNull(memberVO.getEmail())) {
-				throw new Exception("아이디는 필수 정보입니다");
-			} else if (Objects.isNull(memberVO.getOauth()) && Objects.isNull(memberVO.getPwd())) {
-				throw new Exception("비밀번호는 필수 정보입니다");
-			}
-			MemberVO existMember = memberDAO.findByEmail(memberVO.getEmail());
-			if (existMember != null && !Objects.isNull(memberVO.getEmail())) {
-				throw new ExistMemberException(memberVO.getEmail());
-			}
-			//비밀번호는 null일경우에만 암호화 한다
-			if (Objects.isNull(memberVO.getOauth())) {
-				memberVO.setPwd(passwordEncoder.encode(memberVO.getPwd()));
-			}
-			memberDAO.insertMember(memberVO);
-			System.out.println(memberVO);
-		} catch (Exception ex) {
-//			ex.printStackTrace();
-			throw ex;
-		}
+	public Message insertMessage(Message message) {
+		messageDAO.insertMessage(message);
+		System.out.println("메세지를 insert하고 반환된 값 : " +message);
+		return message;
 	}
-	
-	public boolean updateMember(MemberVO memberVO)  {
-		try {
-			if (memberVO == null || Objects.isNull(memberVO.getEmail())) {
-				throw new Exception("아이디는 필수 정보입니다");
-			} else if (Objects.isNull(memberVO.getPwd())) {
-				throw new Exception("비밀번호는 필수 정보입니다");
-			}
-			MemberVO existMember = memberDAO.findByEmail(memberVO.getEmail());
-			if (existMember == null || Objects.isNull(memberVO.getEmail())) {
-				throw new NotExistMemberException(memberVO.getEmail());
-			}
-			
-			//비밀번호 암호화 한다
-			memberVO.setPwd(passwordEncoder.encode(memberVO.getPwd()));
-			
-			memberDAO.updateMember(memberVO);
-			
-			memberVO.setRole(existMember.getRole());
-			
-			return true;
-		} catch (Exception ex) {
-//			ex.printStackTrace();
-			return false;
-		}
+	public List<Message> selectMessageList(String room_id){
+		Message message = new Message();
+		message.setRoom_id(room_id);
+		
+		return messageDAO.selectMessageList(message);
 	}
 }
