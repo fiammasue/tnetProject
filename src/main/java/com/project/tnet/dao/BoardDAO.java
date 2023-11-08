@@ -10,6 +10,10 @@ import com.project.tnet.dto.Course;
 @Mapper
 public interface BoardDAO {
 
+	int totalcount();
+
+	List<Board> getBoardList(Board board);
+
 	
 	
 	
