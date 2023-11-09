@@ -5,11 +5,11 @@
 
 <mapper namespace="com.project.tnet.dao.MemberDAO">
 
-	<!-- <update id="updateMemberLastLogin">
+	<update id="updateMemberLastLogin">
 		update member set 
-			last_login_time = now()
+			last_login_time = SYSDATE
 		where email = #{email}  
-	</update> -->
+	</update>
 	
 	<select id="findByEmail" resultType="com.project.tnet.dto.MemberVO">
 		select 

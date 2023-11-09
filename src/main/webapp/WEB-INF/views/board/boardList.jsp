@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -209,7 +210,7 @@
         <div class="circle-nqe">4</div>
         <div class="circle-scC">5</div>
         <img class="circle-kvt" src="/assets/circle.png"/>
-        <div class="button-6E4">게시글작성</div>
+        <div><a href='<c:url value="/ckeditorForm.do"/>'>게시글작성</a></div>
       </div>
     </div>
 </body>
