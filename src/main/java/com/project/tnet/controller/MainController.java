@@ -75,25 +75,11 @@ public class MainController {
 //		return "myPage/myPage_chatRoom";
 //	}
 	
-	// 관리자 로그인 페이지
-	@RequestMapping("/admin/loginform")
-	public String admin_login() {
-		return "admin/adminLogin";
-	}
+
 	
-	//관리자 게시판 목록 페이지
-	@RequestMapping("/admin/boardlist")
-	public String admin_boardlist() {
-		return "admin/board-list";
-	}
+
 	
-	//관리자 공지사항 목록 페이지
-	@RequestMapping("/admin/noticelist")
-	public String admin_noticelist() {
-		return "admin/notice-list";
-	}
 	
-	//관리자 회원관리 페이지
 	@Autowired
 	private ChartService chartService;
 	

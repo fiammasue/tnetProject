@@ -1,5 +1,8 @@
 package com.project.tnet.service;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import com.project.tnet.dao.MemberDAO;
 import com.project.tnet.dto.MemberVO;
+import com.project.tnet.dto.NoticeDTO;
 import com.project.tnet.exception.ExistMemberException;
 import com.project.tnet.exception.NotExistMemberException;
 
@@ -78,6 +82,22 @@ public class MemberService{
 //			ex.printStackTrace();
 			return false;
 		}
+	}
+
+	public Map<String, Object> GetList(MemberVO member) {
+		System.out.println("회원 전체 목록 서비스");
+		
+		//1. 전체 건수를 얻는다
+		member.setTotalCount(memberDAO.totalcount());
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("member", member);
+		System.out.println("member : "+ member );
+		List<MemberVO> list = memberDAO.getMemberList(member);
+		System.out.println(list);
+		map.put("list", list);
+		
+		return map;
 	}
 	
 }
