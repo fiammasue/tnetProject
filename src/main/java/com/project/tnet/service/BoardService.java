@@ -1,15 +1,14 @@
 package com.project.tnet.service;
 
-import org.springframework.stereotype.Service;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.project.tnet.dao.BoardDAO;
 import com.project.tnet.dto.Board;
-
-
-import com.project.tnet.dto.Course;
-
-import com.project.tnet.dto.MemberVO;
 
 @Service
 public class BoardService {
