@@ -2,6 +2,11 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
+<sec:authorize access="isAuthenticated()"> <!-- 인증이 됐는지안됐는지 확인하는 구문 -->
+   <sec:authentication property="principal" var="principal"/> <!-- property로 가져와서 var 데이터타입으로 대입하겠다는뜻 -->
+</sec:authorize>
 
 <!doctype html>
 <html lang="ko">
@@ -39,7 +44,7 @@
 								<ul class="nav">
 									<li><a href="/myPage/course_recruiting" class="active">모집 중인 내 강의</a></li>
 									<li><a href="/myPage/course_proceeding" class="">진행 중인 강의</a></li>
-									<li><a href="#" class="">신청이 온 진행중 강의</a></li>
+									<!-- <li><a href="#" class="">신청이 온 진행중 강의</a></li> -->
 								</ul>
 							</div>
 						</li>
@@ -59,7 +64,7 @@
 						<div class="container">
 							
 							<div class="panel-heading">
-								<h1 class="panel-title recruiting">모집중</h3>
+								<h1 class="panel-title recruiting">모집중</h1>
 							</div>
 							<!-- BASIC TABLE -->
 							<div class="panel">
@@ -124,10 +129,10 @@
 	
 	<!-- JavasSript -->
 	<script src="/scripts/kanbanCheckbox.js"></script>
-	<script src="/vendor/jquery/jquery.min.js"></script>
-	<script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
-	<script src="/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<!-- <script src="/vendor/jquery/jquery.min.js"></script> -->
+	<!-- <script src="/vendor/bootstrap/js/bootstrap.min.js"></script> -->
+	<!-- <script src="/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script> -->
+	<!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
 </body>
 
 </html>
