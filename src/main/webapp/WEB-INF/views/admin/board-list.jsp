@@ -42,7 +42,7 @@
                   <th>받는재능</th>
                   <th>작성자</th>
                   <th>위치(시)</th>
-                  <th>위치(구)</th>
+                  <th>위치(구)</th> 
                   <th>조회수</th>
                   <th>등록일</th>
                   <th>진행상태</th>
@@ -56,10 +56,10 @@
                     <td>${board.recivetalent}</td>
                     <td >${board.writer_nickname}</td>
                     <td >${board.cityname}</td>
-                    <td>${board.destrict_code}</td>
+                    <td >${board.districtname}</td>
                     <td>${board.register_date}</td>
                     <td >${board.read_count}</td>
-                    <td >${board.STATUS_CONTENTS}</td>
+                    <td >${board.status}</td>
                   </tr>
                 </c:forEach>                        
             </table>

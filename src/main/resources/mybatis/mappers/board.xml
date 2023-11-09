@@ -24,25 +24,33 @@
 <select id="getBoardList" resultType="com.project.tnet.dto.Board" >
 		<![CDATA[
 			select *
-			from (select ROWNUM as rnum , A.*
-			        from(   SELECT  b.board_id,
-			                        b.title,
-			                        t.low_name as givtalent, 
-			                        c.city_name as cityname, 
-			                        t2.low_name as recivetalent,
-			                        b.writer_nickname,
-			                        b.read_count,
-			                        b.register_date,
-			                        s.STATUS_CONTENTS        
-			                FROM board b
-			                INNER JOIN talent_small t ON b.receive_talent = t.low_code
-			                INNER JOIN talent_small t2 ON b.give_talent = t2.low_code
-			                INNER JOIN status s ON b.status_code = s.STATUS_CODE
-			                INNER JOIN city c ON b.city_code = c.CITY_CODE
-			                INNER JOIN city c ON b.city_code = c.CITY_CODE
-			                WHERE DELETE_YN = 'N'
-			                ORDER BY READ_COUNT desc, BOARD_ID desc) A)C
-	          where rnum between ${startnum} and ${endnum}
+from (select ROWNUM as rnum , A.*
+        from(   	SELECT b.board_id,
+			       b.title,
+			       t.low_name AS givtalent,
+			       t2.low_name AS recivetalent,
+			       b.writer_nickname,
+			       b.read_count,
+			       b.register_date,
+			       s.STATUS_CONTENTS AS status,
+			       u.city_name AS cityname,
+			       u.district_name AS districtname
+			FROM board b       
+			INNER JOIN talent_small t ON b.receive_talent = t.low_code
+			INNER JOIN talent_small t2 ON b.give_talent = t2.low_code
+			INNER JOIN status s ON b.status_code = s.STATUS_CODE
+			INNER JOIN (
+						  SELECT c.city_code,
+						         d.city_code AS district_city_code,
+						         c.city_name,
+						         d.district_name,
+						         d.district_code
+						  FROM city c
+						  INNER JOIN district d ON c.city_code = d.city_code) u 
+			ON b.city_code = u.city_code AND b.district_code = u.district_code
+			WHERE DELETE_YN = 'N'
+			ORDER BY READ_COUNT DESC, BOARD_ID DESC) A)C
+	        where rnum between ${startnum} and ${endnum}
 		]]>
 
 	</select>
