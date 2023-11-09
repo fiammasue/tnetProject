@@ -3,12 +3,8 @@
       PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.project.tnet.dao.BoardDAO">
-	
-	
-	
-	
-	
+<mapper namespace="com.project.tnet.dao.MyPageDAO">
+
 	<!-- 마이페이지 모집중리스트 -->
 	<select id="getKanbanList" resultType="com.project.tnet.dto.Board">
 		SELECT b.board_id, b.title, ts1.low_name AS give_talent, ts2.low_name AS receive_talent, s.status_contents AS status_code
