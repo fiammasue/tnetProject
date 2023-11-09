@@ -12,7 +12,7 @@ import com.project.tnet.dto.NoticeDTO;
 @Repository("memberDAO")
 public interface MemberDAO {
 
-//	public int updateMemberLastLogin(String email);
+	public int updateMemberLastLogin(String email);
 	public MemberVO findByEmail(String email);
 	public void loginCountInc(MemberVO member);
 	public void loginCountClear(String email);

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+           "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.project.tnet.dao.AttachFileDAO">
+
+	<insert id="insert">
+		<selectKey order="AFTER" keyProperty="file_no" resultType="int">
+			   SELECT SEQ_ATTACH_FILE.CURRVAL as file_no FROM DUAL
+		</selectKey>
+		
+		insert into ATTACH_FILE (
+			 FILE_NO
+			,FILE_NAME_ORG
+			,FILE_NAME_REAL
+			,CONTENT_TYPE
+			,LENGTH
+			,token
+		) values (
+		   	SEQ_ATTACH_FILE.nextval 
+			,#{file_name_org}
+			,#{file_name_real}
+			,#{content_type}
+			,#{length}
+			,#{token}
+		) 
+	</insert>
+
+	<!-- file_id로 첨부파일의 상세정보를 얻는 쿼리문 -->
+	<select id="findById" resultType="com.project.tnet.dto.AttachFile">
+		SELECT  
+			 FILE_NO 
+			 token
+			,FILE_NAME_ORG
+			,FILE_NAME_REAL
+			,CONTENT_TYPE
+			,LENGTH
+		FROM  ATTACH_FILE 
+		where FILE_NO = #{file_no}
+	</select>
+	
+	
+	<!-- 
+	token을 기준으로 업로드된 이미지목록을 얻는다.
+	
+	게시글 1개를 기준으로 n개의 이미지를 업로드해도 token은 1개만 부여된다.
+	why? -> 3개의 이미지를 업로드 후 2개를 삭제하면 로컬과 DB에도 2개의 이미지가 삭제돼야 하는데 
+	그러기 위해서 token기준으로 조회해야 한다. 
+	-->
+	<select id="getAttachFileList" resultType="com.project.tnet.dto.AttachFile">
+		select
+			*
+		from ATTACH_FILE  
+		where token = #{token} 
+	</select>
+	
+	<!-- 
+	why? -> 3개의 이미지를 업로드 후 2개를 삭제하면 로컬과 DB에도 2개의 이미지가 삭제돼야 하는데 
+	token기준으로 조회한 후 해당 file_id를 삭제한다. 
+	-->
+	<delete id="deleteTemplateFile">
+		delete from ATTACH_FILE  
+		where FILE_NO in  
+		<foreach collection="list" item="item" open="(" separator="," close=")" >
+			#{item.file_no}
+		</foreach> 
+	</delete>
+
+
+<!-- 토큰을 기준으로 DB에 있는 이미지를 가져온다.(삭제하기 위해서) --> 	
+	<select id="deleteFileList" resultType="com.project.tnet.dto.AttachFile">
+		select
+			*
+		from ATTACH_FILE  
+		where token in 
+		<foreach collection="list" item="item" open="(" separator="," close=")" >
+			#{item.token}
+		</foreach> 
+	</select>
+
+
+<!-- 토큰을 기준으로 DB에 있는 이미지를 지운다. -->
+	<delete id="deleteTokenList">
+		delete from ATTACH_FILE  
+		where token in 
+		<foreach collection="list" item="item" open="(" separator="," close=")" >
+			#{item.token}
+		</foreach> 
+	</delete>
+
+
+</mapper>
