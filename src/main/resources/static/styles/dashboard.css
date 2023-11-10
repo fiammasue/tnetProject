@@ -667,14 +667,14 @@ margin: auto;
 
 /* 파이차트제목 글자 */
 .auto-group-jz1n-jeY .piechart-ojW .auto-group-8seu-Wdv .item--SXa {
-  margin: 0rem 40.826rem 0.144rem 0rem;
-  font-size: 2.4rem;
-  font-weight: 700;
-  line-height: 1.2;
-  color: #464155;
-  font-family: Barlow, 'Source Sans Pro';
-  white-space: nowrap;
-  flex-shrink: 0;
+	margin: 0rem 21.826rem 0.144rem 0rem;
+    font-size: 2.4rem;
+    font-weight: 700;
+    line-height: 1.2;
+    color: #464155;
+    font-family: Barlow, 'Source Sans Pro';
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 
 /* 파이차트제목 토글 */
@@ -688,7 +688,6 @@ margin: auto;
   border-radius: 1rem;
   flex-shrink: 0;
   margin: auto;
-  margin-left: -30px;
 }
 
 /* 파이차트토글 글자 */
@@ -851,4 +850,12 @@ input[type="date"] {
     width :72px;
     margin: 5px;
 }
+
+svg {
+    margin-left: -15px;
+}
+
+/*구글차트깜빡임방지*/
+svg > g > g:last-child { pointer-events: none }
+
 
