@@ -17,6 +17,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 	<!-- VENDOR CSS -->
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 	<link rel="stylesheet" href="/vendor/bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
 	<link rel="stylesheet" href="/vendor/linearicons/style.css">
@@ -84,22 +85,48 @@
 									        <c:otherwise>
 												<c:forEach var="course" items="${kanbanBoard_Accept}">
 												<c:choose>
-								                    <c:when test="${course.applyer_nickname == principal.user.nickName}">
-													<div class="task-card" id="course-${course.course_id}" draggable="true" data-courseid="${course.course_id}" data-boardid="${course.board_id}">
+								                    <c:when test="${course.status_code == '진행 취소요청 보냄' || course.status_code == '진행 취소요청이 왔어요'}">
+													<div class="task-card dontMove" id="course-${course.course_id}" data-courseid="${course.course_id}" data-boardid="${course.board_id}">
 														<div class="status accept dontMove">${course.status_code}</div>
-														<p class="task-name">${course.title}</p>
+														<p class="task-name dontMove">
+														<script>
+									                        var originalTitle = "${course.title}";
+									                        var truncatedTitle = originalTitle.length > 16 ? (originalTitle.substring(0, 16) + '...') : originalTitle;
+									                        document.write(truncatedTitle);
+									                    </script>
+									                    </p>
 														<div class="details">
-									                        <p class="requester">신청자 : ${course.applyer_nickname}</p>
+									                        <c:choose>
+																<c:when test="${course.applyer_nickname == principal.user.nickName}">
+																	<p class="requester">신청자 : ${course.applyer_nickname}</p>
+																</c:when>
+																<c:otherwise>
+																	<p class="requester">요청자 : ${course.applyer_nickname}</p>
+																</c:otherwise>
+															</c:choose>
 											                <p class="date">${course.start_date}</p>
 														</div>
 													</div>
 													</c:when>
 										        	<c:otherwise>
-													<div class="task-card" id="course-${course.course_id}" draggable="true" ondragstart="drag(event)" data-courseid="${course.course_id}" data-boardid="${course.board_id}">
+													<div class="task-card" id="course-${course.course_id}" data-courseid="${course.course_id}" data-boardid="${course.board_id}">
 														<div class="status accept">${course.status_code}</div>
-														<p class="task-name">${course.title}</p>
+														<p class="task-name">
+														<script>
+									                        var originalTitle = "${course.title}";
+									                        var truncatedTitle = originalTitle.length > 16 ? (originalTitle.substring(0, 16) + '...') : originalTitle;
+									                        document.write(truncatedTitle);
+									                    </script>
+									                    </p>
 														<div class="details">
-									                        <p class="requester">요청자 : ${course.applyer_nickname}</p>
+									                        <c:choose>
+																<c:when test="${course.applyer_nickname == principal.user.nickName}">
+																	<p class="requester">신청자 : ${course.applyer_nickname}</p>
+																</c:when>
+																<c:otherwise>
+																	<p class="requester">요청자 : ${course.applyer_nickname}</p>
+																</c:otherwise>
+															</c:choose>
 											                <p class="date">${course.start_date}</p>
 														</div>
 													</div>
@@ -131,7 +158,13 @@
 								                    <c:when test="${course.applyer_nickname == principal.user.nickName}">
 													<div class="task-card dontMove" id="course-${course.course_id}" draggable="false" data-courseid="${course.course_id}" data-boardid="${course.board_id}">
 														<div class="status waiting dontMove">${course.status_code}</div>
-														<p class="task-name dontMove">${course.title}</p>
+														<p class="task-name dontMove">
+														<script>
+									                        var originalTitle = "${course.title}";
+									                        var truncatedTitle = originalTitle.length > 16 ? (originalTitle.substring(0, 16) + '...') : originalTitle;
+									                        document.write(truncatedTitle);
+									                    </script>
+									                    </p>
 														<div class="details">
 									                        <p class="requester">신청자 : ${course.applyer_nickname}</p>
 											                <p class="date">${course.start_date}</p>
@@ -141,7 +174,13 @@
 										        	<c:otherwise>
 													<div class="task-card" id="course-${course.course_id}" draggable="true" ondragstart="drag(event)" data-courseid="${course.course_id}" data-boardid="${course.board_id}">
 														<div class="status waiting">${course.status_code}</div>
-														<p class="task-name">${course.title}</p>
+														<p class="task-name">
+														<script>
+									                        var originalTitle = "${course.title}";
+									                        var truncatedTitle = originalTitle.length > 16 ? (originalTitle.substring(0, 16) + '...') : originalTitle;
+									                        document.write(truncatedTitle);
+									                    </script>
+									                    </p>
 														<div class="details">
 									                        <p class="requester">요청자 : ${course.applyer_nickname}</p>
 											                <p class="date">${course.start_date}</p>
@@ -172,7 +211,13 @@
 								                    <c:when test="${course.applyer_nickname == principal.user.nickName}">
 													<div class="task-card dontMove" id="course-${course.course_id}" draggable="false" data-courseid="${course.course_id}" data-boardid="${course.board_id}">
 														<div class="status reject dontMove">${course.status_code}</div>
-														<p class="task-name dontMove">${course.title}</p>
+														<p class="task-name dontMove">
+														<script>
+									                        var originalTitle = "${course.title}";
+									                        var truncatedTitle = originalTitle.length > 16 ? (originalTitle.substring(0, 16) + '...') : originalTitle;
+									                        document.write(truncatedTitle);
+									                    </script>
+									                    </p>
 														<div class="details">
 									                        <p class="requester">신청자 : ${course.applyer_nickname}</p>
 											                <p class="date">${course.start_date}</p>
@@ -182,7 +227,13 @@
 										        	<c:otherwise>
 													<div class="task-card" id="course-${course.course_id}" draggable="true" ondragstart="drag(event)" data-courseid="${course.course_id}" data-boardid="${course.board_id}">
 														<div class="status reject">${course.status_code}</div>
-														<p class="task-name">${course.title}</p>
+														<p class="task-name">
+														<script>
+									                        var originalTitle = "${course.title}";
+									                        var truncatedTitle = originalTitle.length > 16 ? (originalTitle.substring(0, 16) + '...') : originalTitle;
+									                        document.write(truncatedTitle);
+									                    </script>
+									                    </p>
 														<div class="details">
 									                        <p class="requester">요청자 : ${course.applyer_nickname}</p>
 											                <p class="date">${course.start_date}</p>
@@ -216,7 +267,13 @@
 												<c:forEach var="course" items="${kanbanBoard_Completed}">
 													<div class="task-card" id="course-${course.course_id}" draggable="true" ondragstart="drag(event)" data-courseid="${course.course_id}" data-boardid="${course.board_id}">
 														<div class="status completed">${course.status_code}</div>
-														<p class="task-name">${course.title}</p>
+														<p class="task-name">
+														<script>
+									                        var originalTitle = "${course.title}";
+									                        var truncatedTitle = originalTitle.length > 16 ? (originalTitle.substring(0, 16) + '...') : originalTitle;
+									                        document.write(truncatedTitle);
+									                    </script>
+									                    </p>
 														<div class="details">
 															<c:choose>
 											                    <c:when test="${course.applyer_nickname == principal.user.nickName}">
@@ -248,10 +305,16 @@
 							        		<c:otherwise>
 												<c:forEach var="course" items="${kanbanBoard_Completed_Waiting}">
 												<c:choose>
-											        <c:when test="${course.status_code == '완료 결정 기다리는 중..        '}">
+											        <c:when test="${course.status_code == '완료 결정 기다리는 중..'}">
 														<div class="task-card dontMove" id="course-${course.course_id}" draggable="false" data-courseid="${course.course_id}" data-boardid="${course.board_id}">
-															<div class="status completed-waiting">${course.status_code}</div>
-															<p class="task-name">${course.title}</p>
+															<div class="status completed-waiting dontMove">${course.status_code}</div>
+															<p class="task-name dontMove">
+															<script>
+										                        var originalTitle = "${course.title}";
+										                        var truncatedTitle = originalTitle.length > 16 ? (originalTitle.substring(0, 16) + '...') : originalTitle;
+										                        document.write(truncatedTitle);
+										                    </script>
+										                    </p>
 															<div class="details">
 																<c:choose>
 												                    <c:when test="${course.applyer_nickname == principal.user.nickName}">
@@ -268,7 +331,13 @@
 									        		<c:otherwise>
 														<div class="task-card" id="course-${course.course_id}" draggable="true" ondragstart="drag(event)" data-courseid="${course.course_id}" data-boardid="${course.board_id}">
 															<div class="status completed-waiting">${course.status_code}</div>
-															<p class="task-name">${course.title}</p>
+															<p class="task-name">
+															<script>
+										                        var originalTitle = "${course.title}";
+										                        var truncatedTitle = originalTitle.length > 16 ? (originalTitle.substring(0, 16) + '...') : originalTitle;
+										                        document.write(truncatedTitle);
+										                    </script>
+										                    </p>
 															<div class="details">
 																<c:choose>
 												                    <c:when test="${course.applyer_nickname == principal.user.nickName}">
@@ -301,21 +370,54 @@
 									        </c:when>
 							        		<c:otherwise>
 												<c:forEach var="course" items="${kanbanBoard_Trash}">
-												<div class="task-card" id="course-${course.course_id}" draggable="true" ondragstart="drag(event)" data-courseid="${course.course_id}" data-boardid="${course.board_id}">
-													<div class="status trash">${course.status_code}</div>
-													<p class="task-name">${course.title}</p>
-													<div class="details">
-														<c:choose>
-															<c:when test="${course.applyer_nickname == principal.user.nickName}">
-																<p class="requester">신청자 : ${course.applyer_nickname}</p>
-															</c:when>
-															<c:otherwise>
-																<p class="requester">요청자 : ${course.applyer_nickname}</p>
-															</c:otherwise>
-														</c:choose>
-														<p class="date">${course.start_date}</p>
-													</div>
-												</div>
+												<c:choose>
+								                    <c:when test="${course.status_code == '취소된 강의 삭제'}">
+														<div class="task-card dontMove" id="course-${course.course_id}" draggable="false"data-courseid="${course.course_id}" data-boardid="${course.board_id}">
+															<div class="status trash dontMove">${course.status_code}</div>
+															<p class="task-name dontMove">
+															<script>
+										                        var originalTitle = "${course.title}";
+										                        var truncatedTitle = originalTitle.length > 16 ? (originalTitle.substring(0, 16) + '...') : originalTitle;
+										                        document.write(truncatedTitle);
+										                    </script>
+										                    </p>
+															<div class="details">
+																<c:choose>
+																	<c:when test="${course.applyer_nickname == principal.user.nickName}">
+																		<p class="requester">신청자 : ${course.applyer_nickname}</p>
+																	</c:when>
+																	<c:otherwise>
+																		<p class="requester">요청자 : ${course.applyer_nickname}</p>
+																	</c:otherwise>
+																</c:choose>
+																<p class="date">${course.start_date}</p>
+															</div>
+														</div>
+													</c:when>
+													<c:otherwise>
+														<div class="task-card" id="course-${course.course_id}" draggable="true" ondragstart="drag(event)" data-courseid="${course.course_id}" data-boardid="${course.board_id}">
+															<div class="status trash">${course.status_code}</div>
+															<p class="task-name">
+															<script>
+										                        var originalTitle = "${course.title}";
+										                        var truncatedTitle = originalTitle.length > 16 ? (originalTitle.substring(0, 16) + '...') : originalTitle;
+										                        document.write(truncatedTitle);
+										                    </script>
+										                    </p>
+															<div class="details">
+																<c:choose>
+																	<c:when test="${course.applyer_nickname == principal.user.nickName}">
+																		<p class="requester">신청자 : ${course.applyer_nickname}</p>
+																	</c:when>
+																	<c:otherwise>
+																		<p class="requester">요청자 : ${course.applyer_nickname}</p>
+																	</c:otherwise>
+																</c:choose>
+																<p class="date">${course.start_date}</p>
+															</div>
+														</div>
+													</c:otherwise>
+												</c:choose>
 												</c:forEach>
 											</c:otherwise>
 									    </c:choose>	
@@ -338,11 +440,35 @@
 	</div>
 	
 	
+	
+	<form id="viewForm" class="accept_detail" style="display: none;">
+	    <div>
+			<div class="task-card">
+				<div class="status accept detail"></div>
+				<p class="task-name detail-title"></p>
+				<div class="details">
+	                <p class="requester detail-user"></p>
+	                <p class="date detail-date"></p>
+				</div>
+			</div>
+	    <div class="button-container detail">
+	        <button id="detail-complete" style="display:none;">진행 완료</button>
+	        <button id="detail-cancel" style="display:none;">진행 취소</button>
+			<button id="detail-reAccept" style="display:none;">다시 진행</button>
+			<button id="detail-cancelAccept" style="display:none;">취소 완료</button>
+	    </div>
+	    
+	    </div>
+	</form>
+	
+	
+	
 	<!-- JavaScript -->
-	<!-- <script src="/vendor/jquery/jquery.min.js"></script>
+	<script src="/vendor/jquery/jquery.min.js"></script>
 	<script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
 	<script src="/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<script>
 		/* ************************************************************************** */
 		/* 탭메뉴 */
@@ -794,6 +920,7 @@
 		    card.setAttribute('draggable', 'false');
 		});
 		    
+		// 거절 상태 칸반보드 카드 요소에 드래그 앤 드롭 이벤트
 		const rejectCards = document.querySelectorAll('.bucket.reject .task-card');
 
 		rejectCards.forEach(card => {
@@ -860,6 +987,7 @@
 		    });
 		});
 		
+		// 완료대기 상태 칸반보드 카드 요소에 드래그 앤 드롭 이벤트
 		const completedWaitingCards = document.querySelectorAll('.bucket.completed-waiting .task-card');
 		
 		completedWaitingCards.forEach(card => {
@@ -889,13 +1017,14 @@
 		    });
 		});
 		
-		// 거절 상태(본인이 신청한글) 칸반보드 카드 요소에 드래그 앤 드롭 이벤트 해제
+		// 완료대기 상태(본인이 완료요청한 글) 칸반보드 카드 요소에 드래그 앤 드롭 이벤트 해제
 		const completedWaiting2Cards = document.querySelectorAll('.bucket.completed-waiting .task-card.dontMove');
 		
 		completedWaiting2Cards.forEach(card => {
 		    card.setAttribute('draggable', 'false');
 		});
 		
+		// 휴지통 상태 칸반보드 카드 요소에 드래그 앤 드롭 이벤트
 		const trashCards = document.querySelectorAll('.bucket.trash .task-card');
 		
 		trashCards.forEach(card => {
@@ -924,7 +1053,257 @@
 		        event.target.appendChild(document.getElementById(event.dataTransfer.getData('text')));
 		    });
 		});
+		
+		// 휴지통 상태 칸반보드 카드 요소에 드래그 앤 드롭 이벤트 해제
+		const trash2Cards = document.querySelectorAll('.bucket.completed-waiting .task-card.dontMove');
+		
+		trash2Cards.forEach(card => {
+		    card.setAttribute('draggable', 'false');
+		});
 
+		
+		$(document).ready(function() {
+		    // 모달 대화 상자 초기화
+		    $("#viewForm").dialog({
+		        autoOpen: false, // 처음에는 자동으로 열리지 않음
+		        modal: true, // 모달 형식으로 표시
+		        width: 370,
+		        height: 290,
+		        buttons: {
+		            "닫기": function() {
+		                $(this).dialog("close");
+		            }
+		        },
+		        close: function() {
+		            // 모달이 닫힐 때 수행할 동작
+		        }
+		    });
+
+		    // 클릭 이벤트 핸들러
+		    $(".kanban-board .bucket.accept .tasks .task-card").click(function(e) {
+		        e.preventDefault();
+		        
+		        const courseId = $(this).data("courseid");
+		        console.log("Clicked Course ID:", courseId);
+		        
+		        $.ajax({
+		            type: "POST",
+		            url: '/myPage/detailAccept',
+		            data: { course_id: courseId },
+		            success: function(response) {
+	            		const course = response.course;
+	            		console.log(course);
+	            		
+	            		$(".status.accept.detail").text(course.status_code);
+	            		$(".task-name.detail-title").text(course.title);
+	            		$(".details .date.detail-date").text("시작날짜 : " + course.start_date);
+	            		
+	            		// 사용자 레이블 설정
+	                    const requesterLabel = (course.applyer_nickname === "${loginMember.id}") ? '신청자' : '요청자';
+	                    const labelText = requesterLabel + ": " + course.applyer_nickname;
+	                    $(".details .requester.detail-user").text(labelText);
+
+	            		// 모달 대화 상자 열기
+	    		        $("#viewForm").dialog("open");
+	            		
+	            		if (course.status_code === '진행 결정!') {
+	            			$("#detail-complete").show();
+	                        $("#detail-cancel").show();
+	                        $("#detail-reAccept").hide();
+	                        $("#detail-cancelAccept").hide();
+	            		} else if (course.status_code === '진행 취소요청 보냄') {
+	            			$("#detail-complete").hide();
+	                        $("#detail-cancel").hide();
+	                        $("#detail-reAccept").show();
+	                        $("#detail-cancelAccept").hide();
+	            		} else if (course.status_code == '진행 취소요청이 왔어요'){
+	            			$("#detail-complete").hide();
+	                        $("#detail-cancel").hide();
+	                        $("#detail-reAccept").hide();
+	                        $("#detail-cancelAccept").show();
+	            		} 
+	            		
+		            }
+			       
+		        
+		        });
+		    });
+		    
+		    
+		    $("#detail-complete").click(function(e) {
+		    	e.preventDefault();
+		    	
+		    	const courseId = $(".kanban-board .bucket.accept .tasks .task-card").data("courseid");
+		    	console.log(courseId);
+		    	
+		    	$.ajax({
+		            type: "POST",
+		            url: '/myPage/updateCompletedWaiting',
+		            data: { course_id: courseId },
+		            success: function(response) {
+	            		const updatedCompletedWaitingList = response.updatedCompletedWaitingList;
+		            
+	            		// "completedWaitingBucket"로부터 카드 리스트를 가져옴
+	                    const completedWaitingBucket = $(".kanban-board .bucket.completedWaiting .tasks");
+	                    
+	                    // "acceptBucket"로부터 카드 리스트를 가져옴
+	                    const acceptBucket = $(".kanban-board .bucket.accept .tasks");
+	                    
+	                 	// "acceptBucket"로부터 해당 테스크 카드를 찾아내어 제거하고
+	                    const taskCard = $(".kanban-board .bucket.accept .tasks .task-card[data-courseid='" + courseId + "']");
+	                    taskCard.remove();
+
+	                 	// 테스크 카드 클래스 변경
+	                    taskCard.removeClass("task-card").addClass("task-card dontMove");
+
+	                    // status 클래스 변경
+	                    const statusElement = taskCard.find(".status");
+	                    statusElement.removeClass("accept").addClass("completed-waiting dontMove");
+	                    statusElement.text("완료 결정 기다리는 중..");
+	                    
+	                    // "completedWaitingBucket"로 이동시킬 테스크 카드 생성
+	                    const taskCardClone = taskCard.clone();
+
+	                    // "completedWaitingBucket"에 테스크 카드 추가
+	                    $(".kanban-board .bucket.completed-waiting .tasks").append(taskCardClone);
+
+	                    
+	                    $("#viewForm").dialog("close");
+	                    alert('완료요청');
+		            }
+		            
+		    	}); 
+		    	
+		    });
+		    
+		    $("#detail-cancel").click(function(e) {
+		    	e.preventDefault();
+		    	
+		    	const courseId = $(".kanban-board .bucket.accept .tasks .task-card").data("courseid");
+		    	console.log(courseId);
+		    	
+		    	$.ajax({
+		            type: "POST",
+		            url: '/myPage/updateCancel',
+		            data: { course_id: courseId },
+		            success: function(response) { 
+	            		const updatedCalcelList = response.updatedCalcelList;
+
+	                    // "acceptBucket"로부터 카드 리스트를 가져옴
+	                    const acceptBucket = $(".kanban-board .bucket.accept .tasks");
+	                    
+	                    const taskCard = $(".kanban-board .bucket.accept .tasks .task-card[data-courseid='" + courseId + "']");
+	                 
+	                 	// 테스크 카드 클래스 변경
+	                    taskCard.addClass("dontMove");
+
+	                    // status 클래스 변경
+	                    const statusElement = taskCard.find(".status");
+	                    statusElement.addClass("dontMove");
+	                    statusElement.text("진행 취소요청 보냄");
+	                    
+	                 	// title 클래스 변경
+	                    const titleElement = taskCard.find(".task-name");
+	                    titleElement.addClass("dontMove");
+	                    
+	                    $("#viewForm").dialog("close");
+	                    alert('진행 취소 요청');
+		           }
+		            
+		    	}); 
+		    	
+		    });
+		    
+		    $("#detail-reAccept").click(function(e) {
+		    	e.preventDefault();
+		    	
+		    	const courseId = $(".kanban-board .bucket.accept .tasks .task-card.dontMove").data("courseid");
+		    	console.log(courseId);
+		    	
+		    	$.ajax({
+		            type: "POST",
+		            url: '/myPage/updateReAccept',
+		            data: { course_id: courseId },
+		            success: function(response) { 
+	            		const updatedReAcceptList = response.updatedReAcceptList;
+
+	                    // "acceptBucket"로부터 카드 리스트를 가져옴
+	                    const acceptBucket = $(".kanban-board .bucket.accept .tasks");
+	                    
+	                    const taskCard = $(".kanban-board .bucket.accept .tasks .task-card[data-courseid='" + courseId + "']");
+	                 
+	                 	// 테스크 카드 클래스 변경
+	                    taskCard.removeClass("task-card dontMove").addClass("task-card");
+
+	                    // status 클래스 변경
+	                    const statusElement = taskCard.find(".status");
+	                    statusElement.removeClass("accept dontMove").addClass("accept");
+	                    statusElement.text("진행 결정!");
+	                    
+	                 	// title 클래스 변경
+	                    const titleElement = taskCard.find(".task-name");
+	                    titleElement.removeClass("dontMove");
+	                    
+	                    $("#viewForm").dialog("close");
+	                    alert('다시 진행 요청');
+		           }
+		            
+		    	}); 
+		    	
+		    });
+		    
+		    $("#detail-cancelAccept").click(function(e) {
+		    	e.preventDefault();
+		    	
+		    	const courseId = $(".kanban-board .bucket.accept .tasks .task-card.dontMove").data("courseid");
+		    	console.log(courseId);
+		    	
+		    	$.ajax({
+		            type: "POST",
+		            url: '/myPage/updateCancelAccept',
+		            data: { course_id: courseId },
+		            success: function(response) { 
+	            		const updatedCancelAcceptList = response.updatedCancelAcceptList;
+	                    
+	            		// "trashBucket"로부터 카드 리스트를 가져옴
+	                    const trashBucket = $(".kanban-board .bucket.trash .tasks");
+	            		
+	                    // "acceptBucket"로부터 카드 리스트를 가져옴
+	                    const acceptBucket = $(".kanban-board .bucket.accept .tasks");
+	                    
+	                 	// "acceptBucket"로부터 해당 테스크 카드를 찾아내어 제거하고
+	                    const taskCard = $(".kanban-board .bucket.accept .tasks .task-card[data-courseid='" + courseId + "']");
+	                    taskCard.remove();
+	                    
+	                 	// 테스크 카드 클래스 변경
+	                    taskCard.removeClass("task-card").addClass("task-card dontMove");
+
+	                    // status 클래스 변경
+	                    const statusElement = taskCard.find(".status");
+	                    statusElement.removeClass("accept").addClass("trash dontMove");
+	                    statusElement.text("취소된 강의 삭제");
+	                    
+	                    // "trashBucket"로 이동시킬 테스크 카드 생성
+	                    const taskCardClone = taskCard.clone();
+
+	                    // "trashBucket"에 테스크 카드 추가
+	                    $(".kanban-board .bucket.trash .tasks").append(taskCardClone);
+	                    
+	                    $("#viewForm").dialog("close");
+	                    alert('진행 취소 완료. 휴지통으로 이동합니다.');
+		           }
+		            
+		    	}); 
+		    	
+		    });
+		    
+		    
+		    
+		    
+		    
+		    
+		    
+		});
 		
     </script>
 </body>

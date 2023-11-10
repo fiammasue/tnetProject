@@ -48,5 +48,20 @@ public interface MyPageDAO {
 		//완료중 완료수락 칸반보드에서 휴지통 칸반보드로 옮겨졌을때
 		public boolean updateTrash(@Param("course_id") int course_id) throws Exception;
 
+		
+		//수강진행중 상세보기
+		public Course getDetailAccept(@Param("nickName") String nickName, @Param("course_id") int course_id) throws Exception;
+
+		//수강진행중 상세보기에서 버튼으로 진행결정 상태에서 완료상태로 업데이트하기
+		public boolean updateCompletedWaiting(@Param("nickName") String nickName, @Param("course_id") int course_id) throws Exception;
+
+		//수강진행중 상세보기에서 버튼으로 진행결정 상태에서 진행 취소요청 보냄으로 업데이트하기
+		public boolean updateCancel(@Param("nickName") String nickName, @Param("course_id") int course_id) throws Exception;
+		
+		//수강진행중 상세보기에서 버튼으로 진행취소요청보낸 상태에서 다시 진행상태로 업데이트하기
+		public boolean updateReAccept(@Param("nickName") String nickName, @Param("course_id") int course_id) throws Exception;
+
+		//수강진행중 상세보기에서 버튼으로 진행취소요청받은 상태에서 취소완료로 업데이트하기
+		public boolean updateCancelAccept(@Param("nickName") String nickName, @Param("course_id") int course_id) throws Exception;
 
 }

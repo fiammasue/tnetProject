@@ -1,10 +1,12 @@
 package com.project.tnet.controller;
 
 import java.util.HashMap;
+
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -67,6 +69,7 @@ public class MyPageController {
 	    
 	    return result;
 	}
+	
 	
 	// 마이페이지 진행중리스트 페이지
 	@RequestMapping("/course_proceeding")
@@ -167,4 +170,101 @@ public class MyPageController {
 		
 		return result;
 	}
+	
+	
+	//수강진행중 상세보기
+	@PostMapping(value = "/detailAccept")
+	@ResponseBody
+	public Map<String, Object> detailAccept(@RequestParam("course_id") int course_id, Authentication authentication, Model model, HttpSession session) throws Exception {
+		
+		PrincipalDetails userDetails = (PrincipalDetails) authentication.getPrincipal();
+
+        String nickName = userDetails.getUser().getNickName();
+  
+		Map<String, Object> result = new HashMap<>();
+			
+		result.put("status", true);
+		result.put("course", myPageService.getDetailAccept(nickName, course_id));
+		model.addAttribute("course", myPageService.getDetailAccept(nickName, course_id));
+		
+		
+		return result;
+	}
+		
+
+	//수강진행중 상세보기에서 버튼으로 진행결정 상태에서 완료상태로 업데이트하기
+	@PostMapping("/updateCompletedWaiting")
+	@ResponseBody
+	public Map<String, Object> updateCompletedWaiting (@RequestParam("course_id") int course_id, Authentication authentication, Model model, HttpSession session) throws Exception {
+		
+		PrincipalDetails userDetails = (PrincipalDetails) authentication.getPrincipal();
+
+        String nickName = userDetails.getUser().getNickName();
+        
+		Map<String, Object> result = new HashMap<>();
+		
+		// 업데이트된 완료리스트
+		result.put("updatedCompletedWaitingList", myPageService.updateCompletedWaiting(nickName, course_id));
+		model.addAttribute("course", myPageService.updateCompletedWaiting(nickName, course_id));
+		
+		return result;
+	}
+	
+	
+	//수강진행중 상세보기에서 버튼으로 진행결정 상태에서 진행 취소요청 보냄으로 업데이트하기
+	@PostMapping("/updateCancel")
+	@ResponseBody
+	public Map<String, Object> updateCancel (@RequestParam("course_id") int course_id, Authentication authentication, Model model, HttpSession session) throws Exception {
+
+		PrincipalDetails userDetails = (PrincipalDetails) authentication.getPrincipal();
+
+        String nickName = userDetails.getUser().getNickName();
+        
+		Map<String, Object> result = new HashMap<>();
+		
+		// 업데이트된 완료리스트
+		result.put("updatedCancelList", myPageService.updateCancel(nickName, course_id));
+		model.addAttribute("course", myPageService.updateCancel(nickName, course_id));
+		
+		return result;
+	}
+	
+		
+	//수강진행중 상세보기에서 버튼으로 진행취소요청보낸 상태에서 다시 진행상태로 업데이트하기
+	@PostMapping("/updateReAccept")
+	@ResponseBody
+	public Map<String, Object> updateReAccept (@RequestParam("course_id") int course_id, Authentication authentication, Model model, HttpSession session) throws Exception {
+
+		PrincipalDetails userDetails = (PrincipalDetails) authentication.getPrincipal();
+
+        String nickName = userDetails.getUser().getNickName();
+        
+		Map<String, Object> result = new HashMap<>();
+		
+		// 업데이트된 완료리스트
+		result.put("updatedReAcceptList", myPageService.updateReAccept(nickName, course_id));
+		model.addAttribute("course", myPageService.updateReAccept(nickName, course_id));
+		
+		return result;
+	}
+	
+	
+	//수강진행중 상세보기에서 버튼으로 진행취소요청받은 상태에서 취소완료로 업데이트하기
+	@PostMapping("/updateCancelAccept")
+	@ResponseBody
+	public Map<String, Object> updateCancelAccept (@RequestParam("course_id") int course_id, Authentication authentication, Model model, HttpSession session) throws Exception {
+
+		PrincipalDetails userDetails = (PrincipalDetails) authentication.getPrincipal();
+
+        String nickName = userDetails.getUser().getNickName();
+        
+		Map<String, Object> result = new HashMap<>();
+		
+		// 업데이트된 완료리스트
+		result.put("updatedCancelAcceptList", myPageService.updateCancelAccept(nickName, course_id));
+		model.addAttribute("course", myPageService.updateCancelAccept(nickName, course_id));
+		
+		return result;
+	}
+		
 }
