@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+    <sec:authorize access="isAuthenticated()"> <!-- 인증이 됐는지안됐는지 확인하는 구문 -->
+	   <sec:authentication property="principal" var="principal"/> <!-- property로 가져와서 var 데이터타입으로 대입하겠다는뜻 -->
+	</sec:authorize>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,35 +33,34 @@
     </div>
     <div class="auto-group-jkgl-7W8">
       <div class="group-30929672-PiY">
-        <p class="item--vTa">국어</p>
+        <p class="item--vTa">${board.give_talent }</p>
         <img class="movement-of-items-crC" src="/assets/movement-of-items.png"/>
-        <p class="item--LnC">영어</p>
+        <p class="item--LnC">${board.receive_talent }</p>
       </div>
       <div class="auto-group-f1ex-GA4">
         <div class="auto-group-8whi-by2">
           <img class="vector-L9v" src="/assets/vector.png"/>
-          <p class="yeonsul123navercom-fxt">작성자 : yeonsul123@naver.com</p>
-          <p class="item--NcQ">성별 : 여</p>
+          <p class="yeonsul123navercom-fxt">작성자 : ${board.writer_nickname }</p>
+          <p class="item--NcQ">성별 : ${board.gender=='female'? '남' : '여'} </p>
+          <!-- ${board.gender=='w'? '남' : '여'} -->
         </div>
         <div class="auto-group-ogqn-h8t">
           <div class="group-9-3iY">
-            <p class="item-123-PGc">조회수 : 123</p>
-            <p class="item-2023-10-22-11-23-12-UKz">게시일 : 2023. 10. 22 11:23:12</p>
+            <p class="item-123-PGc">조회수 : ${board.read_count }</p>
+            <p class="item-2023-10-22-11-23-12-UKz">게시일 : ${board.register_date }</p>
           </div>
           <p class="item--n5n">신고 </p>
         </div>
       </div>
     </div>
-    <div class="auto-group-tmvr-Fk4">재능교환해여!!</div>
+    <div class="auto-group-tmvr-Fk4">${board.title }</div>
     <div class="group-20-JTS">
       <p class="item--cDE">
-      저는 어디어디살고요 어떤 재능이 필요한데 그 재능을 어디서 교환했으면하고 
-      <br/>
-      언제부터언제까지시간이 괜찮은데 이 시간대 괜찮으신 분들로 참여부탁드립니다
+      ${board.contents }
       </p>
       <div class="auto-group-dgqx-KG4">
         <img class="location-3xk" src="/assets/location.png"/>
-        <div class="item--Bp4">서울 관악구</div>
+        <div class="item--Bp4">${board.city_name } ${board.district_name }</div>
       </div>
     </div>
     <div class="frame-45-qdi">
