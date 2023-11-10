@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
      <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -176,6 +180,7 @@
 
       <!-- 페이징 -->
       <div class="auto-group-yf6p-kc8">
+
 	      <c:if test="${result.board.navStart != 1 }">
 	        <img onClick="javascript:jsPageNo(${result.board.navStart-1 })" class="circle-rfA" src="/assets/circle-rMe.png"/>
 	       </c:if>
@@ -195,7 +200,9 @@
 	        <c:if test="${result.board.navEnd != result.board.totalPageSize}">
 	        	<img onClick="javascript:jsPageNo(${result.board.navEnd+1 })" class="circle-kvt" src="/assets/circle.png"/>
 	        </c:if>
-        <div class="button-6E4">게시글작성</div>
+
+        <div><a href='<c:url value="/ckeditorForm.do"/>'>게시글작성</a></div>
+
       </div>
     </div>
     

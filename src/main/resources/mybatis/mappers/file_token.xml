@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+           "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.project.tnet.dao.FileTokenDAO">
+
+	<insert id="insert">
+		insert into FILE_TOKEN (
+			 token
+		) values (
+			 #{token}
+		) 
+	</insert>
+	
+	<!-- file_token테이블의 stauts 컬럼(0: 임시, 1: 실행중)을 변경할 떄 사용하는 쿼리문 --> 
+	<update id="updateStatus">
+		update FILE_TOKEN set
+			 STATUS = #{status}
+		where TOKEN = #{token}
+	</update>
+
+	<select id="listToken" resultType="com.project.tnet.dto.AttachFile">
+		<!--  현재 시간 기준으로 10분전에 이미지가 업로되되고 사용중이 아닌 것(status가 0인 상태)을 얻는다 -->
+		<![CDATA[
+			SELECT  
+				 token 
+			FROM  FILE_TOKEN 
+			where status = 0 and make_date < SYSDATE - INTERVAL '10' MINUTE
+		]]>
+	</select>
+
+	<!-- 해당 쿼리문은 임시로 사용되었다가 사용되지 않는 이미지를 배열로 삭제하기위해 사용한다. -->
+	<delete id="deletes">
+		delete from file_token
+		where  token in 
+		<foreach collection="list" item="item" open="(" separator="," close=")">
+			#{item.token} 
+		</foreach>
+	</delete>
+	
+	<!-- 해당 쿼리문은 임시로 사용되었다가 사용되지 않는 이미지를 1개만 삭제하기위해 사용한다. -->
+	<delete id="deleteByToken">
+		delete from file_token  
+		where token=#{token} 
+	</delete>
+
+</mapper>

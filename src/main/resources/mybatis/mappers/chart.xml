@@ -9,21 +9,31 @@
 		
 <!--파이차트 데이터 -->
 		<select id="getChartdata" resultType="com.project.tnet.dto.ChartDTO">
-			SELECT age_group, low_name, COUNT(*) AS count
-			FROM (SELECT
-						CASE
-						     WHEN age BETWEEN 0 AND 19 THEN 'underteenager'
-		                     WHEN age BETWEEN 20 AND 29 THEN 'twenties'
-		                     WHEN age BETWEEN 30 AND 39 THEN 'thirties'
-		                     ELSE 'overforties'
-						END AS age_group,low_name,age,gender
-				  FROM (SELECT receive_talent,low_name, age, gender
-					    FROM board b
-					    INNER JOIN member m ON b.writer_nickname = m.nickname
-					    INNER JOIN talent_small t ON b.receive_talent = t.low_code)
-			        )
-			GROUP BY age_group, low_name
-			having age_group =   #{age_group}
+		<![CDATA[
+				SELECT age_group, low_name, count
+				FROM (
+				    SELECT age_group, low_name, COUNT(*) AS count
+				    FROM (
+				        SELECT
+				            CASE
+				                WHEN age BETWEEN 0 AND 19 THEN '10sUnder'
+				                WHEN age BETWEEN 20 AND 29 THEN '20s'
+				                WHEN age BETWEEN 30 AND 39 THEN '30s'
+				                ELSE '40sOver'
+				            END AS age_group, low_name, age, gender
+				        FROM (
+				            SELECT receive_talent, low_name, age, gender
+				            FROM board b
+				            INNER JOIN member m ON b.writer_nickname = m.nickname
+				            INNER JOIN talent_small t ON b.receive_talent = t.low_code
+				        )
+				    )
+				    WHERE age_group = #{age_group}
+				    GROUP BY age_group, low_name
+				    ORDER BY count DESC
+				)
+				WHERE ROWNUM <= 5
+			 ]]>			
 		</select>
 		
 		
@@ -32,10 +42,10 @@
 		SELECT DISTINCT (age_group)
 		FROM (SELECT
 		                CASE
-		                    WHEN age BETWEEN 0 AND 19 THEN 'underteenager'
-		                    WHEN age BETWEEN 20 AND 29 THEN 'twenties'
-		                    WHEN age BETWEEN 30 AND 39 THEN 'thirties'
-		                    ELSE 'overforties'
+                            WHEN age BETWEEN 0 AND 19 THEN '10sUnder'
+                            WHEN age BETWEEN 20 AND 29 THEN '20s'
+                            WHEN age BETWEEN 30 AND 39 THEN '30s'
+                            ELSE '40sOver'
 		                END AS age_group, RECEIVE_TALENT
 		        FROM (SELECT RECEIVE_TALENT, age, gender
 		        FROM board b
@@ -105,10 +115,12 @@
 		
 <!-- 기부왕 멤버 가져오기 --> 
 		<select id="DonationKing" resultType="java.lang.Integer">
-			select count(*)
-			from member
-			where temperature >= 65
-				  and TO_CHAR(join_date, 'YYYY-MM-DD') BETWEEN #{start_date} AND #{end_date}
+			    select count(*)
+			    from member
+			    where temperature >= 65
+			   <![CDATA[
+			    and TO_CHAR(join_date, 'YYYY-MM-DD') <  #{end_date}
+			  ]]>
 		</select>
 
 		

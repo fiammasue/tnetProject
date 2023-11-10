@@ -20,6 +20,7 @@ public class Board {
 	private Date register_date;		
 	private Date update_date;		
 	private String status_code;
+
 	private String district_code;
 	private String city_code;
 	private String delete_yn;
@@ -32,7 +33,12 @@ public class Board {
 	private String district_name;
 	private String low_code;
 	
-	
+
+	private String givtalent; //  주는재능 이름
+	private String recivetalent; // 받는 재능 이름
+	private String cityname; // 도시이름
+	private String districtname; // 구이름
+	private String status; // 상태 이름
 	
 	//페이징
 	private int pageNo = 1; //현재 페이지 번호
@@ -65,4 +71,30 @@ public class Board {
 	public int getEndNo() {
 		return pageNo * pageLength;
 	}
+
+	
+	
+
+	private int startnum = 0;
+	private int endnum = 0;
+	
+	
+
+
+		
+	}
+	
+	
+	// 한 페이지의 시작 숫자 (보통 1, 11, 21, 31 ... )
+	public void getStartNo() { 
+	
+		startnum = (pageNo - 1) * pageLength + 1; 
+	} //getStartNo
+	
+	// 한 페이지의 끝 숫자 (보통 10, 20, 30... 이랑 완전 끝 페이지임)
+	public void getEndNo() { 
+	
+		endnum = pageNo * pageLength; 
+	} //getEndNo
+
 }

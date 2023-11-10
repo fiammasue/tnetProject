@@ -1,23 +1,51 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper
-      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.project.tnet.dao.BoardDAO">
+
+
 	
 	
+<!--페이징해서 게시판 리스트 가져오기 -->
+<select id="getBoardList" resultType="com.project.tnet.dto.Board" >
+		<![CDATA[
+			select *
+from (select ROWNUM as rnum , A.*
+        from(   	SELECT b.board_id,
+			       b.title,
+			       t.low_name AS givtalent,
+			       t2.low_name AS recivetalent,
+			       b.writer_nickname,
+			       b.read_count,
+			       b.register_date,
+			       s.STATUS_CONTENTS AS status,
+			       u.city_name AS cityname,
+			       u.district_name AS districtname
+			FROM board b       
+			INNER JOIN talent_small t ON b.receive_talent = t.low_code
+			INNER JOIN talent_small t2 ON b.give_talent = t2.low_code
+			INNER JOIN status s ON b.status_code = s.STATUS_CODE
+			INNER JOIN (
+						  SELECT c.city_code,
+						         d.city_code AS district_city_code,
+						         c.city_name,
+						         d.district_name,
+						         d.district_code
+						  FROM city c
+						  INNER JOIN district d ON c.city_code = d.city_code) u 
+			ON b.city_code = u.city_code AND b.district_code = u.district_code
+			WHERE DELETE_YN = 'N'
+			ORDER BY READ_COUNT DESC, BOARD_ID DESC) A)C
+	        where rnum between ${startnum} and ${endnum}
+		]]>
+
+	</select>
 	
+<!--총 공지사항 갯수 -->
+		<select id="totalcount" resultType="java.lang.Integer" >
+			select count(*) from notice where deleted_yn ='N'
+		</select>	
 	
-	
-	<!-- 마이페이지 본인 게시글 모집중리스트 -->
-<!-- 	<select id="getKanbanList" resultType="Board">
-		SELECT k.board_id, k.title, ts1.low_name AS give_talent, ts2.low_name AS receive_talent, k.status_code
-		FROM board k
-		JOIN talent_small ts1 ON k.give_talent = ts1.low_code
-		JOIN talent_small ts2 ON k.receive_talent = ts2.low_code
-		WHERE k.status_code IN ('SC01', 'SC02', 'SC03')
-		AND k.writer_nickname = #{nickname}
-	</select> -->
+
 	
 	<!-- 게시글 리스트 불러오기 -->
 	<select id="selectBoardList" resultType="com.project.tnet.dto.Board">
@@ -138,4 +166,5 @@
 		set read_count = read_count + 1
 		where board_id = ${board_id}
 	</update>
+
 </mapper>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.project.tnet.dao.NoticeDAO">
+
+<!--페이징해서 공지사항 리스트 가져오기 -->
+<select id="getNoticeList" resultType="com.project.tnet.dto.NoticeDTO" >
+		<![CDATA[
+			select *
+			        from (select ROWNUM as rnum , B.*
+			                from(   SELECT  n.*
+			                        FROM notice n
+			                        WHERE deleted_yn = 'N'
+			                        ORDER BY fixed_yn desc, notice_no desc) B)C
+			        where rnum between ${startnum} and ${endnum}
+		]]>
+
+	</select>
+	
+<!--총 공지사항 갯수 -->
+		<select id="totalcount" resultType="java.lang.Integer" >
+			select count(*) from notice where deleted_yn ='N'
+		</select>	
+	
+
+</mapper>

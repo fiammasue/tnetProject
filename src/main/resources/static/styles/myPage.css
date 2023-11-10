@@ -1967,8 +1967,22 @@ button:hover {
   min-width: 250px;
 }
 
+.task-card.dontMove {
+  background-color: #fff;
+  border: 1px solid #aaaaaa;
+  margin-bottom: 10px;
+  padding: 7px 7px 0 7px;
+  min-width: 250px;
+}
+
 .task-name {
   color: black;
+  font-size: 17px;
+  font-weight: bold;
+}
+
+.task-name.dontMove {
+  color: rgba(0, 0, 0, 0.6);
   font-size: 17px;
   font-weight: bold;
 }
@@ -1982,6 +1996,16 @@ button:hover {
   padding: 4px 12px; /* 여백 추가 */
   margin-bottom: 10px;
 }
+.status.accept.dontMove {
+  display: inline-block;
+  background-color: rgb(0, 64, 0, 0.5);
+  color: #fff;  
+  font-size: 12px;
+  font-weight: bold;
+  padding: 4px 12px;
+  margin-bottom: 10px;
+}
+
 .status.waiting {
   display: inline-block;
   background-color: #eb5757; /* 요청 기다리는중! 배경색 */
@@ -1991,9 +2015,28 @@ button:hover {
   padding: 4px 12px; /* 여백 추가 */
   margin-bottom: 10px;
 }
+.status.waiting.dontMove {
+  display: inline-block;
+  background-color: rgb(128, 0, 0, 0.5); /* 요청 기다리는중! 배경색 */
+  color: #fff; /* 글자 색상 */
+  font-size: 12px;
+  font-weight: bold;
+  padding: 4px 12px; /* 여백 추가 */
+  margin-bottom: 10px;
+}
+
 .status.reject {
   display: inline-block;
   background-color: #4f87f5; /* 진행 거절.. 배경색 */
+  color: #fff; /* 글자 색상 */
+  font-size: 12px;
+  font-weight: bold;
+  padding: 4px 12px; /* 여백 추가 */
+  margin-bottom: 10px;
+}
+.status.reject.dontMove {
+  display: inline-block;
+  background-color: rgb(79, 135, 245, 0.6); /* 진행 거절.. 배경색 */
   color: #fff; /* 글자 색상 */
   font-size: 12px;
   font-weight: bold;
@@ -2013,6 +2056,15 @@ button:hover {
 .status.completed-waiting {
   display: inline-block;
   background-color: #eb5757; /* 완료 확인받길 기다리는 중! 배경색 */
+  color: #fff; /* 글자 색상 */
+  font-size: 12px;
+  font-weight: bold;
+  padding: 4px 12px; /* 여백 추가 */
+  margin-bottom: 10px;
+}
+.status.completed-waiting.dontMove{
+  display: inline-block;
+  background-color: rgb(128, 0, 0, 0.5);; /* 완료 확인받길 기다리는 중! 배경색 */
   color: #fff; /* 글자 색상 */
   font-size: 12px;
   font-weight: bold;
@@ -2100,6 +2152,63 @@ button:hover {
   align-items: center;
   justify-content: center;
 }
+
+
+/* 수락 다이어로그 버튼 */
+.button-container.detail {
+  display: flex;
+  align-items: center;
+  justify-content: right;
+}
+.button-container.detail button {
+  margin: 2px;
+}
+
+button#detail-complete {
+  font-size: 13px;
+  background-color: #d6be0f;
+  color: white;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button#detail-reAccept {
+  font-size: 13px;
+  background-color: #4f87f5;
+  color: white;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button#detail-cancel {
+  font-size: 13px;
+  background-color: #ff5858;
+  color: white;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button#detail-cancelAccept {
+  font-size: 13px;
+  background-color: #5f3f3f;
+  color: white;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button#detail-complete:hover, button#detail-reAccept:hover, button#detail-cancel:hover, button#detail-cancelAccept:hover {
+	background-color: white;
+	color: black;
+}
+
 
 
 

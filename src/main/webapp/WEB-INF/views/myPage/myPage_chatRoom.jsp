@@ -26,12 +26,6 @@
 	<!-- ICONS -->
 	<link rel="apple-touch-icon" sizes="76x76" href="/assets/img/apple-icon.png">
 	<link rel="icon" type="image/png" sizes="96x96" href="/assets/img/favicon.png">
-	
-	<!-- 부트스트랩, jquery -->
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 	<!-- 카카오톡 css -->
 	<link rel="stylesheet" href="/styles/chatRoom.css">
@@ -176,9 +170,11 @@
 		<!-- 모달창끝 -->
 		
 	<!-- Javascript -->
-<!-- 	<script src="/vendor/jquery/jquery.min.js"></script> -->
-<!-- 	<script src="/vendor/bootstrap/js/bootstrap.min.js"></script> -->
-<!-- 	<script src="/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script> -->
+	<script src="/vendor/jquery/jquery.min.js"></script>
+	<script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<script type="text/javascript">
 		var roomId = "";
 		chatRoom= $( ".chatRoomDialog" ).dialog({

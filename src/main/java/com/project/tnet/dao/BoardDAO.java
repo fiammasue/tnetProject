@@ -3,6 +3,7 @@ package com.project.tnet.dao;
 import java.util.List;
 import java.util.Map;
 
+
 import org.apache.ibatis.annotations.Mapper;
 
 import com.project.tnet.dto.Board;
@@ -11,12 +12,15 @@ import com.project.tnet.dto.District;
 import com.project.tnet.dto.TalentHigh;
 import com.project.tnet.dto.TalentSmall;
 
+
 @Mapper
 public interface BoardDAO {
 
+	int totalcount();
+
+	List<Board> getBoardList(Board board);
+
 	
-	//마이페이지 본인 게시글 모집중리스트
-	//public List<Board> getKanbanList(Member loginMember) throws Exception;
 	
 	
 	//게시글 리스트 출력
