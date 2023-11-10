@@ -27,5 +27,8 @@ public interface AttachFileDAO {
 	//스케줄러에서 임시 파일의 정보를 삭제을 삭제한다  
 	public int deleteTokenList(Map<String, Object> map);
 	
+	//board_id 값 등록
+	public int updateBoardId(Map<String, Object> map);
+	
 }
 

@@ -49,4 +49,7 @@ public interface BoardDAO {
 	
 	//게시글 조회수 업데이트
 	public int updateReadCount(Board board);
+	
+	//게시글 등록
+	public void insertBoard(Map<String, Object> params);
 }

@@ -17,6 +17,7 @@
 			,CONTENT_TYPE
 			,LENGTH
 			,token
+			,board_id
 		) values (
 		   	SEQ_ATTACH_FILE.nextval 
 			,#{file_name_org}
@@ -24,6 +25,7 @@
 			,#{content_type}
 			,#{length}
 			,#{token}
+			,#{board_id}
 		) 
 	</insert>
 
@@ -88,6 +90,12 @@
 			#{item.token}
 		</foreach> 
 	</delete>
+<!-- attach_file의 boardid를 저장한다. -->
+<update id="updateBoardId">
+	update attach_file
+	set board_id = #{board_id}
+	where token = #{token}
+</update>
 
 
 </mapper>

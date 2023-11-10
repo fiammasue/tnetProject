@@ -1,5 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
+	<sec:authorize access="isAuthenticated()"> <!-- 인증이 됐는지안됐는지 확인하는 구문 -->
+	   <sec:authentication property="principal" var="principal"/> <!-- property로 가져와서 var 데이터타입으로 대입하겠다는뜻 -->
+	</sec:authorize>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,7 +38,7 @@
 			 <form id="mForm" method="post" action="<c:url value=''/>" >
 			  <div class="auto-group-ckbr-jBn">
 			    <p class="item--CLG">글쓰기</p>
-			    <p class="writer-tyn"><span> 작성자 :</span> <span id="name">관리자</span></p>
+			    <p class="writer-tyn"><span> 작성자 :</span> <span id="name">${principal.user.nickName }</span></p>
 			  </div>
 			  <div class="auto-group-musn-abi">
 			  	<input type="submit" class="button-J1v" value="등록하기" />
@@ -57,53 +64,53 @@
 			  </div>
 			  <div class="auto-group-btma-Dc4">
 			    <label for="title" style="margin:0px;">제목 :</label>
-			    <input id="title" type="text" id="title" style="margin:0px 10px; height: 15px;width: 100%;" placeholder="제가 영어를 해야해서요"/>
+			    <input id="title" type="text" style="margin:0px 10px; height: 15px;width: 100%;" placeholder="제목을 작성해주세요"/>
 			  </div>
 			  <div class="auto-group-qnps-4cg">
 			    <p class="item--YXr">위치</p>
-			    <select class="form-select" aria-label="Default select example" style="margin-right:10px;">
-			      <option selected>시</option>
-			      <option value="1">One</option>
-			      <option value="2">Two</option>
-			      <option value="3">Three</option>
-			    </select>
+			    <select id="cityBox" name="city_code" class="form-select" aria-label="Default select example" style="margin-right:10px;">
+		          <option value="0" >시</option>
+			          <c:forEach var="city" items="${cityList }">
+			          	<option value="${city.city_code}" ${result.board.city_code == city.city_code? 'selected="selected"':''  }>${city.city_name }</option>
+			          </c:forEach>
+		        </select>
 			    <div class="auto-group-z3ag-QTa">
-			      <select class="form-select" aria-label="Default select example">
-			        <option selected>구</option>
-			        <option value="1">One</option>
-			        <option value="2">Two</option>
-			        <option value="3">Three</option>
-			      </select>
+			      <select id="districtBox" name="district_code" class="form-select" aria-label="Default select example">
+		            <option value="0" >구</option>
+		            <c:forEach var="district" items="${districtList }">
+			          	<option class="district_name" value="${district.district_code}" ${result.board.district_code == district.district_code?  'selected="selected"':'' }>${district.district_name }</option>
+			          </c:forEach>
+		          </select>
 			    </div>
 			  </div>
 			  <div class="group-18-PKW">
 			    
 			    <p class="item--gZW">기부할재능</p>
-			    <select class="form-select" aria-label="Default select example" style="margin-right:10px;">
-			      <option selected>대분류</option>
-			      <option value="1">One</option>
-			      <option value="2">Two</option>
-			      <option value="3">Three</option>
-			    </select>
-			    <select class="form-select" aria-label="Default select example" style="margin-right:10px;">
-			      <option selected>기부할재능</option>
-			      <option value="1">One</option>
-			      <option value="2">Two</option>
-			      <option value="3">Three</option>
-			    </select>
+			     <select id="give_highBox" name="give_high_code" class="form-select" aria-label="Default select example" style="margin-right:10px;">
+		            <option value="0" >대분류</option>
+		            <c:forEach var="high" items="${talentHighList }">
+			          	<option value="${high.high_code}" ${result.board.high_code == high.high_code? 'selected="selected"':'' }>${high.high_name }</option>
+			          </c:forEach>
+		          </select>
+			    <select id="give_smallBox" name="give_low_code" class="form-select" aria-label="Default select example">
+		          <option value="0" >기부할재능</option>
+		          <c:forEach var="small" items="${talentSmallList }">
+		          	<option class="give_small_name" value="${small.low_code}" ${result.board.low_code == small.low_code? 'selected="selected"':''} >${small.low_name }</option>
+		          </c:forEach>
+		        </select>
 			    <p class="item--i8p">기부 받고 싶은 재능</p>
-			    <select class="form-select" aria-label="Default select example" style="margin-right:10px;">
-			      <option selected>대분류</option>
-			      <option value="1">One</option>
-			      <option value="2">Two</option>
-			      <option value="3">Three</option>
-			    </select>
-			    <select class="form-select" aria-label="Default select example">
-			      <option selected>기부받고싶은재능</option>
-			      <option value="1">One</option>
-			      <option value="2">Two</option>
-			      <option value="3">Three</option>
-			    </select>
+			    <select id="receive_highBox" name="receive_high_code" class="form-select" aria-label="Default select example" style="margin-right:10px;">
+		            <option value="0" >대분류</option>
+		            <c:forEach var="high" items="${talentHighList }">
+			          	<option value="${high.high_code}" ${result.board.high_code == high.high_code? 'selected="selected"':'' }>${high.high_name }</option>
+			          </c:forEach>
+		          </select>
+			    <select id="receive_smallBox" name="receive_low_code" class="form-select" aria-label="Default select example">
+		          <option value="0" >기부받고싶은재능</option>
+		          <c:forEach var="small" items="${talentSmallList }">
+		          	<option class="receive_small_name" value="${small.low_code}" ${result.board.low_code == small.low_code? 'selected="selected"':''} >${small.low_name }</option>
+		          </c:forEach>
+		        </select>
 			  </div>
 			  <div class="button-6oa">첨부파일 추가</div>
 			  <!-- 리스트 총괄하는 div -->
@@ -151,14 +158,155 @@
 			body: JSON.stringify({
 				token: '${token}',
 				title: document.querySelector("#title").value,
-				editor: document.querySelector("#editor").value,
+				contents : document.querySelector("#editor").value,
+				writer_nickname:document.querySelector("#name").value,
+				district_code: document.querySelector("#districtBox").value,
+				city_code: document.querySelector("#cityBox").value,
+				give_talent: document.querySelector("#give_smallBox").value,
+				receive_talent: document.querySelector("#receive_smallBox").value,
+				high_code: document.querySelector("#receive_highBox").value
 			}),
 		})
 		.then(response => response.json())
-		.then(result => console.log(result));
+		.then(result => {
+			location.href="/board/list";
+		});
 		
 		return false;
 	});
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/*select Box의 내용 변경하기 ajax*/
+	//기부재능의 시코드 변경
+	$("#cityBox").on("change", function() {
+		var city = $("#cityBox option:selected").val();
+		const param = {
+				city_code: city
+		};
+	    $.ajax({
+	    	url:"/board/districtCode" ,
+	    	type:"POST",
+	    	contentType: "application/json; charset=UTF-8",
+	    	data:JSON.stringify(param),
+	    	dataType:"json",
+	    	success:function(json){
+	    		$(".district_name").remove();
+	    		
+	    		var districtCode = json.districtCode;
+	    		var districtInfo ="";
+	    		
+	    		for(let i=0;i<districtCode.length;i++){
+	    			
+	    			var district = districtCode[i];
+	    			districtInfo +=`	<option class="district_name" value="`+ district.district_code +`">`+district.district_name+`</option>`
+	    		}
+	    		
+	    		$("#districtBox").append(districtInfo);
+	    		
+	    		
+	    	}
+	    }); 
+		
+	});
+	
+	
+	//대분류선택시 소분류 뜨는거
+	$("#give_highBox").on("change", function() {
+		var high = $("#give_highBox option:selected").val();
+		const param = {
+				high_code:high
+		};
+		
+		$.ajax({
+	    	url:"/board/lowCode" ,
+	    	type:"POST",
+	    	contentType: "application/json; charset=UTF-8",
+	    	data:JSON.stringify(param),
+	    	dataType:"json",
+	    	success:function(json){
+	    		$(".give_small_name").remove();
+	    		
+	    		var small_code = json.talentSmallCode;
+	    		var smallInfo ="";
+	    		
+	    		for(let i=0;i<small_code.length;i++){
+	    			
+	    			var small = small_code[i];
+	    			smallInfo +=`<option class="give_small_name" value="`+small.low_code +`">`+small.low_name +`</option>`
+	    		}
+	    		
+	    		$("#give_smallBox").append(smallInfo);
+
+	    	}
+	    }); 
+	
+	});
+	
+	//기부받을 재능의 대분류선택시 소분류 뜨는거
+	$("#receive_highBox").on("change", function() {
+		var high = $("#receive_highBox option:selected").val();
+		const param = {
+				high_code:high
+		};
+		
+		$.ajax({
+	    	url:"/board/lowCode" ,
+	    	type:"POST",
+	    	contentType: "application/json; charset=UTF-8",
+	    	data:JSON.stringify(param),
+	    	dataType:"json",
+	    	success:function(json){
+	    		$(".receive_small_name").remove();
+	    		
+	    		var small_code = json.talentSmallCode;
+	    		var smallInfo ="";
+	    		
+	    		for(let i=0;i<small_code.length;i++){
+	    			
+	    			var small = small_code[i];
+	    			smallInfo +=`<option class="receive_small_name" value="`+small.low_code +`">`+small.low_name +`</option>`
+	    		}
+	    		
+	    		$("#receive_smallBox").append(smallInfo);
+
+	    	}
+	    }); 
+	
+	});
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
  </script>
 </body>
