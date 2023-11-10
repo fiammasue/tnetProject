@@ -165,7 +165,7 @@
 		            <img src="/assets/usericon2.png">
 		        </div>
 		        <div class="lesson-details2">
-		            <p class="lesson-description2">${board.contents }</p>
+		            <p class="lesson-description2">${board.title }</p>
 		            <div class="lesson-meta2">
 		                <img src="/assets/locationicon.png">
 		                <span class="lesson-location2">${board.city_name } ${board.district_name }</span>
@@ -200,8 +200,8 @@
 	        <c:if test="${result.board.navEnd != result.board.totalPageSize}">
 	        	<img onClick="javascript:jsPageNo(${result.board.navEnd+1 })" class="circle-kvt" src="/assets/circle.png"/>
 	        </c:if>
-
-        <div><a href='<c:url value="/ckeditorForm.do"/>'>게시글작성</a></div>
+			<div class="button-6E4">게시글작성</div>
+<%--         <div><a href='<c:url value="/ckeditorForm.do"/>'>게시글작성</a></div> --%>
 
       </div>
     </div>
@@ -218,7 +218,7 @@
 	});
 	
 	$(".button-6E4").on("click", function() {
-		location.href="/board/write";
+		location.href="/ckeditorForm.do";
 	});
 	
 	//다음페이지로 가기

@@ -93,6 +93,11 @@ public class BoardService {
 		return boardDAO.updateReadCount(board);
 	}
 	
+	//게시글 등록 하기
+	public void insertBoard(Map<String,Object> params) {
+		boardDAO.insertBoard(params);
+	}
+	
 	
 
 }

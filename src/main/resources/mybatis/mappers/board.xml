@@ -54,6 +54,7 @@ from (select ROWNUM as rnum , A.*
 			        select rownum nrow, a.*
 			        from (
 			                select board_id
+			                		,title
 			                        ,contents
 			                        ,city_name
 			                        ,district_name
@@ -166,5 +167,41 @@ from (select ROWNUM as rnum , A.*
 		set read_count = read_count + 1
 		where board_id = ${board_id}
 	</update>
+	
+	<insert id="insertBoard">
+		<selectKey keyProperty="board_id" resultType="int"  order="BEFORE">
+					select 
+						board_num.nextval board_id 
+					from dual
+			</selectKey>
+		insert into board(
+					board_id
+					,title
+					,contents
+					,writer_nickname
+					,register_date
+					,status_code
+					,district_code
+					,city_code
+					,give_talent
+					,receive_talent
+					,high_code
+					
+					)values(
+						#{board_id}
+						,#{title}
+						,#{contents}
+						,#{writer_nickname}
+						,sysdate
+						,'SC01'
+						,#{district_code}
+						,#{city_code}
+						,#{give_talent}
+						,#{receive_talent}
+						,#{high_code}
+					
+					)
+	
+	</insert>
 
 </mapper>
