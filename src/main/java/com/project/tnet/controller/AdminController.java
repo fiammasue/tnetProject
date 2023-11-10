@@ -1,11 +1,15 @@
 package com.project.tnet.controller;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.project.tnet.dto.Board;
+import com.project.tnet.dto.ChartDTO;
 import com.project.tnet.dto.MemberVO;
 import com.project.tnet.dto.NoticeDTO;
 import com.project.tnet.service.BoardService;
@@ -25,6 +29,36 @@ public class AdminController {
 	
 	@Autowired
 	private NoticeService noticeservice;
+	
+	@Autowired
+	private ChartService chartService;
+	
+	
+	//관리자 대시보드 페이지로 가기
+	@RequestMapping("/admin/home")
+	public ModelAndView  GetChart(ChartDTO chart, Model model) throws Exception {
+    	System.out.println("main-chart-controller");
+
+    	ModelAndView modelAndView=new ModelAndView();
+		modelAndView.setViewName("admin/dashboard");
+
+		//파이차트 데이터 가져오기
+		Map<String, Object> result = chartService.getChartData(chart);
+		Map<String, Object> line_result = chartService.getLineChart(chart);
+		
+		
+		System.out.println("result : " + result);
+		System.out.println("line_result : " + line_result.get("line_datas"));
+		modelAndView.addObject("strlist", result.get("str"));
+		modelAndView.addObject("titlelist", result.get("title"));
+//		modelAndView.addObject("line_data_class", line_result.get("line_data_class"));
+//		modelAndView.addObject("line_data_user", line_result.get("line_data_user"));
+		modelAndView.addObject("line_datas",  line_result.get("line_datas"));
+		modelAndView.addObject("count", chartService.getCounts(chart));
+		
+
+		return modelAndView;		
+	} 		
 	
 	
 	//관리자 게시판 목록 페이지

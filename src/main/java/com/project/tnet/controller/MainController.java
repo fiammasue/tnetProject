@@ -80,34 +80,6 @@ public class MainController {
 
 	
 	
-	@Autowired
-	private ChartService chartService;
-	
-	
-	//관리자 대시보드 페이지로 가기
-	@RequestMapping("/admin/home")
-	public ModelAndView  GetChart(ChartDTO chart, Model model) throws Exception {
-    	System.out.println("main-chart-controller");
 
-    	ModelAndView modelAndView=new ModelAndView();
-		modelAndView.setViewName("admin/dashboard");
-
-		//파이차트 데이터 가져오기
-		Map<String, Object> result = chartService.getChartData(chart);
-		Map<String, Object> line_result = chartService.getLineChart(chart);
-		
-		
-		System.out.println("result : " + result);
-		System.out.println("line_result : " + line_result.get("line_datas"));
-		modelAndView.addObject("strlist", result.get("str"));
-		modelAndView.addObject("titlelist", result.get("title"));
-//		modelAndView.addObject("line_data_class", line_result.get("line_data_class"));
-//		modelAndView.addObject("line_data_user", line_result.get("line_data_user"));
-		modelAndView.addObject("line_datas",  line_result.get("line_datas"));
-		modelAndView.addObject("count", chartService.getCounts(chart));
-		
-
-		return modelAndView;		
-	} 		
 
 }

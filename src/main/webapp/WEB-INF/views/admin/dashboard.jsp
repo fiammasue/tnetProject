@@ -61,18 +61,27 @@ function drawPieChart(title, str,info,flag) {
 	var data = google.visualization.arrayToDataTable(str);
 
   // 차트옵션 설정
-  var options = {
-    'legend': 'right',
-    'title': title,
-    'titleTextStyle': {color: 'black', 
-				        fontSize: 20, 
-				        bold: true, 
-				        italic: false,
-				        textAlign: 'center'},
-    'width': 290,
-    'height': 150,
-    'backgroundColor': 'transparent'
-  };
+var options = {
+  'legend': 'right',
+  'title': title,
+  'titlePosition': 'out', // 제목을 그래프 바깥에 표시
+  'titleTextStyle': {
+    color: 'gray',
+    fontSize: 17,
+    bold: true,
+    italic: false,
+    textAlign: 'left' // 왼쪽 정렬
+  },
+  'width': 290,
+  'height': 150,
+  'backgroundColor': 'transparent',
+  'colors': ['#F8BBD0', '#BBDEFB', '#C8E6C9', '#FFF59D', '#ECEFF1'],
+  'pieSliceText': 'percentage',
+  'pieSliceTextStyle': {
+    color: 'gray',
+    fontSize: 8
+  }
+};
   
   if(flag==2){
 	  console.log("차트그릴영역 : ",info)
@@ -84,9 +93,7 @@ function drawPieChart(title, str,info,flag) {
   var chart = new google.visualization.PieChart(document.getElementById(title));
   chart.draw(data, options);
 	  
-  }
-  
-  
+  }  
   //차트 div영역에 그리기
 }
   
@@ -231,7 +238,7 @@ function drawChart(line_data,id_value) {
             <!-- 파이 차트 영역 -->
             <div class="piechart-ojW">
               <div class="auto-group-8seu-Wdv">
-                <p class="item--SXa ">인기 과목</p>
+                <p class="item--SXa ">배우고 싶은 재능 Top5</p>
 	              <div class="group-30929675-YqW custom-select">
                    <select class="form-select" id="pieCharttoggle">
 				    <option selected value="age">나이</option>

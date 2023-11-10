@@ -25,11 +25,11 @@ public class Board {
 	private String give_talent;		
 	private String receive_talent;
 	private String delete_yn;
-	
 	private String givtalent; //  주는재능 이름
-	private String cityname; // 도시이름
 	private String recivetalent; // 받는 재능 이름
-	private String STATUS_CONTENTS; // 상태 이름
+	private String cityname; // 도시이름
+	private String districtname; // 구이름
+	private String status; // 상태 이름
 	
 	//페이징필드
 	private int pageNo = 1;     // 현재 페이지 번호
