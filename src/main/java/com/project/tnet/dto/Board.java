@@ -49,6 +49,8 @@ public class Board {
 	private int navStart = 0; //페이지 하단에 출력되는 페이지 시작번호
 	private int navEnd = 0; // 페이지 하단에 출력되는 페이지 끝 번호
 	
+	private int startnum = 0;
+	private int endnum = 0;
 	
 	public void setTotalCount(int totalCount) {
 		this.totalCount = totalCount;
@@ -75,26 +77,14 @@ public class Board {
 	
 	
 
-	private int startnum = 0;
-	private int endnum = 0;
+	
 	
 	
 
 
 		
-	}
+
 	
 	
-	// 한 페이지의 시작 숫자 (보통 1, 11, 21, 31 ... )
-	public void getStartNo() { 
-	
-		startnum = (pageNo - 1) * pageLength + 1; 
-	} //getStartNo
-	
-	// 한 페이지의 끝 숫자 (보통 10, 20, 30... 이랑 완전 끝 페이지임)
-	public void getEndNo() { 
-	
-		endnum = pageNo * pageLength; 
-	} //getEndNo
 
 }
