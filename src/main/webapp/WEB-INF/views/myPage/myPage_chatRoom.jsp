@@ -67,7 +67,7 @@
 				<div class="container-fluid">
 					<div class="panel chat-room-list">
 						<div class="chat-frames">
-						${roomList }
+				
 			 		<c:forEach var="chatRoom" items="${ roomList}">
 							<div class="chat-room">
 								<div class="user-info">
@@ -190,7 +190,7 @@
 		        , JSON.stringify({type:'LEAVE',room_id:roomId}));
 				$(".wrap").html("");
 			}
-		});//회원 수정 폼
+		});//채팅방폼
 	
 		$(document).on("click", ".room-title", function() {
 		  	roomId = $(this).data("roomid");
@@ -232,7 +232,7 @@
 		    			
 		    			 if(chat.sender != "${principal.user.nickName}"){
 				    			 chatListInfo+=`<div class="chat ch1">
-							    		            <div class="textbox">`+chat.message+`</div>
+							    		            <div class="textbox">`+decodeURIComponent(chat.message)+`</div>
 							    		            <div class="sender-time">`+time+`</div>`;
 							   	if(chat.read_yn=='N'){
 				    		      chatListInfo+=` <div class="sender-readCount">1</div>`;
@@ -242,7 +242,7 @@
 		    			 }	
 		    			 else{
 							  	chatListInfo += `<div class="chat ch2">
-							    		            <div class="textbox">`+chat.message+`</div>
+							    		            <div class="textbox">`+decodeURIComponent(chat.message)+`</div>
 							    		            <div class="receiver-time">`+time+`</div>`
 							   	if(chat.read_yn=='N'){
 					    		   chatListInfo+=` <div class="receiver-readCount">1</div>`;

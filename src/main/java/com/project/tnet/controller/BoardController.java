@@ -76,6 +76,18 @@ public class BoardController {
 		return result;
 	}
 	
+	@ResponseBody
+	@RequestMapping("/board/join")
+	public Map<String, Object> joinBoard(@RequestBody Map<String, Object> params){
+		
+		
+		return null;
+		
+	}
+	
+	
+	
+	
 	
 	
 }

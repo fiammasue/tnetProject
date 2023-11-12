@@ -52,5 +52,8 @@ public class ChatRoomService {
 	public int downToConnectedCountById(Message message) {
 		return chatRoomDAO.downToConnectedCountById(message);
 	}
+	public ChatRoom getRoom(ChatRoom chatRoom) {
+		return chatRoomDAO.getRoom(chatRoom);
+	}
 	
 }
