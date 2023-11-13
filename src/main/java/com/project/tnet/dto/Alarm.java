@@ -25,4 +25,7 @@ public class Alarm {
 	private String sender;
 	private String read_yn;
 	private Date reg_date;
+	private String room_id;	//채팅방의 방번호
+	private String room_name;	//채팅방 이름
+	
 }

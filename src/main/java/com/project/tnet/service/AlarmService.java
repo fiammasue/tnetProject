@@ -20,6 +20,15 @@ public class AlarmService {
 		return alarmDAO.insertAlarm(alarm);
 		
 	}
+	
+	//알람 상세보기
+	public List<Alarm> alarmList(String nickName) throws Exception {
+		System.out.println(">>>>>>>>>> 알림 서비스까지 잘오네~");
+		// 로그인한 닉네임의 알람 조회
+		List<Alarm> alarmList = alarmDAO.selectAllAlarmList(nickName);
+		return alarmList;
+	}
+	
 	public List<Alarm> selectByReceiver(Alarm alarm){
 		return alarmDAO.selectByReceiver(alarm);
 	}
