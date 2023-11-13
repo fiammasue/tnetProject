@@ -139,16 +139,16 @@ body {
   flex-shrink: 0;
 }
 .item--XFN .auto-group-qmuj-WZn {
-  margin: 0rem 27.009rem 5.758rem 27.373rem;
-  box-sizing: border-box;
-  padding: 0.334rem 2.086rem 0.334rem 6.759rem;
-  width: calc(100% - 54.3816rem);
-  height: 3.8384rem;
-  display: flex;
-  align-items: center;
-  background-color: #edffea;
-  border-radius: 4.1722rem;
-  flex-shrink: 0;
+	margin: 3rem 27.009rem 5.758rem 17.373rem;
+	box-sizing: border-box;
+	padding: 0.334rem 2.086rem 0.334rem 6.759rem;
+	width: calc(100% - 36.3816rem);
+	height: 3.8384rem;
+	display: flex;
+	align-items: center;
+	background-color: #edffea;
+	border-radius: 4.1722rem;
+  	flex-shrink: 0;
 }
 .item--XFN .auto-group-qmuj-WZn .group-30929677-Xjn {
 

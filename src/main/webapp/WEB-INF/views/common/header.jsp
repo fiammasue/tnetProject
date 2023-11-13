@@ -227,12 +227,12 @@ $(document).ready(function() {
 		}
 		else if (recv.type_string==="ENTER") {
 			alert("입장");
-			var chatListInfo = `<span class="badge rounded-pill text-bg-warning">`+recv.message+`</span>`
+			var chatListInfo = `<span class="badge rounded-pill text-bg-warning">`+decodeURIComponent(recv.message)+`</span>`
 			$("#chatList").append(chatListInfo);
 		}
 		else if (recv.type_string==="LEAVE") {
 			alert("퇴장");
-			var chatListInfo = `<span class="badge rounded-pill text-bg-warning">`+recv.message+`</span>`
+			var chatListInfo = `<span class="badge rounded-pill text-bg-warning">`+decodeURIComponent(recv.message)+`</span>`
 			$("#chatList").append(chatListInfo);
 		}
 		

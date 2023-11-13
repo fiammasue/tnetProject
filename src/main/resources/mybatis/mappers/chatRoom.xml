@@ -15,11 +15,13 @@
 							,room_name
 							,receiver
 							,sender
+							,BOARD_ID
 					) values(
 						#{room_id}
 						,#{room_name}
 						,#{receiver}
 						,#{sender}
+						,#{board_id}
 					)
 	</insert>	
 	<delete id="deleteRoom">
@@ -56,4 +58,14 @@
 		set connected_count = connected_count - 1
 		where room_id = #{room_id}
 	</update>
+	
+	<select id="getRoom">
+		select *
+		from chat_room
+		where board_id = #{board_id} 
+				and receiver =#{receiver} 
+				and sender =#{sender}
+		 
+	
+	</select>
 </mapper>

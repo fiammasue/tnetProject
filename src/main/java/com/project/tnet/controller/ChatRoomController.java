@@ -47,15 +47,29 @@ public class ChatRoomController {
 	
 	@ResponseBody
 	@RequestMapping("/chat/createRoom")
-	public ChatRoom createRoom(Authentication authentication,HttpSession session, @RequestBody ChatRoom chatRoom) {
+	public Map<String, Object> createRoom(Authentication authentication,HttpSession session, @RequestBody ChatRoom chatRoom) {
+		Map<String , Object> result = new HashMap<>();
+		
 		if (authentication.getPrincipal() instanceof PrincipalDetails) {
 			PrincipalDetails userDetails = (PrincipalDetails) authentication.getPrincipal();
 			MemberVO member= (MemberVO)userDetails.getUser();
 			chatRoom.setSender(member.getNickName());
-			chatRoomService.createRoom(chatRoom);
+			
+			ChatRoom value = chatRoomService.getRoom(chatRoom);
+			
+			result.put("exist", (value!=null));
+			if (value != null) {
+				result.put("roomInfo", chatRoomService.findRoomById(value.getRoom_id()));
+				result.put("chatList",messageService.selectMessageList(value.getRoom_id()));
+			}
+			else {
+				chatRoomService.createRoom(chatRoom);
+				result.put("roomInfo", chatRoomService.getRoom(chatRoom));
+			}
+			
 		
 		}
-		return chatRoom;
+		return result;
 	}
 	@ResponseBody
 	@RequestMapping("/chat/enterRoom/{room_id}")

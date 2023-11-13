@@ -22,27 +22,14 @@ public class MainController {
 		}
 		return "index";
 	}
-	
-	@RequestMapping("/board/list")
-	public String boardList() {
-		return "board/boardList";
-	}
+
 	@RequestMapping("/notice/list")
 	public String noticeList() {
 		return "notice/noticeList";
 	}
-	@RequestMapping("/board/detail")
-	public String boardDetail() {
-		return "board/boardDetail";
-	}
-	@RequestMapping("/board/revise")
-	public String boardRevise() {
-		return "board/boardRevise";
-	}
-	@RequestMapping("/board/write")
-	public String boardWrite() {
-		return "board/boardWrite";
-	}
+
+	
+	
 	@RequestMapping("/notice/detail")
 	public String noticeDetail() {
 		return "notice/noticeDetail";

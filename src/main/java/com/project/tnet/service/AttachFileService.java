@@ -71,7 +71,8 @@ public class AttachFileService {
 	public void updateUseStatus(Map<String, Object> param) {
 		// 실제 DB에 저장될 data		
 		String token = (String) param.get("token");
-		String editor = (String) param.get("editor");
+		String editor = (String) param.get("contents");
+		int board_id = (int)param.get("board_id");
 
 		//파일 다운로드  URL을 구성한다
 		String filesURL = application.getContextPath() + "/files/";
@@ -89,12 +90,20 @@ public class AttachFileService {
 		//첨부 파일의 token사용 상태로 변경한다
 		fileTokenDAO.updateStatus(FileTokenVO.builder().token(token).status(1).build());
 		
+		updateBoard(param);
+		
 		//Map.of 에는  key와 value를 최대 10개 까지 넣을 수 있는 메소드를 지원한다. -> 교수님은 왜 map.put으로 안해주고 왜 map.of로 했을까?
 		//게시물 완료 시 이전에 편집 중 삭제한 목록을 삭제한다 -> 이걸하기 위해 map.put 대신에 Map.of를 사용해준건가!?
 		if(deleteImageList.size() != 0) {
 			attachFileDAO.deleteTemplateFile(Map.of("list", deleteImageList));
 		}
 
+	}
+	//첨부파일 board_id등록하기
+	public int updateBoard(Map<String, Object> map) {
+		
+		
+		return attachFileDAO.updateBoardId(map);
 	}
 
 }
