@@ -26,15 +26,12 @@
     <div class="group-6-igg">삭제</div>
   </div>
   <div class="auto-group-fekx-BKN">
-    <p class="item--shz">[이벤트]</p>
+  	<input type="hidden" value="${notice.notice_no}"/>
+    <p class="item--shz">${notice.title}</p>
     <p class="item--jEQ">작성자 : 관리자</p>
   </div>
   <div class="group-20-ok4">
-    <p class="item--v3z">
-    저는 어디어디살고요 어떤 재능이 필요한데 그 재능을 어디서 교환했으면하고 
-    
-    언제부터언제까지시간이 괜찮은데 이 시간대 괜찮으신 분들로 참여부탁드립니다
-    </p>
+    <p class="item--v3z">${notice.contents} </p>
     <img class="location-3np" src="REPLACE_IMAGE:27:1294"/>
   </div>
   <!-- 첨부파일이 들어갈 곳 -->
@@ -50,10 +47,6 @@
       <img class="vector-50-uMA" src="REPLACE_IMAGE:I27:1279;74:488"/>
     </div>
     <!-- 한줄 끝 -->
-
-
-
-    
   </div>
 </div>
 </body>

@@ -12,8 +12,8 @@
 from (select ROWNUM as rnum , A.*
         from(   	SELECT b.board_id,
 			       b.title,
-			       t.low_name AS givtalent,
-			       t2.low_name AS recivetalent,
+			       t.low_name AS givetalent,
+			       t2.low_name AS receivetalent,
 			       b.writer_nickname,
 			       b.read_count,
 			       b.register_date,
@@ -40,9 +40,9 @@ from (select ROWNUM as rnum , A.*
 
 	</select>
 	
-<!--총 공지사항 갯수 -->
+<!--총 게시판 갯수 -->
 		<select id="totalcount" resultType="java.lang.Integer" >
-			select count(*) from notice where deleted_yn ='N'
+			select count(*) from board where delete_yn ='N'
 		</select>	
 	
 

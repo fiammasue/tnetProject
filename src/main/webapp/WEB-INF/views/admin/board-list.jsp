@@ -52,8 +52,8 @@
                   	<td><input type="checkbox" class="checkbox" value="${board.board_id}" ></td>
                     <td>${board.board_id}</td>
                     <td >${board.title}</td>
-                    <td>${board.givtalent}</td>
-                    <td>${board.recivetalent}</td>
+                    <td>${board.givetalent}</td>
+                    <td>${board.receivetalent}</td>
                     <td >${board.writer_nickname}</td>
                     <td >${board.cityname}</td>
                     <td >${board.districtname}</td>
