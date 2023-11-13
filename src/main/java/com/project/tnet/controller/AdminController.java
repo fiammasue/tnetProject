@@ -5,7 +5,9 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.project.tnet.dto.Board;
@@ -85,6 +87,14 @@ public class AdminController {
 		return "admin/notice-list";
 	}
 	
+	// 관리자 공지사항 상세 페이지
+	@RequestMapping("/admin/detail_notice")
+	public String detail_notice(NoticeDTO notice, Model model) {
+		System.out.println("공지사항 상세");
+		model.addAttribute("notice", noticeservice.getDetail(notice).get("detail"));
+		return "notice/noticeDetail";
+	}
+	
 	// 관리자 로그인 페이지
 	@RequestMapping("/admin/memberlist")
 	public String admin_login(MemberVO member,  Model model) {
@@ -96,9 +106,13 @@ public class AdminController {
 		return "admin/memberlist";
 	}
 	
-
+	@ResponseBody
+	@RequestMapping("/del/notice")
+	public Map<String, Object> delete(@RequestBody NoticeDTO notice) {
+		System.out.println("관리자 전체 삭제");		
+		System.out.println("ids" + notice.getIds());
+		return noticeservice.deleteAll(notice);
+	}
 	
 	
-	
-
 }

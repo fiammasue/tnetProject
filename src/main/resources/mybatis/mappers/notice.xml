@@ -24,5 +24,17 @@
 			select count(*) from notice where deleted_yn ='N'
 		</select>	
 	
+<!--공지사항 삭제 -->	
+<delete id="deleteAll" >
+	delete notice
+	where notice_no = #{notice_no}
+</delete>	
+
+<!--  공지사항 상세 -->
+		<select id="getDetail" resultType="com.project.tnet.dto.NoticeDTO" >
+			select *
+			from notice 
+			where notice_no = #{notice_no}
+		</select>	
 
 </mapper>
