@@ -176,20 +176,41 @@ public class MessageController {
 		
 		
 	}
-	
-	@MessageMapping("/complete/courseAgreeInvolve")
+	//완료신청
+	@MessageMapping("/complete/courseAgree")
 	public void courseAgree(Alarm alarm) {
+		//courseID도 같이 넘어가야함
+		Course course = Course.builder()
+				.writer_nickname(alarm.getSender())
+				.course_id(alarm.getCourse_id())
+				.build();
+		
+		course = myPageService.getCourseCompleteAgree(course);
+		course.setType_string(MessageType.COMPLETE_AGREE.name());
+		//상대방에게 전달
+		messagingTemplate.convertAndSend("/sub/member/userId/"+alarm.getReceiver(),course);
+		
 		Alarm result = Alarm.builder()
 				.type_string(MessageType.ALARM.name())
-				.contents("재능교환이 완료되었습니다.")
-				.alarm_code("A07")
+				.contents("재능교환 완료 요청이 왔습니다.")
+				.alarm_code("A02")
 				.page_type("/myPage/course_proceeding")
-				.receiver(alarm.getReceiver())//무조건상대방
 				.sender(alarm.getSender())//무조건 글작성자
 				.read_yn("N")
 				.build();
+		if (course.getApplyer_nickname().equals(alarm.getSender())) {
+			result.setReceiver(course.getWriter_nickname());
+		}
+		else {
+			result.setReceiver(course.getApplyer_nickname());
+		}
 		alarmService.insertAlarm(result);
-		messagingTemplate.convertAndSend("/sub/member/userId/"+alarm.getReceiver(),result);
+		messagingTemplate.convertAndSend("/sub/member/userId/"+result.getReceiver(),result);
+		
+	}
+	//완료
+	@MessageMapping("/complete/courseInvolve")
+	public void courseInvolve(Alarm alarm) {
 		
 		//courseID도 같이 넘어가야함
 		Course course = Course.builder()
@@ -201,6 +222,23 @@ public class MessageController {
 		course.setType_string(MessageType.COMPLETE_INVOLVE.name());
 		//상대방에게 전달
 		messagingTemplate.convertAndSend("/sub/member/userId/"+alarm.getReceiver(),course);
+		
+		Alarm result = Alarm.builder()
+				.type_string(MessageType.ALARM.name())
+				.contents("재능교환 완료 요청이 왔습니다.")
+				.alarm_code("A07")
+				.page_type("/myPage/course_proceeding")
+				.sender(alarm.getSender())//무조건 글작성자
+				.read_yn("N")
+				.build();
+		if (course.getApplyer_nickname().equals(alarm.getSender())) {
+			result.setReceiver(course.getWriter_nickname());
+		}
+		else {
+			result.setReceiver(course.getApplyer_nickname());
+		}
+		alarmService.insertAlarm(result);
+		messagingTemplate.convertAndSend("/sub/member/userId/"+result.getReceiver(),result);
 	}
 
 }
