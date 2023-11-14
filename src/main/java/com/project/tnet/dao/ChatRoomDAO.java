@@ -26,4 +26,6 @@ public interface ChatRoomDAO {
 	public int upToConnectedCountById(Message message);
 	//채팅방이 존재하는지 확인
 	public ChatRoom getRoom(ChatRoom chatRoom);
+	//채팅방아이디로 하나 찾아오기
+	public ChatRoom getRoombyRoomId(ChatRoom chatRoom);
 }

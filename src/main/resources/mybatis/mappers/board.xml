@@ -161,6 +161,11 @@ from (select ROWNUM as rnum , A.*
 				                        join member m on board.writer_nickname = m.nickname
 			where board_id = #{board_id}
 	</select>
+	<!-- 수강테이블에 board의 게시글 talent의 번호를 넣기 위해 검색 -->
+	<select id="getCourseBoard" resultType="com.project.tnet.dto.Board">
+		select * from board
+		where board_id = #{board_id}
+	</select>
 	
 	<update id="updateReadCount">
 		update board

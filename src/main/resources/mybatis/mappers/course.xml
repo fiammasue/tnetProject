@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.tnet.dao.CourseDAO">
+
+	<insert id="insertCourse">
+		<selectKey keyProperty="course_id" resultType="int"  order="BEFORE">
+					select 
+						course_num.nextval course_id 
+					from dual
+			</selectKey>
+		insert into Course(
+						course_id
+						,board_id
+						,writer_nickname
+						,applyer_nickname
+						,give_talent
+						,receive_talent
+						,writer_status_code
+						,applyer_status_code
+						,start_date
+						
+						) values(
+						#{course_id}
+						,#{board_id}
+						,#{writer_nickname}
+						,#{applyer_nickname}
+						,#{give_talent}
+						,#{receive_talent}
+						,#{writer_status_code}
+						,#{applyer_status_code}
+						,sysdate
+						
+						)
+	</insert>
+
+	<select id="getExistCourse" resultType="com.project.tnet.dto.Course">
+		select *
+		from course
+		where board_id =#{board_id} 
+				and writer_nickname=#{writer_nickname}
+				and applyer_nickname=#{applyer_nickname}
+	</select>
+
+</mapper>

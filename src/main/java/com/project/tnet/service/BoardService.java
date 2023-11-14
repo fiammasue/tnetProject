@@ -98,6 +98,8 @@ public class BoardService {
 		boardDAO.insertBoard(params);
 	}
 	
-	
+	public Board getCourseBoard(Board board) {
+		return boardDAO.getCourseBoard(board);
+	}
 
 }

@@ -27,4 +27,7 @@ public class MessageService {
 		
 		return messageDAO.selectMessageList(message);
 	}
+	public int updateReadCount(Message message) {
+		return messageDAO.updateReadCount(message);
+	}
 }
