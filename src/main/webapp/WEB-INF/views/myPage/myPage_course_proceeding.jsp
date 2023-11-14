@@ -778,6 +778,13 @@ $(document).ready(function() {
 		    const courseId = card.getAttribute('data-courseid');
 		    updateCompleted(courseId);
 		    
+		    //*****완료 시점
+		    ws.send("/pub/complete/courseInvolve",{},JSON.stringify({
+								type:'ALARM'
+								,type_string:"ALARM"
+								,sender:"${principal.user.nickname}"
+								,course_id:courseId
+								}));
 		    //화면 데이터 바뀔 수 있도록 함
 	        // 클래스명, 상태 코드, 날짜 변경
 	        statusChange.classList.remove('completed-waiting');
@@ -1275,6 +1282,13 @@ $(document).ready(function() {
                     // "completedWaitingBucket"에 테스크 카드 추가
                     completedWaitingBucket.append(taskCardClone);
 
+                    //*****완료 신청 시점
+                    ws.send("/pub/complete/courseAgree",{},JSON.stringify({
+								type:'ALARM'
+								,type_string:"ALARM"
+								,sender:"${principal.user.nickname}"
+								,course_id:courseId
+								}));
                     
                     $("#viewForm").dialog("close");
                     alert('완료요청');
