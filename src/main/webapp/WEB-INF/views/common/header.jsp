@@ -116,7 +116,7 @@
   	</c:choose>
   </div>
 
-	<div id="LoginDialog">
+	<div id="LoginDialog" style="display:none;">
 	  <form class="login-form" id="loginFormTag" method="post" action="<c:url value='/auth/login.do'/>" >
 	    <h4 class="mb-3"><b>로그인</b></h4>
 	    <div class="form-group">

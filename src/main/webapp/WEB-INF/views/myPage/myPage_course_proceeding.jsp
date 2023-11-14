@@ -66,10 +66,10 @@
 
 					<div class="container">
 						<div class="tabs">
-							<div class="tab-button active" onclick="openTab('tab1', 'tab2')" id="tab-button1">진행 중인 강의</div>
-							<div class="tab-button" onclick="openTab('tab2', 'tab1')" id="tab-button2">완료된 강의</div>
+							<div class="tab-button-myPage active" onclick="openTab('tab1', 'tab2')" id="tab-button1">진행 중인 강의</div>
+							<div class="tab-button-myPage" onclick="openTab('tab2', 'tab1')" id="tab-button2">완료된 강의</div>
 						</div>
-						<div class="panel tab-content active" id="tab1">
+						<div class="panel tab-content-myPage active" id="tab1">
 							<div class="row">
 								<div class="kanban-board">
 									<div class="bucket accept">
@@ -232,7 +232,7 @@
 							</div>
 						</div>
 
-						<div class="panel tab-content" id="tab2">
+						<div class="panel tab-content-myPage" id="tab2">
 							<div class="row">
 								<div class="kanban-board">
 									<div class="bucket completed">
@@ -439,54 +439,52 @@
 	
 	
 	<!-- JavaScript -->
-	<script src="/vendor/jquery/jquery.min.js"></script>
-	<script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
-	<script src="/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	
 	<script>
 	/* ************************************************************************** */
 	/* 탭메뉴 */
 	/* ************************************************************************** */
-       function openTab(tabName, otherTabName) {
-           var i, tabContent, tabButtons;
-           tabContent = document.getElementsByClassName("tab-content");
-           tabButtons = document.getElementsByClassName("tab-button");
-
-           for (i = 0; i < tabContent.length; i++) {
-               tabContent[i].style.display = "none";
-               tabButtons[i].classList.remove("active");
-           }
-           
+    function openTab(tabName, otherTabName) {
+        var i, tabContentMyPage, tabButtonsMyPage;
+        tabContentMyPage = document.querySelectorAll(".tab-content-myPage");
+        tabButtonsMyPage = document.querySelectorAll(".tab-button-myPage");
+        
+        for (i = 0; i < tabContentMyPage.length; i++) {
+        	tabContentMyPage[i].style.display = "none";
+        	tabButtonsMyPage[i].classList.remove("active");
+            console.log( tabButtonsMyPage[i]);
+        }
+         
 		document.getElementById(tabName).style.display = "block";
-           document.querySelector("[onclick*='" + tabName + "']").classList.add("active");
-           document.querySelector("[onclick*='" + otherTabName + "']").classList.remove("active");
-       }
+        document.querySelector("[onclick*='" + tabName + "']").classList.add("active");
+        document.querySelector("[onclick*='" + otherTabName + "']").classList.remove("active");
+    }
 
 	// 첫 번째 탭 버튼에 대한 클릭 이벤트 핸들러
-	const tabButton1 = document.getElementById('tab-button1');
-	tabButton1.addEventListener('click', () => {
-		tabButton1.classList.add('active');
+	const tabButtonMyPage1 = document.getElementById('tab-button1');
+	tabButtonMyPage1.addEventListener('click', () => {
+		tabButtonMyPage1.classList.add('active');
 		document.getElementById('tab-button2').classList.remove('active');
 		// 다른 탭 버튼에 "active" 클래스를 제거
 		// 탭 내용을 변경하거나 다른 작업을 수행할 수도 있음
 	});
 
 	// 두 번째 탭 버튼에 대한 클릭 이벤트 핸들러
-	const tabButton2 = document.getElementById('tab-button2');
-	tabButton2.addEventListener('click', () => {
-		tabButton2.classList.add('active');
+	const tabButtonMyPage2 = document.getElementById('tab-button2');
+	tabButtonMyPage2.addEventListener('click', () => {
+		tabButtonMyPage2.classList.add('active');
 		document.getElementById('tab-button1').classList.remove('active');
 		// 다른 탭 버튼에 "active" 클래스를 제거
 		// 탭 내용을 변경하거나 다른 작업을 수행할 수도 있음
 	});
 	/* ************************************************************************** */
 		
-$(document).ready(function() {
-		/* ************************************************************************** */
-		/* 칸반보드카드 */
-		/* ************************************************************************** */
 
+	/* ************************************************************************** */
+	/* 칸반보드카드 */
+	/* ************************************************************************** */
+	$(document).ready(function() {
+		
 		// Step 1: HTML 구조를 기반으로 초기화합니다.
 		const acceptBucket = document.querySelector('.bucket.accept .tasks.accept');
 		const waitingBucket = document.querySelector('.bucket.waiting .tasks.waiting');
@@ -618,7 +616,7 @@ $(document).ready(function() {
 		    const courseId = card.getAttribute('data-courseid');
 		    updateAccept(courseId);
       
-		    //---------------채팅방생성 및 재능기부 진행
+		   /*  //---------------채팅방생성 및 재능기부 진행
 		   const param = {
 				agreeChat : "수락",
 				receiver : $(".applyer_nickname").text(),
@@ -644,7 +642,7 @@ $(document).ready(function() {
 					 }
 				}
 				
-			});
+			}); */
 			
 			
 		    
@@ -923,38 +921,6 @@ $(document).ready(function() {
 		
 
 		// Step 5
-		// 수락 상태 칸반보드 카드 요소에 드래그 앤 드롭 이벤트를 추가
-		const acceptCards = document.querySelectorAll('.bucket.accept .task-card');
-		
-		acceptCards.forEach(card => {
-		    card.setAttribute('draggable', 'true');
-		    card.addEventListener('dragstart', function(event) {
-		    	drag(event);
-		    });
-		    card.addEventListener('dragend', function(event) {
-		        // 드래그 종료 후 필요한 동작 추가
-		    	event.preventDefault();
-		    });
-		    card.addEventListener('dragenter', function(event) {
-		        // 드래그된 항목이 들어왔을 때 필요한 동작 추가
-		    	event.preventDefault();
-		    });
-		    card.addEventListener('dragleave', function(event) {
-		        // 드래그된 항목이 범위를 벗어났을 때 필요한 동작 추가
-		    	event.preventDefault();
-		    });
-		    card.addEventListener('dragover', function(event) {
-		        event.preventDefault();
-		    });
-		    card.addEventListener('drop', function(event) {
-		        event.preventDefault();
-		        const courseId = card.getAttribute('data-courseid');
-		        //updateAccept(courseId);
-		        event.target.appendChild(document.getElementById(event.dataTransfer.getData('text')));
-
-		    });
-		});
-		
 		// 대기 상태 칸반보드 카드 요소에 드래그 앤 드롭 이벤트를 추가
 		const waitingCards = document.querySelectorAll('.bucket.waiting .task-card');
 		
@@ -1235,8 +1201,9 @@ $(document).ready(function() {
 	    $("#detail-complete").click(function(e) {
 	    	e.preventDefault();
 	    	
-	    	const courseId = $(".kanban-board .bucket.accept .tasks.accept .task-card").data("courseid");
-	    	console.log(courseId);
+	    	// 클릭 이벤트 핸들러에서 courseId를 얻어오기
+	        const taskCard = $(".kanban-board .bucket.accept .tasks.accept .task-card");
+	        const courseId = taskCard.data("courseid");
 	    	
 	    	$.ajax({
 	            type: "POST",
@@ -1285,7 +1252,9 @@ $(document).ready(function() {
 	    $("#detail-cancel").click(function(e) {
 	    	e.preventDefault();
 	    	
-	    	const courseId = $(".kanban-board .bucket.accept .tasks.accept .task-card").data("courseid");
+	    	// 클릭 이벤트 핸들러에서 courseId를 얻어오기
+	        const taskCard = $(".kanban-board .bucket.accept .tasks.accept .task-card");
+	        const courseId = taskCard.data("courseid");
 	    	console.log(courseId);
 	    	
 	    	$.ajax({
@@ -1323,7 +1292,9 @@ $(document).ready(function() {
 	    $("#detail-reAccept").click(function(e) {
 	    	e.preventDefault();
 	    	
-	    	const courseId = $(".kanban-board .bucket.accept .tasks.accept .task-card.dontMove").data("courseid");
+	    	// 클릭 이벤트 핸들러에서 courseId를 얻어오기
+	        const taskCard = $(".kanban-board .bucket.accept .tasks.accept .task-card.dontMove");
+	        const courseId = taskCard.data("courseid");
 	    	console.log(courseId);
 	    	
 	    	$.ajax({
@@ -1361,7 +1332,9 @@ $(document).ready(function() {
 	    $("#detail-cancelAccept").click(function(e) {
 	    	e.preventDefault();
 	    	
-	    	const courseId = $(".kanban-board .bucket.accept .tasks.accept .task-card.dontMove").data("courseid");
+	    	// 클릭 이벤트 핸들러에서 courseId를 얻어오기
+	        const taskCard = $(".kanban-board .bucket.accept .tasks.accept .task-card.dontMove");
+	        const courseId = taskCard.data("courseid");
 	    	console.log(courseId);
 	    	
 	    	$.ajax({
@@ -1407,6 +1380,11 @@ $(document).ready(function() {
 	});
 		
     </script>
+    <script src="/vendor/jquery/jquery.min.js"></script>
+	<script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </body>
 
 </html>
