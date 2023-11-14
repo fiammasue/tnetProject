@@ -115,5 +115,10 @@ public class MyPageService {
 	public Course getCourseAgreeInvolve(Course course) {
 		return myPageDAO.getCourseAgreeInvolve(course);
 	}
-	
+	public Course getCourseCompleteAgree(Course course) {
+		return myPageDAO.getCourseCompleteAgree(course);
+	}
+	public Course getCourseCompleteInvolve(Course course) {
+		return myPageDAO.getCourseCompleteInvolve(course);
+	}
 }
