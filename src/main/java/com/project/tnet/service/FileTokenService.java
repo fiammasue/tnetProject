@@ -20,7 +20,6 @@ public class FileTokenService {
 	public String getToken() {
 		//token은 UUID 문자열?로 생성한다. WHY? -? 유일성이 있다. 한번 생성되면 변경할 수 없다. 		
 		final String token = UUID.randomUUID().toString(); 
-		System.out.println(">>>>>>>>>>>>>>>>"  + token);
 		fileTokenDAO.insert(token); //UUID로 token을 생성하자마 DB에 insert한다.
 		
 		return token;

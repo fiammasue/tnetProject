@@ -29,6 +29,27 @@
 		from alarm
 		where receiver=#{receiver}
 	</select>
+	
+ 	<select id="selectAllAlarmList" parameterType="com.project.tnet.dto.Alarm" resultType="com.project.tnet.dto.Alarm">
+			SELECT 
+			    CR.ROOM_NAME, 
+			    CR.ROOM_ID, 
+			    A.CONTENTS
+			FROM 
+		   		ALARM A
+			JOIN 
+		    	CHAT_ROOM CR ON CR.ROOM_ID = A.ROOM_ID
+			WHERE 
+			    A.ALARM_CODE = 'A01' 
+			    AND A.RECEIVER = #{nickName}
+			    AND (A.ROOM_ID, A.ALARM_ID) IN (
+			        SELECT ROOM_ID, MAX(ALARM_ID) AS MAX_ALARM_ID
+			        FROM ALARM
+			        WHERE ALARM_CODE = 'A01' AND RECEIVER = #{nickName}
+			        GROUP BY ROOM_ID
+			    )
+   	</select>
+   	
 	<update id="updateReadYn">
 		update alarm
 		set read_yn = 'Y'
