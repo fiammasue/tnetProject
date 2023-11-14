@@ -29,7 +29,7 @@
 	<update id="updateReadCount">
 		update message
 		set read_yn='Y'
-		where room_id=#{room_id}
+		where room_id=#{room_id} and sender != #{receiver}
 	</update>
 	
 	<select id="selectMessageList" resultType="com.project.tnet.dto.Message">

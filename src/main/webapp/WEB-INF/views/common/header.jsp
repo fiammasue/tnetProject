@@ -156,6 +156,7 @@ $(document).ready(function() {
 	 width: 500,
 	 modal: true,
 	 close: function() {
+		 
 	 }
 	});
 	
@@ -184,7 +185,14 @@ $(document).ready(function() {
 
 	function chatRecvMessage(recv) {
 		console.log(recv)
-		//시간 자르기
+		
+			
+		if (recv.type_string==="ALARM") {
+			alert("ALARM");
+			alert(recv.contents, recv.receiver)
+		}
+		else if (recv.type_string==="TALK") {
+			//시간 자르기
 			 var timestampString = recv.reg_date;
 
 			// "T" 문자를 기준으로 문자열을 분할하고 두 번째 부분을 선택
@@ -192,12 +200,6 @@ $(document).ready(function() {
 
 			// 시:분 부분만 선택
 			var time = timePart.substring(0, 5);
-			
-		if (recv.type_string==="ALARM") {
-			alert("ALARM");
-			alert(recv.contents, recv.receiver)
-		}
-		else if (recv.type_string==="TALK") {
 			alert("TALK");
 			var chatListInfo = "";
 			 if(recv.sender != "${principal.user.nickName}"){
@@ -227,18 +229,49 @@ $(document).ready(function() {
 		}
 		else if (recv.type_string==="ENTER") {
 			alert("입장");
-			var chatListInfo = `<span class="badge rounded-pill text-bg-warning">`+decodeURIComponent(recv.message)+`</span>`
-			$("#chatList").append(chatListInfo);
+			$(".receiver-readCount").remove();
 		}
 		else if (recv.type_string==="LEAVE") {
 			alert("퇴장");
-			var chatListInfo = `<span class="badge rounded-pill text-bg-warning">`+decodeURIComponent(recv.message)+`</span>`
-			$("#chatList").append(chatListInfo);
+// 			var chatListInfo = `<span class="badge rounded-pill text-bg-warning">`+decodeURIComponent(recv.message)+`</span>`
+// 			$("#chatList").append(chatListInfo);
+		}
+		else if (recv.type_string==="AGREE") {
+			alert("수락 요청")
+			var agreeInfo = `
+				<div class="task-card" draggable="true" ondragstart="drag(event)" id="course-`+ recv.course_id + `" data-courseid="`+ recv.course_id  +`" data-boardid="`+ recv.course_id  +`">
+				<div class="status waiting">`+ recv.status_code +`</div>
+				<p class="task-name">`
+				
+           var originalTitle = recv.title;
+           var truncatedTitle = originalTitle.length > 16 ? (originalTitle.substring(0, 16) + '...') : originalTitle;
+           	agreeInfo += truncatedTitle
+         
+              agreeInfo += `</p>
+				<div class="details">`
+				
+				if (recv.applyer_nickname == sender) {
+					agreeInfo += `	<p class="requester">신청자 : `+ recv.applyer_nickname + `</p>`
+					
+				}
+				else {
+					agreeInfo += `<p class="requester">요청자 : `+ recv.applyer_nickname +`</p>`
+					
+				}
+                   
+	            agreeInfo +=   ` <p class="date"></p>
+				</div>
+			</div>`;
+			
+			$(".tasks.waiting").append(agreeInfo);
+			console.log(agreeInfo);
+			
 		}
 		
 		
 	}
 	
+
 	   //알람 로딩 함수
 	    function loadAlarms(listAlarm) {
 	   	     const commentListHTML = document.querySelector("#chat");
@@ -294,6 +327,7 @@ $(document).ready(function() {
 		});
 		 
 		});
+
 </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 </body>

@@ -72,7 +72,8 @@
           <img class="attach-rHv" src="/assets/attach.png"/>
           <div class="jdk-11020windows-x64binexe-NXA">첨부파일 : jdk-11.0.20_windows-x64_bin.exe</div>
         </div>
-        <img class="vector-50-UaC" src="REPLACE_IMAGE:27:880"/>
+        
+      
       </div>
 
     <div class="auto-group-mjac-BEx">
@@ -242,7 +243,44 @@
 		$("#messageBox").val("");
 	});
 	
-	
+	$(".button-W2L").on("click",e => {
+		const param = {
+				board_id:$("#board_id").val()
+				,writer_nickname: $(".nickName").text()
+				,applyer_nickname: sender
+				,give_talent: $(".item--vTa").text()
+				,receive_talent: $(".item--LnC").text()
+			};
+		
+		
+		$.ajax({
+			url:"/course/join",
+			method: "POST",
+			contentType: "application/json; charset=UTF-8",
+			data: JSON.stringify(param),
+			dataType:"json",
+			success:function(json){
+				alert(json.bool)
+				 if(json.bool == true){
+					 alert("수강신청이 완료되었습니다.");
+					 var course = json.course;
+					 ws.send("/pub/join/course",{"content-type": "application/json;charset=utf-8"},JSON.stringify({
+								type_string:"AGREE"
+								,course_id:course.course_id
+								,writer_nickname: course.writer_nickname
+								,applyer_nickname:course.applyer_nickname
+								}));
+				 }
+// 				 else if(json.bool == "done"){
+// 					 alert("이미 신청한 게시글입니다.");
+// 				 }
+// 				 else{
+// 					 alert("수강신청이 실패했습니다.");
+// 				 }
+			}
+			
+		});
+	});
 	
 	
 

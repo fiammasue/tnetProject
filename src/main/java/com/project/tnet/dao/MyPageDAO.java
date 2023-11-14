@@ -64,4 +64,10 @@ public interface MyPageDAO {
 		//수강진행중 상세보기에서 버튼으로 진행취소요청받은 상태에서 취소완료로 업데이트하기
 		public boolean updateCancelAccept(@Param("nickName") String nickName, @Param("course_id") int course_id) throws Exception;
 
+		
+		//대기중 하나불러오기
+		public Course getCourse(Course course);
+		
+		//courseID에 해당하는 수강하나 불러오기
+		public Course getCoursebyId(Course course);
 }

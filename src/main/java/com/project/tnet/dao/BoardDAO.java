@@ -52,4 +52,7 @@ public interface BoardDAO {
 	
 	//게시글 등록
 	public void insertBoard(Map<String, Object> params);
+	
+	//수강등록을 위한 게시글 정보 가져오기
+	public Board getCourseBoard(Board board);
 }

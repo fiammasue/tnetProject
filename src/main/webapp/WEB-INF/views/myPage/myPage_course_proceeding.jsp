@@ -147,7 +147,7 @@
 											<img class="icon" src="/assets/waiting-icon.png"/>
 											<p class="label">대기</p>
 										</div>
-										<div class="tasks">
+										<div class="tasks waiting">
 										<c:choose>
 									        <c:when test="${empty kanbanBoard_Waiting}">
 									            <!-- <p>-&nbsp;&nbsp;대기중인 강의가 없습니다.</p> -->
@@ -507,7 +507,7 @@
 		});
 		/* ************************************************************************** */
 		
-		
+		$(document).ready(function() {
 		/* ************************************************************************** */
 		/* 칸반보드카드 */
 		/* ************************************************************************** */
@@ -599,7 +599,41 @@
 	        
 	     	// 서버에서 진짜 데이터가 바뀔 수 있도록 함
 		    const courseId = card.getAttribute('data-courseid');
+		    //---------------채팅방생성 및 재능기부 진행
+		   const param = {
+				agreeChat : "수락",
+				receiver : $(".applyer_nickname").text(),
+				board_id : boardId,
+				course_id : courseId
+			};
+			$.ajax({
+				url:"/chat/createRoom",
+				method: "POST",
+				contentType: "application/json; charset=UTF-8",
+				data: JSON.stringify(param),
+				dataType:"json",
+				success:function(json){
+					 if(json.bool==true){
+						 alert("채팅방이 생성되었습니다.");
+						 ws.send("/pub/join/agree",{},JSON.stringify({
+								type:'ALARM'
+								,type_string:"ALARM"
+								,sender:json.chatRoom.sender
+								,receiver:json.chatRoom.receiver
+								}));
+					 }
+				}
+				
+			});
+			
+			
 		    updateAccept(courseId);
+		    
+		    
+		    
+		    
+		    
+		    
 		    
 		    //화면 데이터 바뀔 수 있도록 함
 	        // 클래스명, 상태 코드, 날짜 변경
@@ -876,7 +910,10 @@
 		    const card = document.getElementById(data);
 		    event.target.appendChild(card);
 		}
-		
+		// drag 함수 정의
+      function drag(event) {
+        event.dataTransfer.setData('text', event.target.id);
+      }
 		
 
 		
@@ -887,7 +924,7 @@
 		waitingCards.forEach(card => {
 		    card.setAttribute('draggable', 'true');
 		    card.addEventListener('dragstart', function(event) {
-		        event.dataTransfer.setData('text', event.target.id);
+		    	drag(event);
 		    });
 		    card.addEventListener('dragend', function() {
 		        // 드래그 종료 후 필요한 동작 추가
@@ -926,7 +963,7 @@
 		rejectCards.forEach(card => {
 		    card.setAttribute('draggable', 'true');
 		    card.addEventListener('dragstart', function(event) {
-		        event.dataTransfer.setData('text', event.target.id);
+		    	drag(event);
 		    });
 		    card.addEventListener('dragend', function() {
 		        // 드래그 종료 후 필요한 동작 추가
@@ -963,7 +1000,7 @@
 		completedCards.forEach(card => {
 		    card.setAttribute('draggable', 'true');
 		    card.addEventListener('dragstart', function(event) {
-		        event.dataTransfer.setData('text', event.target.id);
+		    	drag(event);
 		    });
 		    card.addEventListener('dragend', function() {
 		        // 드래그 종료 후 필요한 동작 추가
@@ -993,7 +1030,7 @@
 		completedWaitingCards.forEach(card => {
 		    card.setAttribute('draggable', 'true');
 		    card.addEventListener('dragstart', function(event) {
-		        event.dataTransfer.setData('text', event.target.id);
+		    	drag(event);
 		    });
 		    card.addEventListener('dragend', function() {
 		        // 드래그 종료 후 필요한 동작 추가
@@ -1030,7 +1067,7 @@
 		trashCards.forEach(card => {
 		    card.setAttribute('draggable', 'true');
 		    card.addEventListener('dragstart', function(event) {
-		        event.dataTransfer.setData('text', event.target.id);
+		    	drag(event);
 		    });
 		    card.addEventListener('dragend', function() {
 		        // 드래그 종료 후 필요한 동작 추가
@@ -1304,6 +1341,7 @@
 		    
 		    
 		});
+	});
 		
     </script>
 </body>
