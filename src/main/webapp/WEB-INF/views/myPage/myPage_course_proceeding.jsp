@@ -258,7 +258,7 @@
 										  <img class="icon" src="/assets/completed-icon.png"/>
 										  <div class="label">완료</div>
 										</div>
-										<div class="tasks">
+										<div class="tasks completed">
 										<c:choose>
 									        <c:when test="${empty kanbanBoard_Completed}">
 									           <!--  <p>-&nbsp;&nbsp;완료된 강의가 없습니다.</p> -->
@@ -297,7 +297,7 @@
 											<img class="icon" src="/assets/waiting-icon.png"/>
 											<p class="label">대기</p>
 										</div>
-										<div class="tasks">
+										<div class="tasks completed-waiting">
 										<c:choose>
 									        <c:when test="${empty kanbanBoard_Completed_Waiting}">
 									            <!-- <p>-&nbsp;&nbsp;대기중인 강의가 없습니다.</p> -->
@@ -599,6 +599,9 @@
 	        
 	     	// 서버에서 진짜 데이터가 바뀔 수 있도록 함
 		    const courseId = card.getAttribute('data-courseid');
+	     	
+		    updateAccept(courseId);
+		    
 		    //---------------채팅방생성 및 재능기부 진행
 		   const param = {
 				agreeChat : "수락",
@@ -628,13 +631,7 @@
 			});
 			
 			
-		    updateAccept(courseId);
-		    
-		    
-		    
-		    
-		    
-		    
+
 		    
 		    //화면 데이터 바뀔 수 있도록 함
 	        // 클래스명, 상태 코드, 날짜 변경

@@ -72,4 +72,8 @@ public interface MyPageDAO {
 		public Course getCoursebyId(Course course);
 		//수락 Involve하나 불러오기
 		public Course getCourseAgreeInvolve(Course course);
+		//완료 요청을 보냈을때 수강하나 불러오기
+		public Course getCourseCompleteAgree(Course course);
+		//완료 Involve 수강하나 불러오기
+		public Course getCourseCompleteInvolve(Course course);
 }
