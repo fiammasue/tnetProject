@@ -112,12 +112,12 @@
 		          </c:forEach>
 		        </select>
 			  </div>
-			  <div class="button-6oa">첨부파일 추가</div>
+			  <div id="addfile" class="button-6oa">첨부파일 추가</div>
 			  <!-- 리스트 총괄하는 div -->
 			  <div class="frame-49-NFJ">
 			    <!-- 한줄에 대한 것을 관리하는 div -->
 			    <div class="component-15-hHa">
-			      <div class="auto-group-rdqs-RjN">
+			      <div id="filediv" class="auto-group-rdqs-RjN">
 			        <input type="file">
 			      </div>
 			      <img class="vector-142-Xvp" src="REPLACE_IMAGE:27:969"/>
@@ -174,20 +174,6 @@
 		
 		return false;
 	});
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	/*select Box의 내용 변경하기 ajax*/
@@ -288,11 +274,16 @@
 	
 	});
 	
-	
-	
-	
-	
-	
+//파일추가 클릭시 파일input택추가	
+$('#addfile').on('click', function(){
+    alert("Click Event!");
+    
+    var cnt = 0;
+
+    $("#filediv").append("<div><input type='file' name='file" + cnt + "'/></div>");
+    cnt++;
+});
+
 	
 	
 	

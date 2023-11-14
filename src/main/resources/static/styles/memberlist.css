@@ -674,3 +674,8 @@ tbody {
 #fix_button, #none_fix_button {
     display: none;
 }
+
+
+span {
+    padding-right: 6px;
+}

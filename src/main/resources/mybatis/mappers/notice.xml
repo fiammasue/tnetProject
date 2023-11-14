@@ -30,11 +30,32 @@
 	where notice_no = #{notice_no}
 </delete>	
 
+<!--공지사항 고정-->	
+<update id="fixAll" >
+	update notice 
+	set fixed_yn = 'Y'
+	where notice_no = #{notice_no}
+</update>	
+
+<!--공지사항 고정해제-->	
+<update id="nonefixAll" >
+	update notice 
+	set fixed_yn = 'N'
+	where notice_no = #{notice_no}
+</update>
+
 <!--  공지사항 상세 -->
 		<select id="getDetail" resultType="com.project.tnet.dto.NoticeDTO" >
 			select *
 			from notice 
 			where notice_no = #{notice_no}
 		</select>	
+		
+<!--  공지사항 수정-->
+		<update id="update">
+			update notice 
+			set title =  #{title} , contents=#{contents}
+			where notice_no = #{notice_no}
+		</update>	
 
 </mapper>
