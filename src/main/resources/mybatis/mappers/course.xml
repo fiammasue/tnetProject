@@ -17,7 +17,6 @@
 						,receive_talent
 						,writer_status_code
 						,applyer_status_code
-						,start_date
 						
 						) values(
 						#{course_id}
@@ -28,7 +27,6 @@
 						,#{receive_talent}
 						,#{writer_status_code}
 						,#{applyer_status_code}
-						,sysdate
 						
 						)
 	</insert>

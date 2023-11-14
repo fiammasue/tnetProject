@@ -98,12 +98,12 @@
 <body>
 
 	<form name="pageForm" id="pageForm" action="<c:url value='/board/list'/>" method="post">
-		<input  name="pageNo" id="pageNo" value="${result.board.pageNo}"/>
-		<input  name="pageLength" id="pageLength" value="${result.board.pageLength}"/>
-		<input  name="city_code" id="city_code" value="${result.board.city_code}"/>
-		<input  name="district_code" id="district_code" value="${result.board.district_code}"/>
-		<input  name="high_code" id="high_code" value="${result.board.high_code}"/>
-		<input  name="low_code" id="low_code" value="${result.board.low_code}"/>
+		<input type="hidden" name="pageNo" id="pageNo" value="${result.board.pageNo}"/>
+		<input type="hidden" name="pageLength" id="pageLength" value="${result.board.pageLength}"/>
+		<input type="hidden" name="city_code" id="city_code" value="${result.board.city_code}"/>
+		<input type="hidden" name="district_code" id="district_code" value="${result.board.district_code}"/>
+		<input type="hidden" name="high_code" id="high_code" value="${result.board.high_code}"/>
+		<input type="hidden" name="low_code" id="low_code" value="${result.board.low_code}"/>
 	
 	</form>
     <div class="item--XFN">

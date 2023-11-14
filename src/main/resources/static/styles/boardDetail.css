@@ -13,7 +13,7 @@ input {
 	border: none;
 }
 body {
-  width: 144rem;
+  width: 146rem;
   margin:0 auto;
 }.item--XQC {
   top:150px;
@@ -350,7 +350,7 @@ body {
   margin: 0rem 38.24rem 1.005rem 35.1rem;
   box-sizing: border-box;
   padding: 2.073rem 1.381rem 0.367rem 1.381rem;
-  width: 706.6px;
+ width: 725.6px;
     height: 468.36px;
   display: flex;
   flex-direction: column;
@@ -377,6 +377,7 @@ body {
     flex-shrink: 0;
 }
 .item--XQC .group-20-JTS .auto-group-dgqx-KG4 .location-3xk {
+	    margin-top: -8rem;
   margin-right: 1.6663rem;
   width: 1.0834rem;
   height: 2.1249rem;
@@ -385,7 +386,7 @@ body {
   flex-shrink: 0;
 }
 .item--XQC .group-20-JTS .auto-group-dgqx-KG4 .item--Bp4 {
-  margin-top: 0.062rem;
+  margin-top: -7.938rem;
   display: flex;
   align-items: center;
   justify-content: center;

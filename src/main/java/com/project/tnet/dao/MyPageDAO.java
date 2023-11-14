@@ -70,4 +70,6 @@ public interface MyPageDAO {
 		
 		//courseID에 해당하는 수강하나 불러오기
 		public Course getCoursebyId(Course course);
+		//수락 Involve하나 불러오기
+		public Course getCourseAgreeInvolve(Course course);
 }
