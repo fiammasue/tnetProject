@@ -614,9 +614,13 @@
 	        
 	     	// 서버에서 진짜 데이터가 바뀔 수 있도록 함
 		    const courseId = card.getAttribute('data-courseid');
+
+	     	
 		    updateAccept(courseId);
-      
-		   /*  //---------------채팅방생성 및 재능기부 진행
+
+
+		    //---------------채팅방생성 및 재능기부 진행
+
 		   const param = {
 				agreeChat : "수락",
 				receiver : $(".applyer_nickname").text(),
@@ -642,11 +646,10 @@
 					 }
 				}
 				
-			}); */
+			});
 			
 			
-		    
-		    
+
 		    //화면 데이터 바뀔 수 있도록 함
 	        // 클래스명, 상태 코드, 날짜 변경
 	        statusChange.classList.remove('waiting');
