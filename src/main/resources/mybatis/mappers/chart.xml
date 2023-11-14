@@ -58,20 +58,33 @@
 	
 <!--파이차트 데이터 성별 -->
 		<select id="getChartgenderdata" resultType="com.project.tnet.dto.ChartDTO">
-			SELECT gender_group, low_name, COUNT(*) AS count
-			FROM (SELECT
-                        CASE
-		                    WHEN gender in('F','female') THEN 'Female'
-		                    WHEN gender in('M','male') THEN 'Male'
-		                    ELSE 'mid'
-						END AS gender_group,low_name,age,gender
-				  FROM (SELECT receive_talent,low_name, age, gender
-					    FROM board b
-					    INNER JOIN member m ON b.writer_nickname = m.nickname
-					    INNER JOIN talent_small t ON b.receive_talent = t.low_code)
+		<![CDATA[
+			SELECT gender_group, low_name, count
+			FROM (
+			    SELECT gender_group, low_name, COUNT(*) AS count
+			    FROM (
+			        SELECT
+			            CASE
+			                WHEN gender IN ('F', 'female') THEN 'Female'
+			                WHEN gender IN ('M', 'male') THEN 'Male'
+			                ELSE 'mid'
+			            END AS gender_group,
+			            low_name,
+			            age,
+			            gender
+			        FROM (
+			            SELECT receive_talent, low_name, age, gender
+			            FROM board b
+			            INNER JOIN member m ON b.writer_nickname = m.nickname
+			            INNER JOIN talent_small t ON b.receive_talent = t.low_code
 			        )
-			GROUP BY gender_group, low_name
-			having gender_group =  #{gender_group}
+			    )
+			    WHERE gender_group = #{gender_group}
+			    GROUP BY gender_group, low_name
+			    ORDER BY COUNT(*) DESC
+			)
+			WHERE ROWNUM <= 5
+			 ]]>	
 		</select>
 		
 <!--chart test age_group -->
@@ -81,7 +94,7 @@
 		                CASE
 		                    WHEN gender in('F','female') THEN 'Female'
 		                    WHEN gender in('M','male') THEN 'Male'
-		                    ELSE 'overforties'
+		                    ELSE 'mid'
 		                END AS gender_group, RECEIVE_TALENT
 		        FROM (SELECT RECEIVE_TALENT, age, gender
 		        FROM board b

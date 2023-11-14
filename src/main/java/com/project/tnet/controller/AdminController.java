@@ -106,12 +106,39 @@ public class AdminController {
 		return "admin/memberlist";
 	}
 	
+	//관리자 공지사항 체크삭제
 	@ResponseBody
 	@RequestMapping("/del/notice")
 	public Map<String, Object> delete(@RequestBody NoticeDTO notice) {
 		System.out.println("관리자 전체 삭제");		
 		System.out.println("ids" + notice.getIds());
 		return noticeservice.deleteAll(notice);
+	}
+	
+	
+	//관리자 공지사항 고정
+	@ResponseBody
+	@RequestMapping("/fix/notice")
+	public Map<String, Object> fix(@RequestBody NoticeDTO notice) {
+		System.out.println("관리자 공지사항 고정");
+		return noticeservice.fixAll(notice);
+	}
+	
+	//관리자 공지사항 고정해제
+	@ResponseBody
+	@RequestMapping("/nonefix/notice")
+	public Map<String, Object> nonefix(@RequestBody NoticeDTO notice) {
+		System.out.println("관리자 공지사항 고정해제");
+		return noticeservice.nonefixAll(notice);
+	}
+	
+	
+	//관리자 공지사항 수정하기
+	@ResponseBody
+	@RequestMapping("/update/notice")
+	public Map<String, Object> update(@RequestBody NoticeDTO notice) {
+		System.out.println("관리자 공지사항 수정하기");
+		return noticeservice.update(notice);
 	}
 	
 	

@@ -20,4 +20,10 @@ public interface NoticeDAO {
 
 	NoticeDTO getDetail(NoticeDTO notice);
 
+	int fixAll(NoticeDTO notice);
+	
+	int nonefixAll(NoticeDTO notice);
+
+	int update(NoticeDTO notice);
+
 }
