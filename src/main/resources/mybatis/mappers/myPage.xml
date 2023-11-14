@@ -167,6 +167,7 @@
 		    END status_code,
 		    c.course_id,
 		    c.writer_nickname, c.applyer_nickname,
+		    c.board_id,
 		    b.title AS title,
 		    c.start_date
 		FROM course c
@@ -190,6 +191,7 @@
 			    END AS status_code,
 		    	c.course_id,
 			    c.writer_nickname, c.applyer_nickname,
+			    c.board_id,
 			    b.title AS title,
 			    c.start_date
 			FROM course c
@@ -213,6 +215,7 @@
 		    END AS status_code,
 		    c.course_id,
 		    c.writer_nickname, c.applyer_nickname,
+		    c.board_id,
 		    b.title AS title,
 		    c.start_date
 		FROM course c
@@ -306,7 +309,7 @@
 	
 	    UPDATE board
 	    SET
-	      status_code = 'SC01'
+	      status_code = 'SC11'
 	    WHERE
 	      board_id = (SELECT board_id FROM course WHERE course_id = #{course_id});
 	  END;
@@ -316,32 +319,50 @@
     <update id="updateWaiting" parameterType="java.util.Map">
 		
 	    <![CDATA[
+	    BEGIN
 			UPDATE course
 			SET
 			writer_status_code = 'SC02',
 			applyer_status_code = 'SC03'
 			
 			WHERE
-			    course_id = #{course_id}
+			    course_id = #{course_id};
+			    
+			UPDATE board
+		    SET
+		      status_code = 'SC02'
+		    WHERE
+		      board_id = (SELECT board_id FROM course WHERE course_id = #{course_id});
+		END;
 	    ]]>
 	</update>
 	
 	<update id="updateCompleted" parameterType="java.util.Map">
 		
 	    <![CDATA[
+	    BEGIN
 			UPDATE course
 			SET
 			writer_status_code = 'SC06',
-			applyer_status_code = 'SC06'
+			applyer_status_code = 'SC06',
+			end_date = sysdate
 			
 			WHERE
-			    course_id = #{course_id}
+			    course_id = #{course_id};
+			
+			UPDATE board
+	        SET
+	            status_code = 'SC06'
+	        WHERE
+	            board_id = (SELECT board_id FROM course WHERE course_id = #{course_id});
+	    END;
 	    ]]>
 	</update>
 	
 	<update id="updateTrash" parameterType="java.util.Map">
 		
 	    <![CDATA[
+	    BEGIN
 			UPDATE course
 	        SET
 	            writer_status_code = CASE
@@ -353,8 +374,15 @@
 	                ELSE applyer_status_code
 	            END
 	        WHERE
-	            course_id = #{course_id}
+	            course_id = #{course_id};
+	            
+	        UPDATE board
+	        SET
+	            status_code = 'SC09'
+	        WHERE
+	            board_id = (SELECT board_id FROM course WHERE course_id = #{course_id});
 
+	    END;
 	    ]]>
 	</update>
 	
@@ -366,12 +394,18 @@
 		        ELSE NULL
 		    END AS status_code,
 		    c.course_id,
-		    c.writer_nickname, c.applyer_nickname,
+		    c.writer_nickname, 
+		    c.applyer_nickname,
+		    c.board_id,
 		    b.title AS title,
+		    ts1.low_name AS give_talent,
+		    ts2.low_name AS receive_talent,
 		    c.start_date,
 		    c.end_date
 		FROM course c
 		JOIN board b ON c.board_id = b.board_id
+		JOIN talent_small ts1 ON c.give_talent = ts1.low_code
+		JOIN talent_small ts2 ON c.receive_talent = ts2.low_code
 		JOIN status s1 ON c.writer_status_code = s1.status_code
 		JOIN status s2 ON c.applyer_status_code = s2.status_code
 		WHERE
