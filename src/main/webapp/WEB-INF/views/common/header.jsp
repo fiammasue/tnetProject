@@ -164,6 +164,7 @@ $(document).ready(function() {
 	$("#loginForm").on("click", function() {
 		loginDialog.dialog("open");
 	});
+});
 	
 	//웹소켓 연결
 	var sock = new SockJS("/ws-stomp");
@@ -267,6 +268,43 @@ $(document).ready(function() {
 			console.log(agreeInfo);
 			
 		}
+		else if (recv.type_string==="AGREE_INVOLVE"){
+			alert("수락요청완료")
+			//태그삭제
+			 var className = "course-"+recv.course_id;
+			 var selectedElement = $('[id^="' + className + '"]');
+			 selectedElement.remove();
+			 
+				var agreeInfo = `
+					<div class="task-card" draggable="true" ondragstart="drag(event)" id="course-`+ recv.course_id + `" data-courseid="`+ recv.course_id  +`" data-boardid="`+ recv.course_id  +`">
+					<div class="status accept">`+ recv.status_code +`</div>
+					<p class="task-name">`
+					
+	           var originalTitle = recv.title;
+	           var truncatedTitle = originalTitle.length > 16 ? (originalTitle.substring(0, 16) + '...') : originalTitle;
+	           	agreeInfo += truncatedTitle
+	         
+	              agreeInfo += `</p>
+					<div class="details">`
+					
+					if (recv.applyer_nickname == sender) {
+						agreeInfo += `	<p class="requester">신청자 : `+ recv.applyer_nickname + `</p>`
+						
+					}
+					else {
+						agreeInfo += `<p class="requester">요청자 : `+ recv.applyer_nickname +`</p>`
+						
+					}
+	                   
+		            agreeInfo +=   ` <p class="date">recv.start_date</p>
+					</div>
+				</div>`;
+			 
+			 
+			 
+			 
+			 $(".tasks.accept").append(agreeInfo);
+		}
 		
 		
 	}
@@ -326,7 +364,7 @@ $(document).ready(function() {
 		   
 		});
 		 
-		});
+		
 
 </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>

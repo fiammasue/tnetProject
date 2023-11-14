@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,7 +14,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.project.tnet.config.auth.PrincipalDetails;
 import com.project.tnet.dto.Board;
+import com.project.tnet.dto.MemberVO;
 import com.project.tnet.service.AttachFileService;
 import com.project.tnet.service.BoardService;
 import com.project.tnet.service.FileTokenService;
@@ -77,7 +80,7 @@ public class CKEditorController {
 	// 만약 마지막 작업이 완료 되지 않은 경우 스토리지 서버에 저장된 파일을 삭제 할 수 있게 구현 해야 한다(현재는 사용하지 않음)
 	@PostMapping(value = "/ckeditorWrite")
 	@ResponseBody
-	public Map<String, Object> ckeditorWrite(@RequestBody Map<String, Object> param) throws Exception {
+	public Map<String, Object> ckeditorWrite(@RequestBody Map<String, Object> param,Authentication authentication) throws Exception {
 		
 		// jsp에서 불러온 data가 정상적으로 컨트롤러로 넘어왔는지 확인하기 위해 출력문으로 찍어봄.		
 		System.out.println(param);
@@ -86,7 +89,15 @@ public class CKEditorController {
 		//현재는 구현하지 않고 로그로 출력함 함
 		//해당 token값만 디비에  상태 변경함  
 		//boardInser할때 boardNum -> 
-		param.put("writer_nickname","bbb");
+		if (authentication.getPrincipal() instanceof PrincipalDetails) {
+			PrincipalDetails userDetails = (PrincipalDetails) authentication.getPrincipal();
+			MemberVO member= (MemberVO)userDetails.getUser();
+			param.put("writer_nickname",member.getNickName());
+		}
+		
+		
+		
+		
 		boardService.insertBoard(param);
 		System.out.println("param 값을 넣고 난후  -> "+ param);
 		

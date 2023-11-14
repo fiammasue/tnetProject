@@ -24,15 +24,17 @@
 <body>
 
 <div id="innerBoardDetail">
-<input id=board_id value="${board.board_id }"/>
+<input type="hidden" id=board_id value="${board.board_id }"/>
   <div class="item--XQC">
     <div class="auto-group-fgyx-zW4">
       <div class="button-6oz">
         <img class="vector-36-stroke-Q3z" src="/assets/vector-36-stroke.png"/>
         <div class="text-label-Kgk">목록으로</div>
       </div>
-      <div class="group-5-znt">수정</div>
-      <div class="group-6-TgU">삭제</div>
+<%--       <c:if test="${principal.user.nickname ==  board.writer_nickname}"> --%>
+	      <div class="group-5-znt">수정</div>
+	      <div class="group-6-TgU">삭제</div>
+<%--       </c:if> --%>
     </div>
     <div class="auto-group-jkgl-7W8">
       <div class="group-30929672-PiY">
@@ -52,7 +54,9 @@
             <p class="item-123-PGc">조회수 : ${board.read_count }</p>
             <p class="item-2023-10-22-11-23-12-UKz">게시일 : ${board.register_date }</p>
           </div>
-          <p class="item--n5n">신고 </p>
+<%--           <c:if test="${principal.user.nickname !=  board.writer_nickname}"> --%>
+          		<p class="item--n5n">신고 </p>
+<%--           </c:if> --%>
         </div>
       </div>
     </div>
@@ -282,8 +286,17 @@
 		});
 	});
 	
+	//목록으로
+	$(".text-label-Kgk").on("click",e => {
+		location.href="/board/list";
+		
+	});
+	//삭제하기
+	$(".group-6-TgU").on("click",e => {
+		
+	});
 	
-
+	
 </script>
 
 

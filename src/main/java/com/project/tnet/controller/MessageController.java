@@ -14,6 +14,7 @@ import com.project.tnet.dto.Message;
 import com.project.tnet.dto.Message.MessageType;
 import com.project.tnet.service.AlarmService;
 import com.project.tnet.service.ChatRoomService;
+import com.project.tnet.service.CourseService;
 import com.project.tnet.service.MessageService;
 import com.project.tnet.service.MyPageService;
 
@@ -28,6 +29,7 @@ public class MessageController {
 	private final AlarmService alarmService;
 	private final SimpMessageSendingOperations messagingTemplate;
 	private final MyPageService myPageService;
+	private final CourseService courseService;
 	
 	@MessageMapping("/chat/message")
 	public void message(Message message) {
@@ -54,7 +56,7 @@ public class MessageController {
 			ChatRoom room = ChatRoom.builder()
 									.room_id(message.getRoom_id())
 									.build();
-			
+			//sender와 receiver를 가져오기 위해 채팅방정보를 가져옴
 			room = chatRoomService.getRoombyRoomId(room);
 //			System.out.println("room => "+ room);
 //			if(message.getSender() != room.getSender()) {
@@ -148,17 +150,34 @@ public class MessageController {
 	
 	@MessageMapping("/join/agree")
 	public void joinAgree(Alarm alarm) {
+		//수강신청 동의를 하면 수강알람도 가야하고 
 		Alarm result = Alarm.builder()
 				.type_string(MessageType.ALARM.name())
 				.contents("재능 교환이 진행됩니다.")
 				.alarm_code("A06")
 				.page_type("/myPage/course_proceeding")
-				.receiver(alarm.getReceiver())
-				.sender(alarm.getSender())
+				.receiver(alarm.getReceiver())//무조건상대방
+				.sender(alarm.getSender())//무조건 글작성자
 				.read_yn("N")
 				.build();
 		alarmService.insertAlarm(result);
 		messagingTemplate.convertAndSend("/sub/member/userId/"+alarm.getReceiver(),result);
+		
+		//courseID도 같이 넘어가야함
+		Course course = Course.builder()
+								.writer_nickname(alarm.getSender())
+								.course_id(alarm.getCourse_id())
+								.build();
+		
+		course = myPageService.getCourseAgreeInvolve(course);
+		course.setType_string(MessageType.AGREE_INVOLVE.name());
+		//상대방에게 전달
+		messagingTemplate.convertAndSend("/sub/member/userId/"+alarm.getReceiver(),course);
+		
+		
+	}
+	@MessageMapping("/complete/courseAgree")
+	public void courseAgree(Alarm alarm) {
 		
 	}
 	

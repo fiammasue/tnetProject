@@ -112,5 +112,8 @@ public class MyPageService {
 	public Course getCoursebyId(Course course) {
 		return myPageDAO.getCoursebyId(course);
 	}
+	public Course getCourseAgreeInvolve(Course course) {
+		return myPageDAO.getCourseAgreeInvolve(course);
+	}
 	
 }

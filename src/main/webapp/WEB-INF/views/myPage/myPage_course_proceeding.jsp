@@ -77,7 +77,7 @@
 											<img class="icon" src="/assets/accept-icon.png"/>
 											<p class="label">수락</p>
 										</div>
-										<div class="tasks">
+										<div class="tasks accept">
 										<c:choose>
 									        <c:when test="${empty kanbanBoard_Accept}">
 									            <!-- <p>-&nbsp;&nbsp;수락한 강의가 없습니다.</p> -->
@@ -620,6 +620,7 @@
 								,type_string:"ALARM"
 								,sender:json.chatRoom.sender
 								,receiver:json.chatRoom.receiver
+								,course_id:courseId
 								}));
 					 }
 				}
