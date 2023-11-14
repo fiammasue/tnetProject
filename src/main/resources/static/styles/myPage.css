@@ -151,6 +151,12 @@ html.fullscreen-bg #wrapper {
 /********************
  * TOP NAVIGATION
  ********************/
+.nav{
+    display: block !important; 
+}ol, ul {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
 .navbar-default {
   -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;
@@ -356,7 +362,10 @@ ul.notifications > li {
   .sidebar .nav > li > a {
     padding: 18px 30px;
     color: #AEB7C2;
-    border-left: 5px solid transparent; }
+    border-left: 5px solid transparent;
+    position: relative;
+    display: block;
+    text-decoration: none; }
     .sidebar .nav > li > a:hover, .sidebar .nav > li > a:focus, .sidebar .nav > li > a.active {
       color: #fff;
       background-color: transparent; }
@@ -1979,12 +1988,24 @@ button:hover {
   color: black;
   font-size: 17px;
   font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .task-name.dontMove {
   color: rgba(0, 0, 0, 0.6);
   font-size: 17px;
   font-weight: bold;
+}
+
+.card-top {
+  display: flex;
+  justify-content: space-between;
+}
+.card-board_id {
+  color:black;
+  margin: 0px;
 }
 
 .status.accept {
@@ -1994,7 +2015,7 @@ button:hover {
   font-size: 12px;
   font-weight: bold;
   padding: 4px 12px; /* 여백 추가 */
-  margin-bottom: 10px;
+  margin: 0px 0px 10px;
 }
 .status.accept.dontMove {
   display: inline-block;
@@ -2003,7 +2024,7 @@ button:hover {
   font-size: 12px;
   font-weight: bold;
   padding: 4px 12px;
-  margin-bottom: 10px;
+  margin: 0px 0px 10px;
 }
 
 .status.waiting {
@@ -2013,7 +2034,7 @@ button:hover {
   font-size: 12px;
   font-weight: bold;
   padding: 4px 12px; /* 여백 추가 */
-  margin-bottom: 10px;
+  margin: 0px 0px 10px;
 }
 .status.waiting.dontMove {
   display: inline-block;
@@ -2022,7 +2043,7 @@ button:hover {
   font-size: 12px;
   font-weight: bold;
   padding: 4px 12px; /* 여백 추가 */
-  margin-bottom: 10px;
+  margin: 0px 0px 10px;
 }
 
 .status.reject {
@@ -2032,7 +2053,7 @@ button:hover {
   font-size: 12px;
   font-weight: bold;
   padding: 4px 12px; /* 여백 추가 */
-  margin-bottom: 10px;
+  margin: 0px 0px 10px;
 }
 .status.reject.dontMove {
   display: inline-block;
@@ -2041,7 +2062,7 @@ button:hover {
   font-size: 12px;
   font-weight: bold;
   padding: 4px 12px; /* 여백 추가 */
-  margin-bottom: 10px;
+  margin: 0px 0px 10px;
 }
 
 .status.completed {
@@ -2051,7 +2072,7 @@ button:hover {
   font-size: 12px;
   font-weight: bold;
   padding: 4px 12px; /* 여백 추가 */
-  margin-bottom: 10px;
+  margin: 0px 0px 10px;
 }
 .status.completed-waiting {
   display: inline-block;
@@ -2060,7 +2081,7 @@ button:hover {
   font-size: 12px;
   font-weight: bold;
   padding: 4px 12px; /* 여백 추가 */
-  margin-bottom: 10px;
+  margin: 0px 0px 10px;
 }
 .status.completed-waiting.dontMove{
   display: inline-block;
@@ -2069,7 +2090,7 @@ button:hover {
   font-size: 12px;
   font-weight: bold;
   padding: 4px 12px; /* 여백 추가 */
-  margin-bottom: 10px;
+  margin: 0px 0px 10px;
 }
 .status.trash {
   display: inline-block;
@@ -2078,7 +2099,7 @@ button:hover {
   font-size: 12px;
   font-weight: bold;
   padding: 4px 12px; /* 여백 추가 */
-  margin-bottom: 10px;
+  margin: 0px 0px 10px;
 }
 
 .details {
@@ -2088,6 +2109,19 @@ button:hover {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.details_talent {
+  padding: 7px 50px;
+  color: black;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.detail-top {
+  display: flex;
+  justify-content: space-between;
 }
 
 .requester {

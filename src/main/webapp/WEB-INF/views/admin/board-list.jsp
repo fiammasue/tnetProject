@@ -79,7 +79,7 @@
 		     	<input type="hidden" id="pageLength" name="pageLength" />
 		      </form>
               <div id = "Change number">
-              건수 : 
+               <span>건수 : </span>  
               <select id="button-bQU">
 				    <option selected value="10">10</option>
 				    <option value="20">20</option>

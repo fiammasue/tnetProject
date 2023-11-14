@@ -36,7 +36,6 @@
 								<ul class="nav">
 									<li><a href="/myPage/course_recruiting" class="">모집 중인 내 강의</a></li>
 									<li><a href="/myPage/course_proceeding" class="">진행 중인 강의</a></li>
-									<li><a href="#" class="">신청이 온 진행중 강의</a></li>
 								</ul>
 							</div>
 						</li>

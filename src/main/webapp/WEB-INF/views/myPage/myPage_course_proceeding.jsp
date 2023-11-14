@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+ <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
@@ -87,14 +87,11 @@
 												<c:choose>
 								                    <c:when test="${course.status_code == '진행 취소요청 보냄' || course.status_code == '진행 취소요청이 왔어요'}">
 													<div class="task-card dontMove" id="course-${course.course_id}" data-courseid="${course.course_id}" data-boardid="${course.board_id}">
-														<div class="status accept dontMove">${course.status_code}</div>
-														<p class="task-name dontMove">
-														<script>
-									                        var originalTitle = "${course.title}";
-									                        var truncatedTitle = originalTitle.length > 16 ? (originalTitle.substring(0, 16) + '...') : originalTitle;
-									                        document.write(truncatedTitle);
-									                    </script>
-									                    </p>
+														<div class="card-top">
+															<p class="status accept dontMove">${course.status_code}</p>
+															<p class="card-board_id">no. ${course.board_id}</p>
+														</div>
+														<p class="task-name dontMove">${course.title}</p>
 														<div class="details">
 									                        <c:choose>
 																<c:when test="${course.applyer_nickname == principal.user.nickName}">
@@ -110,14 +107,11 @@
 													</c:when>
 										        	<c:otherwise>
 													<div class="task-card" id="course-${course.course_id}" data-courseid="${course.course_id}" data-boardid="${course.board_id}">
-														<div class="status accept">${course.status_code}</div>
-														<p class="task-name">
-														<script>
-									                        var originalTitle = "${course.title}";
-									                        var truncatedTitle = originalTitle.length > 16 ? (originalTitle.substring(0, 16) + '...') : originalTitle;
-									                        document.write(truncatedTitle);
-									                    </script>
-									                    </p>
+														<div class="card-top">
+															<p class="status accept">${course.status_code}</p>
+															<p class="card-board_id">no. ${course.board_id}</p>
+														</div>
+														<p class="task-name">${course.title}</p>
 														<div class="details">
 									                        <c:choose>
 																<c:when test="${course.applyer_nickname == principal.user.nickName}">
@@ -157,14 +151,11 @@
 												<c:choose>
 								                    <c:when test="${course.applyer_nickname == principal.user.nickName}">
 													<div class="task-card dontMove" id="course-${course.course_id}" draggable="false" data-courseid="${course.course_id}" data-boardid="${course.board_id}">
-														<div class="status waiting dontMove">${course.status_code}</div>
-														<p class="task-name dontMove">
-														<script>
-									                        var originalTitle = "${course.title}";
-									                        var truncatedTitle = originalTitle.length > 16 ? (originalTitle.substring(0, 16) + '...') : originalTitle;
-									                        document.write(truncatedTitle);
-									                    </script>
-									                    </p>
+														<div class="card-top">
+															<p class="status waiting dontMove">${course.status_code}</p>
+															<p class="card-board_id">no. ${course.board_id}</p>
+														</div>
+														<p class="task-name dontMove">${course.title}</p>
 														<div class="details">
 									                        <p class="requester">신청자 : ${course.applyer_nickname}</p>
 											                <p class="date">${course.start_date}</p>
@@ -173,14 +164,11 @@
 													</c:when>
 										        	<c:otherwise>
 													<div class="task-card" id="course-${course.course_id}" draggable="true" ondragstart="drag(event)" data-courseid="${course.course_id}" data-boardid="${course.board_id}">
-														<div class="status waiting">${course.status_code}</div>
-														<p class="task-name">
-														<script>
-									                        var originalTitle = "${course.title}";
-									                        var truncatedTitle = originalTitle.length > 16 ? (originalTitle.substring(0, 16) + '...') : originalTitle;
-									                        document.write(truncatedTitle);
-									                    </script>
-									                    </p>
+														<div class="card-top">
+															<p class="status waiting">${course.status_code}</p>
+															<p class="card-board_id">no. ${course.board_id}</p>
+														</div>
+														<p class="task-name">${course.title}</p>
 														<div class="details">
 									                        <p class="requester">요청자 : ${course.applyer_nickname}</p>
 											                <p class="date">${course.start_date}</p>
@@ -200,7 +188,7 @@
 											<img class="icon" src="/assets/reject-icon.png"/>
 											<p class="label">거절</p>
 										</div>
-										<div class="tasks">
+										<div class="tasks reject">
 										<c:choose>
 									        <c:when test="${empty kanbanBoard_Reject}">
 									          <!--   <p>-&nbsp;&nbsp;거절한 강의가 없습니다.</p> -->
@@ -210,14 +198,11 @@
 												<c:choose>
 								                    <c:when test="${course.applyer_nickname == principal.user.nickName}">
 													<div class="task-card dontMove" id="course-${course.course_id}" draggable="false" data-courseid="${course.course_id}" data-boardid="${course.board_id}">
-														<div class="status reject dontMove">${course.status_code}</div>
-														<p class="task-name dontMove">
-														<script>
-									                        var originalTitle = "${course.title}";
-									                        var truncatedTitle = originalTitle.length > 16 ? (originalTitle.substring(0, 16) + '...') : originalTitle;
-									                        document.write(truncatedTitle);
-									                    </script>
-									                    </p>
+														<div class="card-top">
+															<p class="status reject dontMove">${course.status_code}</p>
+															<p class="card-board_id">no. ${course.board_id}</p>
+														</div>
+														<p class="task-name dontMove">${course.title}</p>
 														<div class="details">
 									                        <p class="requester">신청자 : ${course.applyer_nickname}</p>
 											                <p class="date">${course.start_date}</p>
@@ -226,14 +211,11 @@
 													</c:when>
 										        	<c:otherwise>
 													<div class="task-card" id="course-${course.course_id}" draggable="true" ondragstart="drag(event)" data-courseid="${course.course_id}" data-boardid="${course.board_id}">
-														<div class="status reject">${course.status_code}</div>
-														<p class="task-name">
-														<script>
-									                        var originalTitle = "${course.title}";
-									                        var truncatedTitle = originalTitle.length > 16 ? (originalTitle.substring(0, 16) + '...') : originalTitle;
-									                        document.write(truncatedTitle);
-									                    </script>
-									                    </p>
+														<div class="card-top">
+															<p class="status reject">${course.status_code}</p>
+															<p class="card-board_id">no. ${course.board_id}</p>
+														</div>
+														<p class="task-name">${course.title}</p>
 														<div class="details">
 									                        <p class="requester">요청자 : ${course.applyer_nickname}</p>
 											                <p class="date">${course.start_date}</p>
@@ -266,14 +248,11 @@
 							        		<c:otherwise>
 												<c:forEach var="course" items="${kanbanBoard_Completed}">
 													<div class="task-card" id="course-${course.course_id}" draggable="true" ondragstart="drag(event)" data-courseid="${course.course_id}" data-boardid="${course.board_id}">
-														<div class="status completed">${course.status_code}</div>
-														<p class="task-name">
-														<script>
-									                        var originalTitle = "${course.title}";
-									                        var truncatedTitle = originalTitle.length > 16 ? (originalTitle.substring(0, 16) + '...') : originalTitle;
-									                        document.write(truncatedTitle);
-									                    </script>
-									                    </p>
+														<div class="card-top">
+															<p class="status completed">${course.status_code}</p>
+															<p class="card-board_id">no. ${course.board_id}</p>
+														</div>
+														<p class="task-name">${course.title}</p>
 														<div class="details">
 															<c:choose>
 											                    <c:when test="${course.applyer_nickname == principal.user.nickName}">
@@ -307,14 +286,11 @@
 												<c:choose>
 											        <c:when test="${course.status_code == '완료 결정 기다리는 중..'}">
 														<div class="task-card dontMove" id="course-${course.course_id}" draggable="false" data-courseid="${course.course_id}" data-boardid="${course.board_id}">
-															<div class="status completed-waiting dontMove">${course.status_code}</div>
-															<p class="task-name dontMove">
-															<script>
-										                        var originalTitle = "${course.title}";
-										                        var truncatedTitle = originalTitle.length > 16 ? (originalTitle.substring(0, 16) + '...') : originalTitle;
-										                        document.write(truncatedTitle);
-										                    </script>
-										                    </p>
+															<div class="card-top">
+																<p class="status completed-waiting dontMove">${course.status_code}</p>
+																<p class="card-board_id">no. ${course.board_id}</p>
+															</div>
+															<p class="task-name dontMove">${course.title}</p>
 															<div class="details">
 																<c:choose>
 												                    <c:when test="${course.applyer_nickname == principal.user.nickName}">
@@ -330,14 +306,11 @@
 													</c:when>
 									        		<c:otherwise>
 														<div class="task-card" id="course-${course.course_id}" draggable="true" ondragstart="drag(event)" data-courseid="${course.course_id}" data-boardid="${course.board_id}">
-															<div class="status completed-waiting">${course.status_code}</div>
-															<p class="task-name">
-															<script>
-										                        var originalTitle = "${course.title}";
-										                        var truncatedTitle = originalTitle.length > 16 ? (originalTitle.substring(0, 16) + '...') : originalTitle;
-										                        document.write(truncatedTitle);
-										                    </script>
-										                    </p>
+															<div class="card-top">
+																<p class="status completed-waiting">${course.status_code}</p>
+																<p class="card-board_id">no. ${course.board_id}</p>
+															</div>
+															<p class="task-name">${course.title}</p>
 															<div class="details">
 																<c:choose>
 												                    <c:when test="${course.applyer_nickname == principal.user.nickName}">
@@ -363,7 +336,7 @@
 											<img class="icon2" src="/assets/trash.png"/>
 											<div class="label">휴지통</div>
 										</div>
-									    <div class="tasks">
+									    <div class="tasks trash">
 									    <c:choose>
 									        <c:when test="${empty kanbanBoard_Trash}">
 									            <!-- <p>-&nbsp;&nbsp;삭제된 강의가 없습니다.</p> -->
@@ -373,14 +346,11 @@
 												<c:choose>
 								                    <c:when test="${course.status_code == '취소된 강의 삭제'}">
 														<div class="task-card dontMove" id="course-${course.course_id}" draggable="false"data-courseid="${course.course_id}" data-boardid="${course.board_id}">
-															<div class="status trash dontMove">${course.status_code}</div>
-															<p class="task-name dontMove">
-															<script>
-										                        var originalTitle = "${course.title}";
-										                        var truncatedTitle = originalTitle.length > 16 ? (originalTitle.substring(0, 16) + '...') : originalTitle;
-										                        document.write(truncatedTitle);
-										                    </script>
-										                    </p>
+															<div class="card-top">
+																<p class="status trash dontMove">${course.status_code}</p>
+																<p class="card-board_id">no. ${course.board_id}</p>
+															</div>
+															<p class="task-name dontMove">${course.title}</p>
 															<div class="details">
 																<c:choose>
 																	<c:when test="${course.applyer_nickname == principal.user.nickName}">
@@ -396,14 +366,11 @@
 													</c:when>
 													<c:otherwise>
 														<div class="task-card" id="course-${course.course_id}" draggable="true" ondragstart="drag(event)" data-courseid="${course.course_id}" data-boardid="${course.board_id}">
-															<div class="status trash">${course.status_code}</div>
-															<p class="task-name">
-															<script>
-										                        var originalTitle = "${course.title}";
-										                        var truncatedTitle = originalTitle.length > 16 ? (originalTitle.substring(0, 16) + '...') : originalTitle;
-										                        document.write(truncatedTitle);
-										                    </script>
-										                    </p>
+															<div class="card-top">
+																<p class="status trash">${course.status_code}</p>
+																<p class="card-board_id">no. ${course.board_id}</p>
+															</div>
+															<p class="task-name">${course.title}</p>
 															<div class="details">
 																<c:choose>
 																	<c:when test="${course.applyer_nickname == principal.user.nickName}">
@@ -444,8 +411,16 @@
 	<form id="viewForm" class="accept_detail" style="display: none;">
 	    <div>
 			<div class="task-card">
-				<div class="status accept detail"></div>
+				<div class="detail-top">
+					<p class="status accept detail"></p>
+					<p class="detail-board_id"></p>
+				</div>
 				<p class="task-name detail-title"></p>
+				<div class="details_talent">
+					<p class="detail-give-talent"></p>
+					<img class="give-and-take-icon" src="/assets/giveAndTake.png"/>
+					<p class="detail-receive-talent"></p>
+				</div>
 				<div class="details">
 	                <p class="requester detail-user"></p>
 	                <p class="date detail-date"></p>
@@ -470,54 +445,55 @@
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<script>
-		/* ************************************************************************** */
-		/* 탭메뉴 */
-		/* ************************************************************************** */
-        function openTab(tabName, otherTabName) {
-            var i, tabContent, tabButtons;
-            tabContent = document.getElementsByClassName("tab-content");
-            tabButtons = document.getElementsByClassName("tab-button");
+	/* ************************************************************************** */
+	/* 탭메뉴 */
+	/* ************************************************************************** */
+       function openTab(tabName, otherTabName) {
+           var i, tabContent, tabButtons;
+           tabContent = document.getElementsByClassName("tab-content");
+           tabButtons = document.getElementsByClassName("tab-button");
 
-            for (i = 0; i < tabContent.length; i++) {
-                tabContent[i].style.display = "none";
-                tabButtons[i].classList.remove("active");
-            }
-            
-			document.getElementById(tabName).style.display = "block";
-            document.querySelector("[onclick*='" + tabName + "']").classList.add("active");
-            document.querySelector("[onclick*='" + otherTabName + "']").classList.remove("active");
-        }
+           for (i = 0; i < tabContent.length; i++) {
+               tabContent[i].style.display = "none";
+               tabButtons[i].classList.remove("active");
+           }
+           
+		document.getElementById(tabName).style.display = "block";
+           document.querySelector("[onclick*='" + tabName + "']").classList.add("active");
+           document.querySelector("[onclick*='" + otherTabName + "']").classList.remove("active");
+       }
 
-		// 첫 번째 탭 버튼에 대한 클릭 이벤트 핸들러
-		const tabButton1 = document.getElementById('tab-button1');
-		tabButton1.addEventListener('click', () => {
-			tabButton1.classList.add('active');
-			document.getElementById('tab-button2').classList.remove('active');
-			// 다른 탭 버튼에 "active" 클래스를 제거
-			// 탭 내용을 변경하거나 다른 작업을 수행할 수도 있음
-		});
+	// 첫 번째 탭 버튼에 대한 클릭 이벤트 핸들러
+	const tabButton1 = document.getElementById('tab-button1');
+	tabButton1.addEventListener('click', () => {
+		tabButton1.classList.add('active');
+		document.getElementById('tab-button2').classList.remove('active');
+		// 다른 탭 버튼에 "active" 클래스를 제거
+		// 탭 내용을 변경하거나 다른 작업을 수행할 수도 있음
+	});
 
-		// 두 번째 탭 버튼에 대한 클릭 이벤트 핸들러
-		const tabButton2 = document.getElementById('tab-button2');
-		tabButton2.addEventListener('click', () => {
-			tabButton2.classList.add('active');
-			document.getElementById('tab-button1').classList.remove('active');
-			// 다른 탭 버튼에 "active" 클래스를 제거
-			// 탭 내용을 변경하거나 다른 작업을 수행할 수도 있음
-		});
-		/* ************************************************************************** */
+	// 두 번째 탭 버튼에 대한 클릭 이벤트 핸들러
+	const tabButton2 = document.getElementById('tab-button2');
+	tabButton2.addEventListener('click', () => {
+		tabButton2.classList.add('active');
+		document.getElementById('tab-button1').classList.remove('active');
+		// 다른 탭 버튼에 "active" 클래스를 제거
+		// 탭 내용을 변경하거나 다른 작업을 수행할 수도 있음
+	});
+	/* ************************************************************************** */
 		
-		$(document).ready(function() {
+$(document).ready(function() {
 		/* ************************************************************************** */
 		/* 칸반보드카드 */
 		/* ************************************************************************** */
+
 		// Step 1: HTML 구조를 기반으로 초기화합니다.
-		const acceptBucket = document.querySelector('.bucket.accept .tasks');
-		const waitingBucket = document.querySelector('.bucket.waiting .tasks');
-		const rejectBucket = document.querySelector('.bucket.reject .tasks');
-		const completedBucket = document.querySelector('.bucket.completed .tasks');
-		const completedWaitingBucket = document.querySelector('.bucket.completed-waiting .tasks');
-		const trashBucket = document.querySelector('.bucket.trash .tasks');
+		const acceptBucket = document.querySelector('.bucket.accept .tasks.accept');
+		const waitingBucket = document.querySelector('.bucket.waiting .tasks.waiting');
+		const rejectBucket = document.querySelector('.bucket.reject .tasks.reject');
+		const completedBucket = document.querySelector('.bucket.completed .tasks.completed');
+		const completedWaitingBucket = document.querySelector('.bucket.completed-waiting .tasks.completed-waiting');
+		const trashBucket = document.querySelector('.bucket.trash .tasks.trash');
 		
 		
 		// Step 2: 서버에서 데이터 가져와서 강의 카드를 동적으로 생성합니다.
@@ -526,27 +502,46 @@
 		    card.classList.add('task-card');
 		    card.classList.add(`status ${status}`);
 		
-		    // 카드 내용 추가
-		    const statusDiv = document.createElement('div');
-		    statusDiv.textContent = course.status_code;
-		    card.appendChild(statusDiv);
+		    
+		 	// 상단 정보 추가 (상태코드, board번호)
+		    const cardTopDiv = document.createElement('div');
+		    cardTopDiv.classList.add('card-top');
+		    
+		    const statusP = document.createElement('p');
+		    statusP.classList.add('status');
+		    statusP.textContent = course.status_code;
+		    cardTopDiv.appendChild(statusP);
 		
+		    const boardIdP = document.createElement('p');
+		    boardIdP.classList.add('card-board_id');
+		    boardIdP.textContent = `no. ${course.board_id}`;
+		    cardTopDiv.appendChild(boardIdP);
+
+		    card.appendChild(cardTopDiv);
+		    
+		    
+		 	// 강의 제목 추가
 		    const nameP = document.createElement('p');
 		    nameP.classList.add('task-name');
 		    nameP.textContent = course.title;
 		    card.appendChild(nameP);
 		
+		    
+		 	// 강의 상세 정보 추가
 		    const detailsDiv = document.createElement('div');
 		
+		 	
 		    // 강의 상태에 따라 요청자/신청자 표시
 		    const requesterP = document.createElement('p');
-		    if (course.applyer_nickname === loginMember.id) {
+		    requesterP.classList.add('requester');
+		    if (course.applyer_nickname === principal.user.nickName) {
 		        requesterP.textContent = `신청자: ${course.applyer_nickname}`;
 		    } else {
 		        requesterP.textContent = `요청자: ${course.applyer_nickname}`;
 		    }
 		    detailsDiv.appendChild(requesterP);
 		
+		    
 		    // 날짜 표시
 		    const dateP = document.createElement('p');
 		    dateP.classList.add('date');
@@ -556,9 +551,11 @@
 		    card.appendChild(detailsDiv);
 		
 		    return card;
+		    
 		}
 		
 		
+
 		// Step 3: 드래그 앤 드롭 기능 추가
 		// * 현재 소스 버킷 확인하기 위함 *
 		function findSourceBucket(card) {
@@ -578,12 +575,32 @@
 		        return null;
 		    }
 		}
-		//드래그 **************************************************************************
+		
+		
+		//드롭 앤 드래그 함수 선언 **************************************************************
+		function allowDrop(event) {
+		    event.preventDefault();
+		}
+		
+		function drop(event) {
+		    event.preventDefault();
+		    const data = event.dataTransfer.getData('text');
+		    const card = document.getElementById(data);
+		    event.target.appendChild(card);
+		}
+		//드래그
+		function drag(event) {
+		  event.dataTransfer.setData('text', event.target.id);
+		}
+		
+
+		
+		//드롭**************************************************************************
 		/* 수락칸 이벤트리스너 */
 		acceptBucket.addEventListener('dragover', allowDrop);
 		acceptBucket.addEventListener('drop', function (event) {
 			event.preventDefault();
-	        const data = event.dataTransfer.getData('text/plain');
+	        const data = event.dataTransfer.getData('text/plain'); //text보다 text/plain이 더 상세
 	        const card = document.getElementById(data);
 	        const statusChange = card.querySelector('.status');
 	        const dateElement = card.querySelector('.date');
@@ -599,9 +616,11 @@
 	        
 	     	// 서버에서 진짜 데이터가 바뀔 수 있도록 함
 		    const courseId = card.getAttribute('data-courseid');
+
 	     	
 		    updateAccept(courseId);
 		    
+
 		    //---------------채팅방생성 및 재능기부 진행
 		   const param = {
 				agreeChat : "수락",
@@ -632,7 +651,6 @@
 			
 			
 
-		    
 		    //화면 데이터 바뀔 수 있도록 함
 	        // 클래스명, 상태 코드, 날짜 변경
 	        statusChange.classList.remove('waiting');
@@ -662,6 +680,14 @@
 	            }
 	        });
 	        acceptBucket.appendChild(card);
+	        
+	     	// 대기칸에서 수락칸으로 이동한 카드에 대한 클릭 이벤트 처리
+            card.addEventListener('click', function (e) {
+                e.preventDefault();
+                const courseId = this.getAttribute('data-courseid');
+                console.log("수락칸 이동: " ,courseId);
+                openCourseModal(courseId);
+            });
 		    
 		});
 		
@@ -678,7 +704,7 @@
 		    console.log(boardId);
 		    // 여기에서 'boardIdExistsInProgress' 함수를 사용하여 진행칸에 동일한 board_id가 있는지 확인합니다.
 		    if (boardIdExistsInAccept(boardId)) {
-		        alert('이미 진행을 결정한 강의입니다.');
+		        alert('이미 진행이 결정된 강의입니다.');
 		        return;
 		    }
 		    
@@ -897,42 +923,25 @@
 		}
 		
 		
-		//드롭 ****************************************************************************
-		function allowDrop(event) {
-		    event.preventDefault();
-		}
-		
-		function drop(event) {
-		    event.preventDefault();
-		    const data = event.dataTransfer.getData('text');
-		    const card = document.getElementById(data);
-		    event.target.appendChild(card);
-		}
-		// drag 함수 정의
-      function drag(event) {
-        event.dataTransfer.setData('text', event.target.id);
-      }
-		
 
-		
 		// Step 5
-		// 대기 상태 칸반보드 카드 요소에 드래그 앤 드롭 이벤트를 추가
-		const waitingCards = document.querySelectorAll('.bucket.waiting .task-card');
+		// 수락 상태 칸반보드 카드 요소에 드래그 앤 드롭 이벤트를 추가
+		const acceptCards = document.querySelectorAll('.bucket.accept .task-card');
 		
-		waitingCards.forEach(card => {
+		acceptCards.forEach(card => {
 		    card.setAttribute('draggable', 'true');
 		    card.addEventListener('dragstart', function(event) {
 		    	drag(event);
 		    });
-		    card.addEventListener('dragend', function() {
+		    card.addEventListener('dragend', function(event) {
 		        // 드래그 종료 후 필요한 동작 추가
 		    	event.preventDefault();
 		    });
-		    card.addEventListener('dragenter', function() {
+		    card.addEventListener('dragenter', function(event) {
 		        // 드래그된 항목이 들어왔을 때 필요한 동작 추가
 		    	event.preventDefault();
 		    });
-		    card.addEventListener('dragleave', function() {
+		    card.addEventListener('dragleave', function(event) {
 		        // 드래그된 항목이 범위를 벗어났을 때 필요한 동작 추가
 		    	event.preventDefault();
 		    });
@@ -943,6 +952,37 @@
 		        event.preventDefault();
 		        const courseId = card.getAttribute('data-courseid');
 		        //updateAccept(courseId);
+		        event.target.appendChild(document.getElementById(event.dataTransfer.getData('text')));
+
+		    });
+		});
+		
+		// 대기 상태 칸반보드 카드 요소에 드래그 앤 드롭 이벤트를 추가
+		const waitingCards = document.querySelectorAll('.bucket.waiting .task-card');
+		
+		waitingCards.forEach(card => {
+		    card.setAttribute('draggable', 'true');
+		    card.addEventListener('dragstart', function(event) {
+		    	drag(event);
+		    });
+		    card.addEventListener('dragend', function(event) {
+		        // 드래그 종료 후 필요한 동작 추가
+		    	event.preventDefault();
+		    });
+		    card.addEventListener('dragenter', function(event) {
+		        // 드래그된 항목이 들어왔을 때 필요한 동작 추가
+		    	event.preventDefault();
+		    });
+		    card.addEventListener('dragleave', function(event) {
+		        // 드래그된 항목이 범위를 벗어났을 때 필요한 동작 추가
+		    	event.preventDefault();
+		    });
+		    card.addEventListener('dragover', function(event) {
+		        event.preventDefault();
+		    });
+		    card.addEventListener('drop', function(event) {
+		        event.preventDefault();
+		        const courseId = card.getAttribute('data-courseid');
 		        event.target.appendChild(document.getElementById(event.dataTransfer.getData('text')));
 
 		    });
@@ -961,17 +1001,17 @@
 		rejectCards.forEach(card => {
 		    card.setAttribute('draggable', 'true');
 		    card.addEventListener('dragstart', function(event) {
-		    	drag(event);
+		        drag(event);
 		    });
-		    card.addEventListener('dragend', function() {
+		    card.addEventListener('dragend', function(event) {
 		        // 드래그 종료 후 필요한 동작 추가
 		    	event.preventDefault();
 		    });
-		    card.addEventListener('dragenter', function() {
+		    card.addEventListener('dragenter', function(event) {
 		        // 드래그된 항목이 들어왔을 때 필요한 동작 추가
 		    	event.preventDefault();
 		    });
-		    card.addEventListener('dragleave', function() {
+		    card.addEventListener('dragleave', function(event) {
 		        // 드래그된 항목이 범위를 벗어났을 때 필요한 동작 추가
 		    	event.preventDefault();
 		    });
@@ -993,6 +1033,7 @@
 		    card.setAttribute('draggable', 'false');
 		});
 		
+		// 완료 상태 칸반보드 카드 요소에 드래그 앤 드롭 이벤트
 		const completedCards = document.querySelectorAll('.bucket.completed .task-card');
 		
 		completedCards.forEach(card => {
@@ -1000,15 +1041,15 @@
 		    card.addEventListener('dragstart', function(event) {
 		    	drag(event);
 		    });
-		    card.addEventListener('dragend', function() {
+		    card.addEventListener('dragend', function(event) {
 		        // 드래그 종료 후 필요한 동작 추가
 		    	event.preventDefault();
 		    });
-		    card.addEventListener('dragenter', function() {
+		    card.addEventListener('dragenter', function(event) {
 		        // 드래그된 항목이 들어왔을 때 필요한 동작 추가
 		    	event.preventDefault();
 		    });
-		    card.addEventListener('dragleave', function() {
+		    card.addEventListener('dragleave', function(event) {
 		        // 드래그된 항목이 범위를 벗어났을 때 필요한 동작 추가
 		    	event.preventDefault();
 		    });
@@ -1030,15 +1071,15 @@
 		    card.addEventListener('dragstart', function(event) {
 		    	drag(event);
 		    });
-		    card.addEventListener('dragend', function() {
+		    card.addEventListener('dragend', function(event) {
 		        // 드래그 종료 후 필요한 동작 추가
 		    	event.preventDefault();
 		    });
-		    card.addEventListener('dragenter', function() {
+		    card.addEventListener('dragenter', function(event) {
 		        // 드래그된 항목이 들어왔을 때 필요한 동작 추가
 		    	event.preventDefault();
 		    });
-		    card.addEventListener('dragleave', function() {
+		    card.addEventListener('dragleave', function(event) {
 		        // 드래그된 항목이 범위를 벗어났을 때 필요한 동작 추가
 		    	event.preventDefault();
 		    });
@@ -1067,15 +1108,15 @@
 		    card.addEventListener('dragstart', function(event) {
 		    	drag(event);
 		    });
-		    card.addEventListener('dragend', function() {
+		    card.addEventListener('dragend', function(event) {
 		        // 드래그 종료 후 필요한 동작 추가
 		    	event.preventDefault();
 		    });
-		    card.addEventListener('dragenter', function() {
+		    card.addEventListener('dragenter', function(event) {
 		        // 드래그된 항목이 들어왔을 때 필요한 동작 추가
 		    	event.preventDefault();
 		    });
-		    card.addEventListener('dragleave', function() {
+		    card.addEventListener('dragleave', function(event) {
 		        // 드래그된 항목이 범위를 벗어났을 때 필요한 동작 추가
 		    	event.preventDefault();
 		    });
@@ -1095,250 +1136,276 @@
 		trash2Cards.forEach(card => {
 		    card.setAttribute('draggable', 'false');
 		});
-
 		
-		$(document).ready(function() {
-		    // 모달 대화 상자 초기화
-		    $("#viewForm").dialog({
-		        autoOpen: false, // 처음에는 자동으로 열리지 않음
-		        modal: true, // 모달 형식으로 표시
-		        width: 370,
-		        height: 290,
-		        buttons: {
-		            "닫기": function() {
-		                $(this).dialog("close");
-		            }
-		        },
-		        close: function() {
-		            // 모달이 닫힐 때 수행할 동작
-		        }
-		    });
+		
+		
+		// Step 6: Modal창 상세보기 열기 (수락칸에 있는 카드들만 가능)
+	    // 모달 대화 상자 초기화
+	    $("#viewForm").dialog({
+	        autoOpen: false, // 처음에는 자동으로 열리지 않음
+	        modal: true, // 모달 형식으로 표시
+	        width: 440,
+	        height: 340,
+	        buttons: {
+	            "닫기": function() {
+	                $(this).dialog("close");
+	            }
+	        },
+	        close: function() {
+	            // 모달이 닫힐 때 수행할 동작
+	        }
+	    });
 
-		    // 클릭 이벤트 핸들러
-		    $(".kanban-board .bucket.accept .tasks .task-card").click(function(e) {
-		        e.preventDefault();
-		        
-		        const courseId = $(this).data("courseid");
-		        console.log("Clicked Course ID:", courseId);
-		        
-		        $.ajax({
-		            type: "POST",
-		            url: '/myPage/detailAccept',
-		            data: { course_id: courseId },
-		            success: function(response) {
-	            		const course = response.course;
-	            		console.log(course);
-	            		
-	            		$(".status.accept.detail").text(course.status_code);
-	            		$(".task-name.detail-title").text(course.title);
-	            		$(".details .date.detail-date").text("시작날짜 : " + course.start_date);
-	            		
-	            		// 사용자 레이블 설정
-	                    const requesterLabel = (course.applyer_nickname === "${loginMember.id}") ? '신청자' : '요청자';
-	                    const labelText = requesterLabel + ": " + course.applyer_nickname;
-	                    $(".details .requester.detail-user").text(labelText);
+	 	// 클릭 이벤트 핸들러
+	    $(".kanban-board .bucket.accept .tasks .task-card").click(function (e) {
+	        e.preventDefault();
 
-	            		// 모달 대화 상자 열기
-	    		        $("#viewForm").dialog("open");
-	            		
-	            		if (course.status_code === '진행 결정!') {
-	            			$("#detail-complete").show();
-	                        $("#detail-cancel").show();
-	                        $("#detail-reAccept").hide();
-	                        $("#detail-cancelAccept").hide();
-	            		} else if (course.status_code === '진행 취소요청 보냄') {
-	            			$("#detail-complete").hide();
-	                        $("#detail-cancel").hide();
-	                        $("#detail-reAccept").show();
-	                        $("#detail-cancelAccept").hide();
-	            		} else if (course.status_code == '진행 취소요청이 왔어요'){
-	            			$("#detail-complete").hide();
-	                        $("#detail-cancel").hide();
-	                        $("#detail-reAccept").hide();
-	                        $("#detail-cancelAccept").show();
-	            		} 
-	            		
-		            }
-			       
-		        
-		        });
-		    });
+	        const courseId = $(this).data("courseid");
+	        console.log("Clicked Course ID:", courseId);
+	        openCourseModal(courseId);
+	    });
+	    
+	 	// 클릭 이벤트 핸들러를 통해 모달창을 열기
+	    function openCourseModal(courseId) {
+	 		
+	    	// courseId를 객체에 담아서 전달
+	        const data = { course_id: courseId };
+	    	
+	        $.ajax({
+	            type: "POST",
+	            url: '/myPage/detailAccept',
+	            data: data,
+	            success: function (response) {
+	                const course = response.course;
+	                console.log(course);
+	                
+	                // 모달창에 강의 정보 채우기
+	                fillModalWithCourseData(course);
+
+	                // 모달 대화 상자 열기
+	                $("#viewForm").dialog("open");
+
+	                // 강의 상태에 따라 버튼 처리
+	                ButtonAccordingToCourseStatus(course.status_code, courseId);
+	            }
+	        });
+	    }
+	    
+	 	// 모달창에 강의 정보를 채우는 함수
+	    function fillModalWithCourseData(course) {
+	        var statusElement = $(".detail-top .status.accept.detail");
+	        statusElement.text(course.status_code);
+	        if (course.status_code === '진행 취소요청이 왔어요' || course.status_code === '진행 취소요청 보냄') {
+	            statusElement.removeClass('status accept detail').addClass('status accept dontMove detail');
+	        } else {
+	            statusElement.removeClass('dontMove');
+	        }
+
+	        $(".detail-top .detail-board_id").text("no." + course.board_id);
+	        $(".task-name.detail-title").text(course.title);
+	        $(".detail-give-talent").text(course.give_talent);
+	        $(".detail-receive-talent").text(course.receive_talent);
+	        $(".details .date.detail-date").text("시작날짜 : " + course.start_date);
+
+	        // 사용자 레이블 설정
+	        const requesterLabel = (course.applyer_nickname === "${principal.user.nickName}") ? '신청자' : '요청자';
+	        const labelText = requesterLabel + ": " + course.applyer_nickname;
+	        $(".details .requester.detail-user").text(labelText);
+	    }
+	 
+	 	// 강의 상태에 따라 버튼을 처리하는 함수
+	    function ButtonAccordingToCourseStatus(status, courseId) {
+	        if (status === '진행 결정!') {
+	            $("#detail-complete").show().data("courseid", courseId); ;
+	            $("#detail-cancel").show().data("courseid", courseId); ;
+	            $("#detail-reAccept").hide();
+	            $("#detail-cancelAccept").hide();
+	        } else if (status === '진행 취소요청 보냄') {
+	            $("#detail-complete").hide();
+	            $("#detail-cancel").hide();
+	            $("#detail-reAccept").show().data("courseid", courseId); ;
+	            $("#detail-cancelAccept").hide();
+	        } else if (status == '진행 취소요청이 왔어요') {
+	            $("#detail-complete").hide();
+	            $("#detail-cancel").hide();
+	            $("#detail-reAccept").hide();
+	            $("#detail-cancelAccept").show().data("courseid", courseId); ;
+	        }
+	    }
 		    
 		    
-		    $("#detail-complete").click(function(e) {
-		    	e.preventDefault();
-		    	
-		    	const courseId = $(".kanban-board .bucket.accept .tasks .task-card").data("courseid");
-		    	console.log(courseId);
-		    	
-		    	$.ajax({
-		            type: "POST",
-		            url: '/myPage/updateCompletedWaiting',
-		            data: { course_id: courseId },
-		            success: function(response) {
-	            		const updatedCompletedWaitingList = response.updatedCompletedWaitingList;
-		            
-	            		// "completedWaitingBucket"로부터 카드 리스트를 가져옴
-	                    const completedWaitingBucket = $(".kanban-board .bucket.completedWaiting .tasks");
-	                    
-	                    // "acceptBucket"로부터 카드 리스트를 가져옴
-	                    const acceptBucket = $(".kanban-board .bucket.accept .tasks");
-	                    
-	                 	// "acceptBucket"로부터 해당 테스크 카드를 찾아내어 제거하고
-	                    const taskCard = $(".kanban-board .bucket.accept .tasks .task-card[data-courseid='" + courseId + "']");
-	                    taskCard.remove();
+	    $("#detail-complete").click(function(e) {
+	    	e.preventDefault();
+	    	
+	    	const courseId = $(".kanban-board .bucket.accept .tasks.accept .task-card").data("courseid");
+	    	console.log(courseId);
+	    	
+	    	$.ajax({
+	            type: "POST",
+	            url: '/myPage/updateCompletedWaiting',
+	            data: { course_id: courseId },
+	            success: function(response) {
+            		const updatedCompletedWaitingList = response.updatedCompletedWaitingList;
+	            
+            		// "completedWaitingBucket"로부터 카드 리스트를 가져옴
+                    const completedWaitingBucket = $(".kanban-board .bucket.completed-waiting .tasks");
+                    
+                    // "acceptBucket"로부터 카드 리스트를 가져옴
+                    const acceptBucket = $(".kanban-board .bucket.accept .tasks");
+                    
+                 	// "acceptBucket"로부터 해당 테스크 카드를 찾아내어 제거하고
+                    const taskCard = $(".kanban-board .bucket.accept .tasks .task-card[data-courseid='" + courseId + "']");
+                    taskCard.remove();
 
-	                 	// 테스크 카드 클래스 변경
-	                    taskCard.removeClass("task-card").addClass("task-card dontMove");
+                 	// 테스크 카드 클래스 변경
+                    taskCard.removeClass("task-card").addClass("task-card dontMove");
 
-	                    // status 클래스 변경
-	                    const statusElement = taskCard.find(".status");
-	                    statusElement.removeClass("accept").addClass("completed-waiting dontMove");
-	                    statusElement.text("완료 결정 기다리는 중..");
-	                    
-	                    // "completedWaitingBucket"로 이동시킬 테스크 카드 생성
-	                    const taskCardClone = taskCard.clone();
+                    // status 클래스 변경
+                    const statusElement = taskCard.find(".status");
+                    statusElement.removeClass("accept").addClass("completed-waiting dontMove");
+                    statusElement.text("완료 결정 기다리는 중..");
+                    
+                 	// title 클래스 변경
+                    const titleElement = taskCard.find(".task-name");
+                    titleElement.addClass("dontMove");
+                    
+                    // "completedWaitingBucket"로 이동시킬 테스크 카드 생성
+                    const taskCardClone = taskCard.clone();
 
-	                    // "completedWaitingBucket"에 테스크 카드 추가
-	                    $(".kanban-board .bucket.completed-waiting .tasks").append(taskCardClone);
+                    // "completedWaitingBucket"에 테스크 카드 추가
+                    completedWaitingBucket.append(taskCardClone);
 
-	                    
-	                    $("#viewForm").dialog("close");
-	                    alert('완료요청');
-		            }
-		            
-		    	}); 
-		    	
-		    });
-		    
-		    $("#detail-cancel").click(function(e) {
-		    	e.preventDefault();
-		    	
-		    	const courseId = $(".kanban-board .bucket.accept .tasks .task-card").data("courseid");
-		    	console.log(courseId);
-		    	
-		    	$.ajax({
-		            type: "POST",
-		            url: '/myPage/updateCancel',
-		            data: { course_id: courseId },
-		            success: function(response) { 
-	            		const updatedCalcelList = response.updatedCalcelList;
+                    
+                    $("#viewForm").dialog("close");
+                    alert('완료요청');
+	            }
+	            
+	    	}); 
+	    	
+	    });
+	    
+	    $("#detail-cancel").click(function(e) {
+	    	e.preventDefault();
+	    	
+	    	const courseId = $(".kanban-board .bucket.accept .tasks.accept .task-card").data("courseid");
+	    	console.log(courseId);
+	    	
+	    	$.ajax({
+	            type: "POST",
+	            url: '/myPage/updateCancel',
+	            data: { course_id: courseId },
+	            success: function(response) { 
+            		const updatedCalcelList = response.updatedCalcelList;
 
-	                    // "acceptBucket"로부터 카드 리스트를 가져옴
-	                    const acceptBucket = $(".kanban-board .bucket.accept .tasks");
-	                    
-	                    const taskCard = $(".kanban-board .bucket.accept .tasks .task-card[data-courseid='" + courseId + "']");
-	                 
-	                 	// 테스크 카드 클래스 변경
-	                    taskCard.addClass("dontMove");
+                    // "acceptBucket"로부터 카드 리스트를 가져옴
+                    const acceptBucket = $(".kanban-board .bucket.accept .tasks");
+                    
+                    const taskCard = $(".kanban-board .bucket.accept .tasks .task-card[data-courseid='" + courseId + "']");
+                 
+                 	// 테스크 카드 클래스 변경
+                    taskCard.addClass("dontMove");
 
-	                    // status 클래스 변경
-	                    const statusElement = taskCard.find(".status");
-	                    statusElement.addClass("dontMove");
-	                    statusElement.text("진행 취소요청 보냄");
-	                    
-	                 	// title 클래스 변경
-	                    const titleElement = taskCard.find(".task-name");
-	                    titleElement.addClass("dontMove");
-	                    
-	                    $("#viewForm").dialog("close");
-	                    alert('진행 취소 요청');
-		           }
-		            
-		    	}); 
-		    	
-		    });
-		    
-		    $("#detail-reAccept").click(function(e) {
-		    	e.preventDefault();
-		    	
-		    	const courseId = $(".kanban-board .bucket.accept .tasks .task-card.dontMove").data("courseid");
-		    	console.log(courseId);
-		    	
-		    	$.ajax({
-		            type: "POST",
-		            url: '/myPage/updateReAccept',
-		            data: { course_id: courseId },
-		            success: function(response) { 
-	            		const updatedReAcceptList = response.updatedReAcceptList;
+                    // status 클래스 변경
+                    const statusElement = taskCard.find(".status");
+                    statusElement.addClass("dontMove");
+                    statusElement.text("진행 취소요청 보냄");
+                    
+                 	// title 클래스 변경
+                    const titleElement = taskCard.find(".task-name");
+                    titleElement.addClass("dontMove");
+                    
+                    $("#viewForm").dialog("close");
+                    alert('진행 취소 요청');
+	           }
+	            
+	    	}); 
+	    	
+	    });
+	    
+	    $("#detail-reAccept").click(function(e) {
+	    	e.preventDefault();
+	    	
+	    	const courseId = $(".kanban-board .bucket.accept .tasks.accept .task-card.dontMove").data("courseid");
+	    	console.log(courseId);
+	    	
+	    	$.ajax({
+	            type: "POST",
+	            url: '/myPage/updateReAccept',
+	            data: { course_id: courseId },
+	            success: function(response) { 
+            		const updatedReAcceptList = response.updatedReAcceptList;
 
-	                    // "acceptBucket"로부터 카드 리스트를 가져옴
-	                    const acceptBucket = $(".kanban-board .bucket.accept .tasks");
-	                    
-	                    const taskCard = $(".kanban-board .bucket.accept .tasks .task-card[data-courseid='" + courseId + "']");
-	                 
-	                 	// 테스크 카드 클래스 변경
-	                    taskCard.removeClass("task-card dontMove").addClass("task-card");
+                    // "acceptBucket"로부터 카드 리스트를 가져옴
+                    const acceptBucket = $(".kanban-board .bucket.accept .tasks");
+                    
+                    const taskCard = $(".kanban-board .bucket.accept .tasks .task-card[data-courseid='" + courseId + "']");
+                 
+                 	// 테스크 카드 클래스 변경
+                    taskCard.removeClass("task-card dontMove").addClass("task-card");
 
-	                    // status 클래스 변경
-	                    const statusElement = taskCard.find(".status");
-	                    statusElement.removeClass("accept dontMove").addClass("accept");
-	                    statusElement.text("진행 결정!");
-	                    
-	                 	// title 클래스 변경
-	                    const titleElement = taskCard.find(".task-name");
-	                    titleElement.removeClass("dontMove");
-	                    
-	                    $("#viewForm").dialog("close");
-	                    alert('다시 진행 요청');
-		           }
-		            
-		    	}); 
-		    	
-		    });
-		    
-		    $("#detail-cancelAccept").click(function(e) {
-		    	e.preventDefault();
-		    	
-		    	const courseId = $(".kanban-board .bucket.accept .tasks .task-card.dontMove").data("courseid");
-		    	console.log(courseId);
-		    	
-		    	$.ajax({
-		            type: "POST",
-		            url: '/myPage/updateCancelAccept',
-		            data: { course_id: courseId },
-		            success: function(response) { 
-	            		const updatedCancelAcceptList = response.updatedCancelAcceptList;
-	                    
-	            		// "trashBucket"로부터 카드 리스트를 가져옴
-	                    const trashBucket = $(".kanban-board .bucket.trash .tasks");
-	            		
-	                    // "acceptBucket"로부터 카드 리스트를 가져옴
-	                    const acceptBucket = $(".kanban-board .bucket.accept .tasks");
-	                    
-	                 	// "acceptBucket"로부터 해당 테스크 카드를 찾아내어 제거하고
-	                    const taskCard = $(".kanban-board .bucket.accept .tasks .task-card[data-courseid='" + courseId + "']");
-	                    taskCard.remove();
-	                    
-	                 	// 테스크 카드 클래스 변경
-	                    taskCard.removeClass("task-card").addClass("task-card dontMove");
+                    // status 클래스 변경
+                    const statusElement = taskCard.find(".status");
+                    statusElement.removeClass("accept dontMove").addClass("accept");
+                    statusElement.text("진행 결정!");
+                    
+                 	// title 클래스 변경
+                    const titleElement = taskCard.find(".task-name");
+                    titleElement.removeClass("dontMove");
+                    
+                    $("#viewForm").dialog("close");
+                    alert('다시 진행 요청');
+	           }
+	            
+	    	}); 
+	    	
+	    });
+	    
+	    $("#detail-cancelAccept").click(function(e) {
+	    	e.preventDefault();
+	    	
+	    	const courseId = $(".kanban-board .bucket.accept .tasks.accept .task-card.dontMove").data("courseid");
+	    	console.log(courseId);
+	    	
+	    	$.ajax({
+	            type: "POST",
+	            url: '/myPage/updateCancelAccept',
+	            data: { course_id: courseId },
+	            success: function(response) { 
+            		const updatedCancelAcceptList = response.updatedCancelAcceptList;
+                    
+            		// "trashBucket"로부터 카드 리스트를 가져옴
+                    const trashBucket = $(".kanban-board .bucket.trash .tasks");
+            		
+                    // "acceptBucket"로부터 카드 리스트를 가져옴
+                    const acceptBucket = $(".kanban-board .bucket.accept .tasks");
+                    
+                 	// "acceptBucket"로부터 해당 테스크 카드를 찾아내어 제거하고
+                    const taskCard = $(".kanban-board .bucket.accept .tasks .task-card[data-courseid='" + courseId + "']");
+                    taskCard.remove();
+                    
+                 	// 테스크 카드 클래스 변경
+                    taskCard.removeClass("task-card").addClass("task-card dontMove");
 
-	                    // status 클래스 변경
-	                    const statusElement = taskCard.find(".status");
-	                    statusElement.removeClass("accept").addClass("trash dontMove");
-	                    statusElement.text("취소된 강의 삭제");
-	                    
-	                    // "trashBucket"로 이동시킬 테스크 카드 생성
-	                    const taskCardClone = taskCard.clone();
+                    // status 클래스 변경
+                    const statusElement = taskCard.find(".status");
+                    statusElement.removeClass("accept").addClass("trash dontMove");
+                    statusElement.text("취소된 강의 삭제");
+                    
+                    // "trashBucket"로 이동시킬 테스크 카드 생성
+                    const taskCardClone = taskCard.clone();
 
-	                    // "trashBucket"에 테스크 카드 추가
-	                    $(".kanban-board .bucket.trash .tasks").append(taskCardClone);
-	                    
-	                    $("#viewForm").dialog("close");
-	                    alert('진행 취소 완료. 휴지통으로 이동합니다.');
-		           }
-		            
-		    	}); 
-		    	
-		    });
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		});
+
+                    // "trashBucket"에 테스크 카드 추가
+                    $(".kanban-board .bucket.trash .tasks").append(taskCardClone);
+                    
+                    $("#viewForm").dialog("close");
+                    alert('진행 취소 완료. 휴지통으로 이동합니다.');
+	           }
+	            
+	    	}); 
+	    	
+	    });
+
 	});
 		
     </script>
