@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.project.tnet.config.auth.PrincipalDetails;
 import com.project.tnet.dto.ChatRoom;
 import com.project.tnet.dto.MemberVO;
+import com.project.tnet.dto.Message;
 import com.project.tnet.service.ChatRoomService;
 import com.project.tnet.service.MessageService;
 
@@ -29,6 +30,8 @@ public class ChatRoomController {
 	private ChatRoomService chatRoomService;
 	@Autowired
 	private MessageService messageService;
+	
+	
 	
 	@RequestMapping("/myPage/chatRoom")
 	public String goToRoomList(Authentication authentication,HttpSession session , Model model, ChatRoom room) {
@@ -47,21 +50,56 @@ public class ChatRoomController {
 	
 	@ResponseBody
 	@RequestMapping("/chat/createRoom")
-	public ChatRoom createRoom(Authentication authentication,HttpSession session, @RequestBody ChatRoom chatRoom) {
+	public Map<String, Object> createRoom(Authentication authentication,HttpSession session, @RequestBody ChatRoom chatRoom) {
+		Map<String , Object> result = new HashMap<>();
+		
 		if (authentication.getPrincipal() instanceof PrincipalDetails) {
 			PrincipalDetails userDetails = (PrincipalDetails) authentication.getPrincipal();
 			MemberVO member= (MemberVO)userDetails.getUser();
 			chatRoom.setSender(member.getNickName());
-			chatRoomService.createRoom(chatRoom);
+			
+			
+			if (chatRoom.getAgreeChat().equals("수락")) {
+				
+				
+				result.put("bool", true);
+				result.put("chatRoom",chatRoomService.createRoom(chatRoom));
+				
+				
+			}
+			else {
+				ChatRoom value = chatRoomService.getRoom(chatRoom);
+				
+				result.put("exist", (value!=null));
+				if (value != null) {
+					result.put("roomInfo", chatRoomService.findRoomById(value.getRoom_id()));
+					result.put("chatList",messageService.selectMessageList(value.getRoom_id()));
+				}
+				else {
+					chatRoomService.createRoom(chatRoom);
+					result.put("roomInfo", chatRoomService.getRoom(chatRoom));
+				}
+				
+				
+			}
 		
 		}
-		return chatRoom;
+		return result;
 	}
 	@ResponseBody
 	@RequestMapping("/chat/enterRoom/{room_id}")
-	public Map<String,Object> goToEnterRoom( @PathVariable(value="room_id") String roomId) {
+	public Map<String,Object> goToEnterRoom(Authentication authentication, @PathVariable(value="room_id") String roomId, Message message) {
 		System.out.println("roomInfo -> "+ chatRoomService.findRoomById(roomId));
 		Map<String,Object> result = new HashMap<>();
+		
+		if (authentication.getPrincipal() instanceof PrincipalDetails) {
+			PrincipalDetails userDetails = (PrincipalDetails) authentication.getPrincipal();
+			MemberVO member= (MemberVO)userDetails.getUser();
+			message.setReceiver(member.getNickName());
+			messageService.updateReadCount(message);
+		}
+		
+		
 		result.put("roomInfo", chatRoomService.findRoomById(roomId));
 		result.put("chatList",messageService.selectMessageList(roomId));
 		return result;

@@ -12,8 +12,8 @@
 from (select ROWNUM as rnum , A.*
         from(   	SELECT b.board_id,
 			       b.title,
-			       t.low_name AS givtalent,
-			       t2.low_name AS recivetalent,
+			       t.low_name AS givetalent,
+			       t2.low_name AS receivetalent,
 			       b.writer_nickname,
 			       b.read_count,
 			       b.register_date,
@@ -40,11 +40,173 @@ from (select ROWNUM as rnum , A.*
 
 	</select>
 	
-<!--총 공지사항 갯수 -->
+<!--총 게시판 갯수 -->
 		<select id="totalcount" resultType="java.lang.Integer" >
-			select count(*) from notice where deleted_yn ='N'
+			select count(*) from board where delete_yn ='N'
 		</select>	
 	
 
 	
+	<!-- 게시글 리스트 불러오기 -->
+	<select id="selectBoardList" resultType="com.project.tnet.dto.Board">
+			select b.*
+			from (
+			        select rownum nrow, a.*
+			        from (
+			                select board_id
+			                		,title
+			                        ,contents
+			                        ,city_name
+			                        ,district_name
+			                        ,ts1.low_name give_talent
+			                        , ts2.low_name receive_talent
+			                        
+			                from board join district using(district_code, city_code) join city using(city_code)
+			                        join talent_small ts1 on board.give_talent = ts1.low_code
+			                        join talent_small ts2 on board.receive_talent = ts2.low_code
+			                       
+			                <where>
+								  <if test=' city_code != null and city_code != "0" and city_code != ""'>
+								    AND city_code = #{city_code}
+								  </if>
+								  <if test='district_code != null and  district_code != "0" and  district_code != "" '>
+								    AND district_code = #{district_code}
+								  </if>
+								  <if test='low_code != null and  low_code != "0" and  low_code != ""'>
+								    AND board.receive_talent = #{low_code}
+								  </if>
+								  <if test='high_code != null and high_code != "0" and high_code != ""'>
+		  						    AND ts2.high_code = #{high_code}
+								  </if> 
+							 </where>        
+			                order by register_date desc
+			                ) a
+			<![CDATA[            
+			        where rownum <= #{endNo}) b
+			    where nrow between #{startNo} and #{endNo}
+			]]>
+	</select>
+	
+	<select id="getTotalCount" resultType="int">
+		select count(*) 
+		 from board join district using(district_code,city_code)join city using(city_code)
+			                        join talent_small ts1 on board.give_talent=ts1.low_code
+			                        join talent_small ts2 on board.receive_talent=ts2.low_code
+			                <where>
+								  <if test=' city_code != null and city_code != "0" and city_code != ""'>
+								    AND city_code = #{city_code}
+								  </if>
+								  <if test='district_code != null and  district_code != "0" and  district_code != "" '>
+								    AND district_code = #{district_code}
+								  </if>
+								  <if test='low_code != null and  low_code != "0" and  low_code != ""'>
+								    AND board.receive_talent = #{low_code}
+								  </if>
+								  <if test='high_code != null and high_code != "0" and high_code != ""'>
+		  						    AND ts2.high_code = #{high_code}
+								  </if> 
+							 </where>
+	</select>
+	<!-- 게시글 삭제 -->
+	<update id="deleteBoard">
+		update board
+		set delete_yn='Y'
+		where board_id = #{board_id}
+	
+	</update>
+	<!-- 시코드 리스트 -->
+	<select id="getCityCodeList" resultType="com.project.tnet.dto.City">
+		select * from city
+	
+	</select>
+	<!-- 시에 따른 지역분류 -->
+	<select id="getDistrictByCodeList" resultType="com.project.tnet.dto.District">
+		select district_code, district_name
+		from district
+		<if test="city_code != null">
+			where city_code = #{city_code}
+		</if>
+	
+	</select>
+	<!-- 재능 대분류 가져오기 -->
+	<select id="getTalentHighList" resultType="com.project.tnet.dto.TalentHigh">
+		select high_code, high_name
+		from talent_high
+	
+	</select>
+	<!-- 재능 소분류 찾아오기 -->
+	<select id="getTalentSmallList" resultType="com.project.tnet.dto.TalentSmall">
+		select low_code, low_name
+		from talent_small
+		<if test="high_code != null">
+			where high_code=#{high_code}
+		</if>
+	</select>
+	
+	<select id="getBoard" resultType="com.project.tnet.dto.Board">
+			select board_id
+			      , title
+                  ,contents
+                  ,writer_nickname
+                  ,read_count
+                  ,register_date
+                  ,city_name
+                  ,district_name
+                  ,ts1.low_name give_talent
+                  , ts2.low_name receive_talent
+                  ,gender
+			 from board join district using(district_code,city_code)join city using(city_code)
+				                        join talent_small ts1 on board.give_talent=ts1.low_code
+				                        join talent_small ts2 on board.receive_talent=ts2.low_code
+				                        join member m on board.writer_nickname = m.nickname
+			where board_id = #{board_id}
+	</select>
+	<!-- 수강테이블에 board의 게시글 talent의 번호를 넣기 위해 검색 -->
+	<select id="getCourseBoard" resultType="com.project.tnet.dto.Board">
+		select * from board
+		where board_id = #{board_id}
+	</select>
+	
+	<update id="updateReadCount">
+		update board
+		set read_count = read_count + 1
+		where board_id = ${board_id}
+	</update>
+	
+	<insert id="insertBoard">
+		<selectKey keyProperty="board_id" resultType="int"  order="BEFORE">
+					select 
+						board_num.nextval board_id 
+					from dual
+			</selectKey>
+		insert into board(
+					board_id
+					,title
+					,contents
+					,writer_nickname
+					,register_date
+					,status_code
+					,district_code
+					,city_code
+					,give_talent
+					,receive_talent
+					,high_code
+					
+					)values(
+						#{board_id}
+						,#{title}
+						,#{contents}
+						,#{writer_nickname}
+						,sysdate
+						,'SC01'
+						,#{district_code}
+						,#{city_code}
+						,#{give_talent}
+						,#{receive_talent}
+						,#{high_code}
+					
+					)
+	
+	</insert>
+
 </mapper>

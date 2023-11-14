@@ -105,4 +105,15 @@ public class MyPageService {
 		return myPageDAO.updateCancelAccept(nickName, course_id);
 	}
 	
+	public Course getCourse(Course course) {
+		return myPageDAO.getCourse(course);
+	}
+	
+	public Course getCoursebyId(Course course) {
+		return myPageDAO.getCoursebyId(course);
+	}
+	public Course getCourseAgreeInvolve(Course course) {
+		return myPageDAO.getCourseAgreeInvolve(course);
+	}
+	
 }

@@ -107,6 +107,20 @@
   content: "▶";
   color: #F9EB54;
 }
+.wrap::-webkit-scrollbar {
+  width: 10px;  /* 스크롤바의 너비 */
+}
+.wrap::-webkit-scrollbar-thumb {
+  height: 30%; /* 스크롤바의 길이 */
+  background: rgb(214, 214, 214); /* 스크롤바의 색상 */
+  border-radius: 10px;
+}
+ 
+.wrap::-webkit-scrollbar-track {
+  background: #84848447;  /*스크롤바 뒷 배경 색상*/
+}
+
+
 
 .sender-time{
   position: relative;

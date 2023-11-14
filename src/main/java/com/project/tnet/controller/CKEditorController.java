@@ -4,9 +4,9 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,7 +14,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.project.tnet.config.auth.PrincipalDetails;
+import com.project.tnet.dto.Board;
+import com.project.tnet.dto.MemberVO;
 import com.project.tnet.service.AttachFileService;
+import com.project.tnet.service.BoardService;
 import com.project.tnet.service.FileTokenService;
 
 import lombok.RequiredArgsConstructor;
@@ -27,13 +31,18 @@ public class CKEditorController {
 	// 생성자를 통해 의존성을 주입하는 방법	
 	private final FileTokenService fileTokenService;
 	private final AttachFileService fileUploadService;
-
+	private final BoardService boardService;
+	
 //	@GetMapping(value={"/ckeditorForm"})
 	@RequestMapping(value={"/ckeditorForm.do"})
-	public String ckeditorForm(Model model) throws IOException {
+	public String ckeditorForm(Model model,Board board) throws IOException {
 		final String token = fileTokenService.getToken();	//게시글 작성페이지로 넘어가기전에 token부터 만들어준다.
 		log.debug("token = ", token);
 		model.addAttribute("token", token); //UUID로 생성한 token을 JSP로 보내준다. 
+		model.addAttribute("cityList", boardService.getCityCodeList());
+		model.addAttribute("districtList",boardService.getDistrictByCodeList(board));
+		model.addAttribute("talentHighList", boardService.getTalentHighList());
+		model.addAttribute("talentSmallList", boardService.getTalentSmallList(board));
 		return "board/boardWrite";
 	}
 
@@ -69,11 +78,9 @@ public class CKEditorController {
 	// 이미지 저장 시 token 값도 같이 이미지 저장시 사용한다.
 	// 최종으로 작업이 완료될 때 token을 이용 마무리 작업을 처리한다 
 	// 만약 마지막 작업이 완료 되지 않은 경우 스토리지 서버에 저장된 파일을 삭제 할 수 있게 구현 해야 한다(현재는 사용하지 않음)
-	
-	
 	@PostMapping(value = "/ckeditorWrite")
 	@ResponseBody
-	public Map<String, Object> ckeditorWrite(@RequestBody Map<String, Object> param) throws Exception {
+	public Map<String, Object> ckeditorWrite(@RequestBody Map<String, Object> param,Authentication authentication) throws Exception {
 		
 		// jsp에서 불러온 data가 정상적으로 컨트롤러로 넘어왔는지 확인하기 위해 출력문으로 찍어봄.		
 		System.out.println(param);
@@ -81,7 +88,20 @@ public class CKEditorController {
 		//실제 전달된 값을 서버에 저장 하면 됨 
 		//현재는 구현하지 않고 로그로 출력함 함
 		//해당 token값만 디비에  상태 변경함  
-		fileUploadService.updateUseStatus(param);
+		//boardInser할때 boardNum -> 
+		if (authentication.getPrincipal() instanceof PrincipalDetails) {
+			PrincipalDetails userDetails = (PrincipalDetails) authentication.getPrincipal();
+			MemberVO member= (MemberVO)userDetails.getUser();
+			param.put("writer_nickname",member.getNickName());
+		}
+		
+		
+		
+		
+		boardService.insertBoard(param);
+		System.out.println("param 값을 넣고 난후  -> "+ param);
+		
+		fileUploadService.updateUseStatus(param);//boardId
 		
 		Map<String, Object> result = new HashMap<>();
 		result.put("uploaded", true); // 업로드 완료

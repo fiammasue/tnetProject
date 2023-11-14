@@ -129,7 +129,11 @@ function drawChart(line_data,id_value) {
         chart: {
         },
         width: 400,
-        height: 300
+        height: 300,
+        pointSize: 10,  // 원하는 크기로 조절
+        series: {
+          0: { pointShape: 'circle' }  // 다른 모양도 시도 가능(square, triangle, diamond 등)
+        }
       };
 
       var chart = new google.charts.Line(document.getElementById(id_value));

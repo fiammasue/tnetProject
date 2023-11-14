@@ -482,13 +482,11 @@
 	});
 	/* ************************************************************************** */
 		
-		
-	
-	/* ************************************************************************** */
-	/* 칸반보드카드 */
-	/* ************************************************************************** */
-	$(document).ready(function() {
-		
+$(document).ready(function() {
+		/* ************************************************************************** */
+		/* 칸반보드카드 */
+		/* ************************************************************************** */
+
 		// Step 1: HTML 구조를 기반으로 초기화합니다.
 		const acceptBucket = document.querySelector('.bucket.accept .tasks.accept');
 		const waitingBucket = document.querySelector('.bucket.waiting .tasks.waiting');
@@ -619,6 +617,37 @@
 	     	// 서버에서 진짜 데이터가 바뀔 수 있도록 함
 		    const courseId = card.getAttribute('data-courseid');
 		    updateAccept(courseId);
+      
+		    //---------------채팅방생성 및 재능기부 진행
+		   const param = {
+				agreeChat : "수락",
+				receiver : $(".applyer_nickname").text(),
+				board_id : boardId,
+				course_id : courseId
+			};
+			$.ajax({
+				url:"/chat/createRoom",
+				method: "POST",
+				contentType: "application/json; charset=UTF-8",
+				data: JSON.stringify(param),
+				dataType:"json",
+				success:function(json){
+					 if(json.bool==true){
+						 alert("채팅방이 생성되었습니다.");
+						 ws.send("/pub/join/agree",{},JSON.stringify({
+								type:'ALARM'
+								,type_string:"ALARM"
+								,sender:json.chatRoom.sender
+								,receiver:json.chatRoom.receiver
+								,course_id:courseId
+								}));
+					 }
+				}
+				
+			});
+			
+			
+		    
 		    
 		    //화면 데이터 바뀔 수 있도록 함
 	        // 클래스명, 상태 코드, 날짜 변경
@@ -891,8 +920,8 @@
 		    });
 		}
 		
-
 		
+
 		// Step 5
 		// 수락 상태 칸반보드 카드 요소에 드래그 앤 드롭 이벤트를 추가
 		const acceptCards = document.querySelectorAll('.bucket.accept .task-card');
@@ -1363,6 +1392,7 @@
                     // "trashBucket"로 이동시킬 테스크 카드 생성
                     const taskCardClone = taskCard.clone();
 
+
                     // "trashBucket"에 테스크 카드 추가
                     $(".kanban-board .bucket.trash .tasks").append(taskCardClone);
                     
@@ -1373,8 +1403,7 @@
 	    	}); 
 	    	
 	    });
-	    
-	    
+
 	});
 		
     </script>

@@ -54,44 +54,12 @@ public class MemberVO{
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	//페이징필드
 	private int pageNo = 1;     // 현재 페이지 번호
 	private int totalCount;     // 전체 건수 (건수가 있어야 페이지 계산함..)
 	private int totalPageSize;  // 전체 페이지수 (계산된 페이지 개수)
-	private int pageLength = 10;// 한 페이지당 보여줄 게시물 갯수(크기)
-	private int navSize = 10;   // 페이지 하단에 출력되는 페이지의 항목수 (보통 10개씩 보여줌)
+	private int pageLength = 12;// 한 페이지당 보여줄 게시물 갯수(크기)
+	private int navSize = 5;   // 페이지 하단에 출력되는 페이지의 항목수 (보통 10개씩 보여줌)
 	private int navStart = 0;   // 페이지 하단에 출력되는 페이지 시작 번호 : NavStart = ((PageNo-1) / NavSize) * NavSize + 1
 	private int navEnd = 0;     // 페이지 하단에 출력되는 페이지 끝 번호 : NavEnd = ((PageNo-1) / NavSize + 1) * NavSize
 	private int startnum = 0;
