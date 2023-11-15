@@ -110,6 +110,7 @@ public class BoardController {
 			result.put("bool", true);
 			result.put("course", myPageService.getCourse(course));
 			System.out.println("coutseeddf -> "+myPageService.getCourse(course));
+			boardService.updateBoardStatus(board);
 //		}
 ////		이미 수강신청함
 //		else {
