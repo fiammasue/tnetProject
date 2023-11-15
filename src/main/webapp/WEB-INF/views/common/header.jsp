@@ -191,6 +191,20 @@ $(document).ready(function() {
 		if (recv.type_string==="ALARM") {
 			alert("ALARM");
 			alert(recv.contents, recv.receiver)
+			
+			
+			if (recv.alarm_code == "A01") {
+				var selectedElement = $('.chat-metadata.room-'+recv.room_id);
+				var deletedElement =$('.unread-messages.count-'+recv.room_id);
+				console.log("deletedElement => ",deletedElement)
+				deletedElement.remove();
+				
+				countInfo = `<div class="unread-messages count-`+ recv.room_id +`">`+ recv.receiver_count +`</div>`;
+				
+				selectedElement.append(countInfo);
+			}
+			
+			
 		}
 		else if (recv.type_string==="TALK") {
 			//시간 자르기

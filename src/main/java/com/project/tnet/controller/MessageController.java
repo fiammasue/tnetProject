@@ -58,13 +58,7 @@ public class MessageController {
 									.build();
 			//sender와 receiver를 가져오기 위해 채팅방정보를 가져옴
 			room = chatRoomService.getRoombyRoomId(room);
-//			System.out.println("room => "+ room);
-//			if(message.getSender() != room.getSender()) {
-//				message.setReceiver(room.getSender());
-//			}
-//			else {
-//				message.setSender(room.getReceiver());
-//			}
+		
 			
 			message.setType_string(MessageType.ENTER.name());
 			System.out.println("message => "+ message);
@@ -101,11 +95,27 @@ public class MessageController {
 									.receiver(message.getReceiver())
 									.sender(message.getSender())
 									.read_yn("N")
+									.room_id(message.getRoom_id())
 									.build();
-//				if (room.getReceiver() == message.getSender()) {
-//					alarm.setReceiver(room.getSender());
-//					
-//				}
+				int flag = 0;
+				//안읽음 표시
+				if(room.getReceiver().equals(message.getReceiver())) {
+					chatRoomService.updateNotReceiverReadCount(message.getRoom_id());
+					flag = 1;
+					System.out.println("Receiver => 여기만 지나가나 ? "+ flag);
+				}
+				else {
+					chatRoomService.updateNotSenderReadCount(message.getRoom_id());
+				}
+				room = chatRoomService.findRoomById(message.getRoom_id());
+				// 안읽은 갯수 숫자 알람에 저장
+				if(flag == 1) {
+					alarm.setReceiver_count(room.getReceiver_count());
+				}
+				else {
+					alarm.setReceiver_count(room.getSender_count());
+				}
+				
 				System.out.println("alarm -> "+ alarm);
 				alarmService.insertAlarm(alarm);
 				messagingTemplate.convertAndSend("/sub/member/userId/"+message.getReceiver(), alarm,headerAccessor.getMessageHeaders());

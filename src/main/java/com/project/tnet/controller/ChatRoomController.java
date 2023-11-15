@@ -89,18 +89,28 @@ public class ChatRoomController {
 	@ResponseBody
 	@RequestMapping("/chat/enterRoom/{room_id}")
 	public Map<String,Object> goToEnterRoom(Authentication authentication, @PathVariable(value="room_id") String roomId, Message message) {
-		System.out.println("roomInfo -> "+ chatRoomService.findRoomById(roomId));
+		ChatRoom room = chatRoomService.findRoomById(roomId);
 		Map<String,Object> result = new HashMap<>();
 		
 		if (authentication.getPrincipal() instanceof PrincipalDetails) {
 			PrincipalDetails userDetails = (PrincipalDetails) authentication.getPrincipal();
 			MemberVO member= (MemberVO)userDetails.getUser();
 			message.setReceiver(member.getNickName());
+			//읽음으로 변경
 			messageService.updateReadCount(message);
+			System.out.println("roomSender => "+room.getSender());
+			System.out.println("nickName => "+ member.getNickName());
+			//여기서 읽음 카운트 삭제 해야한다
+			if (room.getSender().equals(member.getNickName())) {
+				chatRoomService.updateSenderReadCountZero(roomId);
+			}
+			else {
+				chatRoomService.updateReceiverReadCountZero(roomId);
+			}
 		}
 		
 		
-		result.put("roomInfo", chatRoomService.findRoomById(roomId));
+		result.put("roomInfo", room);
 		result.put("chatList",messageService.selectMessageList(roomId));
 		return result;
 	}
