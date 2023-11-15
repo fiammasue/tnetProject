@@ -37,6 +37,81 @@
 	    .nav-link:not(.active) {
 	    	color: black;
 	    }
+	    
+	 .modal-body{
+	   background-color: #f9f9f9; /* 배경색 설정 */
+	 } 
+	    
+	 /* 헤더 채팅알람창 CSS */
+     .alarm {
+	    margin-bottom: 10px; /* 알람 아이템 간 간격 조절 */
+	    padding: 10px; /* 내부 여백 설정 */
+	    border: 1px solid #ccc; /* 테두리 설정 */
+	    border-radius: 5px; /* 테두리 둥글게 설정 */
+	    background-color: white; /* 배경색 설정 */
+	        overflow: hidden; /* 부모 요소의 자식 요소를 감출 때 사용 (float을 사용할 때 필요) */
+ 		 }
+
+	  .alarm p {
+	    margin: 0; /* 문단의 기본 마진 제거 */
+	  }
+  
+	.alarm-id {
+	    display: none; /* alarm-id 숨김 */
+	}
+	
+	.alarm .date {
+	    float: right;
+	}
+	
+	.alarm .contents {
+	    clear: both;
+	}
+	
+	.alarm .deleteAlarm {
+    float: right;
+    background-color: gray; /* 삭제 버튼 배경색 */
+    color: #fff; /* 삭제 버튼 글자색 */
+    border: none; /* 테두리 제거 */
+    padding: 2px 6px; /* 내부 여백 설정 */
+    cursor: pointer; /* 커서를 손가락 형태로 변경 */
+    border-radius: 4px; /* 테두리 둥글게 설정 */
+}
+
+.alarm:hover {
+  background-color: #f0f0f0; /* 예시: 배경색 변경 */
+  cursor: pointer; /* 예시: 커서 모양 변경 */
+
+}
+
+.alarm .deleteAlarm:hover {
+    background-color: #c82333; /* 마우스 오버 시 배경색 변경 */
+}
+
+#modal-btn-footer{
+    background-color: gray; /* 삭제 버튼 배경색 */
+ color: #fff; /* 삭제 버튼 글자색 */
+    border: none; /* 테두리 제거 */
+    padding: 5px 7px; /* 내부 여백 설정 */
+    cursor: pointer; /* 커서를 손가락 형태로 변경 */
+    border-radius: 4px; /* 테두리 둥글게 설정 */
+    
+}
+
+ #modal-btn-footer:hover {
+    background-color: #c82333; /* 마우스 오버 시 배경색 변경 */
+}
+
+/* 헤더알람 채팅방 a태그 적용시 생기는 밑줄과 글자색제거 css */
+.alarmChatAnchor{
+	text-decoration: none; /* 밑줄 제거 */
+	color: inherit; /* 부모 엘리먼트의 색상 상속 */
+	   	       	  }
+	   	       	  
+.alarmChatAnchor:hover {
+	text-decoration: none; /* 밑줄 제거 */
+	color: inherit; /* 부모 엘리먼트의 색상 상속 */
+} 	       	  
   </style>
   
 </head>
@@ -58,9 +133,8 @@
           </ul>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
       
-
+      <div class="modal-body">
         <!-- 탭 내용 -->
         <div class="tab-content mt-2">
           <!-- 채팅 탭 내용 -->
@@ -75,7 +149,7 @@
       </div>
 
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>        
+        <button type="button" id="modal-btn-footer" >전체삭제</button>        
       </div>
     </div>
   </div>
@@ -107,8 +181,14 @@
 		          <li><a href="#">notice</a></li>
 		          <li><a href='<c:url value="/board/list"/>'>lesson</a></li>
 		          <li><a href="/myPage/userInfo">mypage</a></li>
-		          <!-- data-bs-toggle="modal" 아래코드에서 이부분을 삭제시킴 -->
-          		  <li><a href="#"><img id="bell" src="/assets/bell3(3).png" alt="" data-bs-target="#staticBackdrop"></a></li>
+      		      <li class="position-relative" style="width: 48px; height: 48px;">
+   		  	  		<img id="bell" src="/assets/bell3(3).png" alt="" data-bs-target="#staticBackdrop" >
+   		  	  		<!-- 헤더 알림테이블의 NEW 배지 -->
+   		  	  		<!-- 데이터가 존재하는 경우에만 New 스팬을 화면에 표시 -->
+                    <c:if test="${isAlarmDataExists}">
+                        <span class="position-absolute top-0 start-100 badge bg-danger" style="transform: translate(-50%, +40%) !important;">New</span>
+                    </c:if>
+      		  	  </li>
 		        </ul>
 		      </nav>
 		    </header>
@@ -148,7 +228,7 @@
 	</div>
 	
 <script>
-$(document).ready(function() {
+
 	/* 로그인 다이얼로그 창 띄우는 jquery */
 	var loginDialog = $( "#LoginDialog" ).dialog({
 	 autoOpen: false,
@@ -163,7 +243,7 @@ $(document).ready(function() {
 	$("#loginForm").on("click", function() {
 		loginDialog.dialog("open");
 	});
-	
+
 	//웹소켓 연결
 	var sock = new SockJS("/ws-stomp");
 	var ws = Stomp.over(sock);
@@ -248,18 +328,97 @@ $(document).ready(function() {
 	   	          const alarmItem = document.createElement("div");
 	   	          alarmItem.className = "alarm";
 	
+	   	       	  // <a> 태그 생성
+	   	          const anchorTag = document.createElement("a");
+	   	       	  anchorTag.className = "alarmChatAnchor";
+	   	          // 경로를 하드코딩하는 대신, 동적으로 경로를 생성하는 방법
+	   	          const url = "/myPage/chatRoom"; // 원하는 경로로 수정
+	   	          anchorTag.href = url;
+	   	        
 	   	          alarmItem.innerHTML = 
-	   	             "<input type='hidden' value='" + alarm.alarm_id + "' class='alarm-id'>"  +
-	   	              "<p>방제목: " + alarm.room_name + "</p>" + 
-	   	              "<p>내용: " + alarm.contents + "</p>" + 
-	   	            /*   "<p>수신자: " +  alarm.receiver + "</p>" + 
-	   	              "<p>송신자: " +  alarm.sender + "</p>" + 
-	   	              "<p>읽음여부: " + alarm.read_yn + "</p>" +
-	   	              "<p>방번호: " + alarm.room_id + "</p>" + */
-	   	              "<br><br>"
-	   	          commentListHTML.appendChild(alarmItem);
+	   	              "<input type='hidden' value='" + alarm.alarm_id + "' class='alarm-id'>"  +
+	   	          	  "<span><strong>" + alarm.room_name + "</strong></span>" +
+	   	          	  "<span class='date'>" + alarm.printDate + "</span>" +
+	   	              "<br><br>" +
+	   	          	  "<span class='contents'>" + alarm.contents + "</span>" +
+	   	          	  "<br>" +
+	   	          	  "<button class='deleteAlarm' type='button' data-alarm-id='" + alarm.alarm_id + "'>삭제</button>";
+
+
+	   	        // <a> 태그 안에 <div> 태그를 추가
+	   	        anchorTag.appendChild(alarmItem);
+
+	   	        // 최종적으로 <a> 태그를 #chat에 추가
+	   	        commentListHTML.appendChild(anchorTag);
 	   	      });
 		}
+	   
+	    // 채팅알람 삭제 버튼 클릭 이벤트 처리
+	    $(document).on("click", ".deleteAlarm", function(e) {
+	      e.preventDefault(); // 이벤트의 기본 동작을 막음
+	      
+	      var alarmId = $(this).data("alarm-id");
+	      var self = this; // 클로저를 활용하여 현재의 this를 저장
+	      // AJAX 요청
+	      $.ajax({
+	        type: "POST",
+	  	  	url: "<c:url value='/header/alarmDelete'/>",  
+	  	    contentType: "application/json; charset=UTF-8",
+   	  	    data: JSON.stringify({ alarm_id: alarmId }),// 컨트롤러로 전송할 데이터
+	        dataType: "json",
+	        success: function(response) {
+	        	 alert(response.message);
+				 if (response.status) {
+					// 클릭된 버튼과 가장 가까운 .alarm 클래스를 가진 부모 div 제거
+					$(self).closest(".alarm").remove(); 
+				 }
+	        },
+	      });
+	    });
+	   
+	    // 전체 삭제 버튼 클릭 시 이벤트 처리
+		$(document).on("click", "#modal-btn-footer", function(e) {
+		    // 현재 활성 탭을 확인
+		    var activeTabId = $(".nav-tabs .nav-item .active").attr("href");
+		    
+		    // 채팅 탭에 있는 알람들을 삭제
+		    if (activeTabId === "#chat") {
+		    	
+		    	 // 채팅 탭의 알람이 없으면 알림 메시지를 띄우고 종료
+		        if ($("#chat .alarm").length === 0) {
+		            alert("이미 전체삭제된 알람입니다.");
+		            return;
+		        }
+		    	 
+		        // AJAX 요청
+			      $.ajax({
+			        type: "POST",
+			  	  	url: "<c:url value='/header/allAlarmDelete'/>",  
+			        dataType: "json",
+			        success: function(response) {
+			        	 alert(response.message);
+						 if (response.status) {
+							  $("#chat .alarm").remove();
+						 }
+			        },
+			      });
+		    }
+		    // 진행상황 탭에 있는 알람들을 삭제
+		    else if (activeTabId === "#progress") {
+		    	
+		    	 // 진행상황 탭의 알람이 없으면 알림 메시지를 띄우고 종료
+		        if ($("#chat .alarm").length === 0) {
+		            alert("이미 전체삭제된 알람입니다.");
+		            return;
+		        }
+		    	 
+		        $("#progress .alarm").remove();
+		    }
+		    
+		    // 추가적으로 서버에 전체 삭제 요청을 보낼 수 있음
+		    // ...
+	
+		});
 	   
 	    // 다이얼로그가 닫힐 때 이벤트 처리
 	    $('#staticBackdrop').on('hidden.bs.modal', function () {
@@ -272,9 +431,8 @@ $(document).ready(function() {
 		   // 서버에 AJAX 요청을 보내서 해당 게시글의 내용을 가져옵니다.
 		   $.ajax({
 		      type: "POST",
-			  url: "<c:url value='/header'/>",  
+			  url: "<c:url value='/header/alarmSelect'/>",  
 		      contentType: "application/json; charset=UTF-8",
-		      /* data: {nickName: "${principal.user.nickName}"}, */
 		      dataType: "json",
 		      success: function(response) {
 		    	  console.log(response);
@@ -293,7 +451,7 @@ $(document).ready(function() {
 		   
 		});
 		 
-		});
+	
 </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 </body>

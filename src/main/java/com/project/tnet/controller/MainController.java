@@ -1,15 +1,21 @@
 package com.project.tnet.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.project.tnet.config.auth.PrincipalDetails;
 import com.project.tnet.dto.MemberVO;
+import com.project.tnet.service.AlarmService;
 
 @Controller
 public class MainController {
+	@Autowired
+	private AlarmService alarmService;
+	
 	@RequestMapping("/")
-	public String main(Authentication authentication) {
+	public String main(Authentication authentication, Model model) {
 
 		if (authentication != null) {
 			PrincipalDetails principalDetails = (PrincipalDetails)authentication.getPrincipal();
@@ -18,6 +24,9 @@ public class MainController {
 				MemberVO memberVO = principalDetails.getUser();
 				System.out.println("memberVO = " + memberVO);
 				
+				// Alarm 데이터가 존재하는지 확인
+		        boolean isAlarmDataExists = alarmService.isAlarmDataExists(memberVO.getNickName());
+		        model.addAttribute("isAlarmDataExists", isAlarmDataExists);
 			}
 		}
 		return "index";
