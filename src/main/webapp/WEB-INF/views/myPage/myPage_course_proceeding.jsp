@@ -444,35 +444,34 @@
 	/* ************************************************************************** */
 	/* 탭메뉴 */
 	/* ************************************************************************** */
-    function openTab(tabName, otherTabName) {
-        var i, tabContentMyPage, tabButtonsMyPage;
-        tabContentMyPage = document.querySelectorAll(".tab-content-myPage");
-        tabButtonsMyPage = document.querySelectorAll(".tab-button-myPage");
-        
-        for (i = 0; i < tabContentMyPage.length; i++) {
-        	tabContentMyPage[i].style.display = "none";
-        	tabButtonsMyPage[i].classList.remove("active");
-            console.log( tabButtonsMyPage[i]);
-        }
-         
+	function openTab(tabName, otherTabName) {
+	    var i, tabContentMyPage, tabButtonsMyPage;
+	    tabContentMyPage = document.querySelectorAll(".tab-content-myPage");
+	    tabButtonsMyPage = document.querySelectorAll(".tab-button-myPage");
+	    
+	    for (i = 0; i < tabContentMyPage.length; i++) {
+	    	tabContentMyPage[i].style.display = "none";
+	    	tabButtonsMyPage[i].classList.remove("active");
+	    }
+	     
 		document.getElementById(tabName).style.display = "block";
-        document.querySelector("[onclick*='" + tabName + "']").classList.add("active");
-        document.querySelector("[onclick*='" + otherTabName + "']").classList.remove("active");
-    }
+	    document.querySelector("[onclick*='" + tabName + "']").classList.add("active");
+	    document.querySelector("[onclick*='" + otherTabName + "']").classList.remove("active");
+	}
 
 	// 첫 번째 탭 버튼에 대한 클릭 이벤트 핸들러
-	const tabButtonMyPage1 = document.getElementById('tab-button1');
-	tabButtonMyPage1.addEventListener('click', () => {
-		tabButtonMyPage1.classList.add('active');
+	const tabButton1 = document.getElementById('tab-button1');
+	tabButton1.addEventListener('click', () => {
+		tabButton1.classList.add('active');
 		document.getElementById('tab-button2').classList.remove('active');
 		// 다른 탭 버튼에 "active" 클래스를 제거
 		// 탭 내용을 변경하거나 다른 작업을 수행할 수도 있음
 	});
 
 	// 두 번째 탭 버튼에 대한 클릭 이벤트 핸들러
-	const tabButtonMyPage2 = document.getElementById('tab-button2');
-	tabButtonMyPage2.addEventListener('click', () => {
-		tabButtonMyPage2.classList.add('active');
+	const tabButton2 = document.getElementById('tab-button2');
+	tabButton2.addEventListener('click', () => {
+		tabButton2.classList.add('active');
 		document.getElementById('tab-button1').classList.remove('active');
 		// 다른 탭 버튼에 "active" 클래스를 제거
 		// 탭 내용을 변경하거나 다른 작업을 수행할 수도 있음
@@ -614,12 +613,10 @@
 	        
 	     	// 서버에서 진짜 데이터가 바뀔 수 있도록 함
 		    const courseId = card.getAttribute('data-courseid');
-
-	     	
 		    updateAccept(courseId);
 
 
-		    //---------------채팅방생성 및 재능기부 진행
+		   //---------------채팅방생성 및 재능기부 진행
 
 		   const param = {
 				agreeChat : "수락",
@@ -777,11 +774,11 @@
 		    const courseId = card.getAttribute('data-courseid');
 		    updateCompleted(courseId);
 		    
-		    //*****완료 시점
+		    
 		    ws.send("/pub/complete/courseInvolve",{},JSON.stringify({
 								type:'ALARM'
 								,type_string:"ALARM"
-								,sender:"${principal.user.nickname}"
+								,sender:"${principal.user.nickName}"
 								,course_id:courseId
 								}));
 		    //화면 데이터 바뀔 수 있도록 함
@@ -814,7 +811,7 @@
 	        
 		 	// 서버에서 진짜 데이터가 바뀔 수 있도록 함
 		    const courseId = card.getAttribute('data-courseid');
-		    //updateReject(courseId);
+		    updateReject(courseId);
 		    
 		  	//화면 데이터 바뀔 수 있도록 함
 	        // 클래스명, 상태 코드, 날짜 변경
@@ -1250,11 +1247,11 @@
                     // "completedWaitingBucket"에 테스크 카드 추가
                     completedWaitingBucket.append(taskCardClone);
 
-                    //*****완료 신청 시점
+                    
                     ws.send("/pub/complete/courseAgree",{},JSON.stringify({
 								type:'ALARM'
 								,type_string:"ALARM"
-								,sender:"${principal.user.nickname}"
+								,sender:"${principal.user.nickName}"
 								,course_id:courseId
 								}));
                     
