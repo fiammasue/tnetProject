@@ -24,15 +24,17 @@
 <body>
 
 <div id="innerBoardDetail">
-<input id=board_id value="${board.board_id }"/>
+<input type="hidden" id=board_id value="${board.board_id }"/>
   <div class="item--XQC">
     <div class="auto-group-fgyx-zW4">
       <div class="button-6oz">
         <img class="vector-36-stroke-Q3z" src="/assets/vector-36-stroke.png"/>
         <div class="text-label-Kgk">목록으로</div>
       </div>
-      <div class="group-5-znt">수정</div>
-      <div class="group-6-TgU">삭제</div>
+<%--       <c:if test="${principal.user.nickname ==  board.writer_nickname}"> --%>
+	      <div class="group-5-znt">수정</div>
+	      <div class="group-6-TgU">삭제</div>
+<%--       </c:if> --%>
     </div>
     <div class="auto-group-jkgl-7W8">
       <div class="group-30929672-PiY">
@@ -52,7 +54,9 @@
             <p class="item-123-PGc">조회수 : ${board.read_count }</p>
             <p class="item-2023-10-22-11-23-12-UKz">게시일 : ${board.register_date }</p>
           </div>
-          <p class="item--n5n">신고 </p>
+<%--           <c:if test="${principal.user.nickname !=  board.writer_nickname}"> --%>
+          		<p class="item--n5n">신고 </p>
+<%--           </c:if> --%>
         </div>
       </div>
     </div>
@@ -72,7 +76,8 @@
           <img class="attach-rHv" src="/assets/attach.png"/>
           <div class="jdk-11020windows-x64binexe-NXA">첨부파일 : jdk-11.0.20_windows-x64_bin.exe</div>
         </div>
-        <img class="vector-50-UaC" src="REPLACE_IMAGE:27:880"/>
+        
+      
       </div>
 
     <div class="auto-group-mjac-BEx">
@@ -242,10 +247,56 @@
 		$("#messageBox").val("");
 	});
 	
+	$(".button-W2L").on("click",e => {
+		const param = {
+				board_id:$("#board_id").val()
+				,writer_nickname: $(".nickName").text()
+				,applyer_nickname: sender
+				,give_talent: $(".item--vTa").text()
+				,receive_talent: $(".item--LnC").text()
+			};
+		
+		
+		$.ajax({
+			url:"/course/join",
+			method: "POST",
+			contentType: "application/json; charset=UTF-8",
+			data: JSON.stringify(param),
+			dataType:"json",
+			success:function(json){
+				alert(json.bool)
+				 if(json.bool == true){
+					 alert("수강신청이 완료되었습니다.");
+					 var course = json.course;
+					 ws.send("/pub/join/course",{"content-type": "application/json;charset=utf-8"},JSON.stringify({
+								type_string:"AGREE"
+								,course_id:course.course_id
+								,writer_nickname: course.writer_nickname
+								,applyer_nickname:course.applyer_nickname
+								}));
+				 }
+// 				 else if(json.bool == "done"){
+// 					 alert("이미 신청한 게시글입니다.");
+// 				 }
+// 				 else{
+// 					 alert("수강신청이 실패했습니다.");
+// 				 }
+			}
+			
+		});
+	});
+	
+	//목록으로
+	$(".text-label-Kgk").on("click",e => {
+		location.href="/board/list";
+		
+	});
+	//삭제하기
+	$(".group-6-TgU").on("click",e => {
+		
+	});
 	
 	
-	
-
 </script>
 
 

@@ -29,4 +29,9 @@ public class Alarm {
 	private String room_name;	//채팅방 이름
 	private String printDate;
 	
+	private int receiver_count;
+	
+	private int course_id;//수강신청번호
+	
+	
 }

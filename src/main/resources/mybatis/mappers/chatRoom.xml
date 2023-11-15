@@ -33,6 +33,8 @@
 			,room_name
 			,receiver
 			,sender
+			,receiver_count
+			,sender_count
 		from chat_room
 		where receiver=#{user_id} or sender=#{user_id}
 	</select>
@@ -43,6 +45,8 @@
 				,receiver
 				,sender
 				,connected_count
+				,receiver_count
+				,sender_count
 		from chat_room
 		where room_id=#{roomId}
 	
@@ -68,4 +72,46 @@
 		 
 	
 	</select>
+	<select id="getRoombyRoomId">
+		select *
+		from chat_room
+		where room_id = #{room_id} 
+		 
+	
+	</select>
+	
+	<!-- Receiver count를 변경함 -->
+	<update id="updateNotReceiverReadCount">
+		update chat_room
+		set receiver_count = receiver_count + 1
+		where room_id = #{room_id}
+	
+	
+	</update>
+	<!-- Sender count를 변경함 -->
+	<update id="updateNotSenderReadCount">
+		update chat_room
+		set sender_count = sender_count + 1
+		where room_id = #{room_id}
+	
+	
+	</update>
+	<!-- Sender count를 0으로 변경함 -->
+	<update id="updateSenderReadCountZero">
+		update chat_room
+		set sender_count = 0
+		where room_id = #{room_id}
+	
+	
+	</update>
+	<!-- Receiver count를 0으로 변경함 -->
+	<update id="updateReceiverReadCountZero">
+		update chat_room
+		set receiver_count = 0
+		where room_id = #{room_id}
+	
+	
+	</update>
+	
+	
 </mapper>

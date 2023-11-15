@@ -56,10 +56,7 @@ public class MainController {
 	public String myPage_userInfo() {
 		return "myPage/myPage_userInfo";
 	}
-	@RequestMapping("/myPage/calendar")
-	public String myPage_calendar() {
-		return "myPage/myPage_calendar";
-	}
+	
 //	@RequestMapping("/myPage/chatRoom")
 //	public String myPage_chatRoom() {
 //		return "myPage/myPage_chatRoom";

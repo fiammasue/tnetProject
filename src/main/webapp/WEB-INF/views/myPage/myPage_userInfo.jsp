@@ -1,5 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
+<sec:authorize access="isAuthenticated()"> <!-- 인증이 됐는지안됐는지 확인하는 구문 -->
+   <sec:authentication property="principal" var="principal"/> <!-- property로 가져와서 var 데이터타입으로 대입하겠다는뜻 -->
+</sec:authorize>
+
 <!doctype html>
 <html lang="ko">
 
@@ -9,6 +17,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 	<!-- VENDOR CSS -->
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 	<link rel="stylesheet" href="/vendor/bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
 	<link rel="stylesheet" href="/vendor/linearicons/style.css">
@@ -36,7 +45,6 @@
 								<ul class="nav">
 									<li><a href="/myPage/course_recruiting" class="">모집 중인 내 강의</a></li>
 									<li><a href="/myPage/course_proceeding" class="">진행 중인 강의</a></li>
-									<li><a href="#" class="">신청이 온 진행중 강의</a></li>
 								</ul>
 							</div>
 						</li>
@@ -61,7 +69,7 @@
 									<div class="overlay"></div>
 									<div class="profile-main">
 										<img src="/assets/user_profile.png" class="img-circle" alt="Avatar">
-										<h3 class="name">Samuel Gold</h3>
+										<h3 class="name">${principal.user.nickName}</h3>
 										<span class="online-status status-available">Available</span>
 									</div>
 									<div class="profile-stat">
@@ -84,10 +92,10 @@
 									<div class="profile-info">
 										<h4 class="heading">Basic Info</h4>
 										<ul class="list-unstyled list-justify">
-											<li>Email <span>user1@gmail.com</span></li>
-											<li>Phone <span>010-1234-5678</span></li>
-											<li>Gender <span>female</span></li>
-											<li>Age <span>28</span></li>
+											<li>Email <span>${principal.user.email}</span></li>
+											<li>Phone <span>${principal.user.phoneNum}</span></li>
+											<li>Gender <span>${principal.user.gender}</span></li>
+											<li>Age <span>${principal.user.age}</span></li>
 										</ul>
 									</div>
 								</div>
@@ -118,5 +126,7 @@
 	<script src="/vendor/jquery/jquery.min.js"></script>
 	<script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
 	<script src="/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </body>
 

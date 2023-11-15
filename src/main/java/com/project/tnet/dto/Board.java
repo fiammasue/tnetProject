@@ -34,8 +34,8 @@ public class Board {
 	private String low_code;
 	
 
-	private String givtalent; //  주는재능 이름
-	private String recivetalent; // 받는 재능 이름
+	private String givetalent; //  주는재능 이름
+	private String receivetalent; // 받는 재능 이름
 	private String cityname; // 도시이름
 	private String districtname; // 구이름
 	private String status; // 상태 이름
@@ -67,10 +67,12 @@ public class Board {
 	}
 	//게시글 네비게이터의 처음 시작 번호
 	public int getStartNo() {
+		startnum = (pageNo - 1) * pageLength + 1; 
 		return (pageNo - 1) * pageLength + 1;
 	}
 	//게시글 네비게이터의 마지막 번호
 	public int getEndNo() {
+		endnum = pageNo * pageLength; 
 		return pageNo * pageLength;
 	}
 

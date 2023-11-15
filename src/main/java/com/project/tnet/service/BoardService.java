@@ -20,6 +20,7 @@ public class BoardService {
 	@Autowired
 	private BoardDAO boardDAO;
 
+	//관리자에서 게시판 리스트 출력	
 	public Object GetList(Board board) {
 		System.out.println("게시판 전체 목록 서비스");
 		
@@ -30,7 +31,7 @@ public class BoardService {
 		map.put("board", board);
 		System.out.println("board : "+ board );
 		List<Board> list = boardDAO.getBoardList(board);
-		System.out.println(list);
+		System.out.println("boardList : "+list);
 		map.put("list", list);
 		
 		return map;
@@ -98,6 +99,11 @@ public class BoardService {
 		boardDAO.insertBoard(params);
 	}
 	
-	
+	public Board getCourseBoard(Board board) {
+		return boardDAO.getCourseBoard(board);
+	}
+	public int updateBoardStatus(Board board) {
+		return boardDAO.updateBoardStatus(board);
+	}
 
 }

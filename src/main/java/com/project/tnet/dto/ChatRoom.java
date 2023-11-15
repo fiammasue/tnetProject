@@ -17,6 +17,14 @@ public class ChatRoom {
 	private String receiver;
 	private String sender;
 	private int board_id;
+	private int receiver_count;
+	private int sender_count;
+	
+	//  수강했을때의 id를받아오기 위함
+	private int course_id;
+	
+	//수락햇을때의 채팅 동의인지?
+	private String agreeChat;
 	
 	//현재로그인중인거 user_id저장하려고
 	private String user_id;

@@ -36,7 +36,7 @@
           <div id="table">
             <table >
                 <tr id = "table_title_bar">
-                  <th>선택</th>
+                  <td><input type="checkbox" id="Allcheck" ></td>
                   <th>번호</th>
                   <th>제목</th>
                   <th>작성자</th>
@@ -47,24 +47,28 @@
                   <c:forEach items="${result.list}" var="notice">
                   <tr id = "table_contents">
                   	<td><input type="checkbox" class="checkbox" value="${notice.notice_no}" ></td>
-                    <td>${notice.notice_no}</td>
-                    <td >${notice.title}</td>
-                    <td>${notice.nickname}</td>
+                    <td class="notice_no">${notice.notice_no}</td>
+                    <td class="title">${notice.title}</td>
+                    <td >${notice.nickname}</td>
                     <td>${notice.reg_date}</td>
-                    <td >${notice.fixed_yn}</td>
+                    <td class="fixed_yn" >${notice.fixed_yn}</td>
                     <td >${notice.deleted_yn}</td>
                   </tr>
                 </c:forEach>                        
             </table>
+              <form name="detail_form" id="detail_form" action="<c:url value='/admin/detail_notice'/>" method="post" >
+		     	<input type="hidden" id="notice_no" name="notice_no" /> 
+		      </form>
           </div> <!-- 테이블 -->
 
           <!-- 버튼이랑 페이징 함께-->
           <div id = "white_footer_area">
             <!-- 버튼 -->
             <div id = "crud_buttons">
-            <input type="button" id ="button-bQU" value="삭제"/>
-            <input type="button" id ="button-bQU" value="고정"/>
-            <input type="button" id ="button-bQU" value="고정해제"/>
+            <input type="button"  id ="insert_button" value="글쓰기"/>
+            <input type="button"  id ="delete_button" value="삭제"/>
+            <input type="button" id ="fix_button" value="고정"/>
+            <input type="button" id ="none_fix_button" value="고정해제"/>
             </div>
 
             <!-- 페이징부분 -->
@@ -74,7 +78,7 @@
 		     	<input type="hidden" id="pageLength" name="pageLength" />
 		      </form>
               <div id = "Change number">
-              건수 : 
+              <span>건수 : </span>  
               <select id="button-bQU">
 				    <option selected value="10">10</option>
 				    <option value="20">20</option>
@@ -137,6 +141,172 @@ document.addEventListener("DOMContentLoaded", function() {
          });
     }
 });
+
+// 전체선택 이벤트
+$("#Allcheck").on("click", function(){
+    // If "Allcheck" is checked, check all checkboxes in the table, else uncheck them
+    if($(this).prop("checked")){
+      $(".checkbox").prop("checked", true);
+    } else {
+      $(".checkbox").prop("checked", false);
+    }
+  });
+  
+// 체크박스 클릭시 고정, 고정해제 버튼 출력
+$(".checkbox").on("click", function(){
+	const deleteButton = $("#delete_button");
+	const fixButton = $("#fix_button");
+	const noneFixButton = $("#none_fix_button");
+	
+	const checkedRows = $(".checkbox:checked")
+	
+	  let hasFixed = false;
+	  let hasNoneFixed = false;
+	  
+	  checkedRows.each(function() {
+		   const fixedYN = $(this).closest("tr").find(".fixed_yn").text();
+		   if (fixedYN === "Y") {
+			      hasFixed = true;
+			    } else if (fixedYN === "N") {
+			      hasNoneFixed = true;
+			    }
+		});
+	  
+	  
+		// '고정' 버튼과 '고정해제' 버튼 활성화 여부 결정
+		if (hasFixed && !hasNoneFixed) {
+			noneFixButton.show(); // '고정해제' 버튼 활성화
+			fixButton.hide(); // '고정' 버튼 비활성화
+		} else if (!hasFixed && hasNoneFixed) {
+			noneFixButton.hide(); // '고정해제' 버튼 비활성화
+			fixButton.show(); // '고정' 버튼 활성화
+		} else {
+			noneFixButton.hide(); // 둘 다 비활성화
+			fixButton.hide();
+		}
+});
+
+
+// 삭제 버튼 클릭시 삭제
+$('#delete_button').on('click', function() {
+    const ids = [];
+    const items = $('.checkbox:checked');
+    
+    items.each(function(index, item) {
+        ids.push(item.value);
+    });
+    
+    const param = {
+        ids: ids
+    };
+    
+    alert("param : "+param);
+    console.log("ids : "+ param)
+    
+    fetch("<c:url value='/del/notice'/>", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json; charset=UTF-8",
+        },
+        body: JSON.stringify(param),
+    })
+    .then((response) => response.json())
+    .then((json) => {
+        console.log(json.status);
+        console.log(json);
+        if (json.status) {
+            alert(json.message);
+            location.href = "<c:url value='/admin/noticelist'/>";
+        }
+    });
+});
+
+//제목클릭시 상세페이지로 이동
+$(".title").on("click", function () {
+    const notice_no = $(this).closest("tr").find(".notice_no").text();
+
+    // Rest of your code
+    document.querySelector("#detail_form #notice_no").value = notice_no;
+    document.querySelector("#detail_form").submit();
+});
+
+
+//고정버튼 클릭시 공지사항 고정
+$('#fix_button').on('click', function() {
+    alert("고정버튼 클릭");
+    const ids = [];
+    const items = $('.checkbox:checked');
+    
+    items.each(function(index, item) {
+        ids.push(item.value);
+    });
+    
+    const param = {
+        ids: ids
+    };
+    
+    fetch("<c:url value='/fix/notice'/>", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json; charset=UTF-8",
+        },
+        body: JSON.stringify(param),
+    })
+    .then((response) => response.json())
+    .then((json) => {
+        console.log(json.status);
+        console.log(json);
+        if (json.status) {
+            alert(json.message);
+            location.href = "<c:url value='/admin/noticelist'/>";
+        }
+    });
+});
+
+
+//고정해제버튼 클릭시 공지사항 고정해제
+$('#none_fix_button').on('click', function() {
+    const ids = [];
+    const items = $('.checkbox:checked');
+    
+    items.each(function(index, item) {
+        ids.push(item.value);
+    });
+    
+    const param = {
+        ids: ids
+    };
+    
+    fetch("<c:url value='/nonefix/notice'/>", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json; charset=UTF-8",
+        },
+        body: JSON.stringify(param),
+    })
+    .then((response) => response.json())
+    .then((json) => {
+        console.log(json.status);
+        console.log(json);
+        if (json.status) {
+            alert(json.message);
+            location.href = "<c:url value='/admin/noticelist'/>";
+        }
+    });
+});
+
+$(document).ready(function() {
+	  $('.fixed_yn').each(function() {
+	    const fixedYN = $(this).text();
+	    if (fixedYN === "Y") {
+	      // fixed_yn이 'Y'인 경우 배경색을 초록색으로 변경
+	      $(this).closest("tr").css('background-color', '#fffcc6');
+	    } else {
+	      // fixed_yn이 'Y'가 아닌 경우 배경색을 원래대로 돌리기
+	      $(this).closest("tr").css('background-color', '');
+	    }
+	  });
+	});
 </script>
 </body>
 </html>

@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.project.tnet.config.auth.PrincipalDetails;
 import com.project.tnet.dto.ChatRoom;
 import com.project.tnet.dto.MemberVO;
+import com.project.tnet.dto.Message;
 import com.project.tnet.service.ChatRoomService;
 import com.project.tnet.service.MessageService;
 
@@ -29,6 +30,8 @@ public class ChatRoomController {
 	private ChatRoomService chatRoomService;
 	@Autowired
 	private MessageService messageService;
+	
+	
 	
 	@RequestMapping("/myPage/chatRoom")
 	public String goToRoomList(Authentication authentication,HttpSession session , Model model, ChatRoom room) {
@@ -55,28 +58,59 @@ public class ChatRoomController {
 			MemberVO member= (MemberVO)userDetails.getUser();
 			chatRoom.setSender(member.getNickName());
 			
-			ChatRoom value = chatRoomService.getRoom(chatRoom);
 			
-			result.put("exist", (value!=null));
-			if (value != null) {
-				result.put("roomInfo", chatRoomService.findRoomById(value.getRoom_id()));
-				result.put("chatList",messageService.selectMessageList(value.getRoom_id()));
+			if (chatRoom.getAgreeChat().equals("수락")) {
+				
+				
+				result.put("bool", true);
+				result.put("chatRoom",chatRoomService.createRoom(chatRoom));
+				
+				
 			}
 			else {
-				chatRoomService.createRoom(chatRoom);
-				result.put("roomInfo", chatRoomService.getRoom(chatRoom));
+				ChatRoom value = chatRoomService.getRoom(chatRoom);
+				
+				result.put("exist", (value!=null));
+				if (value != null) {
+					result.put("roomInfo", chatRoomService.findRoomById(value.getRoom_id()));
+					result.put("chatList",messageService.selectMessageList(value.getRoom_id()));
+				}
+				else {
+					chatRoomService.createRoom(chatRoom);
+					result.put("roomInfo", chatRoomService.getRoom(chatRoom));
+				}
+				
+				
 			}
-			
 		
 		}
 		return result;
 	}
 	@ResponseBody
 	@RequestMapping("/chat/enterRoom/{room_id}")
-	public Map<String,Object> goToEnterRoom( @PathVariable(value="room_id") String roomId) {
-		System.out.println("roomInfo -> "+ chatRoomService.findRoomById(roomId));
+	public Map<String,Object> goToEnterRoom(Authentication authentication, @PathVariable(value="room_id") String roomId, Message message) {
+		ChatRoom room = chatRoomService.findRoomById(roomId);
 		Map<String,Object> result = new HashMap<>();
-		result.put("roomInfo", chatRoomService.findRoomById(roomId));
+		
+		if (authentication.getPrincipal() instanceof PrincipalDetails) {
+			PrincipalDetails userDetails = (PrincipalDetails) authentication.getPrincipal();
+			MemberVO member= (MemberVO)userDetails.getUser();
+			message.setReceiver(member.getNickName());
+			//읽음으로 변경
+			messageService.updateReadCount(message);
+			System.out.println("roomSender => "+room.getSender());
+			System.out.println("nickName => "+ member.getNickName());
+			//여기서 읽음 카운트 삭제 해야한다
+			if (room.getSender().equals(member.getNickName())) {
+				chatRoomService.updateSenderReadCountZero(roomId);
+			}
+			else {
+				chatRoomService.updateReceiverReadCountZero(roomId);
+			}
+		}
+		
+		
+		result.put("roomInfo", room);
 		result.put("chatList",messageService.selectMessageList(roomId));
 		return result;
 	}

@@ -52,8 +52,8 @@
                   	<td><input type="checkbox" class="checkbox" value="${board.board_id}" ></td>
                     <td>${board.board_id}</td>
                     <td >${board.title}</td>
-                    <td>${board.givtalent}</td>
-                    <td>${board.recivetalent}</td>
+                    <td>${board.givetalent}</td>
+                    <td>${board.receivetalent}</td>
                     <td >${board.writer_nickname}</td>
                     <td >${board.cityname}</td>
                     <td >${board.districtname}</td>
@@ -79,7 +79,7 @@
 		     	<input type="hidden" id="pageLength" name="pageLength" />
 		      </form>
               <div id = "Change number">
-              건수 : 
+               <span>건수 : </span>  
               <select id="button-bQU">
 				    <option selected value="10">10</option>
 				    <option value="20">20</option>

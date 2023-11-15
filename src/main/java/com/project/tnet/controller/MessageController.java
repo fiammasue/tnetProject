@@ -9,11 +9,14 @@ import org.springframework.stereotype.Controller;
 
 import com.project.tnet.dto.Alarm;
 import com.project.tnet.dto.ChatRoom;
+import com.project.tnet.dto.Course;
 import com.project.tnet.dto.Message;
 import com.project.tnet.dto.Message.MessageType;
 import com.project.tnet.service.AlarmService;
 import com.project.tnet.service.ChatRoomService;
+import com.project.tnet.service.CourseService;
 import com.project.tnet.service.MessageService;
+import com.project.tnet.service.MyPageService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -25,6 +28,8 @@ public class MessageController {
 	private final ChatRoomService chatRoomService;
 	private final AlarmService alarmService;
 	private final SimpMessageSendingOperations messagingTemplate;
+	private final MyPageService myPageService;
+	private final CourseService courseService;
 	
 	@MessageMapping("/chat/message")
 	public void message(Message message) {
@@ -48,10 +53,18 @@ public class MessageController {
 			
 			chatRoomService.upToConnectedCountById(message);
 			
-			message.setType_string(MessageType.ENTER.name());
+			ChatRoom room = ChatRoom.builder()
+									.room_id(message.getRoom_id())
+									.build();
+			//sender와 receiver를 가져오기 위해 채팅방정보를 가져옴
+			room = chatRoomService.getRoombyRoomId(room);
+		
 			
-			messagingTemplate.convertAndSend("/sub/member/userId/"+message.getReceiver(),message,headerAccessor.getMessageHeaders());
-			messagingTemplate.convertAndSend("/sub/member/userId/"+message.getSender(),message,headerAccessor.getMessageHeaders());
+			message.setType_string(MessageType.ENTER.name());
+			System.out.println("message => "+ message);
+			
+			messagingTemplate.convertAndSend("/sub/member/userId/"+room.getReceiver(),message,headerAccessor.getMessageHeaders());
+			messagingTemplate.convertAndSend("/sub/member/userId/"+room.getSender(),message,headerAccessor.getMessageHeaders());
 		} //퇴장하면 접속자수 1감소
 		else if (MessageType.LEAVE==message.getType()) {
 			
@@ -78,15 +91,31 @@ public class MessageController {
 									.type_string(MessageType.ALARM.name())
 									.contents(message.getMessage())
 									.alarm_code("A01")
-									.page_type("/page/chat")
+									.page_type("/myPage/chatRoom")
 									.receiver(message.getReceiver())
 									.sender(message.getSender())
 									.read_yn("N")
+									.room_id(message.getRoom_id())
 									.build();
-//				if (room.getReceiver() == message.getSender()) {
-//					alarm.setReceiver(room.getSender());
-//					
-//				}
+				int flag = 0;
+				//안읽음 표시
+				if(room.getReceiver().equals(message.getReceiver())) {
+					chatRoomService.updateNotReceiverReadCount(message.getRoom_id());
+					flag = 1;
+					System.out.println("Receiver => 여기만 지나가나 ? "+ flag);
+				}
+				else {
+					chatRoomService.updateNotSenderReadCount(message.getRoom_id());
+				}
+				room = chatRoomService.findRoomById(message.getRoom_id());
+				// 안읽은 갯수 숫자 알람에 저장
+				if(flag == 1) {
+					alarm.setReceiver_count(room.getReceiver_count());
+				}
+				else {
+					alarm.setReceiver_count(room.getSender_count());
+				}
+				
 				System.out.println("alarm -> "+ alarm);
 				alarmService.insertAlarm(alarm);
 				messagingTemplate.convertAndSend("/sub/member/userId/"+message.getReceiver(), alarm,headerAccessor.getMessageHeaders());
@@ -103,6 +132,123 @@ public class MessageController {
 			messageService.insertMessage(message);
 		}
 
+	}
+	
+	@MessageMapping("/join/course")
+	public void joinCourse(Course course) {
+		//수강신청에 대한 알람도 가야하고 
+		Alarm alarm = Alarm.builder()
+				.type_string(MessageType.ALARM.name())
+				.contents("재능기부 수락 요청이 왔습니다.")
+				.alarm_code("A03")
+				.page_type("/myPage/proceeding.do")
+				.receiver(course.getWriter_nickname())
+				.sender(course.getApplyer_nickname())
+				.read_yn("N")
+				.build();
+		alarmService.insertAlarm(alarm);
+		messagingTemplate.convertAndSend("/sub/member/userId/"+course.getWriter_nickname(),alarm);
+		
+		System.out.println("Message Controller -> "+ course);
+		//수강신청에 태그도 추가 해야함
+		
+		course = myPageService.getCourse(course);
+		course.setType_string(MessageType.AGREE.name());
+		System.out.println("coutseeddf -> "+myPageService.getCourse(course));
+		messagingTemplate.convertAndSend("/sub/member/userId/"+course.getWriter_nickname(),course);
+	}
+	
+	@MessageMapping("/join/agree")
+	public void joinAgree(Alarm alarm) {
+		//수강신청 동의를 하면 수강알람도 가야하고 
+		Alarm result = Alarm.builder()
+				.type_string(MessageType.ALARM.name())
+				.contents("재능 교환이 진행됩니다.")
+				.alarm_code("A06")
+				.page_type("/myPage/course_proceeding")
+				.receiver(alarm.getReceiver())//무조건상대방
+				.sender(alarm.getSender())//무조건 글작성자
+				.read_yn("N")
+				.build();
+		alarmService.insertAlarm(result);
+		messagingTemplate.convertAndSend("/sub/member/userId/"+alarm.getReceiver(),result);
+		
+		//courseID도 같이 넘어가야함
+		Course course = Course.builder()
+								.writer_nickname(alarm.getSender())
+								.course_id(alarm.getCourse_id())
+								.build();
+		
+		course = myPageService.getCourseAgreeInvolve(course);
+		course.setType_string(MessageType.AGREE_INVOLVE.name());
+		//상대방에게 전달
+		messagingTemplate.convertAndSend("/sub/member/userId/"+alarm.getReceiver(),course);
+		
+		
+	}
+	//완료신청
+	@MessageMapping("/complete/courseAgree")
+	public void courseAgree(Alarm alarm) {
+		//courseID도 같이 넘어가야함
+		Course course = Course.builder()
+				.writer_nickname(alarm.getSender())
+				.course_id(alarm.getCourse_id())
+				.build();
+		
+		course = myPageService.getCourseCompleteAgree(course);
+		course.setType_string(MessageType.COMPLETE_AGREE.name());
+		//상대방에게 전달
+		messagingTemplate.convertAndSend("/sub/member/userId/"+alarm.getReceiver(),course);
+		
+		Alarm result = Alarm.builder()
+				.type_string(MessageType.ALARM.name())
+				.contents("재능교환 완료 요청이 왔습니다.")
+				.alarm_code("A02")
+				.page_type("/myPage/course_proceeding")
+				.sender(alarm.getSender())//무조건 글작성자
+				.read_yn("N")
+				.build();
+		if (course.getApplyer_nickname().equals(alarm.getSender())) {
+			result.setReceiver(course.getWriter_nickname());
+		}
+		else {
+			result.setReceiver(course.getApplyer_nickname());
+		}
+		alarmService.insertAlarm(result);
+		messagingTemplate.convertAndSend("/sub/member/userId/"+result.getReceiver(),result);
+		
+	}
+	//완료
+	@MessageMapping("/complete/courseInvolve")
+	public void courseInvolve(Alarm alarm) {
+		
+		//courseID도 같이 넘어가야함
+		Course course = Course.builder()
+				.writer_nickname(alarm.getSender())
+				.course_id(alarm.getCourse_id())
+				.build();
+		
+		course = myPageService.getCourseCompleteInvolve(course);
+		course.setType_string(MessageType.COMPLETE_INVOLVE.name());
+		//상대방에게 전달
+		messagingTemplate.convertAndSend("/sub/member/userId/"+alarm.getReceiver(),course);
+		
+		Alarm result = Alarm.builder()
+				.type_string(MessageType.ALARM.name())
+				.contents("재능교환 완료 요청이 왔습니다.")
+				.alarm_code("A07")
+				.page_type("/myPage/course_proceeding")
+				.sender(alarm.getSender())//무조건 글작성자
+				.read_yn("N")
+				.build();
+		if (course.getApplyer_nickname().equals(alarm.getSender())) {
+			result.setReceiver(course.getWriter_nickname());
+		}
+		else {
+			result.setReceiver(course.getApplyer_nickname());
+		}
+		alarmService.insertAlarm(result);
+		messagingTemplate.convertAndSend("/sub/member/userId/"+result.getReceiver(),result);
 	}
 
 }

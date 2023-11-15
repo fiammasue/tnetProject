@@ -46,7 +46,6 @@
 								<ul class="nav">
 									<li><a href="/myPage/course_recruiting" class="">모집 중인 내 강의</a></li>
 									<li><a href="/myPage/course_proceeding" class="">진행 중인 강의</a></li>
-									<li><a href="#" class="">신청이 온 진행중 강의</a></li>
 								</ul>
 							</div>
 						</li>
@@ -90,9 +89,14 @@
 									<p class="room-title" data-roomid="${chatRoom.room_id }">${chatRoom.room_name }</p>
 									<p style="display:none;" class="room-schedule">언제가 편하실까요?</p>
 								</div>
-								<div style="display:none;"  class="chat-metadata">
-									<p class="chat-timestamp">7:36 PM</p>
-									<div class="unread-messages">3</div>
+								<div  class="chat-metadata room-${chatRoom.room_id}">
+									<p style="display:none;" class="chat-timestamp">7:36 PM</p>
+									<c:if test="${chatRoom.receiver == principal.user.nickName && chatRoom.receiver_count > 0 }">
+										<div class="unread-messages count-${chatRoom.room_id}">${chatRoom.receiver_count }</div>
+									</c:if>
+									<c:if test="${chatRoom.sender == principal.user.nickName && chatRoom.sender_count > 0 }">
+										<div class="unread-messages count-${chatRoom.room_id}">${chatRoom.sender_count }</div>
+									</c:if>
 								</div>
 							</div>
 					</c:forEach>  
@@ -258,6 +262,10 @@
 		    		 
 		    		 var divElement = $(".wrap");
 		    		 $(".wrap").scrollTop(divElement[0].scrollHeight);
+		    		 
+		    		 //여기서 안읽음 태그 삭제!
+		    		 var deletedElement =$('.unread-messages.count-'+roomInfo.room_id);
+		    		 deletedElement.remove();
 		    	}
 		    }); 
 		});

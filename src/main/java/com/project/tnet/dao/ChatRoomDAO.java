@@ -26,4 +26,14 @@ public interface ChatRoomDAO {
 	public int upToConnectedCountById(Message message);
 	//채팅방이 존재하는지 확인
 	public ChatRoom getRoom(ChatRoom chatRoom);
+	//채팅방아이디로 하나 찾아오기
+	public ChatRoom getRoombyRoomId(ChatRoom chatRoom);
+	//안읽음 갯수 Receiver 하나씩 올리기
+	public int updateNotReceiverReadCount(String room_id);
+	//안읽음 갯수 Sender 하나씩 올리기
+	public int updateNotSenderReadCount(String room_id);
+	//안읽음 갯수 Sender count를 0으로 변경함
+	public int updateSenderReadCountZero(String room_id);
+	//안읽음 갯수 Receiver count를 0으로 변경함
+	public int updateReceiverReadCountZero(String room_id);
 }

@@ -151,6 +151,12 @@ html.fullscreen-bg #wrapper {
 /********************
  * TOP NAVIGATION
  ********************/
+.nav{
+    display: block !important; 
+}ol, ul {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
 .navbar-default {
   -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;
@@ -356,7 +362,10 @@ ul.notifications > li {
   .sidebar .nav > li > a {
     padding: 18px 30px;
     color: #AEB7C2;
-    border-left: 5px solid transparent; }
+    border-left: 5px solid transparent;
+    position: relative;
+    display: block;
+    text-decoration: none; }
     .sidebar .nav > li > a:hover, .sidebar .nav > li > a:focus, .sidebar .nav > li > a.active {
       color: #fff;
       background-color: transparent; }
@@ -1845,7 +1854,7 @@ button:hover {
   background-color: #f1f1f1;
   max-width: 600px;
 }
-.tab-button {
+.tab-button-myPage {
   flex: 1;
   padding: 20px;
   cursor: pointer;
@@ -1857,30 +1866,28 @@ button:hover {
   transition: all 0.3s cubic-bezier(.25,.8,.25,1);
 }
 
-.tab-button:hover {
+.tab-button-myPage:hover {
   box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 }
-.tab-content {
+.tab-content-myPage {
   display: none;
   padding: 25px 13px;
   border: 1px solid #ccc;
   width: 100%;
 }
-.tab-content.active {
+.tab-content-myPage.active {
   display: block;
 }
-.tab-content.active {
-  display: block;
-}
+
 /* 스타일 추가: 첫 번째 탭 버튼 활성화 스타일 */
-.tab-button:first-child.active {
+.tab-button-myPage:first-child.active {
   background-color: #00b074;
   color: white;
   font-weight: bold;
   border: 1.5px solid black;
 }
 
-.tab-button:last-child.active {
+.tab-button-myPage:last-child.active {
   background-color: #4f87f5;
   color: white;
   font-weight: bold;
@@ -1979,12 +1986,24 @@ button:hover {
   color: black;
   font-size: 17px;
   font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .task-name.dontMove {
   color: rgba(0, 0, 0, 0.6);
   font-size: 17px;
   font-weight: bold;
+}
+
+.card-top {
+  display: flex;
+  justify-content: space-between;
+}
+.card-board_id {
+  color:black;
+  margin: 0px;
 }
 
 .status.accept {
@@ -1994,7 +2013,7 @@ button:hover {
   font-size: 12px;
   font-weight: bold;
   padding: 4px 12px; /* 여백 추가 */
-  margin-bottom: 10px;
+  margin: 0px 0px 10px;
 }
 .status.accept.dontMove {
   display: inline-block;
@@ -2003,7 +2022,7 @@ button:hover {
   font-size: 12px;
   font-weight: bold;
   padding: 4px 12px;
-  margin-bottom: 10px;
+  margin: 0px 0px 10px;
 }
 
 .status.waiting {
@@ -2013,7 +2032,7 @@ button:hover {
   font-size: 12px;
   font-weight: bold;
   padding: 4px 12px; /* 여백 추가 */
-  margin-bottom: 10px;
+  margin: 0px 0px 10px;
 }
 .status.waiting.dontMove {
   display: inline-block;
@@ -2022,7 +2041,7 @@ button:hover {
   font-size: 12px;
   font-weight: bold;
   padding: 4px 12px; /* 여백 추가 */
-  margin-bottom: 10px;
+  margin: 0px 0px 10px;
 }
 
 .status.reject {
@@ -2032,7 +2051,7 @@ button:hover {
   font-size: 12px;
   font-weight: bold;
   padding: 4px 12px; /* 여백 추가 */
-  margin-bottom: 10px;
+  margin: 0px 0px 10px;
 }
 .status.reject.dontMove {
   display: inline-block;
@@ -2041,7 +2060,7 @@ button:hover {
   font-size: 12px;
   font-weight: bold;
   padding: 4px 12px; /* 여백 추가 */
-  margin-bottom: 10px;
+  margin: 0px 0px 10px;
 }
 
 .status.completed {
@@ -2051,7 +2070,7 @@ button:hover {
   font-size: 12px;
   font-weight: bold;
   padding: 4px 12px; /* 여백 추가 */
-  margin-bottom: 10px;
+  margin: 0px 0px 10px;
 }
 .status.completed-waiting {
   display: inline-block;
@@ -2060,7 +2079,7 @@ button:hover {
   font-size: 12px;
   font-weight: bold;
   padding: 4px 12px; /* 여백 추가 */
-  margin-bottom: 10px;
+  margin: 0px 0px 10px;
 }
 .status.completed-waiting.dontMove{
   display: inline-block;
@@ -2069,7 +2088,7 @@ button:hover {
   font-size: 12px;
   font-weight: bold;
   padding: 4px 12px; /* 여백 추가 */
-  margin-bottom: 10px;
+  margin: 0px 0px 10px;
 }
 .status.trash {
   display: inline-block;
@@ -2078,7 +2097,7 @@ button:hover {
   font-size: 12px;
   font-weight: bold;
   padding: 4px 12px; /* 여백 추가 */
-  margin-bottom: 10px;
+  margin: 0px 0px 10px;
 }
 
 .details {
@@ -2088,6 +2107,19 @@ button:hover {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.details_talent {
+  padding: 7px 50px;
+  color: black;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.detail-top {
+  display: flex;
+  justify-content: space-between;
 }
 
 .requester {

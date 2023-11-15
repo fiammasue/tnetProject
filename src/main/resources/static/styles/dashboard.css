@@ -260,7 +260,8 @@
 
 /* 카운트영역 */
 .countingarea-Mqi {
-    margin: auto;
+        margin-left: auto;
+    margin-right: auto;
     width: calc(100% - 7.3778rem);
     display: flex;
     align-items: flex-start;
