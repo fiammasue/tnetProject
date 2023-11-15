@@ -618,7 +618,7 @@
 
 		   //---------------채팅방생성 및 재능기부 진행
 
-		   const param = {
+		   <%--const param = {
 				agreeChat : "수락",
 				receiver : $(".applyer_nickname").text(),
 				board_id : boardId,
@@ -643,7 +643,7 @@
 					 }
 				}
 				
-			});
+			});--%>
 			
 			
 
@@ -774,13 +774,14 @@
 		    const courseId = card.getAttribute('data-courseid');
 		    updateCompleted(courseId);
 		    
-		    
+		    // 강의를 완료하면 알람메시지 띄움
 		    ws.send("/pub/complete/courseInvolve",{},JSON.stringify({
 								type:'ALARM'
 								,type_string:"ALARM"
 								,sender:"${principal.user.nickName}"
 								,course_id:courseId
 								}));
+		    
 		    //화면 데이터 바뀔 수 있도록 함
 	        // 클래스명, 상태 코드, 날짜 변경
 	        statusChange.classList.remove('completed-waiting');
@@ -1209,8 +1210,8 @@
 	    	e.preventDefault();
 	    	
 	    	// 클릭 이벤트 핸들러에서 courseId를 얻어오기
-	        const taskCard = $(".kanban-board .bucket.accept .tasks.accept .task-card");
-	        const courseId = taskCard.data("courseid");
+	        const courseId = $(this).data("courseid");
+	        console.log(courseId);
 	    	
 	    	$.ajax({
 	            type: "POST",
@@ -1247,7 +1248,7 @@
                     // "completedWaitingBucket"에 테스크 카드 추가
                     completedWaitingBucket.append(taskCardClone);
 
-                    
+                    // 강의 완료 요청 보내면 알람 보냄
                     ws.send("/pub/complete/courseAgree",{},JSON.stringify({
 								type:'ALARM'
 								,type_string:"ALARM"
@@ -1267,9 +1268,8 @@
 	    	e.preventDefault();
 	    	
 	    	// 클릭 이벤트 핸들러에서 courseId를 얻어오기
-	        const taskCard = $(".kanban-board .bucket.accept .tasks.accept .task-card");
-	        const courseId = taskCard.data("courseid");
-	    	console.log(courseId);
+	        const courseId = $(this).data("courseid");
+	        console.log(courseId);
 	    	
 	    	$.ajax({
 	            type: "POST",
@@ -1307,9 +1307,8 @@
 	    	e.preventDefault();
 	    	
 	    	// 클릭 이벤트 핸들러에서 courseId를 얻어오기
-	        const taskCard = $(".kanban-board .bucket.accept .tasks.accept .task-card.dontMove");
-	        const courseId = taskCard.data("courseid");
-	    	console.log(courseId);
+	        const courseId = $(this).data("courseid");
+	        console.log(courseId);
 	    	
 	    	$.ajax({
 	            type: "POST",
@@ -1347,9 +1346,8 @@
 	    	e.preventDefault();
 	    	
 	    	// 클릭 이벤트 핸들러에서 courseId를 얻어오기
-	        const taskCard = $(".kanban-board .bucket.accept .tasks.accept .task-card.dontMove");
-	        const courseId = taskCard.data("courseid");
-	    	console.log(courseId);
+	        const courseId = $(this).data("courseid");
+	        console.log(courseId);
 	    	
 	    	$.ajax({
 	            type: "POST",

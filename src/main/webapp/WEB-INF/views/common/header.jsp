@@ -255,14 +255,11 @@ $(document).ready(function() {
 			alert("수락 요청")
 			var agreeInfo = `
 				<div class="task-card" draggable="true" ondragstart="drag(event)" id="course-`+ recv.course_id + `" data-courseid="`+ recv.course_id  +`" data-boardid="`+ recv.course_id  +`">
-				<div class="status waiting">`+ recv.status_code +`</div>
-				<p class="task-name">`
-				
-           var originalTitle = recv.title;
-           var truncatedTitle = originalTitle.length > 16 ? (originalTitle.substring(0, 16) + '...') : originalTitle;
-           	agreeInfo += truncatedTitle
-         
-              agreeInfo += `</p>
+				<div class="card-top">
+				<p class="status waiting">`+ recv.status_code +`</p>
+				<p class="card-board_id">no. ` + recv.board_id +`</p>
+				</div>
+				<p class="task-name">` + recv.title + `</p>
 				<div class="details">`
 				
 				if (recv.applyer_nickname == sender) {
@@ -291,14 +288,11 @@ $(document).ready(function() {
 			 
 				var agreeInfo = `
 					<div class="task-card" draggable="true" ondragstart="drag(event)" id="course-`+ recv.course_id + `" data-courseid="`+ recv.course_id  +`" data-boardid="`+ recv.course_id  +`">
-					<div class="status accept">`+ recv.status_code +`</div>
-					<p class="task-name">`
-					
-	           var originalTitle = recv.title;
-	           var truncatedTitle = originalTitle.length > 16 ? (originalTitle.substring(0, 16) + '...') : originalTitle;
-	           	agreeInfo += truncatedTitle
-	         
-	              agreeInfo += `</p>
+					<div class="card-top">
+					<p class="status accept">`+ recv.status_code +`</p>
+					<p class="card-board_id">no. ` + recv.board_id +`</p>
+					</div>
+					<p class="task-name">` + recv.title + `</p>
 					<div class="details">`
 					
 					if (recv.applyer_nickname == sender) {

@@ -69,7 +69,7 @@
 									<div class="overlay"></div>
 									<div class="profile-main">
 										<img src="/assets/user_profile.png" class="img-circle" alt="Avatar">
-										<h3 class="name">Samuel Gold</h3>
+										<h3 class="name">${principal.user.nickName}</h3>
 										<span class="online-status status-available">Available</span>
 									</div>
 									<div class="profile-stat">
@@ -92,10 +92,10 @@
 									<div class="profile-info">
 										<h4 class="heading">Basic Info</h4>
 										<ul class="list-unstyled list-justify">
-											<li>Email <span>user1@gmail.com</span></li>
-											<li>Phone <span>010-1234-5678</span></li>
-											<li>Gender <span>female</span></li>
-											<li>Age <span>28</span></li>
+											<li>Email <span>${principal.user.email}</span></li>
+											<li>Phone <span>${principal.user.phoneNum}</span></li>
+											<li>Gender <span>${principal.user.gender}</span></li>
+											<li>Age <span>${principal.user.age}</span></li>
 										</ul>
 									</div>
 								</div>
