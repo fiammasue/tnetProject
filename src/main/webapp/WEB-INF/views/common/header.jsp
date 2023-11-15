@@ -282,6 +282,9 @@
 				
 				selectedElement.append(countInfo);
 			}
+			else if (recv.alarm_code == "A02") {
+				
+			}
 			
 			
 		}
@@ -383,7 +386,7 @@
 						
 					}
 	                   
-		            agreeInfo +=   ` <p class="date">recv.start_date</p>
+		            agreeInfo +=   ` <p class="date">`+ recv.start_date+`</p>
 					</div>
 				</div>`;
 			 
@@ -391,6 +394,76 @@
 			 
 			 
 			 $(".tasks.accept").append(agreeInfo);
+		}
+		else if (recv.type_string==="COMPLETE_AGREE"){
+			alert("완료 요청 보냄")
+			
+			 var className = "course-"+recv.course_id;
+			console.log(className);
+			 var selectedElement = $('[id^="' + className + '"]');
+			 console.log(selectedElement)
+			 selectedElement.remove();
+			 
+				var agreeInfo = `
+					<div class="task-card" draggable="true" ondragstart="drag(event)" id="course-`+ recv.course_id + `" data-courseid="`+ recv.course_id  +`" data-boardid="`+ recv.course_id  +`">
+					<div class="status completed-waiting">`+ recv.status_code +`</div>
+					<p class="task-name">`
+					
+	           var originalTitle = recv.title;
+	           var truncatedTitle = originalTitle.length > 16 ? (originalTitle.substring(0, 16) + '...') : originalTitle;
+	           	agreeInfo += truncatedTitle
+	         
+	              agreeInfo += `</p>
+					<div class="details">`
+					
+					if (recv.applyer_nickname == sender) {
+						agreeInfo += `	<p class="requester">신청자 : `+ recv.applyer_nickname + `</p>`
+						
+					}
+					else {
+						agreeInfo += `<p class="requester">요청자 : `+ recv.applyer_nickname +`</p>`
+						
+					}
+	                   
+		            agreeInfo +=   ` <p class="date">`+ recv.start_date +`</p>
+					</div>
+				</div>`;
+				// 태그 추가
+		    $(".tasks.completed-waiting").append(agreeInfo);
+		}
+		else if (recv.type_string==="COMPLETE_INVOLVE"){
+			alert("완료요청 성공")
+			
+			 var className = "course-"+recv.course_id;
+			 var selectedElement = $('[id^="' + className + '"]');
+			 selectedElement.remove();
+			 
+				var agreeInfo = `
+					<div class="task-card" draggable="true" ondragstart="drag(event)" id="course-`+ recv.course_id + `" data-courseid="`+ recv.course_id  +`" data-boardid="`+ recv.course_id  +`">
+					<div class="status completed">`+ recv.status_code +`</div>
+					<p class="task-name">`
+					
+	           var originalTitle = recv.title;
+	           var truncatedTitle = originalTitle.length > 16 ? (originalTitle.substring(0, 16) + '...') : originalTitle;
+	           	agreeInfo += truncatedTitle
+	         
+	              agreeInfo += `</p>
+					<div class="details">`
+					
+					if (recv.applyer_nickname == sender) {
+						agreeInfo += `	<p class="requester">신청자 : `+ recv.applyer_nickname + `</p>`
+						
+					}
+					else {
+						agreeInfo += `<p class="requester">요청자 : `+ recv.applyer_nickname +`</p>`
+						
+					}
+	                   
+		            agreeInfo +=   ` <p class="date">`+ recv.start_date+`</p>
+					</div>
+				</div>`;
+				// 태그 추가
+		    $(".tasks.completed").append(agreeInfo);
 		}
 		
 		
