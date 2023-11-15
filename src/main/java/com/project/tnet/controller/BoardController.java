@@ -105,17 +105,17 @@ public class BoardController {
 		
 //		수강신청 해야함
 		List<Course> courseList = courseService.getExistCourse(course);
-//		if (courseList.isEmpty()) {
+		if (courseList.isEmpty()) {
 			courseService.insertCourse(course);
 			result.put("bool", true);
 			result.put("course", myPageService.getCourse(course));
 			System.out.println("coutseeddf -> "+myPageService.getCourse(course));
 			boardService.updateBoardStatus(board);
-//		}
-////		이미 수강신청함
-//		else {
-//			result.put("bool", "done");
-//		}
+		}
+//		이미 수강신청함
+		else {
+			result.put("bool", "done");
+		}
 		
 		
 		return result;

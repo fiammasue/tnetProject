@@ -618,7 +618,7 @@
 
 		   //---------------채팅방생성 및 재능기부 진행
 
-		   <%--const param = {
+		   const param = {
 				agreeChat : "수락",
 				receiver : $(".applyer_nickname").text(),
 				board_id : boardId,
@@ -643,7 +643,7 @@
 					 }
 				}
 				
-			});--%>
+			});
 			
 			
 
@@ -772,15 +772,17 @@
 	        
 	     	// 서버에서 진짜 데이터가 바뀔 수 있도록 함
 		    const courseId = card.getAttribute('data-courseid');
-		    updateCompleted(courseId);
-		    
+		    const courseInvolve = updateCompleted(courseId);
 		    // 강의를 완료하면 알람메시지 띄움
-		    ws.send("/pub/complete/courseInvolve",{},JSON.stringify({
-								type:'ALARM'
-								,type_string:"ALARM"
-								,sender:"${principal.user.nickName}"
-								,course_id:courseId
-								}));
+		    if (courseInvolve === true){
+			    ws.send("/pub/complete/courseInvolve",{},JSON.stringify({
+									type:'ALARM'
+									,type_string:"ALARM"
+									,sender:"${principal.user.nickName}"
+									,course_id:courseId
+									}));
+		    	
+		    }
 		    
 		    //화면 데이터 바뀔 수 있도록 함
 	        // 클래스명, 상태 코드, 날짜 변경
@@ -910,6 +912,7 @@
 		            const updatedCompletedList = response.updatedCompletedList;
 		        }
 		    });
+		    return true;
 		}
 		
 		/* 완료수락칸에서 휴지통칸으로 옮겼을 때 상태코드 변화 update 함수 */
