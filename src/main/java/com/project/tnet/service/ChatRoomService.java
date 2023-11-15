@@ -92,4 +92,21 @@ public class ChatRoomService {
 		return chatRoomDAO.getRoombyRoomId(chatRoom);
 	}
 	
+	//안읽음 갯수 Receiver 하나씩 올리기
+	public int updateNotReceiverReadCount(String room_id) {
+		return chatRoomDAO.updateNotReceiverReadCount(room_id);
+	}
+	//안읽음 갯수 Sender 하나씩 올리기
+	public int updateNotSenderReadCount(String room_id) {
+		return chatRoomDAO.updateNotSenderReadCount(room_id);
+	}
+	//안읽음 갯수 Sender count를 0으로 변경함
+	public int updateSenderReadCountZero(String room_id) {
+		return chatRoomDAO.updateSenderReadCountZero(room_id);
+	}
+	//안읽음 갯수 Receiver count를 0으로 변경함
+	public int updateReceiverReadCountZero(String room_id) {
+		return chatRoomDAO.updateReceiverReadCountZero(room_id);
+	}
+	
 }
