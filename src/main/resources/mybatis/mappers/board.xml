@@ -208,5 +208,12 @@ from (select ROWNUM as rnum , A.*
 					)
 	
 	</insert>
+	
+	<update id="updateBoardStatus">
+		update board
+		set status_code ='SC02'
+		where board_id = #{board_id}
+	
+	</update>
 
 </mapper>
