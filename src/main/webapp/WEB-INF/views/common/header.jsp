@@ -13,8 +13,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.0/sockjs.min.js" ></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.2.0/stomp.min.js"></script>
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.2.0/stomp.min.js"></script>
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
    <style>
    /* 일반 로그인과 카카오 로그인 구분 div태그 css */ 
       .or-divider {
@@ -29,14 +29,14 @@
             border: 1.3px solid #ccc;
         }
         
-        /* 활성화된 탭의 글자를 bold 처리 */
-	   	.nav-link.active {
-	    	font-weight: bold;
-	   	}
-	    /* 비활성 탭의 글자 색을 검정색으로 변경 */
-	    .nav-link:not(.active) {
-	    	color: black;
-	    }
+      /* 활성화된 탭의 글자를 bold 처리 */
+    .nav-link.active {
+      font-weight: bold;
+    }
+    /* 비활성 탭의 글자 색을 검정색으로 변경 */
+    .nav-link:not(.active) {
+      color: black;
+    }
 	    
 	 .modal-body{
 	   background-color: #f9f9f9; /* 배경색 설정 */
@@ -196,39 +196,38 @@
   	</c:choose>
   </div>
 
-	<div id="LoginDialog" style="display:none;">
-	  <form class="login-form" id="loginFormTag" method="post" action="<c:url value='/auth/login.do'/>" >
-	    <h4 class="mb-3"><b>로그인</b></h4>
-	    <div class="form-group">
-	      <label for="nickname">닉네임</label>
-	      <input type="text" name = "username" class="form-control" id="nickname" placeholder="" required>
-	      <div class="invalid-feedback">
-	        닉네임을 입력해주세요.
-	      </div>
-	    </div>
-	
-	    <div class="form-group">
-	      <label for="password">비밀번호</label>
-	      <input type="password" name ="password" class="form-control" id="password" placeholder="" required>
-	      <div class="invalid-feedback">
-	        비밀번호를 입력해주세요.
-	      </div>
-	    </div>
-	
-	    <button class="btn btn-secondary btn-lg btn-block"  type="submit">로그인</button>
-	    
-	    <div class="or-divider">
-	      <div class="divider-line"></div>
-	      <div>or</div>
-	      <div class="divider-line"></div>
-    	</div>
+   <div id="LoginDialog" style="display:none;">
+     <form class="login-form" id="loginFormTag" method="post" action="<c:url value='/auth/login.do'/>" >
+       <h4 class="mb-3"><b>로그인</b></h4>
+       <div class="form-group">
+         <label for="nickname">닉네임</label>
+         <input type="text" name = "username" class="form-control" id="nickname" placeholder="" required>
+         <div class="invalid-feedback">
+           닉네임을 입력해주세요.
+         </div>
+       </div>
+   
+       <div class="form-group">
+         <label for="password">비밀번호</label>
+         <input type="password" name ="password" class="form-control" id="password" placeholder="" required>
+         <div class="invalid-feedback">
+           비밀번호를 입력해주세요.
+         </div>
+       </div>
+   
+       <button class="btn btn-secondary btn-lg btn-block"  type="submit">로그인</button>
+       
+       <div class="or-divider">
+         <div class="divider-line"></div>
+         <div>or</div>
+         <div class="divider-line"></div>
+       </div>
     
-	    <a href="https://kauth.kakao.com/oauth/authorize?client_id=5837fcd202ac37e5ba6e78d6f6b575ed&redirect_uri=http://127.0.0.1:8090/auth/kakao/callback&response_type=code"><img id="kakaoLogin" src="/assets/kakao_login_medium_wide.png"  style="width: 460px; height: 45px;"/></a>
-	  </form>
-	</div>
-	
+       <a href="https://kauth.kakao.com/oauth/authorize?client_id=5837fcd202ac37e5ba6e78d6f6b575ed&redirect_uri=http://127.0.0.1:8090/auth/kakao/callback&response_type=code"><img id="kakaoLogin" src="/assets/kakao_login_medium_wide.png"  style="width: 460px; height: 45px;"/></a>
+     </form>
+   </div>
+   
 <script>
-
 	/* 로그인 다이얼로그 창 띄우는 jquery */
 	var loginDialog = $( "#LoginDialog" ).dialog({
 	 autoOpen: false,
@@ -292,67 +291,68 @@
 			//시간 자르기
 			 var timestampString = recv.reg_date;
 
-			// "T" 문자를 기준으로 문자열을 분할하고 두 번째 부분을 선택
-			var timePart = timestampString.split("T")[1];
+         // "T" 문자를 기준으로 문자열을 분할하고 두 번째 부분을 선택
+         var timePart = timestampString.split("T")[1];
 
-			// 시:분 부분만 선택
-			var time = timePart.substring(0, 5);
-			alert("TALK");
-			var chatListInfo = "";
-			 if(recv.sender != "${principal.user.nickName}"){
-	    			 chatListInfo+=`<div class="chat ch1">
-				    		            <div class="textbox">`+decodeURIComponent(recv.message)+`</div>
-				    		            <div class="sender-time">`+time+`</div>`;
-				   	if(recv.read_yn=='N'){
-	    		      chatListInfo+=` <div class="sender-readCount">1</div>`;
-				   		
-				   	}
-				   	chatListInfo+=`</div>`;
-			 }	
-			 else{
-				  	chatListInfo += `<div class="chat ch2">
-				    		            <div class="textbox">`+decodeURIComponent(recv.message)+`</div>
-				    		            <div class="receiver-time">`+time+`</div>`
-				   	if(recv.read_yn=='N'){
-		    		   chatListInfo+=` <div class="receiver-readCount">1</div>`;
-				   		
-				   	}
-				    	chatListInfo+=`</div>`;
-				 
-			 }
-			$('.wrap').append(chatListInfo); 
-			var divElement = $(".wrap");
-   			$(".wrap").scrollTop(divElement[0].scrollHeight);
-		}
-		else if (recv.type_string==="ENTER") {
-			alert("입장");
-			$(".receiver-readCount").remove();
-		}
-		else if (recv.type_string==="LEAVE") {
-			alert("퇴장");
-// 			var chatListInfo = `<span class="badge rounded-pill text-bg-warning">`+decodeURIComponent(recv.message)+`</span>`
-// 			$("#chatList").append(chatListInfo);
-		}
-		else if (recv.type_string==="AGREE") {
-			alert("수락 요청")
-			var agreeInfo = `
-				<div class="task-card" draggable="true" ondragstart="drag(event)" id="course-`+ recv.course_id + `" data-courseid="`+ recv.course_id  +`" data-boardid="`+ recv.course_id  +`">
-				<div class="card-top">
-				<p class="status waiting">`+ recv.status_code +`</p>
-				<p class="card-board_id">no. ` + recv.board_id +`</p>
-				</div>
-				<p class="task-name">` + recv.title + `</p>
-				<div class="details">`
-				
-				if (recv.applyer_nickname == sender) {
-					agreeInfo += `	<p class="requester">신청자 : `+ recv.applyer_nickname + `</p>`
-					
-				}
-				else {
-					agreeInfo += `<p class="requester">요청자 : `+ recv.applyer_nickname +`</p>`
-					
-				}
+         // 시:분 부분만 선택
+         var time = timePart.substring(0, 5);
+         alert("TALK");
+         var chatListInfo = "";
+          if(recv.sender != "${principal.user.nickName}"){
+                 chatListInfo+=`<div class="chat ch1">
+                                  <div class="textbox">`+decodeURIComponent(recv.message)+`</div>
+                                  <div class="sender-time">`+time+`</div>`;
+                  if(recv.read_yn=='N'){
+                   chatListInfo+=` <div class="sender-readCount">1</div>`;
+                     
+                  }
+                  chatListInfo+=`</div>`;
+          }   
+          else{
+                 chatListInfo += `<div class="chat ch2">
+                                  <div class="textbox">`+decodeURIComponent(recv.message)+`</div>
+                                  <div class="receiver-time">`+time+`</div>`
+                  if(recv.read_yn=='N'){
+                   chatListInfo+=` <div class="receiver-readCount">1</div>`;
+                     
+                  }
+                   chatListInfo+=`</div>`;
+             
+          }
+         $('.wrap').append(chatListInfo); 
+         var divElement = $(".wrap");
+            $(".wrap").scrollTop(divElement[0].scrollHeight);
+      }
+      else if (recv.type_string==="ENTER") {
+         alert("입장");
+         $(".receiver-readCount").remove();
+      }
+      else if (recv.type_string==="LEAVE") {
+         alert("퇴장");
+//          var chatListInfo = `<span class="badge rounded-pill text-bg-warning">`+decodeURIComponent(recv.message)+`</span>`
+//          $("#chatList").append(chatListInfo);
+      }
+      else if (recv.type_string==="AGREE") {
+         alert("수락 요청")
+         var agreeInfo = `
+            <div class="task-card" draggable="true" ondragstart="drag(event)" id="course-`+ recv.course_id + `" data-courseid="`+ recv.course_id  +`" data-boardid="`+ recv.course_id  +`">
+            <div class="card-top">
+            <p class="status waiting">`+ recv.status_code +`</p>
+            <p class="card-board_id">no. ` + recv.board_id +`</p>
+            </div>
+            <p class="task-name">` + recv.title + `</p>
+            <div class="details">`
+            
+            if (recv.applyer_nickname == sender) {
+               agreeInfo += `   <p class="requester">신청자 : `+ recv.applyer_nickname + `</p>`
+               
+            }
+            else {
+               agreeInfo += `<p class="requester">요청자 : `+ recv.applyer_nickname +`</p>`
+               
+            }
                    
+
 	            agreeInfo +=   ` <p class="date"></p>
 				</div>
 			</div>`;
@@ -602,6 +602,7 @@
 		   
 		});
 		 
+
 
 </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
