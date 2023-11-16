@@ -102,5 +102,8 @@ public class BoardService {
 	public Board getCourseBoard(Board board) {
 		return boardDAO.getCourseBoard(board);
 	}
+	public int updateBoardStatus(Board board) {
+		return boardDAO.updateBoardStatus(board);
+	}
 
 }

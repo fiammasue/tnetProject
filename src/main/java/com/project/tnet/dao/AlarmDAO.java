@@ -22,5 +22,10 @@ public interface AlarmDAO {
 	//유저가 알람을 확인하면 모두 확인으로 읽음 여부를 변경한다.
 	//멤버 테이블과 연관 **
 	public int updateReadYn(Alarm alarm);
+
+	public int updateAllReadYn(String nickName);
+
+	// Alarm 데이터가 존재하는지 확인
+	public int isAlarmDataExists(String nickName);
 	
 }

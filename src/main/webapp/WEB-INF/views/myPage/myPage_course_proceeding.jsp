@@ -649,44 +649,44 @@
          });
          
          
+         //화면 데이터 바뀔 수 있도록 함
+         // 클래스명, 상태 코드, 날짜 변경
+         statusChange.classList.remove('waiting');
+         statusChange.classList.add('accept');
+         statusChange.textContent = '진행 결정!';
+           
+         // 현재 날짜로 업데이트
+         const currentDate = new Date();
+         const formattedDate = currentDate.toISOString().slice(0, 10);
+         dateElement.textContent = formattedDate;
 
-          //화면 데이터 바뀔 수 있도록 함
-           // 클래스명, 상태 코드, 날짜 변경
-           statusChange.classList.remove('waiting');
-           statusChange.classList.add('accept');
-           statusChange.textContent = '진행 결정!';
-           
-           // 현재 날짜로 업데이트
-           const currentDate = new Date();
-           const formattedDate = currentDate.toISOString().slice(0, 10);
-           dateElement.textContent = formattedDate;
-           
-           acceptBucket.appendChild(card);
-          
-           const waitingCards = document.querySelectorAll('.bucket.waiting .task-card');
-           waitingCards.forEach(waitingCard => {
-              //대기칸에 있는 카드 중에 board_id가 같으면
-               if (waitingCard.getAttribute('data-boardid') === boardId) {
-                   //거절칸에 추가
-                   rejectBucket.appendChild(waitingCard);
+         acceptBucket.appendChild(card);
 
-                   //화면 데이터 바뀔 수 있도록 함
-                  // 클래스명, 상태 코드
-                   const statusChange = waitingCard.querySelector('.status');
-                   statusChange.classList.remove('waiting');
-                   statusChange.classList.add('reject');
-                   statusChange.textContent = '진행 요청 거절..';
-               }
-           });
-           acceptBucket.appendChild(card);
-           
-           // 대기칸에서 수락칸으로 이동한 카드에 대한 클릭 이벤트 처리
-            card.addEventListener('click', function (e) {
-                e.preventDefault();
-                const courseId = this.getAttribute('data-courseid');
-                console.log("수락칸 이동: " ,courseId);
-                openCourseModal(courseId);
-            });
+         const waitingCards = document.querySelectorAll('.bucket.waiting .task-card');
+         waitingCards.forEach(waitingCard => {
+            //대기칸에 있는 카드 중에 board_id가 같으면
+             if (waitingCard.getAttribute('data-boardid') === boardId) {
+                 //거절칸에 추가
+                 rejectBucket.appendChild(waitingCard);
+
+
+                 //화면 데이터 바뀔 수 있도록 함
+                 // 클래스명, 상태 코드
+                 const statusChange = waitingCard.querySelector('.status');
+                 statusChange.classList.remove('waiting');
+                 statusChange.classList.add('reject');
+                 statusChange.textContent = '진행 요청 거절..';
+             }
+         });
+         acceptBucket.appendChild(card);
+
+         // 대기칸에서 수락칸으로 이동한 카드에 대한 클릭 이벤트 처리
+          card.addEventListener('click', function (e) {
+              e.preventDefault();
+              const courseId = this.getAttribute('data-courseid');
+              console.log("수락칸 이동: " ,courseId);
+              openCourseModal(courseId);
+          });
           
       });
       
@@ -768,33 +768,33 @@
       /* 완료수락칸 이벤트리스너 */
       completedBucket.addEventListener('dragover', allowDrop);
       completedBucket.addEventListener('drop', function (event) {
-         event.preventDefault();
+           event.preventDefault();
            const data = event.dataTransfer.getData('text/plain');
            const card = document.getElementById(data);
            const statusChange = card.querySelector('.status');
-           
+
            // 서버에서 진짜 데이터가 바뀔 수 있도록 함
-          const courseId = card.getAttribute('data-courseid');
-          const courseInvolve = updateCompleted(courseId);
-          // 강의를 완료하면 알람메시지 띄움
-          if (courseInvolve === true){
-             ws.send("/pub/complete/courseInvolve",{},JSON.stringify({
-                           type:'ALARM'
-                           ,type_string:"ALARM"
-                           ,sender:"${principal.user.nickName}"
-                           ,course_id:courseId
-                           }));
-             
-          }
-          
-          //화면 데이터 바뀔 수 있도록 함
+            const courseId = card.getAttribute('data-courseid');
+            const courseInvolve = updateCompleted(courseId);
+            // 강의를 완료하면 알람메시지 띄움
+            if (courseInvolve === true){
+               ws.send("/pub/complete/courseInvolve",{},JSON.stringify({
+                             type:'ALARM'
+                             ,type_string:"ALARM"
+                             ,sender:"${principal.user.nickName}"
+                             ,course_id:courseId
+                             }));
+
+            }
+
+           //화면 데이터 바뀔 수 있도록 함
            // 클래스명, 상태 코드, 날짜 변경
            statusChange.classList.remove('completed-waiting');
            statusChange.classList.remove('trash');
-            statusChange.classList.add('completed');
-            statusChange.textContent = '완료된 강의입니다';
-           
-           
+           statusChange.classList.add('completed');
+           statusChange.textContent = '완료된 강의입니다';
+
+
            completedBucket.appendChild(card);
           
       });
@@ -840,99 +840,98 @@
           // 현재 소스 버킷 확인
            const sourceBucket = findSourceBucket(card);
 
-           // 이동을 허용할지 여부를 판단
-           if (sourceBucket === completedWaitingBucket) {
-               return; // 완료대기칸에서 휴지통칸으로의 이동을 방지
-           }
-           
-          // 서버에서 진짜 데이터가 바뀔 수 있도록 함
-          const courseId = card.getAttribute('data-courseid');
-          updateTrash(courseId);
-          
-           //화면 데이터 바뀔 수 있도록 함
-           // 클래스명, 상태 코드, 날짜 변경
-           statusChange.classList.remove('completed-waiting');
-           statusChange.classList.remove('completed');
-           statusChange.classList.add('trash');
-           statusChange.textContent = '완료된 강의 삭제';
-           
-           trashBucket.appendChild(card);
-      });
-      
-      /* 대기칸에서 수락칸으로 옮겼을 때 상태코드 변화 update 함수 */
-      function updateAccept(courseId) {
-          console.log(courseId);
-          
-          $.ajax({
-              url: '/myPage/updateAccept',
-              type: 'POST',
-              data: { course_id: courseId },  // Ajax 데이터로 courseId를 전달
-              success: function(response) {
-                 // 서버에서 업데이트된 데이터를 클라이언트로 받음
-                  const updatedAcceptList = response.updatedAcceptList;
-              }
-          });
-      }
-      
-      /* 대기칸에서 거절칸으로 옮겼을 때 상태코드 변화 update 함수 */
-      function updateReject(courseId) {
-          console.log(courseId);
-          
-          $.ajax({
-              url: '/myPage/updateReject',
-              type: 'POST',
-              data: { course_id: courseId },  // Ajax 데이터로 courseId를 전달
-              success: function(response) {
-                 // 서버에서 업데이트된 데이터를 클라이언트로 받음
-                  const updatedRejectList = response.updatedRejectList;
-              }
-          });
-      }
-      
-      /* 거절칸에서 대기칸으로 옮겼을 때 상태코드 변화 update 함수 */
-      function updateWaiting(courseId) {
-          
-          $.ajax({
-              url: '/myPage/updateWaiting',
-              type: 'POST',
-              data: { course_id: courseId },  // Ajax 데이터로 courseId를 전달
-              success: function(response) {
-                 // 서버에서 업데이트된 데이터를 클라이언트로 받음
-                  const updatedWaitingList = response.updatedWaitingList;
-              }
-          });
-      }
-      
-      /* 완료대기칸이나 휴지통에서 완료수락칸으로 옮겼을 때 상태코드 변화 update 함수 */
-      function updateCompleted(courseId) {
-          
-          $.ajax({
-              url: '/myPage/updateCompleted',
-              type: 'POST',
-              data: { course_id: courseId },  // Ajax 데이터로 courseId를 전달
-              success: function(response) {
-                 // 서버에서 업데이트된 데이터를 클라이언트로 받음
-                  const updatedCompletedList = response.updatedCompletedList;
-              }
-          });
-          return true;
-      }
-      
-      /* 완료수락칸에서 휴지통칸으로 옮겼을 때 상태코드 변화 update 함수 */
-      function updateTrash(courseId) {
-          
-          $.ajax({
-              url: '/myPage/updateTrash',
-              type: 'POST',
-              data: { course_id: courseId },  // Ajax 데이터로 courseId를 전달
-              success: function(response) {
-                 // 서버에서 업데이트된 데이터를 클라이언트로 받음
-                  const updatedTrashList = response.updatedTrashList;
-              }
-          });
-      }
-      
-      
+	        // 이동을 허용할지 여부를 판단
+	        if (sourceBucket === completedWaitingBucket) {
+	            return; // 완료대기칸에서 휴지통칸으로의 이동을 방지
+	        }
+	        
+		 	    // 서버에서 진짜 데이터가 바뀔 수 있도록 함
+		      const courseId = card.getAttribute('data-courseid');
+		      updateTrash(courseId);
+		    
+		  	  //화면 데이터 바뀔 수 있도록 함
+	        // 클래스명, 상태 코드, 날짜 변경
+	        statusChange.classList.remove('completed-waiting');
+	        statusChange.classList.remove('completed');
+	        statusChange.classList.add('trash');
+	        statusChange.textContent = '완료된 강의 삭제';
+	        
+	        trashBucket.appendChild(card);
+		});
+		
+		/* 대기칸에서 수락칸으로 옮겼을 때 상태코드 변화 update 함수 */
+		function updateAccept(courseId) {
+		    console.log(courseId);
+		    
+		    $.ajax({
+		        url: '/myPage/updateAccept',
+		        type: 'POST',
+		        data: { course_id: courseId },  // Ajax 데이터로 courseId를 전달
+		        success: function(response) {
+		        	// 서버에서 업데이트된 데이터를 클라이언트로 받음
+		            const updatedAcceptList = response.updatedAcceptList;
+		        }
+		    });
+		}
+		
+		/* 대기칸에서 거절칸으로 옮겼을 때 상태코드 변화 update 함수 */
+		function updateReject(courseId) {
+		    console.log(courseId);
+		    
+		    $.ajax({
+		        url: '/myPage/updateReject',
+		        type: 'POST',
+		        data: { course_id: courseId },  // Ajax 데이터로 courseId를 전달
+		        success: function(response) {
+		        	// 서버에서 업데이트된 데이터를 클라이언트로 받음
+		            const updatedRejectList = response.updatedRejectList;
+		        }
+		    });
+		}
+		
+		/* 거절칸에서 대기칸으로 옮겼을 때 상태코드 변화 update 함수 */
+		function updateWaiting(courseId) {
+		    
+		    $.ajax({
+		        url: '/myPage/updateWaiting',
+		        type: 'POST',
+		        data: { course_id: courseId },  // Ajax 데이터로 courseId를 전달
+		        success: function(response) {
+		        	// 서버에서 업데이트된 데이터를 클라이언트로 받음
+		            const updatedWaitingList = response.updatedWaitingList;
+		        }
+		    });
+		}
+		
+		/* 완료대기칸이나 휴지통에서 완료수락칸으로 옮겼을 때 상태코드 변화 update 함수 */
+		function updateCompleted(courseId) {
+		    
+		    $.ajax({
+		        url: '/myPage/updateCompleted',
+		        type: 'POST',
+		        data: { course_id: courseId },  // Ajax 데이터로 courseId를 전달
+		        success: function(response) {
+		        	// 서버에서 업데이트된 데이터를 클라이언트로 받음
+		            const updatedCompletedList = response.updatedCompletedList;
+		        }
+		    });
+		    return true;
+		}
+		
+		/* 완료수락칸에서 휴지통칸으로 옮겼을 때 상태코드 변화 update 함수 */
+		function updateTrash(courseId) {
+		    
+		    $.ajax({
+		        url: '/myPage/updateTrash',
+		        type: 'POST',
+		        data: { course_id: courseId },  // Ajax 데이터로 courseId를 전달
+		        success: function(response) {
+		        	// 서버에서 업데이트된 데이터를 클라이언트로 받음
+		            const updatedTrashList = response.updatedTrashList;
+		        }
+		    });
+		}
+
 
       // Step 5
       // 대기 상태 칸반보드 카드 요소에 드래그 앤 드롭 이벤트를 추가

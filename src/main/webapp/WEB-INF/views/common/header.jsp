@@ -29,46 +29,46 @@
             border: 1.3px solid #ccc;
         }
         
-        /* 활성화된 탭의 글자를 bold 처리 */
-         .nav-link.active {
-          font-weight: bold;
-         }
-       /* 비활성 탭의 글자 색을 검정색으로 변경 */
-       .nav-link:not(.active) {
-          color: black;
-       }
-       
-    .modal-body{
-      background-color: #f9f9f9; /* 배경색 설정 */
-    } 
-       
-    /* 헤더 채팅알람창 CSS */
+      /* 활성화된 탭의 글자를 bold 처리 */
+    .nav-link.active {
+      font-weight: bold;
+    }
+    /* 비활성 탭의 글자 색을 검정색으로 변경 */
+    .nav-link:not(.active) {
+      color: black;
+    }
+	    
+	 .modal-body{
+	   background-color: #f9f9f9; /* 배경색 설정 */
+	 } 
+	    
+	 /* 헤더 채팅알람창 CSS */
      .alarm {
-       margin-bottom: 10px; /* 알람 아이템 간 간격 조절 */
-       padding: 10px; /* 내부 여백 설정 */
-       border: 1px solid #ccc; /* 테두리 설정 */
-       border-radius: 5px; /* 테두리 둥글게 설정 */
-       background-color: white; /* 배경색 설정 */
-           overflow: hidden; /* 부모 요소의 자식 요소를 감출 때 사용 (float을 사용할 때 필요) */
-        }
+	    margin-bottom: 10px; /* 알람 아이템 간 간격 조절 */
+	    padding: 10px; /* 내부 여백 설정 */
+	    border: 1px solid #ccc; /* 테두리 설정 */
+	    border-radius: 5px; /* 테두리 둥글게 설정 */
+	    background-color: white; /* 배경색 설정 */
+	        overflow: hidden; /* 부모 요소의 자식 요소를 감출 때 사용 (float을 사용할 때 필요) */
+ 		 }
 
-     .alarm p {
-       margin: 0; /* 문단의 기본 마진 제거 */
-     }
+	  .alarm p {
+	    margin: 0; /* 문단의 기본 마진 제거 */
+	  }
   
-   .alarm-id {
-       display: none; /* alarm-id 숨김 */
-   }
-   
-   .alarm .date {
-       float: right;
-   }
-   
-   .alarm .contents {
-       clear: both;
-   }
-   
-   .alarm .deleteAlarm {
+	.alarm-id {
+	    display: none; /* alarm-id 숨김 */
+	}
+	
+	.alarm .date {
+	    float: right;
+	}
+	
+	.alarm .contents {
+	    clear: both;
+	}
+	
+	.alarm .deleteAlarm {
     float: right;
     background-color: gray; /* 삭제 버튼 배경색 */
     color: #fff; /* 삭제 버튼 글자색 */
@@ -104,14 +104,14 @@
 
 /* 헤더알람 채팅방 a태그 적용시 생기는 밑줄과 글자색제거 css */
 .alarmChatAnchor{
-   text-decoration: none; /* 밑줄 제거 */
-   color: inherit; /* 부모 엘리먼트의 색상 상속 */
-                     }
-                     
+	text-decoration: none; /* 밑줄 제거 */
+	color: inherit; /* 부모 엘리먼트의 색상 상속 */
+	   	       	  }
+	   	       	  
 .alarmChatAnchor:hover {
-   text-decoration: none; /* 밑줄 제거 */
-   color: inherit; /* 부모 엘리먼트의 색상 상속 */
-}                
+	text-decoration: none; /* 밑줄 제거 */
+	color: inherit; /* 부모 엘리먼트의 색상 상속 */
+} 	       	  
   </style>
   
 </head>
@@ -157,43 +157,43 @@
 
 
   <div id="container">   
-     <c:choose> 
-        <c:when test="${empty principal}">
-        
-          <header>
-            <a href='<c:url value="/"/>'><img id="logo" src="/assets/logo.png" alt="" ></a>
-            <nav id="menubar">
-              <ul id="topMenu">
-                <li><a href="#">join </a></li>
-                <li><a id="loginForm" href="javascript:void(0)">login </a></li>
-                <li><a href="#">notice</a></li>
-                <li><a href='<c:url value="/board/list"/>'>lesson</a></li>
-              </ul>
-            </nav>
-          </header>
-       </c:when>
-       <c:otherwise>
-          <header>
-            <a href='<c:url value="/"/>'><img id="logo" src="/assets/logo.png" alt="" ></a>
-            <nav id="menubar">
-              <ul id="topMenu">
-                <li><a href="/logout.do">logout </a></li>
-                <li><a href="#">notice</a></li>
-                <li><a href='<c:url value="/board/list"/>'>lesson</a></li>
-                <li><a href="/myPage/userInfo">mypage</a></li>
-                  <li class="position-relative" style="width: 48px; height: 48px;">
-                      <img id="bell" src="/assets/bell3(3).png" alt="" data-bs-target="#staticBackdrop" >
-                      <!-- 헤더 알림테이블의 NEW 배지 -->
-                      <!-- 데이터가 존재하는 경우에만 New 스팬을 화면에 표시 -->
+  	<c:choose> 
+  		<c:when test="${empty principal}">
+  		
+		    <header>
+		      <a href='<c:url value="/"/>'><img id="logo" src="/assets/logo.png" alt="" ></a>
+		      <nav id="menubar">
+		        <ul id="topMenu">
+		          <li><a href="#">join </a></li>
+		          <li><a id="loginForm" href="javascript:void(0)">login </a></li>
+		          <li><a href="#">notice</a></li>
+		          <li><a href='<c:url value="/board/list"/>'>lesson</a></li>
+		        </ul>
+		      </nav>
+		    </header>
+	    </c:when>
+	    <c:otherwise>
+	    	<header>
+		      <a href='<c:url value="/"/>'><img id="logo" src="/assets/logo.png" alt="" ></a>
+		      <nav id="menubar">
+		        <ul id="topMenu">
+		          <li><a href="/logout.do">logout </a></li>
+		          <li><a href="#">notice</a></li>
+		          <li><a href='<c:url value="/board/list"/>'>lesson</a></li>
+		          <li><a href="/myPage/userInfo">mypage</a></li>
+      		      <li class="position-relative" style="width: 48px; height: 48px;">
+   		  	  		<img id="bell" src="/assets/bell3(3).png" alt="" data-bs-target="#staticBackdrop" >
+   		  	  		<!-- 헤더 알림테이블의 NEW 배지 -->
+   		  	  		<!-- 데이터가 존재하는 경우에만 New 스팬을 화면에 표시 -->
                     <c:if test="${isAlarmDataExists}">
                         <span class="position-absolute top-0 start-100 badge bg-danger" style="transform: translate(-50%, +40%) !important;">New</span>
                     </c:if>
-                   </li>
-              </ul>
-            </nav>
-          </header>
-       </c:otherwise>
-     </c:choose>
+      		  	  </li>
+		        </ul>
+		      </nav>
+		    </header>
+	    </c:otherwise>
+  	</c:choose>
   </div>
 
    <div id="LoginDialog" style="display:none;">
@@ -228,69 +228,68 @@
    </div>
    
 <script>
+	/* 로그인 다이얼로그 창 띄우는 jquery */
+	var loginDialog = $( "#LoginDialog" ).dialog({
+	 autoOpen: false,
+	 height: 500,
+	 width: 500,
+	 modal: true,
+	 close: function() {
+		 
+	 }
+	});
+	
+	/* 로그인 다이얼로그 이벤트핸들러*/
+	$("#loginForm").on("click", function() {
+		loginDialog.dialog("open");
+	});
 
-   /* 로그인 다이얼로그 창 띄우는 jquery */
-   var loginDialog = $( "#LoginDialog" ).dialog({
-    autoOpen: false,
-    height: 500,
-    width: 500,
-    modal: true,
-    close: function() {
-       
-    }
-   });
-   
-   /* 로그인 다이얼로그 이벤트핸들러*/
-   $("#loginForm").on("click", function() {
-      loginDialog.dialog("open");
-   });
+	//웹소켓 연결
+	var sock = new SockJS("/ws-stomp");
+	var ws = Stomp.over(sock);
+	var subscription = null;
+	const sender = "${principal.user.nickName}";
+	
+	if(sender != ""){
+		ws.connect({},function(frame){
+			subscription = ws.subscribe("/sub/member/userId/"+sender
+					,message => {//구독한곳에서 메시지가 오면
+						const recv = JSON.parse(message.body);//메시지 파싱
+						chatRecvMessage(recv);
+					}, {sender:sender});//보내는 사람을 등록할필요가 있나?
+		},error => {
+			alert("error "+error);
+		});
+	}
 
-   //웹소켓 연결
-   var sock = new SockJS("/ws-stomp");
-   var ws = Stomp.over(sock);
-   var subscription = null;
-   const sender = "${principal.user.nickName}";
-   
-   if(sender != ""){
-      ws.connect({},function(frame){
-         subscription = ws.subscribe("/sub/member/userId/"+sender
-               ,message => {//구독한곳에서 메시지가 오면
-                  const recv = JSON.parse(message.body);//메시지 파싱
-                  chatRecvMessage(recv);
-               }, {sender:sender});//보내는 사람을 등록할필요가 있나?
-      },error => {
-         alert("error "+error);
-      });
-   }
-
-   function chatRecvMessage(recv) {
-      console.log(recv)
-      
-         
-      if (recv.type_string==="ALARM") {
-         alert("ALARM");
-         alert(recv.contents, recv.receiver)
-         
-         
-         if (recv.alarm_code == "A01") {
-            var selectedElement = $('.chat-metadata.room-'+recv.room_id);
-            var deletedElement =$('.unread-messages.count-'+recv.room_id);
-            console.log("deletedElement => ",deletedElement)
-            deletedElement.remove();
-            
-            countInfo = `<div class="unread-messages count-`+ recv.room_id +`">`+ recv.receiver_count +`</div>`;
-            
-            selectedElement.append(countInfo);
-         }
-         else if (recv.alarm_code == "A02") {
-            
-         }
-         
-         
-      }
-      else if (recv.type_string==="TALK") {
-         //시간 자르기
-          var timestampString = recv.reg_date;
+	function chatRecvMessage(recv) {
+		console.log(recv)
+		
+			
+		if (recv.type_string==="ALARM") {
+			alert("ALARM");
+			alert(recv.contents, recv.receiver)
+			
+			
+			if (recv.alarm_code == "A01") {
+				var selectedElement = $('.chat-metadata.room-'+recv.room_id);
+				var deletedElement =$('.unread-messages.count-'+recv.room_id);
+				console.log("deletedElement => ",deletedElement)
+				deletedElement.remove();
+				
+				countInfo = `<div class="unread-messages count-`+ recv.room_id +`">`+ recv.receiver_count +`</div>`;
+				
+				selectedElement.append(countInfo);
+			}
+			else if (recv.alarm_code == "A02") {
+				
+			}
+			
+			
+		}
+		else if (recv.type_string==="TALK") {
+			//시간 자르기
+			 var timestampString = recv.reg_date;
 
          // "T" 문자를 기준으로 문자열을 분할하고 두 번째 부분을 선택
          var timePart = timestampString.split("T")[1];
@@ -353,255 +352,257 @@
                
             }
                    
-               agreeInfo +=   ` <p class="date"></p>
-            </div>
-         </div>`;
-         
-         $(".tasks.waiting").append(agreeInfo);
-         console.log(agreeInfo);
-         
-      }
-      else if (recv.type_string==="AGREE_INVOLVE"){
-         alert("수락요청완료")
-         //태그삭제
-          var className = "course-"+recv.course_id;
-          var selectedElement = $('[id^="' + className + '"]');
-          selectedElement.remove();
-          
-            var agreeInfo = `
-               <div class="task-card" draggable="true" ondragstart="drag(event)" id="course-`+ recv.course_id + `" data-courseid="`+ recv.course_id  +`" data-boardid="`+ recv.course_id  +`">
-               <div class="card-top">
-               <p class="status accept">`+ recv.status_code +`</p>
-               <p class="card-board_id">no. ` + recv.board_id +`</p>
-               </div>
-               <p class="task-name">` + recv.title + `</p>
-               <div class="details">`
-               
-               if (recv.applyer_nickname == sender) {
-                  agreeInfo += `   <p class="requester">신청자 : `+ recv.applyer_nickname + `</p>`
-                  
-               }
-               else {
-                  agreeInfo += `<p class="requester">요청자 : `+ recv.applyer_nickname +`</p>`
-                  
-               }
-                      
-                  agreeInfo +=   ` <p class="date">`+ recv.start_date+`</p>
-               </div>
-            </div>`;
-          
-          
-          
-          
-          $(".tasks.accept").append(agreeInfo);
-      }
-      else if (recv.type_string==="COMPLETE_AGREE"){
-         alert("완료 요청 보냄")
-         
-          var className = "course-"+recv.course_id;
-         console.log(className);
-          var selectedElement = $('[id^="' + className + '"]');
-          console.log(selectedElement)
-          selectedElement.remove();
-          
-            var agreeInfo = `
-               <div class="task-card" draggable="true" ondragstart="drag(event)" id="course-`+ recv.course_id + `" data-courseid="`+ recv.course_id  +`" data-boardid="`+ recv.course_id  +`">
-               <div class="status completed-waiting">`+ recv.status_code +`</div>
-               <p class="task-name">`
-               
-              var originalTitle = recv.title;
-              var truncatedTitle = originalTitle.length > 16 ? (originalTitle.substring(0, 16) + '...') : originalTitle;
-                 agreeInfo += truncatedTitle
-            
-                 agreeInfo += `</p>
-               <div class="details">`
-               
-               if (recv.applyer_nickname == sender) {
-                  agreeInfo += `   <p class="requester">신청자 : `+ recv.applyer_nickname + `</p>`
-                  
-               }
-               else {
-                  agreeInfo += `<p class="requester">요청자 : `+ recv.applyer_nickname +`</p>`
-                  
-               }
-                      
-                  agreeInfo +=   ` <p class="date">`+ recv.start_date +`</p>
-               </div>
-            </div>`;
-            // 태그 추가
-          $(".tasks.completed-waiting").append(agreeInfo);
-      }
-      else if (recv.type_string==="COMPLETE_INVOLVE"){
-         alert("완료요청 성공")
-         
-          var className = "course-"+recv.course_id;
-          var selectedElement = $('[id^="' + className + '"]');
-          selectedElement.remove();
-          
-            var agreeInfo = `
-               <div class="task-card" draggable="true" ondragstart="drag(event)" id="course-`+ recv.course_id + `" data-courseid="`+ recv.course_id  +`" data-boardid="`+ recv.course_id  +`">
-               <div class="status completed">`+ recv.status_code +`</div>
-               <p class="task-name">`
-               
-              var originalTitle = recv.title;
-              var truncatedTitle = originalTitle.length > 16 ? (originalTitle.substring(0, 16) + '...') : originalTitle;
-                 agreeInfo += truncatedTitle
-            
-                 agreeInfo += `</p>
-               <div class="details">`
-               
-               if (recv.applyer_nickname == sender) {
-                  agreeInfo += `   <p class="requester">신청자 : `+ recv.applyer_nickname + `</p>`
-                  
-               }
-               else {
-                  agreeInfo += `<p class="requester">요청자 : `+ recv.applyer_nickname +`</p>`
-                  
-               }
-                      
-                  agreeInfo +=   ` <p class="date">`+ recv.start_date+`</p>
-               </div>
-            </div>`;
-            // 태그 추가
-          $(".tasks.completed").append(agreeInfo);
-      }
-      
-      
-   }
-   
 
-      //알람 로딩 함수
-       function loadAlarms(listAlarm) {
-              const commentListHTML = document.querySelector("#chat");
-   
-              listAlarm.forEach(alarm => {
-                   console.log("알람 데이터:", alarm); // 알람 데이터 확인
-                   const alarmItem = document.createElement("div");
-                   alarmItem.className = "alarm";
-   
-                     // <a> 태그 생성
-                   const anchorTag = document.createElement("a");
-                     anchorTag.className = "alarmChatAnchor";
-                   // 경로를 하드코딩하는 대신, 동적으로 경로를 생성하는 방법
-                   const url = "/myPage/chatRoom"; // 원하는 경로로 수정
-                   anchorTag.href = url;
-                 
-                   alarmItem.innerHTML = 
-                       "<input type='hidden' value='" + alarm.alarm_id + "' class='alarm-id'>"  +
-                        "<span><strong>" + alarm.room_name + "</strong></span>" +
-                        "<span class='date'>" + alarm.printDate + "</span>" +
-                       "<br><br>" +
-                        "<span class='contents'>" + alarm.contents + "</span>" +
-                        "<br>" +
-                        "<button class='deleteAlarm' type='button' data-alarm-id='" + alarm.alarm_id + "'>삭제</button>";
+	            agreeInfo +=   ` <p class="date"></p>
+				</div>
+			</div>`;
+			
+			$(".tasks.waiting").append(agreeInfo);
+			console.log(agreeInfo);
+			
+		}
+		else if (recv.type_string==="AGREE_INVOLVE"){
+			alert("수락요청완료")
+			//태그삭제
+			 var className = "course-"+recv.course_id;
+			 var selectedElement = $('[id^="' + className + '"]');
+			 selectedElement.remove();
+			 
+				var agreeInfo = `
+					<div class="task-card" draggable="true" ondragstart="drag(event)" id="course-`+ recv.course_id + `" data-courseid="`+ recv.course_id  +`" data-boardid="`+ recv.course_id  +`">
+					<div class="card-top">
+					<p class="status accept">`+ recv.status_code +`</p>
+					<p class="card-board_id">no. ` + recv.board_id +`</p>
+					</div>
+					<p class="task-name">` + recv.title + `</p>
+					<div class="details">`
+					
+					if (recv.applyer_nickname == sender) {
+						agreeInfo += `	<p class="requester">신청자 : `+ recv.applyer_nickname + `</p>`
+						
+					}
+					else {
+						agreeInfo += `<p class="requester">요청자 : `+ recv.applyer_nickname +`</p>`
+						
+					}
+	                   
+		            agreeInfo +=   ` <p class="date">`+ recv.start_date+`</p>
+					</div>
+				</div>`;
+			 
+			 
+			 
+			 
+			 $(".tasks.accept").append(agreeInfo);
+		}
+		else if (recv.type_string==="COMPLETE_AGREE"){
+			alert("완료 요청 보냄")
+			
+			 var className = "course-"+recv.course_id;
+			console.log(className);
+			 var selectedElement = $('[id^="' + className + '"]');
+			 console.log(selectedElement)
+			 selectedElement.remove();
+			 
+				var agreeInfo = `
+					<div class="task-card" draggable="true" ondragstart="drag(event)" id="course-`+ recv.course_id + `" data-courseid="`+ recv.course_id  +`" data-boardid="`+ recv.course_id  +`">
+					<div class="status completed-waiting">`+ recv.status_code +`</div>
+					<p class="task-name">`
+					
+	           var originalTitle = recv.title;
+	           var truncatedTitle = originalTitle.length > 16 ? (originalTitle.substring(0, 16) + '...') : originalTitle;
+	           	agreeInfo += truncatedTitle
+	         
+	              agreeInfo += `</p>
+					<div class="details">`
+					
+					if (recv.applyer_nickname == sender) {
+						agreeInfo += `	<p class="requester">신청자 : `+ recv.applyer_nickname + `</p>`
+						
+					}
+					else {
+						agreeInfo += `<p class="requester">요청자 : `+ recv.applyer_nickname +`</p>`
+						
+					}
+	                   
+		            agreeInfo +=   ` <p class="date">`+ recv.start_date +`</p>
+					</div>
+				</div>`;
+				// 태그 추가
+		    $(".tasks.completed-waiting").append(agreeInfo);
+		}
+		else if (recv.type_string==="COMPLETE_INVOLVE"){
+			alert("완료요청 성공")
+			
+			 var className = "course-"+recv.course_id;
+			 var selectedElement = $('[id^="' + className + '"]');
+			 selectedElement.remove();
+			 
+				var agreeInfo = `
+					<div class="task-card" draggable="true" ondragstart="drag(event)" id="course-`+ recv.course_id + `" data-courseid="`+ recv.course_id  +`" data-boardid="`+ recv.course_id  +`">
+					<div class="status completed">`+ recv.status_code +`</div>
+					<p class="task-name">`
+					
+	           var originalTitle = recv.title;
+	           var truncatedTitle = originalTitle.length > 16 ? (originalTitle.substring(0, 16) + '...') : originalTitle;
+	           	agreeInfo += truncatedTitle
+	         
+	              agreeInfo += `</p>
+					<div class="details">`
+					
+					if (recv.applyer_nickname == sender) {
+						agreeInfo += `	<p class="requester">신청자 : `+ recv.applyer_nickname + `</p>`
+						
+					}
+					else {
+						agreeInfo += `<p class="requester">요청자 : `+ recv.applyer_nickname +`</p>`
+						
+					}
+	                   
+		            agreeInfo +=   ` <p class="date">`+ recv.start_date+`</p>
+					</div>
+				</div>`;
+				// 태그 추가
+		    $(".tasks.completed").append(agreeInfo);
+		}
+		
+		
+	}
+	
+
+	   //알람 로딩 함수
+	    function loadAlarms(listAlarm) {
+	   	     const commentListHTML = document.querySelector("#chat");
+	
+	   	 	 listAlarm.forEach(alarm => {
+	   	          console.log("알람 데이터:", alarm); // 알람 데이터 확인
+	   	          const alarmItem = document.createElement("div");
+	   	          alarmItem.className = "alarm";
+	
+	   	       	  // <a> 태그 생성
+	   	          const anchorTag = document.createElement("a");
+	   	       	  anchorTag.className = "alarmChatAnchor";
+	   	          // 경로를 하드코딩하는 대신, 동적으로 경로를 생성하는 방법
+	   	          const url = "/myPage/chatRoom"; // 원하는 경로로 수정
+	   	          anchorTag.href = url;
+	   	        
+	   	          alarmItem.innerHTML = 
+	   	              "<input type='hidden' value='" + alarm.alarm_id + "' class='alarm-id'>"  +
+	   	          	  "<span><strong>" + alarm.room_name + "</strong></span>" +
+	   	          	  "<span class='date'>" + alarm.printDate + "</span>" +
+	   	              "<br><br>" +
+	   	          	  "<span class='contents'>" + alarm.contents + "</span>" +
+	   	          	  "<br>" +
+	   	          	  "<button class='deleteAlarm' type='button' data-alarm-id='" + alarm.alarm_id + "'>삭제</button>";
 
 
-                 // <a> 태그 안에 <div> 태그를 추가
-                 anchorTag.appendChild(alarmItem);
+	   	        // <a> 태그 안에 <div> 태그를 추가
+	   	        anchorTag.appendChild(alarmItem);
 
-                 // 최종적으로 <a> 태그를 #chat에 추가
-                 commentListHTML.appendChild(anchorTag);
-               });
-      }
-      
-       // 채팅알람 삭제 버튼 클릭 이벤트 처리
-       $(document).on("click", ".deleteAlarm", function(e) {
-         e.preventDefault(); // 이벤트의 기본 동작을 막음
-         
-         var alarmId = $(this).data("alarm-id");
-         var self = this; // 클로저를 활용하여 현재의 this를 저장
-         // AJAX 요청
-         $.ajax({
-           type: "POST",
-             url: "<c:url value='/header/alarmDelete'/>",  
-            contentType: "application/json; charset=UTF-8",
-               data: JSON.stringify({ alarm_id: alarmId }),// 컨트롤러로 전송할 데이터
-           dataType: "json",
-           success: function(response) {
-               alert(response.message);
-             if (response.status) {
-               // 클릭된 버튼과 가장 가까운 .alarm 클래스를 가진 부모 div 제거
-               $(self).closest(".alarm").remove(); 
-             }
-           },
-         });
-       });
-      
-       // 전체 삭제 버튼 클릭 시 이벤트 처리
-      $(document).on("click", "#modal-btn-footer", function(e) {
-          // 현재 활성 탭을 확인
-          var activeTabId = $(".nav-tabs .nav-item .active").attr("href");
-          
-          // 채팅 탭에 있는 알람들을 삭제
-          if (activeTabId === "#chat") {
-             
-              // 채팅 탭의 알람이 없으면 알림 메시지를 띄우고 종료
-              if ($("#chat .alarm").length === 0) {
-                  alert("이미 전체삭제된 알람입니다.");
-                  return;
-              }
-              
-              // AJAX 요청
-               $.ajax({
-                 type: "POST",
-                   url: "<c:url value='/header/allAlarmDelete'/>",  
-                 dataType: "json",
-                 success: function(response) {
-                     alert(response.message);
-                   if (response.status) {
-                       $("#chat .alarm").remove();
-                   }
-                 },
-               });
-          }
-          // 진행상황 탭에 있는 알람들을 삭제
-          else if (activeTabId === "#progress") {
-             
-              // 진행상황 탭의 알람이 없으면 알림 메시지를 띄우고 종료
-              if ($("#chat .alarm").length === 0) {
-                  alert("이미 전체삭제된 알람입니다.");
-                  return;
-              }
-              
-              $("#progress .alarm").remove();
-          }
-          
-          // 추가적으로 서버에 전체 삭제 요청을 보낼 수 있음
-          // ...
-   
-      });
-      
-       // 다이얼로그가 닫힐 때 이벤트 처리
-       $('#staticBackdrop').on('hidden.bs.modal', function () {
-           $(".alarm").remove(); // .alarm 클래스를 가진 요소 삭제
-       });
-       
-      // #bell(종) 이미지 클릭시 이벤트 처리
-     $(document).on("click", "#bell", function(e) {
-         
-         // 서버에 AJAX 요청을 보내서 해당 게시글의 내용을 가져옵니다.
-         $.ajax({
-            type: "POST",
-           url: "<c:url value='/header/alarmSelect'/>",  
-            contentType: "application/json; charset=UTF-8",
-            dataType: "json",
-            success: function(response) {
-               console.log(response);
-               if(response.status){
-                  
-                    loadAlarms(response.listAlarm); // 알람목록을 출력하는 함수호출
-                    
-                   // 다이얼로그를 오픈합니다.
-                     $('#staticBackdrop').modal('show');
-               }
-            },
-            error: function(error) {
-               alert("데이터를 가져오는 데 실패했습니다.");
-            }
-         });
-         
-      });
-       
+	   	        // 최종적으로 <a> 태그를 #chat에 추가
+	   	        commentListHTML.appendChild(anchorTag);
+	   	      });
+		}
+	   
+	    // 채팅알람 삭제 버튼 클릭 이벤트 처리
+	    $(document).on("click", ".deleteAlarm", function(e) {
+	      e.preventDefault(); // 이벤트의 기본 동작을 막음
+	      
+	      var alarmId = $(this).data("alarm-id");
+	      var self = this; // 클로저를 활용하여 현재의 this를 저장
+	      // AJAX 요청
+	      $.ajax({
+	        type: "POST",
+	  	  	url: "<c:url value='/header/alarmDelete'/>",  
+	  	    contentType: "application/json; charset=UTF-8",
+   	  	    data: JSON.stringify({ alarm_id: alarmId }),// 컨트롤러로 전송할 데이터
+	        dataType: "json",
+	        success: function(response) {
+	        	 alert(response.message);
+				 if (response.status) {
+					// 클릭된 버튼과 가장 가까운 .alarm 클래스를 가진 부모 div 제거
+					$(self).closest(".alarm").remove(); 
+				 }
+	        },
+	      });
+	    });
+	   
+	    // 전체 삭제 버튼 클릭 시 이벤트 처리
+		$(document).on("click", "#modal-btn-footer", function(e) {
+		    // 현재 활성 탭을 확인
+		    var activeTabId = $(".nav-tabs .nav-item .active").attr("href");
+		    
+		    // 채팅 탭에 있는 알람들을 삭제
+		    if (activeTabId === "#chat") {
+		    	
+		    	 // 채팅 탭의 알람이 없으면 알림 메시지를 띄우고 종료
+		        if ($("#chat .alarm").length === 0) {
+		            alert("이미 전체삭제된 알람입니다.");
+		            return;
+		        }
+		    	 
+		        // AJAX 요청
+			      $.ajax({
+			        type: "POST",
+			  	  	url: "<c:url value='/header/allAlarmDelete'/>",  
+			        dataType: "json",
+			        success: function(response) {
+			        	 alert(response.message);
+						 if (response.status) {
+							  $("#chat .alarm").remove();
+						 }
+			        },
+			      });
+		    }
+		    // 진행상황 탭에 있는 알람들을 삭제
+		    else if (activeTabId === "#progress") {
+		    	
+		    	 // 진행상황 탭의 알람이 없으면 알림 메시지를 띄우고 종료
+		        if ($("#chat .alarm").length === 0) {
+		            alert("이미 전체삭제된 알람입니다.");
+		            return;
+		        }
+		    	 
+		        $("#progress .alarm").remove();
+		    }
+		    
+		    // 추가적으로 서버에 전체 삭제 요청을 보낼 수 있음
+		    // ...
+	
+		});
+	   
+	    // 다이얼로그가 닫힐 때 이벤트 처리
+	    $('#staticBackdrop').on('hidden.bs.modal', function () {
+	        $(".alarm").remove(); // .alarm 클래스를 가진 요소 삭제
+	    });
+	    
+	   // #bell(종) 이미지 클릭시 이벤트 처리
+	  $(document).on("click", "#bell", function(e) {
+			
+		   // 서버에 AJAX 요청을 보내서 해당 게시글의 내용을 가져옵니다.
+		   $.ajax({
+		      type: "POST",
+			  url: "<c:url value='/header/alarmSelect'/>",  
+		      contentType: "application/json; charset=UTF-8",
+		      dataType: "json",
+		      success: function(response) {
+		    	  console.log(response);
+		    	  if(response.status){
+		    		  
+		    		    loadAlarms(response.listAlarm); // 알람목록을 출력하는 함수호출
+		    		    
+		    			// 다이얼로그를 오픈합니다.
+				         $('#staticBackdrop').modal('show');
+		    	  }
+		      },
+		      error: function(error) {
+		         alert("데이터를 가져오는 데 실패했습니다.");
+		      }
+		   });
+		   
+		});
+		 
+
 
 </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>

@@ -59,9 +59,7 @@ header{
 
 #bell {
   display: block; /* 이미지를 블록 레벨 요소로 만듭니다. */
-  position: absolute; /* 위치 지정을 위해 절대 위치로 설정 */
-  top: 50%; /* 부모 요소의 중간에 위치시키기 위해 50%에서 시작 */
-  transform: translateY(-50%); /* 수직으로 중앙 정렬. 부모 요소의 50%만큼 위로 이동 */
+   margin-top: 8px; /* 높이를 조절하여 아래로 이동합니다. */
 }
 
 #bell:hover {
