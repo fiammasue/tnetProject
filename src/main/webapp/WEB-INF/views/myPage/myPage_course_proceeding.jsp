@@ -840,97 +840,99 @@
           // 현재 소스 버킷 확인
            const sourceBucket = findSourceBucket(card);
 
-           // 이동을 허용할지 여부를 판단
-           if (sourceBucket === completedWaitingBucket) {
-               return; // 완료대기칸에서 휴지통칸으로의 이동을 방지
-           }
-           
-              // 서버에서 진짜 데이터가 바뀔 수 있도록 함
-            const courseId = card.getAttribute('data-courseid');
-            updateTrash(courseId);
-          
-             //화면 데이터 바뀔 수 있도록 함
-           // 클래스명, 상태 코드, 날짜 변경
-           statusChange.classList.remove('completed-waiting');
-           statusChange.classList.remove('completed');
-           statusChange.classList.add('trash');
-           statusChange.textContent = '완료된 강의 삭제';
-           
-           trashBucket.appendChild(card);
-      });
-      
-      /* 대기칸에서 수락칸으로 옮겼을 때 상태코드 변화 update 함수 */
-      function updateAccept(courseId) {
-          console.log(courseId);
-          
-          $.ajax({
-              url: '/myPage/updateAccept',
-              type: 'POST',
-              data: { course_id: courseId },  // Ajax 데이터로 courseId를 전달
-              success: function(response) {
-                 // 서버에서 업데이트된 데이터를 클라이언트로 받음
-                  const updatedAcceptList = response.updatedAcceptList;
-              }
-          });
-      }
-      
-      /* 대기칸에서 거절칸으로 옮겼을 때 상태코드 변화 update 함수 */
-      function updateReject(courseId) {
-          console.log(courseId);
-          
-          $.ajax({
-              url: '/myPage/updateReject',
-              type: 'POST',
-              data: { course_id: courseId },  // Ajax 데이터로 courseId를 전달
-              success: function(response) {
-                 // 서버에서 업데이트된 데이터를 클라이언트로 받음
-                  const updatedRejectList = response.updatedRejectList;
-              }
-          });
-      }
-      
-      /* 거절칸에서 대기칸으로 옮겼을 때 상태코드 변화 update 함수 */
-      function updateWaiting(courseId) {
-          
-          $.ajax({
-              url: '/myPage/updateWaiting',
-              type: 'POST',
-              data: { course_id: courseId },  // Ajax 데이터로 courseId를 전달
-              success: function(response) {
-                 // 서버에서 업데이트된 데이터를 클라이언트로 받음
-                  const updatedWaitingList = response.updatedWaitingList;
-              }
-          });
-      }
-      
-      /* 완료대기칸이나 휴지통에서 완료수락칸으로 옮겼을 때 상태코드 변화 update 함수 */
-      function updateCompleted(courseId) {
-          
-          $.ajax({
-              url: '/myPage/updateCompleted',
-              type: 'POST',
-              data: { course_id: courseId },  // Ajax 데이터로 courseId를 전달
-              success: function(response) {
-                 // 서버에서 업데이트된 데이터를 클라이언트로 받음
-                  const updatedCompletedList = response.updatedCompletedList;
-              }
-          });
-          return true;
-      }
-      
-      /* 완료수락칸에서 휴지통칸으로 옮겼을 때 상태코드 변화 update 함수 */
-      function updateTrash(courseId) {
-          
-          $.ajax({
-              url: '/myPage/updateTrash',
-              type: 'POST',
-              data: { course_id: courseId },  // Ajax 데이터로 courseId를 전달
-              success: function(response) {
-                 // 서버에서 업데이트된 데이터를 클라이언트로 받음
-                  const updatedTrashList = response.updatedTrashList;
-              }
-          });
-      }
+
+	        // 이동을 허용할지 여부를 판단
+	        if (sourceBucket === completedWaitingBucket) {
+	            return; // 완료대기칸에서 휴지통칸으로의 이동을 방지
+	        }
+	        
+		 	    // 서버에서 진짜 데이터가 바뀔 수 있도록 함
+		      const courseId = card.getAttribute('data-courseid');
+		      updateTrash(courseId);
+		    
+		  	  //화면 데이터 바뀔 수 있도록 함
+	        // 클래스명, 상태 코드, 날짜 변경
+	        statusChange.classList.remove('completed-waiting');
+	        statusChange.classList.remove('completed');
+	        statusChange.classList.add('trash');
+	        statusChange.textContent = '완료된 강의 삭제';
+	        
+	        trashBucket.appendChild(card);
+		});
+		
+		/* 대기칸에서 수락칸으로 옮겼을 때 상태코드 변화 update 함수 */
+		function updateAccept(courseId) {
+		    console.log(courseId);
+		    
+		    $.ajax({
+		        url: '/myPage/updateAccept',
+		        type: 'POST',
+		        data: { course_id: courseId },  // Ajax 데이터로 courseId를 전달
+		        success: function(response) {
+		        	// 서버에서 업데이트된 데이터를 클라이언트로 받음
+		            const updatedAcceptList = response.updatedAcceptList;
+		        }
+		    });
+		}
+		
+		/* 대기칸에서 거절칸으로 옮겼을 때 상태코드 변화 update 함수 */
+		function updateReject(courseId) {
+		    console.log(courseId);
+		    
+		    $.ajax({
+		        url: '/myPage/updateReject',
+		        type: 'POST',
+		        data: { course_id: courseId },  // Ajax 데이터로 courseId를 전달
+		        success: function(response) {
+		        	// 서버에서 업데이트된 데이터를 클라이언트로 받음
+		            const updatedRejectList = response.updatedRejectList;
+		        }
+		    });
+		}
+		
+		/* 거절칸에서 대기칸으로 옮겼을 때 상태코드 변화 update 함수 */
+		function updateWaiting(courseId) {
+		    
+		    $.ajax({
+		        url: '/myPage/updateWaiting',
+		        type: 'POST',
+		        data: { course_id: courseId },  // Ajax 데이터로 courseId를 전달
+		        success: function(response) {
+		        	// 서버에서 업데이트된 데이터를 클라이언트로 받음
+		            const updatedWaitingList = response.updatedWaitingList;
+		        }
+		    });
+		}
+		
+		/* 완료대기칸이나 휴지통에서 완료수락칸으로 옮겼을 때 상태코드 변화 update 함수 */
+		function updateCompleted(courseId) {
+		    
+		    $.ajax({
+		        url: '/myPage/updateCompleted',
+		        type: 'POST',
+		        data: { course_id: courseId },  // Ajax 데이터로 courseId를 전달
+		        success: function(response) {
+		        	// 서버에서 업데이트된 데이터를 클라이언트로 받음
+		            const updatedCompletedList = response.updatedCompletedList;
+		        }
+		    });
+		    return true;
+		}
+		
+		/* 완료수락칸에서 휴지통칸으로 옮겼을 때 상태코드 변화 update 함수 */
+		function updateTrash(courseId) {
+		    
+		    $.ajax({
+		        url: '/myPage/updateTrash',
+		        type: 'POST',
+		        data: { course_id: courseId },  // Ajax 데이터로 courseId를 전달
+		        success: function(response) {
+		        	// 서버에서 업데이트된 데이터를 클라이언트로 받음
+		            const updatedTrashList = response.updatedTrashList;
+		        }
+		    });
+		}
+
 
 
       // Step 5
