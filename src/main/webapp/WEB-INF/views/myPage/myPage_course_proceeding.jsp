@@ -478,7 +478,12 @@
 	});
 	/* ************************************************************************** */
 		
-
+	//드래그
+		function drag(event) {
+			console.log(event)
+		  event.dataTransfer.setData('text', event.target.id);
+		}
+		
 	/* ************************************************************************** */
 	/* 칸반보드카드 */
 	/* ************************************************************************** */
@@ -585,11 +590,7 @@
 		    const card = document.getElementById(data);
 		    event.target.appendChild(card);
 		}
-		//드래그
-		function drag(event) {
-		  event.dataTransfer.setData('text', event.target.id);
-		}
-		
+	
 
 		
 		//드롭**************************************************************************
