@@ -101,6 +101,7 @@
         and RECEIVER = #{nickName} 	
 	</update>
 	
+	
 	<select id="isAlarmDataExists" parameterType="com.project.tnet.dto.Alarm" resultType="java.lang.Integer">
 		select count(*)
 		from alarm

@@ -188,7 +188,7 @@
                         <span id="bellBadge" class="position-absolute top-0 start-100 badge bg-danger" style="transform: translate(-50%, +40%) !important;">New</span>
                     </c:if>
                     <c:if test="${!isAlarmDataExists}">
-                        <span style="display: none;" id="bellBadge" class="position-absolute top-0 start-100 badge bg-danger" style="transform: translate(-50%, +40%) !important;">New</span>
+                        <span id="bellBadge" class="position-absolute top-0 start-100 badge bg-danger" style="transform: translate(-50%, +40%) !important; display: none;">New</span>
                     </c:if>
       		  	  </li>
 		        </ul>
@@ -543,8 +543,7 @@
 		    // 추가적으로 서버에 전체 삭제 요청을 보낼 수 있음
 		    // ...
 	
-		});
-	   
+		});	   
 	    // 다이얼로그가 닫힐 때 이벤트 처리
 	    $('#staticBackdrop').on('hidden.bs.modal', function () {
 	        $(".alarm").remove(); // .alarm 클래스를 가진 요소 삭제
@@ -579,7 +578,6 @@
 		   
 		});
 		 
-
 </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 </body>
