@@ -840,6 +840,7 @@
           // 현재 소스 버킷 확인
            const sourceBucket = findSourceBucket(card);
 
+
 	        // 이동을 허용할지 여부를 판단
 	        if (sourceBucket === completedWaitingBucket) {
 	            return; // 완료대기칸에서 휴지통칸으로의 이동을 방지
@@ -931,6 +932,7 @@
 		        }
 		    });
 		}
+
 
 
       // Step 5
