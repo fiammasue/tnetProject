@@ -14,7 +14,7 @@ public interface AlarmDAO {
 	//멤버테이블과 연관 ***
 	public int insertAlarm(Alarm alarm);
 	
-	// 로그인한 nickName에 존재하는 모든 댓글 조회 
+	// 로그인한 nickName에 존재하는 모든 알람조회 
 	List<Alarm> selectAllAlarmList(String nickName) throws Exception;
 		
 	//로그인 유저의 알람을 검색
@@ -24,8 +24,17 @@ public interface AlarmDAO {
 	public int updateReadYn(Alarm alarm);
 
 	public int updateAllReadYn(String nickName);
-
+	
+	public int updateAllProgressReadYn(String nickName);
+	
+	public int updateAllDeleteYn(String nickName);
+	
+	public int updateAllProgressDeleteYn(String nickName);
+	
 	// Alarm 데이터가 존재하는지 확인
 	public int isAlarmDataExists(String nickName);
+
+	// 로그인한 nickName에 존재하는 모든 진행상황조회
+	public List<Alarm> selectAllProgressList(String nickName);
 	
 }

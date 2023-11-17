@@ -43,7 +43,7 @@
 		    	CHAT_ROOM CR ON CR.ROOM_ID = A.ROOM_ID
 			WHERE 
 			    A.ALARM_CODE = 'A01' 
-			    AND A.READ_YN='N'
+			    AND A.DELETE_YN='N'
 			    AND A.RECEIVER = #{nickName}
 			    AND (A.ROOM_ID, A.ALARM_ID) IN (
 			        SELECT ROOM_ID, MAX(ALARM_ID) AS MAX_ALARM_ID
@@ -53,9 +53,23 @@
 			    )
    	</select>
    	
+   	<select id="selectAllProgressList" parameterType="com.project.tnet.dto.Alarm" resultType="com.project.tnet.dto.Alarm">
+		SELECT 
+			A.ALARM_ID,
+		    A.CONTENTS,
+	        A.sender,
+		    TO_CHAR(A.REG_DATE, 'YYYY"-"MM"-"DD' ) as printDate
+		FROM 
+	   		ALARM A			
+		WHERE 
+		    A.ALARM_CODE != 'A01' 
+		    AND A.DELETE_YN='N'
+		    AND A.RECEIVER = #{nickName}
+   	</select>
+   	
 	<update id="updateReadYn">
 		update alarm
-		set read_yn = 'Y'
+		set DELETE_YN = 'Y'
 		where ALARM_ID=#{alarm_id}
 	</update>
    	
@@ -65,7 +79,29 @@
 		where ALARM_CODE='A01'
         and RECEIVER = #{nickName} 	
 	</update>
+   	
+	<update id="updateAllProgressReadYn">
+		update alarm
+		set read_yn = 'Y'
+		where ALARM_CODE !='A01'
+        and RECEIVER = #{nickName} 	
+	</update>
 
+	<update id="updateAllDeleteYn">
+		update alarm
+		set DELETE_YN = 'Y'
+		where ALARM_CODE='A01'
+        and RECEIVER = #{nickName} 	
+	</update>
+   	
+	<update id="updateAllProgressDeleteYn">
+		update alarm
+		set DELETE_YN = 'Y'
+		where ALARM_CODE !='A01'
+        and RECEIVER = #{nickName} 	
+	</update>
+	
+	
 	<select id="isAlarmDataExists" parameterType="com.project.tnet.dto.Alarm" resultType="java.lang.Integer">
 		select count(*)
 		from alarm
