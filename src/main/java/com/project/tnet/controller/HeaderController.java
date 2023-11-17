@@ -33,9 +33,15 @@ public class HeaderController {
 			if (principalDetails.getUser() != null) {
 				MemberVO memberVO = principalDetails.getUser();
 				List<Alarm> listAlarm = alarmService.alarmList(memberVO.getNickName());
-				System.out.println("memberVO = " + memberVO);
+				List<Alarm> listProgress = alarmService.progressList(memberVO.getNickName());
+				
+				// 알림배지 New를 안보이게 하기위한 비지니스로직				
+				alarmService.updateAllReadYn(memberVO.getNickName());
+				alarmService.updateAllProgressReadYn(memberVO.getNickName());
+				System.out.println("memberVO = " +  memberVO);
 				map.put("status", true);
 				map.put("listAlarm", listAlarm); 
+				map.put("listProgress", listProgress); 
 			}
 		}
 		return map;
@@ -69,7 +75,24 @@ public class HeaderController {
 			System.out.println("PrincipalDetails = " + principalDetails);
 			if (principalDetails.getUser() != null) {
 				MemberVO memberVO = principalDetails.getUser();
-				map = alarmService.updateAllReadYn(memberVO.getNickName());
+				map = alarmService.updateAllDeleteYn(memberVO.getNickName());
+			}
+		}
+		
+		return map;
+	}
+	
+	// 모든 진행상황알람 삭제	
+	@ResponseBody
+	@RequestMapping(value = "/header/allProgressDelete")
+	public Map<String, Object> allProgressDelete(Authentication authentication) throws Exception {
+		Map<String, Object> map = new HashMap<String, Object>();
+		if (authentication != null) {
+			PrincipalDetails principalDetails = (PrincipalDetails)authentication.getPrincipal();
+			System.out.println("PrincipalDetails = " + principalDetails);
+			if (principalDetails.getUser() != null) {
+				MemberVO memberVO = principalDetails.getUser();
+				map = alarmService.updateAllProgressDeleteYn(memberVO.getNickName());
 			}
 		}
 		

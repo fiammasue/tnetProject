@@ -143,7 +143,6 @@
 
           <!-- 진행상황 탭 내용 -->
           <div class="tab-pane fade" id="progress">
-            <p>진행상황 내용이 여기에 들어갑니다.</p>
           </div>
         </div>
       </div>
@@ -186,7 +185,10 @@
    		  	  		<!-- 헤더 알림테이블의 NEW 배지 -->
    		  	  		<!-- 데이터가 존재하는 경우에만 New 스팬을 화면에 표시 -->
                     <c:if test="${isAlarmDataExists}">
-                        <span class="position-absolute top-0 start-100 badge bg-danger" style="transform: translate(-50%, +40%) !important;">New</span>
+                        <span id="bellBadge" class="position-absolute top-0 start-100 badge bg-danger" style="transform: translate(-50%, +40%) !important;">New</span>
+                    </c:if>
+                    <c:if test="${!isAlarmDataExists}">
+                        <span style="display: none;" id="bellBadge" class="position-absolute top-0 start-100 badge bg-danger" style="transform: translate(-50%, +40%) !important;">New</span>
                     </c:if>
       		  	  </li>
 		        </ul>
@@ -431,7 +433,41 @@
 	   	      });
 		}
 	   
-	    // 채팅알람 삭제 버튼 클릭 이벤트 처리
+	    //진행상황 로딩 함수
+	    function loadProgress(listAlarm) {
+	    	 const commentListHTML = document.querySelector("#progress");
+	    		
+	    	 listAlarm.forEach(alarm => {
+	   	          console.log("알람 데이터:", alarm); // 알람 데이터 확인
+	   	          const alarmItem = document.createElement("div");
+	   	          alarmItem.className = "alarm";
+	
+	   	       	  // <a> 태그 생성
+	   	          const anchorTag = document.createElement("a");
+	   	       	  anchorTag.className = "alarmChatAnchor";
+	   	          // 경로를 하드코딩하는 대신, 동적으로 경로를 생성하는 방법
+	   	          const url = "/myPage/course_proceeding"; // 원하는 경로로 수정
+	   	          anchorTag.href = url;
+	   	        
+	   	          alarmItem.innerHTML = 
+	   	              "<input type='hidden' value='" + alarm.alarm_id + "' class='alarm-id'>"  +
+	   	          	  "<span><strong>" + alarm.sender + "</strong></span>" +
+	   	          	  "<span class='date'>" + alarm.printDate + "</span>" +
+	   	              "<br><br>" +
+	   	          	  "<span class='contents'>" + alarm.contents + "</span>" +
+	   	          	  "<br>" +
+	   	          	  "<button class='deleteAlarm' type='button' data-alarm-id='" + alarm.alarm_id + "'>삭제</button>";
+
+
+	   	        // <a> 태그 안에 <div> 태그를 추가
+	   	        anchorTag.appendChild(alarmItem);
+
+	   	        // 최종적으로 <a> 태그를 #chat에 추가
+	   	        commentListHTML.appendChild(anchorTag);
+	   	      });
+		}
+	    
+	    // 채팅&진행 상황알람 삭제 버튼 클릭 이벤트 처리
 	    $(document).on("click", ".deleteAlarm", function(e) {
 	      e.preventDefault(); // 이벤트의 기본 동작을 막음
 	      
@@ -485,12 +521,23 @@
 		    else if (activeTabId === "#progress") {
 		    	
 		    	 // 진행상황 탭의 알람이 없으면 알림 메시지를 띄우고 종료
-		        if ($("#chat .alarm").length === 0) {
+		        if ($("#progress .alarm").length === 0) {
 		            alert("이미 전체삭제된 알람입니다.");
 		            return;
 		        }
 		    	 
-		        $("#progress .alarm").remove();
+		     // AJAX 요청
+			      $.ajax({
+			        type: "POST",
+			  	  	url: "<c:url value='/header/allProgressDelete'/>",  
+			        dataType: "json",
+			        success: function(response) {
+			        	 alert(response.message);
+						 if (response.status) {
+							 $("#progress .alarm").remove();
+						 }
+			        },
+			      });
 		    }
 		    
 		    // 추가적으로 서버에 전체 삭제 요청을 보낼 수 있음
@@ -517,9 +564,12 @@
 		    	  if(response.status){
 		    		  
 		    		    loadAlarms(response.listAlarm); // 알람목록을 출력하는 함수호출
-		    		    
+		    		    loadProgress(response.listProgress);// 진행상황을 출력하는 함수호출
 		    			// 다이얼로그를 오픈합니다.
 				         $('#staticBackdrop').modal('show');
+		    		    
+				         // 클릭 시 "New" 배지 감추기
+			             $("#bellBadge").hide();
 		    	  }
 		      },
 		      error: function(error) {

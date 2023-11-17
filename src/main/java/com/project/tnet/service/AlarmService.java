@@ -31,6 +31,14 @@ public class AlarmService {
 		return alarmList;
 	}
 	
+	//진행상황 상세보기
+	public List<Alarm> progressList(String nickName) throws Exception {
+		System.out.println(">>>>>>>>>> 진행상황 서비스까지 잘오네~");
+		// 로그인한 닉네임의 알람 조회
+		List<Alarm> listProgress = alarmDAO.selectAllProgressList(nickName);
+		return listProgress;
+	}
+	
 	public List<Alarm> selectByReceiver(Alarm alarm){
 		return alarmDAO.selectByReceiver(alarm);
 	}
@@ -53,11 +61,22 @@ public class AlarmService {
 		return map;
 	}
 
+	//헤더 알람창의 채팅메시지를 전부 읽음처리한다.
+	public void updateAllReadYn(String nickName) {
+		alarmDAO.updateAllReadYn(nickName);
+	}
+	
+	//진행상황 알람창의 채팅메시지를 전부 읽음처리한다.
+	public void updateAllProgressReadYn(String nickName) {
+		alarmDAO.updateAllProgressReadYn(nickName);
+	}
+	
+	
 	//헤더 알람창의 채팅메시지를 전부삭제한다.
-	public Map<String, Object> updateAllReadYn(String nickName) {
+	public Map<String, Object> updateAllDeleteYn(String nickName) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		
-		int rowCount = alarmDAO.updateAllReadYn(nickName);
+		int rowCount = alarmDAO.updateAllDeleteYn(nickName);
 		
 		if (rowCount > 0) {
 			map.put("status", true);
@@ -65,6 +84,23 @@ public class AlarmService {
 		}else {
 			map.put("status", false);
 			map.put("message", "채팅글 삭제시 오류가 발생하였습니다");
+		}
+		
+		return map;
+	}
+	
+	//진행상황 알람창의 채팅메시지를 전부삭제한다.
+	public Map<String, Object> updateAllProgressDeleteYn(String nickName) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		int rowCount = alarmDAO.updateAllProgressDeleteYn(nickName);
+		
+		if (rowCount > 0) {
+			map.put("status", true);
+			map.put("message", "진행상황이 전부 삭제되었습니다");
+		}else {
+			map.put("status", false);
+			map.put("message", "진행상황이 삭제시 오류가 발생하였습니다");
 		}
 		
 		return map;
