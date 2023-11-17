@@ -180,6 +180,7 @@ public class MessageController {
 								.build();
 		
 		course = myPageService.getCourseAgreeInvolve(course);
+		System.out.println("courseMessage -> "+course);
 		course.setType_string(MessageType.AGREE_INVOLVE.name());
 		//상대방에게 전달
 		messagingTemplate.convertAndSend("/sub/member/userId/"+alarm.getReceiver(),course);
@@ -197,17 +198,16 @@ public class MessageController {
 		
 		course = myPageService.getCourseCompleteAgree(course);
 		course.setType_string(MessageType.COMPLETE_AGREE.name());
-		//상대방에게 전달
-		messagingTemplate.convertAndSend("/sub/member/userId/"+alarm.getReceiver(),course);
 		
 		Alarm result = Alarm.builder()
 				.type_string(MessageType.ALARM.name())
 				.contents("재능교환 완료 요청이 왔습니다.")
 				.alarm_code("A02")
 				.page_type("/myPage/course_proceeding")
-				.sender(alarm.getSender())//무조건 글작성자
+				.sender(alarm.getSender())//무조건 완료신청자
 				.read_yn("N")
 				.build();
+		//완료 받는사람
 		if (course.getApplyer_nickname().equals(alarm.getSender())) {
 			result.setReceiver(course.getWriter_nickname());
 		}
@@ -215,23 +215,23 @@ public class MessageController {
 			result.setReceiver(course.getApplyer_nickname());
 		}
 		alarmService.insertAlarm(result);
-		messagingTemplate.convertAndSend("/sub/member/userId/"+result.getReceiver(),result);
+		//상대방에게 전달
+		messagingTemplate.convertAndSend("/sub/member/userId/"+result.getReceiver(),course);//c출력할건을전달
+		messagingTemplate.convertAndSend("/sub/member/userId/"+result.getReceiver(),result);//알람
 		
 	}
 	//완료
 	@MessageMapping("/complete/courseInvolve")
 	public void courseInvolve(Alarm alarm) {
-		
+		System.out.println("courseInvolve  - -  alarm : "+ alarm);
 		//courseID도 같이 넘어가야함
-		Course course = Course.builder()
+		Course param = Course.builder()
 				.writer_nickname(alarm.getSender())
 				.course_id(alarm.getCourse_id())
 				.build();
 		
-		course = myPageService.getCourseCompleteInvolve(course);
+		Course course = myPageService.getCourseCompleteInvolve(param);
 		course.setType_string(MessageType.COMPLETE_INVOLVE.name());
-		//상대방에게 전달
-		messagingTemplate.convertAndSend("/sub/member/userId/"+alarm.getReceiver(),course);
 		
 		Alarm result = Alarm.builder()
 				.type_string(MessageType.ALARM.name())
@@ -248,7 +248,9 @@ public class MessageController {
 			result.setReceiver(course.getApplyer_nickname());
 		}
 		alarmService.insertAlarm(result);
-		messagingTemplate.convertAndSend("/sub/member/userId/"+result.getReceiver(),result);
+		//상대방에게 전달
+		messagingTemplate.convertAndSend("/sub/member/userId/"+result.getReceiver(),course);//출력할건을전달
+		messagingTemplate.convertAndSend("/sub/member/userId/"+result.getReceiver(),result);//알람
 	}
 
 }

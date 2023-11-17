@@ -275,12 +275,12 @@
 								,applyer_nickname:course.applyer_nickname
 								}));
 				 }
-// 				 else if(json.bool == "done"){
-// 					 alert("이미 신청한 게시글입니다.");
-// 				 }
-// 				 else{
-// 					 alert("수강신청이 실패했습니다.");
-// 				 }
+				 else if(json.bool == "done"){
+					 alert("이미 신청한 게시글입니다.");
+				 }
+				 else{
+					 alert("수강신청이 실패했습니다.");
+				 }
 			}
 			
 		});
