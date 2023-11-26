@@ -22,6 +22,9 @@ public class AlarmService {
 		return alarmDAO.insertAlarm(alarm);
 		
 	}
+	public int insertAlarmChat(Alarm alarm) {
+		return alarmDAO.insertAlarmChat(alarm);
+	}
 	
 	//알람 상세보기
 	public List<Alarm> alarmList(String nickName) throws Exception {
@@ -116,5 +119,14 @@ public class AlarmService {
 		// 예를 들어, Alarm 테이블에서 데이터가 있는지 확인하는 코드를 작성합니다.
         // 결과에 따라 true 또는 false를 반환합니다.
 		 return alarmDAO.isAlarmDataExists(nickName) > 0;
+	}
+	
+	//입력한 alarm 데이터 가져오기
+	public Alarm selectChatAlarm(Alarm alarm) {
+		return alarmDAO.selectChatAlarm(alarm);
+	}
+	public Alarm selectProAlarmId(Alarm alarm) {
+		// TODO Auto-generated method stub
+		return alarmDAO.selectProAlarmId(alarm);
 	}
 }

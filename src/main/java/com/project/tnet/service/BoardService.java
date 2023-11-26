@@ -105,5 +105,9 @@ public class BoardService {
 	public int updateBoardStatus(Board board) {
 		return boardDAO.updateBoardStatus(board);
 	}
+	//제목 출력을 위한 게시글 정보 가져오기
+	public Board selectBoard(int board_id) {
+		return boardDAO.selectBoard(board_id);
+	}
 
 }
