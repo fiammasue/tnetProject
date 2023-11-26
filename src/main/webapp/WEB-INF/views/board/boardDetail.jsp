@@ -273,6 +273,7 @@
 								,course_id:course.course_id
 								,writer_nickname: course.writer_nickname
 								,applyer_nickname:course.applyer_nickname
+								,board_id:$('#board_id').val()
 								}));
 				 }
 				 else if(json.bool == "done"){

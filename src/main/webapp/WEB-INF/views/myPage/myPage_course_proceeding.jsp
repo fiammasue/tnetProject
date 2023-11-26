@@ -620,7 +620,6 @@
 
 
          //---------------채팅방생성 및 재능기부 진행
-
          const param = {
             agreeChat : "수락",
             receiver : $(".applyer_nickname").text(),
@@ -642,6 +641,7 @@
                         ,sender:json.chatRoom.sender
                         ,receiver:json.chatRoom.receiver
                         ,course_id:courseId
+                        ,board_id: boardId
                         }));
                 }
             }
@@ -775,6 +775,7 @@
 
            // 서버에서 진짜 데이터가 바뀔 수 있도록 함
             const courseId = card.getAttribute('data-courseid');
+            const boardId = card.getAttribute('data-boardid');
             const courseInvolve = updateCompleted(courseId);
             // 강의를 완료하면 알람메시지 띄움
             if (courseInvolve === true){
@@ -783,6 +784,7 @@
                              ,type_string:"ALARM"
                              ,sender:"${principal.user.nickName}"
                              ,course_id:courseId
+                             ,board_id:boardId
                              }));
 
             }
@@ -1254,13 +1256,17 @@
 
                     // "completedWaitingBucket"에 테스크 카드 추가
                     completedWaitingBucket.append(taskCardClone);
-
+                    var text = $('#viewForm').find('.detail-board_id').text();
+                    var parts = text.split('.'); // 마침표를 기준으로 문자열 분할
+                    var boardId = parts[1]; // 두 번째 부분은 "544"입니다.
+                    
                     // 강의 완료 요청 보내면 알람 보냄
                     ws.send("/pub/complete/courseAgree",{},JSON.stringify({
                         type:'ALARM'
                         ,type_string:"ALARM"
                         ,sender:"${principal.user.nickName}"
                         ,course_id:courseId
+                        ,board_id:boardId
                         }));
                     
                     $("#viewForm").dialog("close");

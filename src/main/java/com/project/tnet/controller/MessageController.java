@@ -117,8 +117,10 @@ public class MessageController {
 				}
 				
 				System.out.println("alarm -> "+ alarm);
-				alarmService.insertAlarm(alarm);
-				messagingTemplate.convertAndSend("/sub/member/userId/"+message.getReceiver(), alarm,headerAccessor.getMessageHeaders());
+				alarmService.insertAlarmChat(alarm);
+				Alarm result = alarmService.selectChatAlarm(alarm);
+				result.setAlarm_code(MessageType.ALARM.name());
+				messagingTemplate.convertAndSend("/sub/member/userId/"+message.getReceiver(), result,headerAccessor.getMessageHeaders());
 				messagingTemplate.convertAndSend("/sub/member/userId/"+message.getSender(),message,headerAccessor.getMessageHeaders());
 			}
 			else {
@@ -144,10 +146,13 @@ public class MessageController {
 				.page_type("/myPage/proceeding.do")
 				.receiver(course.getWriter_nickname())
 				.sender(course.getApplyer_nickname())
+				.board_id(course.getBoard_id())
 				.read_yn("N")
 				.build();
 		alarmService.insertAlarm(alarm);
-		messagingTemplate.convertAndSend("/sub/member/userId/"+course.getWriter_nickname(),alarm);
+		Alarm result = alarmService.selectProAlarmId(alarm);
+		result.setAlarm_code(MessageType.ALARM.name());
+		messagingTemplate.convertAndSend("/sub/member/userId/"+course.getWriter_nickname(),result);
 		
 		System.out.println("Message Controller -> "+ course);
 		//수강신청에 태그도 추가 해야함
@@ -168,10 +173,14 @@ public class MessageController {
 				.page_type("/myPage/course_proceeding")
 				.receiver(alarm.getReceiver())//무조건상대방
 				.sender(alarm.getSender())//무조건 글작성자
+				.board_id(alarm.getBoard_id())
 				.read_yn("N")
 				.build();
 		alarmService.insertAlarm(result);
-		messagingTemplate.convertAndSend("/sub/member/userId/"+alarm.getReceiver(),result);
+		System.out.println("result ------>" + result);
+		Alarm result1 = alarmService.selectProAlarmId(result);
+		result1.setAlarm_code(MessageType.ALARM.name());
+		messagingTemplate.convertAndSend("/sub/member/userId/"+alarm.getReceiver(),result1);
 		
 		//courseID도 같이 넘어가야함
 		Course course = Course.builder()
@@ -205,6 +214,7 @@ public class MessageController {
 				.alarm_code("A02")
 				.page_type("/myPage/course_proceeding")
 				.sender(alarm.getSender())//무조건 완료신청자
+				.board_id(alarm.getBoard_id())
 				.read_yn("N")
 				.build();
 		//완료 받는사람
@@ -215,9 +225,11 @@ public class MessageController {
 			result.setReceiver(course.getApplyer_nickname());
 		}
 		alarmService.insertAlarm(result);
+		Alarm result1 = alarmService.selectProAlarmId(result);
+		result1.setAlarm_code(MessageType.ALARM.name());
 		//상대방에게 전달
 		messagingTemplate.convertAndSend("/sub/member/userId/"+result.getReceiver(),course);//c출력할건을전달
-		messagingTemplate.convertAndSend("/sub/member/userId/"+result.getReceiver(),result);//알람
+		messagingTemplate.convertAndSend("/sub/member/userId/"+result.getReceiver(),result1);//알람
 		
 	}
 	//완료
@@ -229,7 +241,7 @@ public class MessageController {
 				.writer_nickname(alarm.getSender())
 				.course_id(alarm.getCourse_id())
 				.build();
-		
+		System.out.println("alarm -----> "+ alarm);
 		Course course = myPageService.getCourseCompleteInvolve(param);
 		course.setType_string(MessageType.COMPLETE_INVOLVE.name());
 		
@@ -239,6 +251,7 @@ public class MessageController {
 				.alarm_code("A07")
 				.page_type("/myPage/course_proceeding")
 				.sender(alarm.getSender())//무조건 글작성자
+				.board_id(alarm.getBoard_id())
 				.read_yn("N")
 				.build();
 		if (course.getApplyer_nickname().equals(alarm.getSender())) {
@@ -248,9 +261,11 @@ public class MessageController {
 			result.setReceiver(course.getApplyer_nickname());
 		}
 		alarmService.insertAlarm(result);
+		Alarm result1 = alarmService.selectProAlarmId(result);
+		result1.setAlarm_code(MessageType.ALARM.name());
 		//상대방에게 전달
 		messagingTemplate.convertAndSend("/sub/member/userId/"+result.getReceiver(),course);//출력할건을전달
-		messagingTemplate.convertAndSend("/sub/member/userId/"+result.getReceiver(),result);//알람
+		messagingTemplate.convertAndSend("/sub/member/userId/"+result.getReceiver(),result1);//알람
 	}
 
 }

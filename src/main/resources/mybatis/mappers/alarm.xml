@@ -3,6 +3,11 @@
 <mapper namespace="com.project.tnet.dao.AlarmDAO">
 
 <insert id="insertAlarm">
+	<selectKey keyProperty="alarm_id" resultType="int"  order="BEFORE">
+					select 
+						alarm_num.nextval alarm_id
+					from dual
+			</selectKey>
 		insert into alarm(
 					alarm_id
 					,contents
@@ -12,9 +17,10 @@
 					,sender
 					,read_yn
 					,reg_date
+					,board_id
 				)
 					values(
-					alarm_num.nextval
+					#{alarm_id}
 					,#{contents}
 					,#{alarm_code}
 					,#{page_type}
@@ -22,12 +28,57 @@
 					,#{sender}
 					,#{read_yn}
 					,sysdate
+					,#{board_id}
+				)
+	</insert>
+	<insert id="insertAlarmChat">
+	<selectKey keyProperty="alarm_id" resultType="int"  order="BEFORE">
+					select 
+						alarm_num.nextval alarm_id
+					from dual
+			</selectKey>
+		insert into alarm(
+					alarm_id
+					,contents
+					,alarm_code
+					,page_type
+					,receiver
+					,sender
+					,read_yn
+					,reg_date
+					,room_id
+				)
+					values(
+					#{alarm_id}
+					,#{contents}
+					,#{alarm_code}
+					,#{page_type}
+					,#{receiver}
+					,#{sender}
+					,#{read_yn}
+					,sysdate
+					,#{room_id}
 				)
 	</insert>
 	<select id="selectByReceiver" resultType="com.project.tnet.dto.Alarm">
 		select *
 		from alarm
 		where receiver=#{receiver}
+	</select>
+	
+	<select id="selectChatAlarm">
+		SELECT 
+				A.ALARM_ID,
+			    CR.ROOM_NAME, 
+			    CR.ROOM_ID, 
+			    A.CONTENTS,
+			    TO_CHAR(A.REG_DATE, 'YYYY"-"MM"-"DD' ) as printDate
+			FROM 
+		   		ALARM A
+			JOIN 
+		    	CHAT_ROOM CR ON CR.ROOM_ID = A.ROOM_ID
+		    where alarm_id = #{alarm_id}
+		
 	</select>
 	
  	<select id="selectAllAlarmList" parameterType="com.project.tnet.dto.Alarm" resultType="com.project.tnet.dto.Alarm">
@@ -107,5 +158,17 @@
 		from alarm
 		where receiver=#{nickName} 	
 		and read_yn = 'N'
+	</select>
+	
+	
+	<select id="selectProAlarmId">
+		select a.alarm_id
+				,a.sender
+				 ,TO_CHAR(a.REG_DATE, 'YYYY"-"MM"-"DD' ) as printDate
+				 ,a.contents
+				 ,a.board_id
+				 ,b.title
+		from alarm a join board b on a.board_id = b.board_id
+		where alarm_id = #{alarm_id}
 	</select>
 </mapper>

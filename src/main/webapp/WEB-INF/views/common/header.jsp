@@ -271,9 +271,20 @@
 		if (recv.type_string==="ALARM") {
 			alert("ALARM");
 			alert(recv.contents, recv.receiver)
+			var bellBadgeElement = document.getElementById("bellBadge");
+			bellBadgeElement.style.display = "block";
+			
+			
+			
+			
+			
+			
+			
+			
 			
 			
 			if (recv.alarm_code == "A01") {
+				//채팅방의 안읽음 표시 올리기
 				var selectedElement = $('.chat-metadata.room-'+recv.room_id);
 				var deletedElement =$('.unread-messages.count-'+recv.room_id);
 				console.log("deletedElement => ",deletedElement)
@@ -282,9 +293,55 @@
 				countInfo = `<div class="unread-messages count-`+ recv.room_id +`">`+ recv.receiver_count +`</div>`;
 				
 				selectedElement.append(countInfo);
-			}
-			else if (recv.alarm_code == "A02") {
 				
+				//채팅방 알림 교체
+				//채팅방에 대한 알람 찾기
+				var chatAlarm = $('.alarm.room-'+recv.room_id);
+				
+				if(chatAlarm != null){
+					//채팅방에 대한 알람 교체
+					chatAlarm.find('.contents').text(recv.contents)
+					
+					//채팅방 교체 시간
+					chatAlarm.find('.date').text(recv.printDate)
+					
+				}
+				else{
+					//채팅방이 존재하지 않을시에는 새롭게 추가
+					const alarmItem = document.createElement("div");
+		   	          alarmItem.className = "alarm";
+		
+		   	       	  // <a> 태그 생성
+		   	          const anchorTag = document.createElement("a");
+		   	       	  anchorTag.className = "alarmChatAnchor";
+		   	          // 경로를 하드코딩하는 대신, 동적으로 경로를 생성하는 방법
+		   	          const url = "/myPage/course_proceeding"; // 원하는 경로로 수정
+		   	          anchorTag.href = url;
+		   	        
+		   	          alarmItem.innerHTML = 
+		   	              "<input type='hidden' value='" + recv.alarm_id + "' class='alarm-id'>"  +
+		   	          	  "<span><strong>" + recv.sender + "</strong></span>" +
+		   	          	  "<span class='date'>" + recv.printDate + "</span>" +
+		   	              "<br><br>" +
+		   	          	  "<span class='contents'>" + recv.contents + "</span>" +
+		   	          	  "<br>" +
+		   	          	  "<button class='deleteAlarm' type='button' data-alarm-id='" + recv.alarm_id + "'>삭제</button>";
+
+
+		   	        // <a> 태그 안에 <div> 태그를 추가
+		   	        anchorTag.appendChild(alarmItem);
+
+		   	        // 최종적으로 <a> 태그를 #chat에 추가
+		   	        commentListHTML.appendChild(anchorTag);
+					
+					
+					
+				}
+				
+			}
+			else /* if (recv.alarm_code == "A02") */ {
+				//알람이 이제 게시글명과 함께 넘어올꺼임
+				//태그를 추가만 해주면됌
 			}
 			
 			
@@ -337,7 +394,7 @@
       else if (recv.type_string==="AGREE") {
          alert("수락 요청")
          var agreeInfo = `
-            <div class="task-card" draggable="true" ondragstart="drag(event)" id="course-`+ recv.course_id + `" data-courseid="`+ recv.course_id  +`" data-boardid="`+ recv.course_id  +`">
+            <div class="task-card" draggable="true" ondragstart="drag(event)" id="course-`+ recv.course_id + `" data-courseid="`+ recv.course_id  +`" data-boardid="`+ recv.board_id  +`">
             <div class="card-top">
             <p class="status waiting">`+ recv.status_code +`</p>
             <p class="card-board_id">no. ` + recv.board_id +`</p>
@@ -371,7 +428,7 @@
 			 selectedElement.remove();
 			 
 				var agreeInfo = `
-					<div class="task-card" draggable="true" ondragstart="drag(event)" id="course-`+ recv.course_id + `" data-courseid="`+ recv.course_id  +`" data-boardid="`+ recv.course_id  +`">
+					<div class="task-card" draggable="true" ondragstart="drag(event)" id="course-`+ recv.course_id + `" data-courseid="`+ recv.course_id  +`" data-boardid="`+ recv.board_id  +`">
 					<div class="card-top">
 					<p class="status accept">`+ recv.status_code +`</p>
 					<p class="card-board_id">no. ` + recv.board_id +`</p>
@@ -405,7 +462,7 @@
 			 selectedElement.remove();
 			 
 				var agreeInfo = `
-					<div class="task-card" draggable="true" ondragstart="drag(event)" id="course-`+ recv.course_id + `" data-courseid="`+ recv.course_id  +`" data-boardid="`+ recv.course_id  +`">
+					<div class="task-card" draggable="true" ondragstart="drag(event)" id="course-`+ recv.course_id + `" data-courseid="`+ recv.course_id  +`" data-boardid="`+ recv.board_id  +`">
 					<div class="card-top">
 					<p class="status completed-waiting">`+ recv.status_code +`</p>
 					<p class="card-board_id">no. ` + recv.board_id +`</p>
@@ -438,7 +495,7 @@
 			 selectedElement.remove();
 			 
 				var agreeInfo = `
-					<div class="task-card" draggable="true" ondragstart="drag(event)" id="course-`+ recv.course_id + `" data-courseid="`+ recv.course_id  +`" data-boardid="`+ recv.course_id  +`">
+					<div class="task-card" draggable="true" ondragstart="drag(event)" id="course-`+ recv.course_id + `" data-courseid="`+ recv.course_id  +`" data-boardid="`+ recv.board_id  +`">
 					<div class="card-top">
 					<p class="status completed">`+ recv.status_code +`</p>
 					<p class="card-board_id">no. ` + recv.board_id +`</p>
@@ -470,6 +527,7 @@
 
 	   //알람 로딩 함수
 	    function loadAlarms(listAlarm) {
+	    
 	   	     const commentListHTML = document.querySelector("#chat");
 	
 	   	 	 listAlarm.forEach(alarm => {
