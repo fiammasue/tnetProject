@@ -223,12 +223,17 @@ function drawChart(line_data,id_value) {
                <div class="group-30929674-c64 custom-select " id="linechart_toggle">
                    <select class="form-select" aria-label="Default select example">
 				    <option selected class="item--iet" value="0" >완료된 수업</option>
-				    <option value="1" class="item--iet" >회원 인원</option>
+				    <option class="item--iet" value="1" >회원 인원</option>
 				  </select>
 				  <div class="arrow">
-				    <img  src="/assets/polygon-2-Kip.png" alt="Dropdown Arrow">
+				    <img src="/assets/polygon-2-Kip.png" alt="Dropdown Arrow">
 				  </div>
                </div>
+               <form class="file_down" action="<c:url value='/download/csvfile'/>" method="post" >
+               <img id="down_images" class="download_img"  src="/assets/download_image.png" alt="Download">
+               <input type="hidden" class="kind_of_download" name="kind_of_download"/>
+               </form>
+               
               </div>
                <div class="group-184-JNC line_chart_area">
                	<div class="chart_div_line total_class" id="chart0" ></div>
@@ -250,6 +255,10 @@ function drawChart(line_data,id_value) {
 				    <img  src="/assets/polygon-2-Kip.png" alt="Dropdown Arrow">
 				   </div>
                  </div>
+                 <form class="file_down"  action="<c:url value='/download/csvfile'/>" method="post" >
+		             <img id="down_images" class="download_img"  src="/assets/download_image.png" alt="Download">
+		             <input type="hidden" class="kind_of_download" name="kind_of_download"/>
+	             </form>
               </div>
               <div class="auto-group-xle4-eGG">
 				  <div id="chart_area"></div>
@@ -464,14 +473,22 @@ $('input[type="date"]').on('change', function() {
            }
        }); 
        
-       
-       
-       
        //선택된 날짜값 지우는거 나중에 ajax로 count값 변환한뒤 다른데 클릭하면 날짜값 지우게 해야지
 		//$(this).parent().find('input[name^="start_date"]').val('');
        // $(this).parent().find('input[name^="end_date"]').val(''); 
    
     }
+});
+
+// 파일 다운로드 하기~~~~~
+$(".download_img").on("click", function () {
+    var kind_of = $(this).closest('div').find('select option:selected').val();
+    
+    var form =  $(this).closest('form.file_down');
+    
+   form.find('input.kind_of_download').val(kind_of);
+   form.submit();
+       
 });
 
 </script>

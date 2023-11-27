@@ -59,6 +59,9 @@ dependencies {
 	//implementation 'com.google.oauth-client:google-oauth-client-servlet:1.18.0-rc'
 	//implementation 'com.google.apis:google-api-services-calendar:v3-rev305-1.23.0'
 	
+	// csv파일다운로드를 위한 
+	implementation 'com.opencsv:opencsv:5.5'
+
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:2.3.1'

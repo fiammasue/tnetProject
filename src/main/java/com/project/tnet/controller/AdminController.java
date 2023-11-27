@@ -3,8 +3,12 @@ package com.project.tnet.controller;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardOpenOption;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -14,21 +18,30 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.opencsv.CSVWriter;
 import com.project.tnet.dto.AttachFile;
 import com.project.tnet.dto.Board;
 import com.project.tnet.dto.ChartDTO;
@@ -251,6 +264,58 @@ public class AdminController {
             }
         }
     }
+	
+	// CSV파일 다운로드
+	@RequestMapping(value = "/download/csvfile", method = RequestMethod.POST)
+	public ResponseEntity<String> csvDown(@RequestParam("kind_of_download") String kind_of_download) throws IOException {
+		System.out.println("CSV다운로드 컨트롤러");
+		System.out.println("kind_of_download : "+kind_of_download);
+	    Map<String, Object> result = chartService.getCSVlist(kind_of_download);
+	    List<String[]> csv_data = (List<String[]>) result.get("csv");
+	    String name = (String) result.get("name");
+
+	    // CSV 데이터를 저장할 임시 파일 생성
+	    Path tempFile = Files.createTempFile("temp", ".csv");
+
+	    try (CSVWriter csvWriter = new CSVWriter(Files.newBufferedWriter(tempFile, StandardOpenOption.WRITE))) {
+	        csvWriter.writeAll(csv_data);
+	    }
+
+	    // 응답 헤더 설정
+        HttpHeaders headers = new HttpHeaders();
+        headers.add(HttpHeaders.CONTENT_TYPE, "text/csv; charset=MS949");
+
+        // 파일 이름을 UTF-8로 URL 인코딩
+        // String encodedName = URLEncoder.encode(name, StandardCharsets.UTF_8.toString());
+        headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + name + "\"");
+
+        // 임시 파일을 Resource 객체로 변환
+//        Resource resource = new FileSystemResource(tempFile.toFile());
+
+        // ResponseEntity에 헤더와 Resource 설정 후 반환
+        return new ResponseEntity<String>(setContent(csv_data), headers, HttpStatus.CREATED);
+//        return ResponseEntity.ok()
+//                .headers(headers)
+//                .body(resource);
+    }
+
+	private String setContent(List<String[]> csvData) {
+	    StringBuilder content = new StringBuilder();
+
+	    // CSV 데이터를 문자열로 변환
+	    for (String[] row : csvData) {
+	        for (int i = 0; i < row.length; i++) {
+	            content.append(row[i]);
+	            if (i < row.length - 1) {
+	                content.append(",");
+	            }
+	        }
+	        content.append("\n");
+	    }
+
+	    return content.toString();
+	}
+
 }
 	
 	

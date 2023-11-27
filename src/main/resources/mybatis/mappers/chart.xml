@@ -111,6 +111,20 @@
 			order by line_year
 		</select>
 		
+<!-- 년도별 완료된수업 가져오기 --> 		
+		<select id="getClassCSV" resultType="com.project.tnet.dto.ChartDTO">
+			SELECT TO_CHAR(analysis_date, 'YYYY') AS line_year, completed_class
+			FROM aggregate a
+			order by line_year
+		</select>
+		
+<!-- 년도별 회원인원 가져오기 --> 		
+		<select id="getMemberCSV" resultType="com.project.tnet.dto.ChartDTO">
+			SELECT TO_CHAR(analysis_date, 'YYYY') AS line_year, total_user
+			FROM aggregate a
+			order by line_year
+		</select>
+		
 <!-- 기간조회로 완료된수업 가져오기 --> 
 		<select id="CompletedClass" resultType="java.lang.Integer">
 			SELECT COUNT(*)
@@ -136,6 +150,62 @@
 			   <![CDATA[
 			    and TO_CHAR(join_date, 'YYYY-MM-DD') <  #{end_date}
 			  ]]>
+		</select>
+		
+		
+		
+<!--csv파일로 만들 연령대별 과목 count 데이터 -->
+		<select id="getCSVclassAge" resultType="com.project.tnet.dto.ChartDTO">
+		SELECT
+		    age_group,
+		    low_name,
+		    COUNT(*) AS count
+		FROM (
+		    SELECT
+		        CASE
+		            WHEN age BETWEEN 0 AND 19 THEN '10sUnder'
+		            WHEN age BETWEEN 20 AND 29 THEN '20s'
+		            WHEN age BETWEEN 30 AND 39 THEN '30s'
+		            ELSE '40sOver'
+		        END AS age_group,
+		        low_name,
+		        age,
+		        gender
+		    FROM (
+		        SELECT receive_talent, low_name, age, gender
+		        FROM board b
+		        INNER JOIN member m ON b.writer_nickname = m.nickname
+		        INNER JOIN talent_small t ON b.receive_talent = t.low_code
+		    ) subquery1  -- AS 키워드를 생략
+		) grouped_data
+		GROUP BY age_group, low_name
+		order by age_group, count desc
+		</select>
+		
+<!--csv파일로 만들 성별별 과목 count 데이터 -->
+		<select id="getCSVcountGender" resultType="com.project.tnet.dto.ChartDTO">
+			SELECT
+			    gender_group,
+			    low_name,
+			    COUNT(*) AS count
+			FROM (
+			    SELECT
+			        CASE
+			             WHEN gender in('F','female') THEN 'Female'
+			             WHEN gender in('M','male') THEN 'Male'
+			        END AS gender_group,
+			        low_name,
+			        age,
+			        gender
+			    FROM (
+			        SELECT receive_talent, low_name, age, gender
+			        FROM board b
+			        INNER JOIN member m ON b.writer_nickname = m.nickname
+			        INNER JOIN talent_small t ON b.receive_talent = t.low_code
+			    ) subquery1  -- AS 키워드를 생략
+			) grouped_data
+			GROUP BY gender_group, low_name
+			order by gender_group, count desc
 		</select>
 
 		
