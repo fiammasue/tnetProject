@@ -266,5 +266,24 @@ public class MyPageController {
 		
 		return result;
 	}
+	
+	
+	//휴지통 비우기 (해당 아이디 휴지통만)
+	@PostMapping("/trashClear")
+	@ResponseBody
+	public Map<String, Object> trashClear (@RequestParam("course_id") int course_id, Authentication authentication, Model model) throws Exception {
+
+		PrincipalDetails userDetails = (PrincipalDetails) authentication.getPrincipal();
+
+        String nickName = userDetails.getUser().getNickName();
+        
+		Map<String, Object> result = new HashMap<>();
+		
+		// 휴지통 비우기 (해당 아이디의 강의코드만 SC13으로 업데이트)
+		result.put("trashClear", myPageService.trashClear(nickName, course_id));
+		model.addAttribute("course", myPageService.trashClear(nickName, course_id));
+		
+		return result;
+	}
 		
 }

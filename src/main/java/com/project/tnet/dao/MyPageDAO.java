@@ -76,4 +76,7 @@ public interface MyPageDAO {
 		public Course getCourseCompleteAgree(Course course);
 		//완료 Involve 수강하나 불러오기
 		public Course getCourseCompleteInvolve(Course course);
+
+		//휴지통 비우기
+		public boolean trashClear(@Param("nickName") String nickName, @Param("course_id") int course_id);
 }

@@ -121,4 +121,8 @@ public class MyPageService {
 	public Course getCourseCompleteInvolve(Course course) {
 		return myPageDAO.getCourseCompleteInvolve(course);
 	}
+
+	public boolean trashClear(String nickName, int course_id) throws Exception {
+		return myPageDAO.trashClear(nickName, course_id);
+	}
 }
