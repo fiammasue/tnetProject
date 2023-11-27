@@ -1820,7 +1820,7 @@ ul.activity-timeline > li {
 }
 
 /* 삭제 버튼 스타일링 */
-button {
+button.delete_kanban {
   font-size: 13px;
   background-color: #ff5858;
   color: white;
@@ -1829,9 +1829,18 @@ button {
   cursor: pointer;
   transition: background-color 0.3s;
 }
+button {
+  font-size: 13px;
+  background-color: #f2f2f2;
+  color: black;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
 
 button:hover {
-  background-color: #909090;
+  background-color: rgb(192, 192, 192);
 }
 
 /* 리스트 행에 호버 효과 (선택 사항) */
@@ -1913,7 +1922,7 @@ button:hover {
   width: 320px; /* 각 버킷의 너비 조정 */
   border: 1px solid #ccc;
   padding: 10px;
-  margin: 10px 30px;
+  margin: 10px 20px;
   background-color: #f9f9f9;
 }
 
@@ -2184,7 +2193,9 @@ button:hover {
   align-items: center;
   justify-content: center;
 }
-
+.task-group.trash .trash-clear {
+  align-items: right;
+}
 
 /* 수락 다이어로그 버튼 */
 .button-container.detail {
@@ -2241,6 +2252,10 @@ button#detail-complete:hover, button#detail-reAccept:hover, button#detail-cancel
 	color: black;
 }
 
+p.detail-give-talent {
+	width:75px;
+	text-align: center;
+}
 
 
 

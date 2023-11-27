@@ -332,7 +332,7 @@
 	        
 	    UPDATE board
 	    SET
-	        status_code = 'SC07'
+	        status_code = 'SC07', delete_yn='Y'
 	    WHERE
 	        board_id = (SELECT board_id FROM course WHERE course_id = #{course_id});
 	  END;
@@ -571,7 +571,35 @@
 	
 	        UPDATE board
 	        SET
-	            status_code = 'SC12'
+	            status_code = 'SC12', delete_yn='N'
+	        WHERE
+	            board_id = (SELECT board_id FROM course WHERE course_id = #{course_id});
+	    END;
+	    ]]>
+	</update>
+	
+	
+	<update id="trashClear" parameterType="java.util.Map">
+	    <![CDATA[
+	    BEGIN
+	        UPDATE course
+	        SET
+	            writer_status_code = 
+	                CASE
+	                    WHEN writer_status_code IN ('SC09', 'SC12') AND writer_nickname = #{nickName} THEN 'SC13'
+	                    ELSE writer_status_code
+	                END,
+	            applyer_status_code = 
+	                CASE
+	                    WHEN applyer_status_code IN ('SC09', 'SC12') AND applyer_nickname = #{nickName} THEN 'SC13'
+	                    ELSE applyer_status_code
+	                END
+	            
+	        WHERE course_id = #{course_id};
+	
+	        UPDATE board
+	        SET
+	            status_code = 'SC13', delete_yn='Y'
 	        WHERE
 	            board_id = (SELECT board_id FROM course WHERE course_id = #{course_id});
 	    END;

@@ -334,7 +334,9 @@
                            <div class="bucket trash">
                               <div class="task-group trash">
                                  <img class="icon2" src="/assets/trash.png"/>
+                                 <img class="icon2" src="/assets/trash2.png" style="display:none;"/>
                                  <div class="label">휴지통</div>
+                                 <button class="trash-clear">비우기</button>
                               </div>
                                <div class="tasks trash">
                                <c:choose>
@@ -410,29 +412,28 @@
    
    <form id="viewForm" class="accept_detail" style="display: none;">
        <div>
-         <div class="task-card">
-            <div class="detail-top">
-               <p class="status accept detail"></p>
-               <p class="detail-board_id"></p>
-            </div>
-            <p class="task-name detail-title"></p>
-            <div class="details_talent">
-               <p class="detail-give-talent"></p>
-               <img class="give-and-take-icon" src="/assets/giveAndTake.png"/>
-               <p class="detail-receive-talent"></p>
-            </div>
-            <div class="details">
-                   <p class="requester detail-user"></p>
-                   <p class="date detail-date"></p>
-            </div>
-         </div>
-       <div class="button-container detail">
-           <button id="detail-complete" style="display:none;">진행 완료</button>
-           <button id="detail-cancel" style="display:none;">진행 취소</button>
-         <button id="detail-reAccept" style="display:none;">다시 진행</button>
-         <button id="detail-cancelAccept" style="display:none;">취소 완료</button>
-       </div>
-       
+	       <div class="task-card">
+	          <div class="detail-top">
+	             <p class="status accept detail"></p>
+	             <p class="detail-board_id"></p>
+	          </div>
+	          <p class="task-name detail-title"></p>
+	          <div class="details_talent">
+	             <p class="detail-give-talent"></p>
+	             <img class="give-and-take-icon" src="/assets/giveAndTake.png"/>
+	             <p class="detail-receive-talent"></p>
+	          </div>
+	          <div class="details">
+	             <p class="requester detail-user"></p>
+	             <p class="date detail-date"></p>
+	          </div>
+	       </div>
+	       <div class="button-container detail">
+	           <button id="detail-complete" style="display:none;">진행 완료</button>
+	           <button id="detail-cancel" style="display:none;">진행 취소</button>
+	         <button id="detail-reAccept" style="display:none;">다시 진행</button>
+	         <button id="detail-cancelAccept" style="display:none;">취소 완료</button>
+	       </div>
        </div>
    </form>
    
@@ -860,8 +861,10 @@
 	        statusChange.textContent = '완료된 강의 삭제';
 	        
 	        trashBucket.appendChild(card);
-		});
+	        
+	  });
 		
+      
 		/* 대기칸에서 수락칸으로 옮겼을 때 상태코드 변화 update 함수 */
 		function updateAccept(courseId) {
 		    console.log(courseId);
@@ -918,7 +921,6 @@
 		            const updatedCompletedList = response.updatedCompletedList;
 		        }
 		    });
-		    return true;
 		}
 		
 		/* 완료수락칸에서 휴지통칸으로 옮겼을 때 상태코드 변화 update 함수 */
@@ -1400,6 +1402,36 @@
                
           }); 
           
+       });
+       
+       $(".trash-clear").click(function(e) {
+    	   e.preventDefault();
+    	   
+    	   //확인 메시지 표시
+    	   var confirmed = confirm("진짜로 휴지통을 비우시겠습니까?");
+    	   
+       	   if (confirmed) {
+       		//휴지통 내의 각 task-card를 반복
+        	   $(".tasks.trash .task-card").each(function() {
+        		   //강의 id 가져오기
+        		   var courseId = $(this).data('courseid');
+        		   console.log(courseId);
+        		   
+        		   $.ajax({
+        			   type: "POST",
+                       url: '/myPage/trashClear',
+                       data: { course_id: courseId },
+                       success: function(response) { 
+                    	   $("#course-" + courseId).remove();
+                       },
+                       error: function(error) {
+                       console.error('delete_yn 업데이트 오류: ', error);
+                       }
+        		   }); 
+        		   
+        	   });
+       	   }
+    	   
        });
 
    });
