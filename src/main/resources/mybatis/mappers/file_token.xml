@@ -44,5 +44,6 @@
 		delete from file_token  
 		where token=#{token} 
 	</delete>
+	
 
 </mapper>

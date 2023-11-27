@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 import com.project.tnet.dto.AttachFile;
+import com.project.tnet.dto.NoticeDTO;
 
 @Mapper
 @Repository
@@ -14,6 +15,7 @@ public interface AttachFileDAO {
 
 	public void insert(AttachFile attachFile);
 	public AttachFile findById(int fileNo);
+	public AttachFile findById(AttachFile attache);
 //	아래 4가지 메서드(정확히는 2개 2개)에 대해서 구분이 잘 안됨.
 	
 	
@@ -29,6 +31,13 @@ public interface AttachFileDAO {
 	
 	//board_id 값 등록
 	public int updateBoardId(Map<String, Object> map);
+	
+	//notice 첨부파일 등록
+	public void notice_insert(AttachFile attache);
+	
+	// 파일가져오기
+	public List<AttachFile> getList(NoticeDTO notice);
+	
 	
 }
 

@@ -215,5 +215,22 @@ from (select ROWNUM as rnum , A.*
 		where board_id = #{board_id}
 	
 	</update>
+	
+	<select id="selectBoard">
+		 select board_id
+        		,title
+                ,contents
+                ,city_name
+                ,district_name
+                ,ts1.low_name give_talent
+                , ts2.low_name receive_talent
+                
+        from board join district using(district_code, city_code) join city using(city_code)
+                join talent_small ts1 on board.give_talent = ts1.low_code
+                join talent_small ts2 on board.receive_talent = ts2.low_code
+       where board_id = #{board_id}
+
+	
+	</select>
 
 </mapper>

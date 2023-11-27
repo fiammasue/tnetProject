@@ -26,4 +26,6 @@ public interface NoticeDAO {
 
 	int update(NoticeDTO notice);
 
+	int insert(NoticeDTO notice);
+
 }

@@ -1,35 +1,9 @@
 
-html {
-	font-size:62.5%;
-}
-* {
-	margin: 0;
-	padding: 0;
-}
-ul, li {
-	list-style: none;
-}
-input {
-	border: none;
-}
-body {
-  width: 144rem;
-  margin:0 auto;
-}.item--zec {
-  width: 100%;
-  height: 102.4rem;
-  position: relative;
-  overflow: hidden;
-  background-color: #ffffff;
-}
 .item--zec .auto-group-ppq6-syJ {
   box-sizing: border-box;
   padding: 2.088rem 2.984rem 1.433rem 1.898rem;
   width: 71.1735rem;
   height: 5.8204rem;
-  position: absolute;
-  left: 36.4rem;
-  top: 17.4123rem;
   display: flex;
   align-items: center;
   box-shadow: 0 0.2531rem 0.2531rem rgba(0, 0, 0, 0.25);
@@ -56,15 +30,7 @@ body {
   white-space: nowrap;
   flex-shrink: 0;
 }
-.item--zec .auto-group-fkmn-YCG {
-  width: 38.2755rem;
-  height: 4.1123rem;
-  position: absolute;
-  left: 52.849rem;
-  top: 88.9653rem;
-  display: flex;
-  align-items: center;
-}
+
 .item--zec .auto-group-fkmn-YCG .button-em6 {
   margin-right: 16.0061rem;
   width: 11.1347rem;
@@ -108,9 +74,6 @@ body {
 .item--zec .auto-group-i9yr-khe {
   width: 71.3rem;
   height: 3.0367rem;
-  position: absolute;
-  left: 36.4rem;
-  top: 13.3rem;
   display: flex;
   align-items: flex-end;
 }
@@ -124,6 +87,8 @@ body {
   border-radius: 2.151rem;
   flex-shrink: 0;
 }
+
+/*이미지*/
 .item--zec .auto-group-i9yr-khe .button-Gvt .vector-36-stroke-C3r {
   margin: 0rem 1.14rem 0.082rem 0rem;
   width: 1.7082rem;
@@ -184,65 +149,13 @@ body {
   box-sizing: border-box;
   width: 71.1735rem;
   height: 36.3776rem;
-  position: absolute;
-  left: 36.5265rem;
-  top: 29.3061rem;
   border: solid 0.0633rem #000000;
   background-color: #ffffff;
 }
-/* .item--zec .auto-group-mwc8-wp4 .item-3-3--47z {
-  max-width: 58.8rem;
-  display: flex;
-  font-size: 1.3286rem;
-  font-weight: 400;
-  line-height: 0.9523809421;
-  color: #000000;
-  font-family: Roboto, 'Source Sans Pro';
-} */
-.item--zec .auto-group-jktr-5SQ {
-  box-sizing: border-box;
-  padding: 1.012rem 1.708rem 0.978rem 1.708rem;
-  width: 71.1735rem;
-  height: 3.2898rem;
-  position: absolute;
-  left: 36.4rem;
-  top: 24.6245rem;
-  display: flex;
-  font-size: 1.202rem;
-  font-weight: 400;
-  line-height: 1.0526315915;
-  color: #000000;
-  font-family: Roboto, 'Source Sans Pro';
-  white-space: nowrap;
-  border: solid 0.0633rem #000000;
-  background-color: #ffffff;
-}
-.item--zec .button-89n {
-  width: 7.2245rem;
-  height: 2.4rem;
-  position: absolute;
-  left: 37.8551rem;
-  top: 67.2041rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.1rem;
-  font-weight: 500;
-  line-height: 1.7142857143;
-  letter-spacing: 0.014rem;
-  text-transform: uppercase;
-  color: #ffffff;
-  font-family: Roboto, 'Source Sans Pro';
-  white-space: nowrap;
-  background-color: #00b074;
-  border-radius: 0.2531rem;
-}
+
 .item--zec .frame-49-bJG {
   width: 71.1735rem;
   height: 13.4122rem;
-  position: absolute;
-  left: 36.4rem;
-  top: 70.6184rem;
   align-items: center;
   display: flex;
   flex-direction: column;
@@ -286,9 +199,6 @@ body {
 .item--zec .frame-49-bJG .component-15-Wg8 .auto-group-4p8g-eXS .jdk-11020windows-x64binexe-s9J {
   width: 20.8rem;
   height: 2rem;
-  position: absolute;
-  left: 3.0694rem;
-  top: 0.0908rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -347,9 +257,6 @@ body {
 .item--zec .frame-49-bJG .component-16-UPz .auto-group-us9e-Cat .jdk-11020windows-x64binexe-DF6 {
   width: 20.8rem;
   height: 2rem;
-  position: absolute;
-  left: 3.0694rem;
-  top: 0.0908rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -386,9 +293,6 @@ body {
 .item--zec .frame-49-bJG .component-17-dy2 .auto-group-qh5a-ATA .button-hCC {
   width: 5.5674rem;
   height: 2.4rem;
-  position: absolute;
-  left: 0;
-  top: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -580,4 +484,107 @@ body {
   height: 4.4622rem;
   object-fit: contain;
   vertical-align: top;
+}
+
+
+div#insert_notice {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/*제목div*/
+.item--zec .auto-group-jktr-5SQ {
+	box-sizing: border-box;
+    padding: 1.012rem 1.708rem 0.978rem 1.708rem;
+    width: 71.1735rem;
+    height: 7.2898rem;
+    display: flex;
+    font-size: 1.202rem;
+    font-family: Roboto, 'Source Sans Pro';
+    white-space: nowrap;
+    border: solid 0.0633rem #c3bbbb;
+    background-color: #ffffff;
+    box-shadow: 0 0.2792rem 0.2792rem rgba(0, 0, 0, 0.25);
+    margin-bottom: 9px;
+}
+
+/*제목 input 태그 */
+input#insert_title {
+    font-size: large;
+    font-weight: 300;
+    border: none;
+}
+
+/*내용 input 태그 */
+textarea#insert_contents {
+    margin: 0px;
+    width: 708px;
+    height: 360px;
+    resize: none;
+    border: none;
+    font-size: 14px;
+}
+
+/*첨부파일 전체 div */
+div#attachefile_div {
+    width: 708px;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+}
+
+/*첨부파일 추가 버튼 div  */
+div#attachefile_div  > div:first-child {
+    margin-left: auto;
+}
+
+/*첨부파일 추가 버튼 */
+.item--zec .button-89n {
+    height: 20px;
+    width: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    font-weight: 500;
+    line-height: 1.7142857143;
+    letter-spacing: 0.014rem;
+    text-transform: uppercase;
+    color: #ffffff;
+    font-family: Roboto, 'Source Sans Pro';
+    white-space: nowrap;
+    background-color: #00b074;
+    border-radius: 10px;
+    margin-top: 10px;
+    padding: 5px;
+    cursor: pointer;
+}
+/*청부파일 input태그 div*/
+.attachefile {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+
+/*청부파일 input태그*/
+input[type="file"] {
+    margin-bottom: 10px;
+}
+
+/*등록하기 취소하기 버튼 div*/
+.item--zec .auto-group-fkmn-YCG {
+    width: 780px;
+    height: 4.1123rem;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    margin-top: 10px;
 }

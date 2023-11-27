@@ -6,7 +6,6 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 import com.project.tnet.dto.MemberVO;
-import com.project.tnet.dto.NoticeDTO;
 
 @Mapper
 @Repository("memberDAO")

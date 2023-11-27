@@ -52,7 +52,6 @@ public class ChatRoomController {
 	@RequestMapping("/chat/createRoom")
 	public Map<String, Object> createRoom(Authentication authentication,HttpSession session, @RequestBody ChatRoom chatRoom) {
 		Map<String , Object> result = new HashMap<>();
-		
 		if (authentication.getPrincipal() instanceof PrincipalDetails) {
 			PrincipalDetails userDetails = (PrincipalDetails) authentication.getPrincipal();
 			MemberVO member= (MemberVO)userDetails.getUser();
