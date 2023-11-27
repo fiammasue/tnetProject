@@ -1,19 +1,23 @@
-package com.project.tnet.service;
 
+package com.project.tnet.service;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.project.tnet.dao.NoticeDAO;
+import com.project.tnet.dto.AttachFile;
 import com.project.tnet.dto.NoticeDTO;
 
 @Service
 public class NoticeService {
 	@Autowired
 	private NoticeDAO noticedao;
+	@Autowired
+	private AttachFileService attachefileservice;
 	
 	//전체 페이지 목록 데려오기
 	public Map<String, Object> GetList(NoticeDTO notice){
@@ -107,6 +111,7 @@ public class NoticeService {
 		return map;
 	}
 
+	//공지사항 수정
 	public Map<String, Object> update(NoticeDTO notice) {
 		System.out.println("공지사항 수정하기 서비스");
 		Map<String, Object> map = new HashMap<>();
@@ -122,5 +127,19 @@ public class NoticeService {
 		return map;
 	}
 	
-
+	//공지사항 게시글과 파일 등록
+	@Transactional
+	public boolean insert(NoticeDTO notice, List<AttachFile> fileList) {
+		System.out.println("공지사항 등록 서비스");
+	    noticedao.insert(notice);
+	    int notice_no = notice.getNotice_no();
+		
+		if(fileList != null) {
+			for(AttachFile attachfile : fileList ) {
+				attachfile.setNotice_no(notice_no);
+				attachefileservice.insert_into_notice(attachfile);
+			}
+		}
+		return true;
+	}
 }

@@ -18,6 +18,7 @@ public class AttachFile {
 	private long length;
 	private String content_type;
 	private int board_id;
+	private int notice_no;
 	private String token;
 	
 	// static of함수로 매개변수를 받을 수 있도록 만듦.	

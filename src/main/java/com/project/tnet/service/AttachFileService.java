@@ -21,6 +21,7 @@ import com.project.tnet.dao.AttachFileDAO;
 import com.project.tnet.dao.FileTokenDAO;
 import com.project.tnet.dto.AttachFile;
 import com.project.tnet.dto.FileTokenVO;
+import com.project.tnet.dto.NoticeDTO;
 
 
 @Service
@@ -104,6 +105,27 @@ public class AttachFileService {
 		
 		
 		return attachFileDAO.updateBoardId(map);
+	}
+	
+	//첨부파일 board_id등록하기
+	public void insert_into_notice(AttachFile attache) {
+		attachFileDAO.notice_insert(attache);
+	}
+
+	public Map<String, Object> getFiles(NoticeDTO notice) {
+		System.out.println("파일리스트 가져오기 서비스");
+		System.out.println("notice : "+ notice);
+		List<AttachFile> files = attachFileDAO.getList(notice);
+		Map<String, Object> map = new HashMap<>();
+		map.put("files", files);
+		System.out.println("files : " + files);
+		return map;
+	}
+
+
+	public AttachFile findById(AttachFile attache) {
+		System.out.println("파일번호로 파일 하나 가져오기 서비스");
+		return attachFileDAO.findById(attache);
 	}
 
 }

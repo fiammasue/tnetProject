@@ -198,15 +198,20 @@ body {
   flex-shrink: 0;
 }
 .item--mGL .auto-group-fekx-BKN {
-  margin: 0rem 39.82rem 1.021rem 36.6rem;
-  box-sizing: border-box;
-  padding: 1.982rem 3.731rem 2.024rem 1.982rem;
-  width: calc(100% - 76.4205rem);
-  display: flex;
-  align-items: center;
-  box-shadow: 0 0.2403rem 0.2403rem rgba(0, 0, 0, 0.25);
-  background-color: #ffffff;
-  flex-shrink: 0;
+    margin: 0rem 39.32rem 1.021rem 36.6rem;
+    box-sizing: border-box;
+    padding: 1.982rem 3.731rem 2.024rem 1.982rem;
+    width: calc(100% - 75.8205rem);
+    display: flex;
+    align-items: center;
+    box-shadow: 0 0.2403rem 0.2403rem rgba(0, 0, 0, 0.25);
+    background-color: #ffffff;
+    flex-shrink: 0;
+}
+
+#contents {
+    clear: both;
+    margin-left: 8px;
 }
 .item--mGL .auto-group-fekx-BKN .item--shz {
   width: 80%;
@@ -256,17 +261,7 @@ body {
   vertical-align: top;
   flex-shrink: 0;
 }
-.item--mGL .frame-45-NKJ {
-  margin: 0rem 39.82rem 0rem 36.384rem;
-  box-sizing: border-box;
-  padding-bottom: 0rem;
-  width: calc(100% - 76.2049rem);
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  box-shadow: 0 0.2403rem 0.2403rem rgba(0, 0, 0, 0.25);
-  flex-shrink: 0;
-}
+
 .item--mGL .frame-45-NKJ .component-9-5zQ {
   width: 100%;
   align-items: flex-end;
@@ -281,14 +276,7 @@ body {
   position: relative;
   flex-shrink: 0;
 }
-.item--mGL .frame-45-NKJ .component-9-5zQ .auto-group-awon-EcQ .rectangle-169-msE {
-  width: 67.5795rem;
-  height: 2.583rem;
-  position: absolute;
-  left: 0.2156rem;
-  top: 0;
-  background-color: #ffffff;
-}
+
 .item--mGL .frame-45-NKJ .component-9-5zQ .auto-group-awon-EcQ .attach-uiY {
   width: 0.6362rem;
   height: 1.1714rem;
@@ -298,22 +286,7 @@ body {
   object-fit: contain;
   vertical-align: top;
 }
-.item--mGL .frame-45-NKJ .component-9-5zQ .auto-group-awon-EcQ .jdk-11020windows-x64binexe-eAL {
-  width: 25rem;
-  height: 2rem;
-  position: absolute;
-  left: 5rem;
-  top: 0.3708rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.4rem;
-  font-weight: 400;
-  line-height: 1.4285714286;
-  color: #000000;
-  font-family: Roboto, 'Source Sans Pro';
-  white-space: nowrap;
-}
+
 .item--mGL .frame-45-NKJ .component-9-5zQ .vector-50-uMA {
   width: 67.5795rem;
   height: 0;
@@ -590,4 +563,50 @@ body {
   object-fit: contain;
   vertical-align: top;
   flex-shrink: 0;
+}
+
+/*파일 div영역*/
+.item--mGL .frame-45-NKJ {
+    margin: 0rem 39.02rem 0rem 36.384rem;
+    box-sizing: border-box;
+    padding-bottom: 0rem;
+    width: 680px;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0.2403rem 0.2403rem rgba(0, 0, 0, 0.25);
+    flex-shrink: 0;
+}
+
+/*파일 한줄한줄*/
+.item--mGL .frame-45-NKJ .component-9-5zQ .auto-group-awon-EcQ .rectangle-169-msE {
+    width: 67.5795rem;
+    height: 2.583rem;
+    position: absolute;
+    left: 0.2156rem;
+    top: 0;
+    background-color: #ffffff;
+    border-bottom: dashed 1px lightgray;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+/*파일 제목 글자*/
+.item--mGL .frame-45-NKJ .component-9-5zQ .auto-group-awon-EcQ .jdk-11020windows-x64binexe-eAL {
+    width: 25rem;
+    height: 2rem;
+    /* position: absolute; */
+    /* left: 5rem; */
+    /* top: 0.3708rem; */
+    display: flex;
+    align-items: center;
+    margin-left: 50px;
+    justify-content: flex-start;
+    font-size: 1.4rem;
+    font-weight: 400;
+    line-height: 1.4285714286;
+    color: #000000;
+    font-family: Roboto, 'Source Sans Pro';
+    white-space: nowrap;
 }
