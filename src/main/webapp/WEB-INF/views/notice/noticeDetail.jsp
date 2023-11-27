@@ -22,7 +22,7 @@
   <div class="auto-group-toqk-R9r">
     <div class="button-8a4">
       <img class="vector-36-stroke-Ed6" src="/assets/vector-36-stroke.png"/>
-      <div class="text-label-MSp">목록으로</div>
+      <a href="<c:url value='/admin/noticelist'/>" class="text-label-MSp">목록으로</a>
     </div>
     <input type="button" class="group-5-qsn" id="update_button" value="수정"/>
     <input type="button"  class="group-6-igg"  id="delete_button" value="삭제"/>
@@ -40,12 +40,17 @@
   <div class="frame-45-NKJ">
     <!-- 한줄 시작 -->
     <div class="component-9-5zQ">
-      <div class="auto-group-awon-EcQ">
-        <div class="rectangle-169-msE">
-        </div>
-        <img class="attach-uiY" src="/assets/attach.png"/>
-        <div class="jdk-11020windows-x64binexe-eAL">첨부파일 : jdk-11.0.20_windows-x64_bin.exe</div>
-      </div>
+
+        <c:if test="${attache_bool}">
+         <c:forEach items="${filelist}" var="file">
+           <div class="auto-group-awon-EcQ">
+	        <div class="rectangle-169-msE">
+	         <img class="attach-uiY" src="/assets/attach.png"/>
+	          <a class="jdk-11020windows-x64binexe-eAL file_name" href="/download/file/${file.file_no}">${file.file_name_org}</a>
+	        </div> 
+	       </div>  
+		 </c:forEach> 
+		</c:if>
       <img class="vector-50-uMA" src="REPLACE_IMAGE:I27:1279;74:488"/>
     </div>
     <!-- 한줄 끝 -->
@@ -172,10 +177,8 @@ $("#real_update_btn").on("click", function () {
 	    	$('#contents').text(json.update_notice.contents);
 
 	    });
-  
-  
-  
 });
+
 
 
 </script>

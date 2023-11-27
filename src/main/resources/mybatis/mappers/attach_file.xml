@@ -28,18 +28,51 @@
 			,#{board_id}
 		) 
 	</insert>
+	
+		<insert id="notice_insert">
+		
+		insert into ATTACH_FILE (
+			 FILE_NO
+			,FILE_NAME_ORG
+			,FILE_NAME_REAL
+			,CONTENT_TYPE
+			,LENGTH
+			,notice_no
+		) values (
+		   	SEQ_ATTACH_FILE.nextval 
+			,#{file_name_org}
+			,#{file_name_real}
+			,#{content_type}
+			,#{length}
+			,#{notice_no}
+		) 
+	</insert>
 
 	<!-- file_id로 첨부파일의 상세정보를 얻는 쿼리문 -->
 	<select id="findById" resultType="com.project.tnet.dto.AttachFile">
 		SELECT  
 			 FILE_NO 
-			 token
+			,token
 			,FILE_NAME_ORG
 			,FILE_NAME_REAL
 			,CONTENT_TYPE
 			,LENGTH
 		FROM  ATTACH_FILE 
 		where FILE_NO = #{file_no}
+	</select>
+	
+	
+		<!-- notice_id로 첨부파일의 상세정보를 얻는 쿼리문 -->
+	<select id="getList" resultType="com.project.tnet.dto.AttachFile">
+		SELECT  
+			 FILE_NO 
+			,token
+			,FILE_NAME_ORG
+			,FILE_NAME_REAL
+			,CONTENT_TYPE
+			,LENGTH
+		FROM  ATTACH_FILE 
+		where notice_no = #{notice_no}
 	</select>
 	
 	
@@ -90,6 +123,7 @@
 			#{item.token}
 		</foreach> 
 	</delete>
+	
 <!-- attach_file의 boardid를 저장한다. -->
 <update id="updateBoardId">
 	update attach_file

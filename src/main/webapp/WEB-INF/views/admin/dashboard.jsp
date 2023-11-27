@@ -198,7 +198,7 @@ function drawChart(line_data,id_value) {
             <div class="givekingarea-6cG">
               <img class="icon-QN4" src="/assets/icon.png"/>
               <div class="group-187-XxU">
-                <p class="item--4Bi ">기부왕왕</p>
+                <p class="item--4Bi ">회원가입수</p>
                 <div class="item-23-AEk count_number">${count.donationking}</div>
               </div>
                <div class="togle-fSQ custom-select">
@@ -222,10 +222,8 @@ function drawChart(line_data,id_value) {
                 <!-- 토글 -->
                <div class="group-30929674-c64 custom-select " id="linechart_toggle">
                    <select class="form-select" aria-label="Default select example">
-				    <option selected class="item--iet" value="0" >회원 인원</option>
-				    <option value="1" class="item--iet" >완료된 수업</option>
-				    <option value="2" class="item--iet" >Two</option>
-				    <option value="3" class="item--iet" >Three</option>
+				    <option selected class="item--iet" value="0" >완료된 수업</option>
+				    <option value="1" class="item--iet" >회원 인원</option>
 				  </select>
 				  <div class="arrow">
 				    <img  src="/assets/polygon-2-Kip.png" alt="Dropdown Arrow">

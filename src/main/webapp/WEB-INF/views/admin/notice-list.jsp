@@ -19,6 +19,10 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Capriola%3A400"/>
   <link rel="stylesheet" href="/styles/memberlist.css"/>
   <link rel="stylesheet" href="/styles/dashboard.css"/>
+    <link rel="stylesheet" href="/styles/noticeWrite.css"/>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </head>
 <body>
 <div class="memberlist-Bwn">
@@ -105,6 +109,36 @@
   </div><!--영역끝 지우면 안됨 -->
 </div><!-- 영역끝 지우면 안됨-->
 
+
+
+ <!-- Notice 게시글 추가 다이얼로그-->
+  
+ <div id="insert_notice" >
+  <form id="inser_form" >
+	<div class="item--zec" >
+	  <h2>공지사항 추가</h2>	
+	  <div class="auto-group-jktr-5SQ">
+	    <input id="insert_title" type="text"  name="title" placeholder="공지사항 제목"/>
+	  </div>
+	  <div class="auto-group-mwc8-wp4">
+	    <div class="item-3-3--47z">
+	      <textarea type="text"  id="insert_contents" name="contents" style="margin: 0px;width: 708px;height: 360px;resize: none;" placeholder="공지사항 내용"></textarea>
+	    </div>
+	  </div>
+	  
+	  <div id="attachefile_div">
+	  	<div class="button-89n" id="add_file">+</div>
+	  	<div class="attachefile" id="attachefile" ><!--- 파일선택 input태그가 들어가는 div  --></div>
+	  </div>	  
+  	  <div class="auto-group-fkmn-YCG">
+	    <div class="button-em6" id="insert">등록하기</div>
+	    <div class="button-hDa" id="insert_out">취소하기</div>
+	  </div>
+	</div>
+   </form>
+ </div>
+ 
+ 
 <script>                                   
 function changePage(pageNo) {	
 	console.log("페이지 번호 : ", pageNo);
@@ -199,9 +233,6 @@ $('#delete_button').on('click', function() {
     const param = {
         ids: ids
     };
-    
-    alert("param : "+param);
-    console.log("ids : "+ param)
     
     fetch("<c:url value='/del/notice'/>", {
         method: "POST",
@@ -307,6 +338,63 @@ $(document).ready(function() {
 	    }
 	  });
 	});
+	
+//더하기 버튼 클릭시 파일 선택 추가
+var cnt=1;
+$("#add_file").on('click', function(){
+	$("#attachefile").append("<input type='file' name='file"+cnt+"'/>");
+	cnt++;
+});
+
+//공지사항 글쓰기 다이얼로그
+$("#insert_notice").dialog({
+    autoOpen: false,
+    modal: true,
+    width: 1000,
+    height: 900,
+    close: function() {
+    }
+});
+
+//글쓰기 버튼 클릭시 다이얼로그 열기
+$("#insert_button").on('click', function(){
+	$("#insert_notice").dialog("open")
+});
+
+//취소하기 클릭시 다이얼로그 닫기
+$("#insert_out").on('click', function(){
+	$("#insert_notice").dialog("close")
+});
+
+//등록하기 클릭시 등록
+$("#insert").on('click', function(){
+    var form = $('#inser_form')[0];
+    var formData = new FormData(form);
+	
+
+    // AJAX로 서버에 데이터 전송
+    $.ajax({
+        url: "<c:url value='/notice/insert.do'/>",
+        type: "POST",
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function (data) {
+            // 성공적으로 등록되었을 때의 처리
+        	alert(data.message);
+        	$("#insert_notice").dialog("close");
+        	location.href = "<c:url value='/admin/noticelist'/>";
+
+        },
+        error: function (error) {
+            // 등록 실패 시의 처리
+            console.error("에러 발생: ", error);
+            alert("파일 등록에 실패했습니다.");
+        }
+    });
+});
+
+
 </script>
 </body>
 </html>

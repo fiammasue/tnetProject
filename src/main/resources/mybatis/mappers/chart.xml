@@ -121,9 +121,11 @@
 <!-- 기간조회로 진행중인 수업 가져오기 --> 
 		<select id="InProgressClass" resultType="java.lang.Integer">
 			SELECT count(*) as inprogress
-			FROM course
-			WHERE TO_CHAR(start_date, 'YYYY-MM-DD') BETWEEN #{start_date} AND #{end_date}
-			      and WRITER_STATUS_CODE IN ('SC04', 'SC05', 'SC07', 'SC08') OR APPLYER_STATUS_CODE IN ('SC04', 'SC05', 'SC07', 'SC08')
+			FROM (
+			        SELECT *
+			        FROM course
+			        WHERE TO_CHAR(start_date, 'YYYY-MM-DD') BETWEEN #{start_date} AND #{end_date})
+			where WRITER_STATUS_CODE IN ('SC04', 'SC05', 'SC07', 'SC08') OR APPLYER_STATUS_CODE IN ('SC04', 'SC05', 'SC07', 'SC08')
 		</select>
 		
 <!-- 기부왕 멤버 가져오기 --> 

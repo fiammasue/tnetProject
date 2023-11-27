@@ -57,5 +57,17 @@
 			set title =  #{title} , contents=#{contents}
 			where notice_no = #{notice_no}
 		</update>	
+		
+<!--  공지사항 추가-->
+		<insert id="insert">
+		  <selectKey keyProperty="notice_no" resultType="int"  order="BEFORE">
+			select 
+				notice_seq.NEXTVAL NOTICE_NO 
+			from dual
+		</selectKey>
+		insert into notice(NOTICE_NO,TITLE,CONTENTS,NICKNAME,FIXED_YN,DELETED_YN)
+					values(#{notice_no},#{title},#{contents},'admin','N','N')
+		
+		</insert>
 
 </mapper>
