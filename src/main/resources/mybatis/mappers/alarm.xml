@@ -106,16 +106,17 @@
    	
    	<select id="selectAllProgressList" parameterType="com.project.tnet.dto.Alarm" resultType="com.project.tnet.dto.Alarm">
 		SELECT 
-			A.ALARM_ID,
-		    A.CONTENTS,
-	        A.sender,
-		    TO_CHAR(A.REG_DATE, 'YYYY"-"MM"-"DD' ) as printDate
-		FROM 
-	   		ALARM A			
+			ALARM.ALARM_ID,
+            BOARD.TITLE,
+		    ALARM.CONTENTS,
+	        ALARM.sender,
+		    TO_CHAR(ALARM.REG_DATE, 'YYYY"-"MM"-"DD' ) as printDate
+		FROM ALARM 	
+        JOIN BOARD ON BOARD.BOARD_ID = ALARM.BOARD_ID
 		WHERE 
-		    A.ALARM_CODE != 'A01' 
-		    AND A.DELETE_YN='N'
-		    AND A.RECEIVER = #{nickName}
+		    ALARM.ALARM_CODE != 'A01' 
+		    AND ALARM.DELETE_YN='N'
+		    AND ALARM.RECEIVER = #{nickName}
    	</select>
    	
 	<update id="updateReadYn">

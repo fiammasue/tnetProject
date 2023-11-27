@@ -26,15 +26,11 @@ public class Alarm {
 	private String read_yn;
 	private String delete_yn;
 	private Date reg_date;
-	private String room_id;	//채팅방의 방번호
+	private String room_id;		//채팅방의 방번호
 	private String room_name;	//채팅방 이름
 	private String printDate;	
-	private int receiver_count;
-	
+	private int receiver_count;	
 	private int course_id;//수강신청번호
 	private int board_id;//게시글 번호
-	private String title;//게시글 제목
-	
-	
-	
+	private String title;//게시글 제목	
 }

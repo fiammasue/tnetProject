@@ -210,10 +210,13 @@ ul.cls {
   margin-left: 3%;
   border: solid 2px;
   overflow-y: scroll; /* 수직 스크롤 추가 */
+  overflow-x: hidden; /* 수평 스크롤 숨김 */
   max-height: 200px; /* 스크롤 가능한 최대 높이 설정 */
 }
 
-
+.cls a{
+  text-decoration:none;  /* 소분류 재능 링크 밑줄 없애기 */
+}
 
 /* 클릭하여 표시할 때 visible 클래스 스타일 */
 ul.cls.visible {
@@ -235,6 +238,7 @@ img.icon:hover {
 
   #links ul.cls li a:hover {
     color: #f00; /* 마우스 오버하면 글자 색상이 빨간색으로 변경됩니다. */
+    text-decoration:none;  /* 소분류 재능 링크 밑줄 없애기 */
   }
 
   #contents {
@@ -273,6 +277,10 @@ img.icon:hover {
   margin-top: 1%;
   margin-left: 2%;
   margin-right: 2%;
+}
+
+.lesson-cards a{
+  text-decoration: none; /* 레슨카드에 있는 a태그 밑줄 없애기 */
 }
 
 .lesson-card {
@@ -347,6 +355,10 @@ footer ul {
   text-align: center;
   margin-top: 10px;
 }
+
+#bottomMenu a{ 
+  text-decoration: none; /* 푸터에 있는 a태그의 밑줄 없애기*/
+}
 #bottomMenu ul {
   display: inline-block;
   margin: 0;
@@ -374,9 +386,15 @@ footer ul {
   margin-top:25px;  /* 위쪽 마진 */
   margin-left:20px;  /* 왼쪽 마진 */ 
 }
+
+footer{
+  padding-bottom: 30px;
+}
+
 footer p {
   font-weight: 530;
   font-size:16px;  /* 글자 크기 */
   color:black;    /* 글자 색*/ 
   padding: 5px;
+  margin-bottom: 0; /*푸터에 공백있는것때문에 준 css*/
 }
