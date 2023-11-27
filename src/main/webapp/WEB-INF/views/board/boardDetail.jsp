@@ -24,17 +24,17 @@
 <body>
 
 <div id="innerBoardDetail">
-<input type="hidden" id=board_id value="${board.board_id }"/>
+<input type="hidden" id=board_id value="${board.board_id}"/>
   <div class="item--XQC">
     <div class="auto-group-fgyx-zW4">
       <div class="button-6oz">
         <img class="vector-36-stroke-Q3z" src="/assets/vector-36-stroke.png"/>
         <div class="text-label-Kgk">목록으로</div>
       </div>
-<%--       <c:if test="${principal.user.nickname ==  board.writer_nickname}"> --%>
+      <c:if test="${principal.user.nickName ==  board.writer_nickname}">
 	      <div class="group-5-znt">수정</div>
 	      <div class="group-6-TgU">삭제</div>
-<%--       </c:if> --%>
+      </c:if>
     </div>
     <div class="auto-group-jkgl-7W8">
       <div class="group-30929672-PiY">
@@ -290,12 +290,39 @@
 	
 	//목록으로
 	$(".text-label-Kgk").on("click",e => {
+		var boardId = $(this).data("boardid");
+		
 		location.href="/board/list";
 		
 	});
 	//삭제하기
 	$(".group-6-TgU").on("click",e => {
+		const param = {
+				board_id:$("#board_id").val()
+			};
 		
+		$.ajax({
+			url:"/board/delete",
+			method: "POST",
+			contentType: "application/json; charset=UTF-8",
+			data: JSON.stringify(param),
+			dataType:"json",
+			success:function(json){
+				if(json.bool === true){
+					alert("게시글이 삭제되었습니다.");
+					location.href="/board/list";
+				}
+				else{
+					alert("게시글 삭제 중 오류가 발생하였습니다.");
+				}
+			}
+			
+		});
+	});
+	//수정하기
+	$(".group-5-znt").on("click",e => {
+		var boardId = $("#board_id").val();
+		location.href="/board/revise/"+boardId;
 	});
 	
 	

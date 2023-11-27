@@ -66,6 +66,7 @@ from (select ROWNUM as rnum , A.*
 			                        join talent_small ts2 on board.receive_talent = ts2.low_code
 			                       
 			                <where>
+			                	delete_yn = 'N'
 								  <if test=' city_code != null and city_code != "0" and city_code != ""'>
 								    AND city_code = #{city_code}
 								  </if>
@@ -93,6 +94,7 @@ from (select ROWNUM as rnum , A.*
 			                        join talent_small ts1 on board.give_talent=ts1.low_code
 			                        join talent_small ts2 on board.receive_talent=ts2.low_code
 			                <where>
+			                delete_yn = 'N'
 								  <if test=' city_code != null and city_code != "0" and city_code != ""'>
 								    AND city_code = #{city_code}
 								  </if>

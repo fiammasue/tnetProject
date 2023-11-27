@@ -60,8 +60,10 @@ public class BoardController {
 	}
 	
 	//게시글 수정하기
-	@RequestMapping("/board/revise")
-	public String boardRevise() {
+	@RequestMapping("/board/revise/{board_id}")
+	public String boardRevise(Model model, Board board, @PathVariable(value="board_id") int boardId ) {
+		board.setBoard_id(boardId);
+		model.addAttribute("board", boardService.getBoard(board));
 		return "board/boardRevise";
 	}
 	
@@ -124,15 +126,19 @@ public class BoardController {
 	//게시글 상세보기
 	@ResponseBody
 	@RequestMapping("/board/delete")
-	public String boardDelete(Model model, Board board) {
+	public Map<String , Object> boardDelete(Model model,@RequestBody Board board) {
+		Map<String, Object> map = new HashMap<>();
+		
 		int result = boardService.deleteBoard(board);
 		
 		if (result > 0) {
-			return "true";
+			map.put("bool", true);
+			
 		}
 		else {
-			return "false";
+			map.put("bool", false);
 		}
+		return map;
 	}
 	
 	
