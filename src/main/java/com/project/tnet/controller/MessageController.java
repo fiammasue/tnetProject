@@ -116,10 +116,10 @@ public class MessageController {
 					alarm.setReceiver_count(room.getSender_count());
 				}
 				
-				System.out.println("alarm -> "+ alarm);
 				alarmService.insertAlarmChat(alarm);
 				Alarm result = alarmService.selectChatAlarm(alarm);
-				result.setAlarm_code(MessageType.ALARM.name());
+				result.setType_string(MessageType.ALARM.name());
+				System.out.println("result ------------> "+ result);
 				messagingTemplate.convertAndSend("/sub/member/userId/"+message.getReceiver(), result,headerAccessor.getMessageHeaders());
 				messagingTemplate.convertAndSend("/sub/member/userId/"+message.getSender(),message,headerAccessor.getMessageHeaders());
 			}
@@ -151,7 +151,7 @@ public class MessageController {
 				.build();
 		alarmService.insertAlarm(alarm);
 		Alarm result = alarmService.selectProAlarmId(alarm);
-		result.setAlarm_code(MessageType.ALARM.name());
+		result.setType_string(MessageType.ALARM.name());
 		messagingTemplate.convertAndSend("/sub/member/userId/"+course.getWriter_nickname(),result);
 		
 		System.out.println("Message Controller -> "+ course);
@@ -179,7 +179,7 @@ public class MessageController {
 		alarmService.insertAlarm(result);
 		System.out.println("result ------>" + result);
 		Alarm result1 = alarmService.selectProAlarmId(result);
-		result1.setAlarm_code(MessageType.ALARM.name());
+		result1.setType_string(MessageType.ALARM.name());
 		messagingTemplate.convertAndSend("/sub/member/userId/"+alarm.getReceiver(),result1);
 		
 		//courseID도 같이 넘어가야함
@@ -226,7 +226,7 @@ public class MessageController {
 		}
 		alarmService.insertAlarm(result);
 		Alarm result1 = alarmService.selectProAlarmId(result);
-		result1.setAlarm_code(MessageType.ALARM.name());
+		result1.setType_string(MessageType.ALARM.name());
 		//상대방에게 전달
 		messagingTemplate.convertAndSend("/sub/member/userId/"+result.getReceiver(),course);//c출력할건을전달
 		messagingTemplate.convertAndSend("/sub/member/userId/"+result.getReceiver(),result1);//알람
@@ -262,7 +262,7 @@ public class MessageController {
 		}
 		alarmService.insertAlarm(result);
 		Alarm result1 = alarmService.selectProAlarmId(result);
-		result1.setAlarm_code(MessageType.ALARM.name());
+		result1.setType_string(MessageType.ALARM.name());
 		//상대방에게 전달
 		messagingTemplate.convertAndSend("/sub/member/userId/"+result.getReceiver(),course);//출력할건을전달
 		messagingTemplate.convertAndSend("/sub/member/userId/"+result.getReceiver(),result1);//알람

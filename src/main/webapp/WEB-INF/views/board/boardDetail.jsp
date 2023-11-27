@@ -147,7 +147,8 @@
 		const param = {
 				room_name : "[문의]"+$(".item--vTa").text()+"&"+$(".item--LnC").text(),
 				receiver : $(".nickName").text(),
-				board_id : $("#board_id").val()
+				board_id : $("#board_id").val(),
+				agreeChat : "문의"
 			};
 			$.ajax({
 				url:"/chat/createRoom",

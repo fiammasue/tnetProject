@@ -357,6 +357,20 @@ body {
   box-shadow: 0 0.2512rem 0.2512rem rgba(0, 0, 0, 0.25);
   background-color: #ffffff;
   flex-shrink: 0;
+  overflow: scroll;
+}
+/* 스크롤 디자인 */
+.item--XQC .group-20-JTS::-webkit-scrollbar {
+  width: 10px;  /* 스크롤바의 너비 */
+}
+.item--XQC .group-20-JTS::-webkit-scrollbar-thumb {
+  height: 30%; /* 스크롤바의 길이 */
+  background: rgb(214, 214, 214); /* 스크롤바의 색상 */
+  border-radius: 10px;
+}
+ 
+.item--XQC .group-20-JTS::-webkit-scrollbar-track {
+  background: #84848447;  /*스크롤바 뒷 배경 색상*/
 }
 .item--XQC .group-20-JTS .item--cDE {
   margin: 0px;
