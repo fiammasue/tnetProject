@@ -224,6 +224,80 @@ public class ChartService {
 			
 			return map;
 		}
+
+		
+		//CSV 파일 데이터 가져오기
+		public Map<String, Object> getCSVlist(String kind_of_download) {
+			System.out.println("CSV데이터 가져오기 서비스");
+			System.out.println("kind_of_download : "+kind_of_download);
+			
+			Map<String, Object> map = new HashMap<>();			
+			List<String[]> listStrings = new ArrayList<>();
+			
+			if(kind_of_download.equals("0")) {
+				System.out.println("완료된 수업 추이");
+				List<ChartDTO> csv = chartdao.getClassCSV();				
+				listStrings.add(new String[]{"년도", "완료된 수업 수"});
+				
+				   for (ChartDTO chart : csv) {
+			            String[] rowData = new String[2];
+			            rowData[0] = chart.getLine_year();
+			            rowData[1] = String.valueOf(chart.getCompleted_class());
+			            listStrings.add(rowData);
+			        }
+				
+				map.put("csv", listStrings);
+				map.put("name", "com_class.csv");
+				
+			}else if(kind_of_download.equals("1")) {
+				System.out.println("회원 추이");
+				List<ChartDTO> csv = chartdao.getMemberCSV();				
+				listStrings.add(new String[]{"년도", "회원 수"});
+				
+				   for (ChartDTO chart : csv) {
+			            String[] rowData = new String[2];
+			            rowData[0] = chart.getLine_year();
+			            rowData[1] = String.valueOf(chart.getTotal_user());
+			            listStrings.add(rowData);
+			        }
+				
+				map.put("csv", listStrings);
+				map.put("name", "total_users.csv");
+				
+			}else if(kind_of_download.equals("age")) {
+				System.out.println("파이차트 연령대");
+				List<ChartDTO> csv = chartdao.getCSVclassAge();				
+				listStrings.add(new String[]{"그룹", "과목", "선호수"});
+				
+				   for (ChartDTO chart : csv) {
+			            String[] rowData = new String[3];
+			            rowData[0] = chart.getAge_group();
+			            rowData[1] = chart.getLow_name();
+			            rowData[2] = String.valueOf(chart.getCount());
+			            listStrings.add(rowData);
+			        }
+				
+				map.put("csv", listStrings);
+				map.put("name", "age_of_count.csv");
+				
+			}else {
+				System.out.println("파이차트 성별");
+				List<ChartDTO> csv = chartdao.getCSVcountGender();	
+				listStrings.add(new String[]{"그룹", "과목", "선호수"});
+				
+				   for (ChartDTO chart : csv) {
+			            String[] rowData = new String[3];
+			            rowData[0] = chart.getGender_group();
+			            rowData[1] = chart.getLow_name();
+			            rowData[2] = String.valueOf(chart.getCount());
+			            listStrings.add(rowData);
+			        }
+				
+				map.put("csv", listStrings);
+				map.put("name", "gender_of_count.csv");
+			}
+			return map;
+		}
 		
 		
 		

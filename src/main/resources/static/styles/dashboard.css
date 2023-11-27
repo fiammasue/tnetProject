@@ -293,11 +293,11 @@
     flex-shrink: 0;
 }
 .countingarea-Mqi .classcountinarea-sp4 .group-187-i3z {
-  margin: 0.593rem 1.467rem 0rem 0rem;
-  width: 5.6rem;
-  height: 7.2226rem;
-  position: relative;
-  flex-shrink: 0;
+    margin: 0.549rem 5.373rem 0.249rem 0rem;
+    width: 5rem;
+    height: calc(100% - 0.798rem);
+    position: relative;
+    flex-shrink: 0;
 }
 .countingarea-Mqi .classcountinarea-sp4 .group-187-i3z .item--eCY {
   width: 5.6rem;
@@ -570,12 +570,17 @@ margin: 0.241rem 2.281rem 0rem 0rem;
 
 /* 막대그래프 제목 토글 div */
 .auto-group-jz1n-jeY .bargrape-HRA .auto-group-cjhn-mbE {
-  margin: 0rem 0.121rem 5.095rem 0.207rem;
-  width: calc(100% - 0.3281rem);
-  display: flex;
-  align-items: flex-start;
-  flex-shrink: 0;
+    margin: 0rem 0.121rem 5.095rem 0.207rem;
+    width: calc(100% - 0.3281rem);
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: nowrap;
+    flex-direction: row;
 }
+
 
 /* 막대그래프 제목  */
 .auto-group-jz1n-jeY .bargrape-HRA .auto-group-cjhn-mbE .item--VGL {
@@ -755,6 +760,7 @@ margin: auto;
     max-width: 250px;
     margin: auto;
     margin-bottom: 10px;
+    margin-left: 20px;
 }
 
 /*토글 css*/
@@ -859,4 +865,11 @@ svg {
 /*구글차트깜빡임방지*/
 svg > g > g:last-child { pointer-events: none }
 
-
+img#down_images {
+    width: 30px;
+    height: 23px;
+    background-color: white;
+    margin: auto;
+    margin-left: 6px; 
+    cursor: pointer;
+}

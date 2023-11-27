@@ -28,4 +28,12 @@ public interface ChartDAO {
 
 	int DonationKing(ChartDTO chart);
 
+	List<ChartDTO> getClassCSV();
+
+	List<ChartDTO> getMemberCSV();
+
+	List<ChartDTO> getCSVclassAge();
+
+	List<ChartDTO> getCSVcountGender();
+
 }

@@ -19,35 +19,35 @@ public class ChartController {
 	@Autowired
 	private ChartService chartService;
 	
-//	@ResponseBody
-//	@RequestMapping("/piechart/gender_group.do")
-//	public  Map<String, Object> piechart_gender(ChartDTO chart) throws Exception {
-//    	System.out.println("main-chart-controller");
-//
-//    	Map<String, Object> map = chartService.piechart(chart);
-//    	System.out.println(map.size()>0);
-//    	if(map.size()>0) {
-//    		map.put("status", true);
-//    	}
-//    		map.put("status", false);
-//    	
-//		return map ;		
-//	} 		
+	@ResponseBody
+	@RequestMapping("/piechart/gender_group.do")
+	public  Map<String, Object> piechart_gender(ChartDTO chart) throws Exception {
+    	System.out.println("main-chart-controller");
+
+	   	Map<String, Object> map = chartService.piechart(chart);
+	   	System.out.println(map.size()>0);
+	   	if(map.size()>0) {
+    		map.put("status", true);
+    	}
+    		map.put("status", false);
+    	
+		return map ;		
+	} 		
 	
-//	@ResponseBody
-//	@RequestMapping("/piechart/age_group.do")
-//	public  Map<String, Object> piechart_age(ChartDTO chart) throws Exception {
-//    	System.out.println("main-chart-controller");
-//
-//    	Map<String, Object> map = chartService.getChartData(chart);
-//    	System.out.println(map.size()>0);
-//    	if(map.size()>0) {
-//    		map.put("status", true);
-//    	}
-//    		map.put("status", false);
-//    	
-//		return map ;		
-//	} 		
+	@ResponseBody
+	@RequestMapping("/piechart/age_group.do")
+	public  Map<String, Object> piechart_age(ChartDTO chart) throws Exception {
+    	System.out.println("main-chart-controller");
+
+    	Map<String, Object> map = chartService.getChartData(chart);
+    	System.out.println(map.size()>0);
+    	if(map.size()>0) {
+    		map.put("status", true);
+    	}
+    		map.put("status", false);
+    	
+		return map ;		
+	} 		
 	
 	@ResponseBody
 	@RequestMapping("/admin/counts.do")
