@@ -251,6 +251,7 @@
 	var ws = Stomp.over(sock);
 	var subscription = null;
 	const sender = "${principal.user.nickName}";
+	var flag = 0;
 	
 	if(sender != ""){
 		ws.connect({},function(frame){
@@ -271,8 +272,11 @@
 		if (recv.type_string==="ALARM") {
 			alert("ALARM");
 			alert(recv.contents, recv.receiver)
-			var bellBadgeElement = document.getElementById("bellBadge");
-			bellBadgeElement.style.display = "block";
+			if(flag === 0){
+				var bellBadgeElement = document.getElementById("bellBadge");
+				bellBadgeElement.style.display = "block";
+				
+			}
 			
 			
 			
@@ -284,6 +288,7 @@
 			
 			
 			if (recv.alarm_code == "A01") {
+				alert('A01')
 				//채팅방의 안읽음 표시 올리기
 				var selectedElement = $('.chat-metadata.room-'+recv.room_id);
 				var deletedElement =$('.unread-messages.count-'+recv.room_id);
@@ -296,18 +301,21 @@
 				
 				//채팅방 알림 교체
 				//채팅방에 대한 알람 찾기
-				var chatAlarm = $('.alarm.room-'+recv.room_id);
+				 var selectedElement = $('input.room-id-'+recv.room_id);
+				console.log("selectedElement - > ",selectedElement);
 				
-				if(chatAlarm != null){
+				if(selectedElement.length !== 0){
 					//채팅방에 대한 알람 교체
-					chatAlarm.find('.contents').text(recv.contents)
+					selectedElement.closest('.alarm').find('.contents').text(decodeURIComponent(recv.contents))
 					
 					//채팅방 교체 시간
-					chatAlarm.find('.date').text(recv.printDate)
+					selectedElement.closest('.alarm').find('.date').text(recv.printDate)
 					
 				}
-				else{
+				else if (selectedElement.length === 0){
 					//채팅방이 존재하지 않을시에는 새롭게 추가
+					alert("채팅방ㅅ ㅐ로 생성")
+				const commentListHTML = document.querySelector("#chat");
 					const alarmItem = document.createElement("div");
 		   	          alarmItem.className = "alarm";
 		
@@ -315,15 +323,16 @@
 		   	          const anchorTag = document.createElement("a");
 		   	       	  anchorTag.className = "alarmChatAnchor";
 		   	          // 경로를 하드코딩하는 대신, 동적으로 경로를 생성하는 방법
-		   	          const url = "/myPage/course_proceeding"; // 원하는 경로로 수정
+		   	          const url = "/myPage/chatRoom"; // 원하는 경로로 수정
 		   	          anchorTag.href = url;
 		   	        
 		   	          alarmItem.innerHTML = 
 		   	              "<input type='hidden' value='" + recv.alarm_id + "' class='alarm-id'>"  +
-		   	          	  "<span><strong>" + recv.sender + "</strong></span>" +
+		   	              "<input type='hidden' class='room-id-"+ recv.room_id +"'>"  +
+		   	          	  "<span><strong>" + recv.room_name + "</strong></span>" +
 		   	          	  "<span class='date'>" + recv.printDate + "</span>" +
 		   	              "<br><br>" +
-		   	          	  "<span class='contents'>" + recv.contents + "</span>" +
+		   	          	  "<span class='contents'>" + decodeURIComponent(recv.contents) + "</span>" +
 		   	          	  "<br>" +
 		   	          	  "<button class='deleteAlarm' type='button' data-alarm-id='" + recv.alarm_id + "'>삭제</button>";
 
@@ -342,6 +351,35 @@
 			else /* if (recv.alarm_code == "A02") */ {
 				//알람이 이제 게시글명과 함께 넘어올꺼임
 				//태그를 추가만 해주면됌
+				alert("다른 알람들")
+				const commentListHTML = document.querySelector("#progress");
+			      const alarmItem = document.createElement("div");
+	   	          alarmItem.className = "alarm";
+	
+	   	       	  // <a> 태그 생성
+	   	          const anchorTag = document.createElement("a");
+	   	       	  anchorTag.className = "alarmChatAnchor";
+	   	          // 경로를 하드코딩하는 대신, 동적으로 경로를 생성하는 방법
+	   	          const url = "/myPage/course_proceeding"; // 원하는 경로로 수정
+	   	          anchorTag.href = url;
+	   	        
+	   	          alarmItem.innerHTML = 
+	   	              "<input type='hidden' value='" + recv.alarm_id + "' class='alarm-id'>"  +
+	   	          	  "<span><strong>" + "송신자: " + recv.sender + "</strong></span>" +
+	   	          	  "<span class='date'>" + recv.printDate + "</span>" +
+	   	              "<br><br>" +
+	   	          	  "<span class='title'><strong>" + "제목: " + recv.title + "</strong></span>" +
+	   	          	  "<br>" +
+	   	          	  "<span class='contents'>" + "진행상황: " + recv.contents + "</span>" +
+	   	          	  "<br>" +
+	   	          	  "<button class='deleteAlarm' type='button' data-alarm-id='" + recv.alarm_id + "'>삭제</button>";
+
+
+	   	        // <a> 태그 안에 <div> 태그를 추가
+	   	        anchorTag.appendChild(alarmItem);
+
+	   	        // 최종적으로 <a> 태그를 #chat에 추가
+	   	        commentListHTML.appendChild(anchorTag);
 			}
 			
 			
@@ -544,11 +582,11 @@
 	   	        
 	   	          alarmItem.innerHTML = 
 	   	              "<input type='hidden' value='" + alarm.alarm_id + "' class='alarm-id'>"  +
-	   	              "<input type='hidden' value='" + alarm.room_id + "' class='room-id'>"  +
+	   	              "<input type='hidden' class='room-id-"+ alarm.room_id +"'>"  +
 	   	          	  "<span><strong>" + alarm.room_name + "</strong></span>" +
 	   	          	  "<span class='date'>" + alarm.printDate + "</span>" +
 	   	              "<br><br>" +
-	   	          	  "<span class='contents'>" + alarm.contents + "</span>" +
+	   	          	  "<span class='contents'>" + decodeURIComponent(alarm.contents) + "</span>" +
 	   	          	  "<br>" +
 	   	          	  "<button class='deleteAlarm' type='button' data-alarm-id='" + alarm.alarm_id + "'>삭제</button>";
 
@@ -677,6 +715,7 @@
 	    // 다이얼로그가 닫힐 때 이벤트 처리
 	    $('#staticBackdrop').on('hidden.bs.modal', function () {
 	        $(".alarm").remove(); // .alarm 클래스를 가진 요소 삭제
+	        flag=0;
 	    });
 	    
 	   // #bell(종) 이미지 클릭시 이벤트 처리
@@ -696,7 +735,7 @@
 		    		    loadProgress(response.listProgress);// 진행상황을 출력하는 함수호출
 		    			// 다이얼로그를 오픈합니다.
 				         $('#staticBackdrop').modal('show');
-		    		    
+		    		    flag=1;
 				         // 클릭 시 "New" 배지 감추기
 			             $("#bellBadge").hide();
 		    	  }

@@ -72,7 +72,8 @@
 			    CR.ROOM_NAME, 
 			    CR.ROOM_ID, 
 			    A.CONTENTS,
-			    TO_CHAR(A.REG_DATE, 'YYYY"-"MM"-"DD' ) as printDate
+			    TO_CHAR(A.REG_DATE, 'YYYY"-"MM"-"DD' ) as printDate,
+			    A.ALARM_CODE
 			FROM 
 		   		ALARM A
 			JOIN 

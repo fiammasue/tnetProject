@@ -112,16 +112,16 @@
 		          </c:forEach>
 		        </select>
 			  </div>
-			  <div id="addfile" class="button-6oa">첨부파일 추가</div>
+ 			  <div id="addfile" class="button-6oa">첨부파일 추가</div>
 			  <!-- 리스트 총괄하는 div -->
 			  <div class="frame-49-NFJ">
 			    <!-- 한줄에 대한 것을 관리하는 div -->
-			    <div class="component-15-hHa">
+			<!--     <div class="component-15-hHa"> -->
 			      <div id="filediv" class="auto-group-rdqs-RjN">
-			        <input type="file">
+			   <!--      <div><input type='file' name='file" + cnt + "'/></div> -->
 			      </div>
-			      <img class="vector-142-Xvp" src="REPLACE_IMAGE:27:969"/>
-			    </div>
+
+			<!--     </div> -->
 			<!-- 한줄끝 -->
 			  </div>
 			  <!-- 리스트총괄 끝 -->
@@ -273,15 +273,20 @@
 	    }); 
 	
 	});
-	
+	 var cnt = 0;
 //파일추가 클릭시 파일input택추가	
 $('#addfile').on('click', function(){
     alert("Click Event!");
     
-    var cnt = 0;
-
-    $("#filediv").append("<div><input type='file' name='file" + cnt + "'/></div>");
-    cnt++;
+   
+	if(cnt != 3){
+	    $("#filediv").append("<div><input class='component-15-hHa' type='file' name='file" + cnt + "'/></div>");
+	    cnt++;
+		
+	}
+	else{
+		alert("첨부파일 3개 까지만 가능!")
+	}
 });
 
 	
