@@ -486,6 +486,7 @@
 	   	        
 	   	          alarmItem.innerHTML = 
 	   	              "<input type='hidden' value='" + alarm.alarm_id + "' class='alarm-id'>"  +
+	   	              "<input type='hidden' value='" + alarm.room_id + "' class='room-id'>"  +
 	   	          	  "<span><strong>" + alarm.room_name + "</strong></span>" +
 	   	          	  "<span class='date'>" + alarm.printDate + "</span>" +
 	   	              "<br><br>" +
@@ -520,10 +521,12 @@
 	   	        
 	   	          alarmItem.innerHTML = 
 	   	              "<input type='hidden' value='" + alarm.alarm_id + "' class='alarm-id'>"  +
-	   	          	  "<span><strong>" + alarm.sender + "</strong></span>" +
+	   	          	  "<span><strong>" + "송신자: " + alarm.sender + "</strong></span>" +
 	   	          	  "<span class='date'>" + alarm.printDate + "</span>" +
 	   	              "<br><br>" +
-	   	          	  "<span class='contents'>" + alarm.contents + "</span>" +
+	   	          	  "<span class='title'><strong>" + "제목: " + alarm.title + "</strong></span>" +
+	   	          	  "<br>" +
+	   	          	  "<span class='contents'>" + "진행상황: " + alarm.contents + "</span>" +
 	   	          	  "<br>" +
 	   	          	  "<button class='deleteAlarm' type='button' data-alarm-id='" + alarm.alarm_id + "'>삭제</button>";
 
