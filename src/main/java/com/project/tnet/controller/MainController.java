@@ -1,22 +1,36 @@
 package com.project.tnet.controller;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
 import com.project.tnet.config.auth.PrincipalDetails;
+import com.project.tnet.dto.Board;
 import com.project.tnet.dto.MemberVO;
 import com.project.tnet.service.AlarmService;
+import com.project.tnet.service.BoardService;
 
 @Controller
 public class MainController {
 	@Autowired
 	private AlarmService alarmService;
+	@Autowired
+	private BoardService boardService;
 	
 	@RequestMapping("/")
 	public String main(Authentication authentication, Model model) {
 
+		List<Board> boardList = boardService.selectBoardTOP6();
+		model.addAttribute("boardList", boardList);
+		
 		if (authentication != null) {
 			PrincipalDetails principalDetails = (PrincipalDetails)authentication.getPrincipal();
 			System.out.println("PrincipalDetails = " + principalDetails);
@@ -32,6 +46,17 @@ public class MainController {
 		return "index";
 	}
 
+	// 아이콘에서 선택한 재능을 가르칠과목으로 TOP6로 정렬시킴.	
+	@ResponseBody
+	@RequestMapping("/telent/teachers")
+	public Map<String, Object> selectTeachersTOP6(@RequestBody Board board){
+		Map<String, Object> map = new HashMap<>();
+		List<Board> teachersList = boardService.selectTeachersTOP6(board.getGive_talent());
+		map.put("status", true);
+		map.put("teachersList", teachersList); 
+		return map;
+	}
+	
 	@RequestMapping("/notice/list")
 	public String noticeList() {
 		return "notice/noticeList";

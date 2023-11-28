@@ -229,8 +229,74 @@ from (select ROWNUM as rnum , A.*
                 join talent_small ts1 on board.give_talent = ts1.low_code
                 join talent_small ts2 on board.receive_talent = ts2.low_code
        where board_id = #{board_id}
-
 	
 	</select>
-
+	
+<!-- 메인페이지 재능 게시글 TOP6조회 -->
+	 <select id="selectBoardTOP6" parameterType="com.project.tnet.dto.Board" resultType="com.project.tnet.dto.Board">
+		select 
+			BOARD.BOARD_ID, 
+            BOARD.CONTENTS,
+			BOARD.READ_COUNT, 
+			TO_CHAR(BOARD.REGISTER_DATE, 'YYYY"-"MM"-"DD' ) AS register_date, 
+			GIVE_TALENT.LOW_NAME as giveTalentLowName,
+			RECEIVE_TALENT.LOW_NAME as receiveTalentLowName, 
+			u.CITY_NAME AS city_name, 
+			u.DISTRICT_NAME AS district_name 
+		from ( 
+		    select BOARD_ID, BOARD.CONTENTS, READ_COUNT, REGISTER_DATE, GIVE_TALENT, RECEIVE_TALENT, CITY_CODE, DISTRICT_CODE 
+		    from BOARD                
+		    order by READ_COUNT DESC
+		) BOARD
+		JOIN TALENT_SMALL GIVE_TALENT ON GIVE_TALENT.LOW_CODE = BOARD.GIVE_TALENT
+		JOIN TALENT_SMALL RECEIVE_TALENT ON RECEIVE_TALENT.LOW_CODE = BOARD.RECEIVE_TALENT
+		JOIN (
+		        SELECT c.city_code,
+		               d.city_code AS district_city_code,
+		               c.city_name,
+		               d.district_name,
+		               d.district_code
+		        FROM CITY c
+		        JOIN DISTRICT d ON c.city_code = d.city_code) u 
+		ON BOARD.city_code = u.city_code AND BOARD.district_code = u.district_code
+		<![CDATA[ 
+		where rownum <= 6
+		]]>
+	</select>
+		
+<!-- 아이콘에서 선택한 재능을 가르칠과목으로 TOP6로 정렬시킴.	 -->
+	<select id="selectTeachersTOP6" parameterType="com.project.tnet.dto.Board" resultType="com.project.tnet.dto.Board">
+		select 
+			BOARD.BOARD_ID, 
+            BOARD.CONTENTS,
+			BOARD.READ_COUNT, 
+			TO_CHAR(BOARD.REGISTER_DATE, 'YYYY"-"MM"-"DD' ) AS register_date, 
+			GIVE_TALENT.LOW_NAME as giveTalentLowName,
+			RECEIVE_TALENT.LOW_NAME as receiveTalentLowName, 
+			u.CITY_NAME AS city_name, 
+			u.DISTRICT_NAME AS district_name 
+		from ( 
+            select 
+                BOARD_ID, BOARD.CONTENTS, READ_COUNT, REGISTER_DATE, GIVE_TALENT, RECEIVE_TALENT, CITY_CODE, DISTRICT_CODE 
+            from BOARD    
+            where BOARD.GIVE_TALENT= #{give_talent}  
+            <![CDATA[ 
+			AND rownum <= 6 
+			]]>
+            order by READ_COUNT DESC
+		) BOARD
+		JOIN TALENT_SMALL GIVE_TALENT ON GIVE_TALENT.LOW_CODE = BOARD.GIVE_TALENT
+		JOIN TALENT_SMALL RECEIVE_TALENT ON RECEIVE_TALENT.LOW_CODE = BOARD.RECEIVE_TALENT
+		JOIN (
+		        SELECT c.city_code,
+		               d.city_code AS district_city_code,
+		               c.city_name,
+		               d.district_name,
+		               d.district_code
+		        FROM CITY c
+		        JOIN DISTRICT d ON c.city_code = d.city_code) u 
+		ON BOARD.city_code = u.city_code AND BOARD.district_code = u.district_code
+        order by READ_COUNT desc
+       
+	</select>
 </mapper>
