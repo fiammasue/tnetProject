@@ -96,7 +96,7 @@
 		    (c.writer_status_code IN ('SC07', 'SC07') AND c.writer_nickname = #{writer_nickname})
 		    OR
 		    (c.applyer_status_code IN ('SC07', 'SC07') AND c.applyer_nickname = #{writer_nickname})
-		    AND b.delete_yn = 'N' and course_id = #{course_id}
+		    and course_id = #{course_id}
 	
 	
 	</select>
@@ -168,8 +168,8 @@
 		JOIN status s2 ON c.applyer_status_code = s2.status_code
 		WHERE
 		    (c.writer_status_code IN ('SC02', 'SC03') AND c.writer_nickname = #{writer_nickname})
-		    OR
-		    (c.applyer_status_code IN ('SC02', 'SC03') AND c.applyer_nickname = #{writer_nickname})
+		    AND
+		    (c.applyer_status_code IN ('SC02', 'SC03') AND c.applyer_nickname = #{applyer_nickname})
 		    AND b.delete_yn = 'N' and course_id = #{course_id}
 	
 	

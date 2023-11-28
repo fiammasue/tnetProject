@@ -143,7 +143,7 @@ public class MessageController {
 				.type_string(MessageType.ALARM.name())
 				.contents("재능기부 수락 요청이 왔습니다.")
 				.alarm_code("A03")
-				.page_type("/myPage/proceeding.do")
+				.page_type("/myPage/proceeding")
 				.receiver(course.getWriter_nickname())
 				.sender(course.getApplyer_nickname())
 				.board_id(course.getBoard_id())
@@ -274,9 +274,57 @@ public class MessageController {
 		alarmService.insertAlarm(result);
 		Alarm result1 = alarmService.selectProAlarmId(result);
 		result1.setType_string(MessageType.ALARM.name());
+		System.out.println("result 1 - ----- -- - - - -> "+result1);
 		//상대방에게 전달
 		messagingTemplate.convertAndSend("/sub/member/userId/"+result.getReceiver(),course);//출력할건을전달
 		messagingTemplate.convertAndSend("/sub/member/userId/"+result.getReceiver(),result1);//알람
+	}
+	//다시 대기
+	@MessageMapping("/return/waiting")
+	public void returnWaiting(Alarm alarm) {
+		//일단 알람에 boardID랑 courseID밖에 없음
+		
+		//그러면 course에서 보낸이와 다른 사람을 writer로 해서 보내야함
+		//courseID도 같이 넘어가야함
+		Course c1 = Course.builder()
+					.course_id(alarm.getCourse_id())
+					.build();
+		c1 = myPageService.getCoursebyId(c1);
+		
+		String receiver = "";
+		if(c1.getWriter_nickname().equals(alarm.getSender())) {
+			receiver=c1.getApplyer_nickname();
+		}else {
+			receiver=c1.getWriter_nickname();
+		}
+		System.out.println("/return/waiting/c1 -> "+c1);
+		
+		//값을 가져와서 상대방에게 보내야함
+		Course course = Course.builder()
+				.writer_nickname(c1.getWriter_nickname())
+				.course_id(alarm.getCourse_id())
+				.build();
+		course = myPageService.getCourseAgreeInvolve(course);
+		System.out.println("/return/waiting/courseMessage -> "+course);
+		course.setType_string(MessageType.RETURN_WAITING.name());
+		messagingTemplate.convertAndSend("/sub/member/userId/"+receiver,course);//출력할건을전달
+		//알람에도 데이터를 넣어서 저장해야함
+		//수강신청 동의를 하면 수강알람도 가야하고 
+		Alarm result = Alarm.builder()
+				.type_string(MessageType.ALARM.name())
+				.contents("재능 교환이 다시 진행됩니다.")
+				.alarm_code("A06")
+				.page_type("/myPage/course_proceeding")
+				.receiver(receiver)//무조건상대방
+				.sender(alarm.getSender())//무조건 글작성자
+				.board_id(alarm.getBoard_id())
+				.read_yn("N")
+				.build();
+		alarmService.insertAlarm(result);
+		System.out.println("result ------>" + result);
+		Alarm result1 = alarmService.selectProAlarmId(result);
+		result1.setType_string(MessageType.ALARM.name());
+		messagingTemplate.convertAndSend("/sub/member/userId/"+receiver,result1);//알람
 	}
 
 }
