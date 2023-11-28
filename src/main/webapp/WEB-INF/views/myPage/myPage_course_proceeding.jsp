@@ -804,7 +804,6 @@
             const boardId = card.getAttribute('data-boardid');
             const courseInvolve = updateCompleted(courseId);
             // 강의를 완료하면 알람메시지 띄움
-            if (courseInvolve === true){
                ws.send("/pub/complete/courseInvolve",{},JSON.stringify({
                              type:'ALARM'
                              ,type_string:"ALARM"
@@ -813,7 +812,6 @@
                              ,board_id:boardId
                              }));
 
-            }
 
            //화면 데이터 바뀔 수 있도록 함
            // 클래스명, 상태 코드, 날짜 변경
@@ -1573,7 +1571,14 @@
                      var text = $('#viewForm2').find('.detail-board_id').text();
                      var parts = text.split('.'); // 마침표를 기준으로 문자열 분할
                      var boardId = parts[1]; 
-                     
+	                  // 강의 완료 요청 보내면 알람 보냄
+	                     ws.send("/pub/return/waiting",{},JSON.stringify({
+	                         type:'ALARM'
+	                         ,type_string:"ALARM"
+	                         ,sender:"${principal.user.nickName}"
+	                         ,course_id:courseId
+	                         ,board_id:boardId
+	                         }));
                      
                      $("#viewForm2").dialog("close");
                      alert('다시 진행 결정');
