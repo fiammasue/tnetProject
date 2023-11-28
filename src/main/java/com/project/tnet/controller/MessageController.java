@@ -204,7 +204,6 @@ public class MessageController {
 				.writer_nickname(alarm.getSender())
 				.course_id(alarm.getCourse_id())
 				.build();
-		
 		course = myPageService.getCourseCompleteAgree(course);
 		course.setType_string(MessageType.COMPLETE_AGREE.name());
 		
