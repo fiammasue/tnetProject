@@ -200,8 +200,20 @@ public class MessageController {
 	@MessageMapping("/complete/courseAgree")
 	public void courseAgree(Alarm alarm) {
 		//courseID도 같이 넘어가야함
+		Course c1 = Course.builder()
+					.course_id(alarm.getCourse_id())
+					.build();
+		c1 = myPageService.getCoursebyId(c1);
+		
+		String receiver = "";
+		if(c1.getWriter_nickname().equals(alarm.getSender())) {
+			receiver=c1.getApplyer_nickname();
+		}else {
+			receiver=c1.getWriter_nickname();
+		}
+		System.out.println("c1 --> "+ c1);
 		Course course = Course.builder()
-				.writer_nickname(alarm.getSender())
+				.writer_nickname(receiver)
 				.course_id(alarm.getCourse_id())
 				.build();
 		course = myPageService.getCourseCompleteAgree(course);
