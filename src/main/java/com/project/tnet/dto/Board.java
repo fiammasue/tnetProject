@@ -5,6 +5,7 @@ import java.sql.Date;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Data
@@ -39,6 +40,9 @@ public class Board {
 	private String cityname; // 도시이름
 	private String districtname; // 구이름
 	private String status; // 상태 이름
+	
+	private String searchWord; // 검색할 글자
+	private String search_kind;// 검색종류
 	
 	//페이징
 	private int pageNo = 1; //현재 페이지 번호
@@ -78,15 +82,4 @@ public class Board {
 
 	
 	
-
-	
-	
-	
-
-
-		
-
-	
-	
-
 }

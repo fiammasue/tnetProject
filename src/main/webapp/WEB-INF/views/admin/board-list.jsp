@@ -31,6 +31,14 @@
         <!-- Board List 흰색 영역 -->
         <div class="whitearea-Nnc  tap_content defaultarea" id="tab2">
           <p class="member-list-VMS">Board List</p>
+          <div id="search" >
+           <select id="search_kind">
+		    <option selected value="title">제목</option>
+		    <option value="talent">재능</option>
+		    <option value="city">위치</option>
+		    <option value="status">상태</option>
+		   </select>
+           <input type="text" id="search_box"/><span id="search_button"> 검색 </span></div>
           <!-- 테이블 -->
           <div id="table">
             <table >
@@ -57,8 +65,8 @@
                     <td >${board.writer_nickname}</td>
                     <td >${board.cityname}</td>
                     <td >${board.districtname}</td>
-                    <td>${board.register_date}</td>
                     <td >${board.read_count}</td>
+                    <td>${board.register_date}</td>
                     <td >${board.status}</td>
                   </tr>
                 </c:forEach>                        
@@ -77,13 +85,15 @@
               <form name="mForm" id="mForm" action="<c:url value='/admin/boardlist'/>" method="post" >
 		     	<input type="hidden" id="pageNo" name="pageNo" />  
 		     	<input type="hidden" id="pageLength" name="pageLength" />
+		     	<input type="hidden" id="searchWord" name="searchWord" />
+ 		     	<input type="hidden" id="kind_of_search" name="search_kind" /> 
 		      </form>
               <div id = "Change number">
                <span>건수 : </span>  
               <select id="button-bQU">
-				    <option selected value="10">10</option>
-				    <option value="20">20</option>
-				    <option value="30">30</option>
+				    <option selected value="12">12</option>
+				    <option value="24">24</option>
+				    <option value="36">36</option>
 			  </select>
               </div>
               
@@ -107,13 +117,31 @@
 
 <script>                                   
 function changePage(pageNo) {	
-	console.log("페이지 번호 : ", pageNo);
     var length = $('#paging select option:selected').val().toString(); // pageLength 값을 가져옴
-  
-	document.querySelector("#pageNo").value = pageNo;
+    var searchword = localStorage.getItem('searchword');
+    var search_kind = localStorage.getItem('search_kind');
+    
+	document.querySelector("#pageNo").value = pageNo; //페이지번호
 	document.querySelector("#pageLength").value = length;  // pageLength 값을 설정
-	document.querySelector("#mForm").submit();
+	document.querySelector("#searchWord").value = searchword; // 검색값
+	document.querySelector("#kind_of_search").value = search_kind; // 검색종류
+	document.querySelector("#mForm").submit(); //폼전송
 }
+
+//검색 버튼을 다시 한번 클릭하면 알아서 초기화됨
+$("#search_button").on("click", function() {
+		var searchword = $("#search_box").val();
+		// 로컬 스토리지에 저장
+		localStorage.setItem('searchword', searchword);
+		
+		//검색 종류 값 찾기
+		var search_kind = $("#search_kind").find('option:selected').val();
+		localStorage.setItem('search_kind', search_kind);
+    
+    var pageNo = 1;
+    changePage(pageNo);
+});
+
 
 // 건수가 선택되면 
 $('#paging select').on('change', function(){

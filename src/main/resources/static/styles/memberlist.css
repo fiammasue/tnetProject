@@ -279,11 +279,11 @@ ul, li {
 
 /*제목*/
 .memberlist-Bwn .allgroup-Lpg .member-list-VMS { 
-    font-size: 6.8rem;
+font-size: 5.8rem;
     color: #0a6022;
     font-family: Capriola, 'Source Sans Pro';
-    margin-top: 29px;
-    margin-bottom: 22px;
+    margin-top: 27px;
+    margin-bottom: 10px;
     text-align: center;
 }
 
@@ -678,4 +678,45 @@ tbody {
 
 span {
     padding-right: 6px;
+}
+
+div#search {
+    text-align: center;
+    margin-bottom: 10px;
+    width: 303px;
+    background: #ecffe9;
+    padding: 10px;
+    border-radius: 78px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    flex-wrap: nowrap;
+}
+
+span#search_button {
+    margin-left: 11px;
+    border: solid 1px #0a6022;
+    border-radius: 10px;
+    background-color: white;
+    padding: 5px 10px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    width: 20px;
+    cursor: pointer;
+}
+
+select#search_kind {
+    padding: 4px;
+    font-size: 10px;
+    margin-right: 5px;
+}
+
+
+input#search_box {
+    height: 20px;
 }
