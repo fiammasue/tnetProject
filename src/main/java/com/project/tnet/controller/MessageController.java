@@ -61,7 +61,6 @@ public class MessageController {
 		
 			
 			message.setType_string(MessageType.ENTER.name());
-			System.out.println("message => "+ message);
 			
 			messagingTemplate.convertAndSend("/sub/member/userId/"+room.getReceiver(),message,headerAccessor.getMessageHeaders());
 			messagingTemplate.convertAndSend("/sub/member/userId/"+room.getSender(),message,headerAccessor.getMessageHeaders());
@@ -82,10 +81,8 @@ public class MessageController {
 		else {
 			// message의 roomId로 채팅방가져오기
 			ChatRoom room = chatRoomService.findRoomById(message.getRoom_id());
-			System.out.println("접속한 채팅방의 회원 수 -> " + room);
 			// 접속자수를가져와서 1이면 read_yn을 n으로 넣기 2이면 Y로 초기화한다.
 			if (room.getConnected_count() == 1) {
-				System.out.println("회원자수가 이만큼이 아니냥고");
 				message.setRead_yn("N");
 				Alarm alarm = Alarm.builder()
 									.type_string(MessageType.ALARM.name())
@@ -102,31 +99,28 @@ public class MessageController {
 				if(room.getReceiver().equals(message.getReceiver())) {
 					chatRoomService.updateNotReceiverReadCount(message.getRoom_id());
 					flag = 1;
-					System.out.println("Receiver => 여기만 지나가나 ? "+ flag);
 				}
 				else {
 					chatRoomService.updateNotSenderReadCount(message.getRoom_id());
 				}
 				room = chatRoomService.findRoomById(message.getRoom_id());
-				// 안읽은 갯수 숫자 알람에 저장
-				if(flag == 1) {
-					alarm.setReceiver_count(room.getReceiver_count());
-				}
-				else {
-					alarm.setReceiver_count(room.getSender_count());
-				}
 				
 				alarmService.insertAlarmChat(alarm);
 				Alarm result = alarmService.selectChatAlarm(alarm);
 				result.setType_string(MessageType.ALARM.name());
-				System.out.println("result ------------> "+ result);
+				// 안읽은 갯수 숫자 알람에 저장
+				if(room.getReceiver_count() > 0) {
+					result.setReceiver_count(room.getReceiver_count());
+				}
+				else {
+					result.setReceiver_count(room.getSender_count());
+				}
 				messagingTemplate.convertAndSend("/sub/member/userId/"+message.getReceiver(), result,headerAccessor.getMessageHeaders());
 				messagingTemplate.convertAndSend("/sub/member/userId/"+message.getSender(),message,headerAccessor.getMessageHeaders());
 			}
 			else {
 				message.setRead_yn("Y");
 				// 메세지를 넣고 메시지 발송
-				System.out.println("수신한 message : "+message);
 				messagingTemplate.convertAndSend("/sub/member/userId/"+message.getReceiver(),message,headerAccessor.getMessageHeaders());
 				messagingTemplate.convertAndSend("/sub/member/userId/"+message.getSender(),message,headerAccessor.getMessageHeaders());
 			}
@@ -154,12 +148,10 @@ public class MessageController {
 		result.setType_string(MessageType.ALARM.name());
 		messagingTemplate.convertAndSend("/sub/member/userId/"+course.getWriter_nickname(),result);
 		
-		System.out.println("Message Controller -> "+ course);
 		//수강신청에 태그도 추가 해야함
 		
 		course = myPageService.getCourse(course);
 		course.setType_string(MessageType.AGREE.name());
-		System.out.println("coutseeddf -> "+myPageService.getCourse(course));
 		messagingTemplate.convertAndSend("/sub/member/userId/"+course.getWriter_nickname(),course);
 	}
 	
@@ -177,7 +169,6 @@ public class MessageController {
 				.read_yn("N")
 				.build();
 		alarmService.insertAlarm(result);
-		System.out.println("result ------>" + result);
 		Alarm result1 = alarmService.selectProAlarmId(result);
 		result1.setType_string(MessageType.ALARM.name());
 		messagingTemplate.convertAndSend("/sub/member/userId/"+alarm.getReceiver(),result1);
@@ -189,7 +180,6 @@ public class MessageController {
 								.build();
 		
 		course = myPageService.getCourseAgreeInvolve(course);
-		System.out.println("courseMessage -> "+course);
 		course.setType_string(MessageType.AGREE_INVOLVE.name());
 		//상대방에게 전달
 		messagingTemplate.convertAndSend("/sub/member/userId/"+alarm.getReceiver(),course);
@@ -211,7 +201,6 @@ public class MessageController {
 		}else {
 			receiver=c1.getWriter_nickname();
 		}
-		System.out.println("c1 --> "+ c1);
 		Course course = Course.builder()
 				.writer_nickname(receiver)
 				.course_id(alarm.getCourse_id())
@@ -246,13 +235,23 @@ public class MessageController {
 	//완료
 	@MessageMapping("/complete/courseInvolve")
 	public void courseInvolve(Alarm alarm) {
-		System.out.println("courseInvolve  - -  alarm : "+ alarm);
+		System.out.println("완료요청!");
 		//courseID도 같이 넘어가야함
+		Course c1 = Course.builder()
+					.course_id(alarm.getCourse_id())
+					.build();
+		c1 = myPageService.getCoursebyId(c1);
+		
+		String receiver = "";
+		if(c1.getWriter_nickname().equals(alarm.getSender())) {
+			receiver=c1.getApplyer_nickname();
+		}else {
+			receiver=c1.getWriter_nickname();
+		}
 		Course param = Course.builder()
-				.writer_nickname(alarm.getSender())
+				.writer_nickname(receiver)
 				.course_id(alarm.getCourse_id())
 				.build();
-		System.out.println("alarm -----> "+ alarm);
 		Course course = myPageService.getCourseCompleteInvolve(param);
 		course.setType_string(MessageType.COMPLETE_INVOLVE.name());
 		
@@ -274,10 +273,9 @@ public class MessageController {
 		alarmService.insertAlarm(result);
 		Alarm result1 = alarmService.selectProAlarmId(result);
 		result1.setType_string(MessageType.ALARM.name());
-		System.out.println("result 1 - ----- -- - - - -> "+result1);
 		//상대방에게 전달
-		messagingTemplate.convertAndSend("/sub/member/userId/"+result.getReceiver(),course);//출력할건을전달
-		messagingTemplate.convertAndSend("/sub/member/userId/"+result.getReceiver(),result1);//알람
+		messagingTemplate.convertAndSend("/sub/member/userId/"+receiver,course);//출력할건을전달
+		messagingTemplate.convertAndSend("/sub/member/userId/"+receiver,result1);//알람
 	}
 	//다시 대기
 	@MessageMapping("/return/waiting")
@@ -297,7 +295,6 @@ public class MessageController {
 		}else {
 			receiver=c1.getWriter_nickname();
 		}
-		System.out.println("/return/waiting/c1 -> "+c1);
 		
 		//값을 가져와서 상대방에게 보내야함
 		Course course = Course.builder()
@@ -305,7 +302,6 @@ public class MessageController {
 				.course_id(alarm.getCourse_id())
 				.build();
 		course = myPageService.getCourseAgreeInvolve(course);
-		System.out.println("/return/waiting/courseMessage -> "+course);
 		course.setType_string(MessageType.RETURN_WAITING.name());
 		messagingTemplate.convertAndSend("/sub/member/userId/"+receiver,course);//출력할건을전달
 		//알람에도 데이터를 넣어서 저장해야함
@@ -321,7 +317,6 @@ public class MessageController {
 				.read_yn("N")
 				.build();
 		alarmService.insertAlarm(result);
-		System.out.println("result ------>" + result);
 		Alarm result1 = alarmService.selectProAlarmId(result);
 		result1.setType_string(MessageType.ALARM.name());
 		messagingTemplate.convertAndSend("/sub/member/userId/"+receiver,result1);//알람

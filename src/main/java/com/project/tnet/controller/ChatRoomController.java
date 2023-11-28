@@ -72,6 +72,7 @@ public class ChatRoomController {
 				result.put("exist", (value!=null));
 				if (value != null) {
 					result.put("roomInfo", chatRoomService.findRoomById(value.getRoom_id()));
+					System.out.println("chatList ----> " +messageService.selectMessageList(value.getRoom_id()));
 					result.put("chatList",messageService.selectMessageList(value.getRoom_id()));
 				}
 				else {
