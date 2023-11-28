@@ -145,7 +145,7 @@
 		    (c.writer_status_code = 'SC06' AND c.writer_nickname = #{writer_nickname})
 		    OR
 		    (c.applyer_status_code = 'SC06' AND c.applyer_nickname = #{writer_nickname})
-		    AND b.delete_yn = 'Y' and course_id = #{course_id}
+		     and course_id = #{course_id}
 	
 	
 	</select>

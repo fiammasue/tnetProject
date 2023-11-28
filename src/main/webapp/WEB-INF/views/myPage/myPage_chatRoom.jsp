@@ -113,7 +113,7 @@
 	<!-- 채팅창 -->
 	<div class="chatRoomDialog" style="display:none;">
 	    <div class="chatRoom-header">
-	    <div class="roomId"></div>
+	    <div style="display:none;" class="roomId"></div>
 	      <div class="cover-image">
 	        <img src="/assets/유저.png" alt="" class="userImage">
 	      </div>
@@ -146,10 +146,10 @@
 	</div>
 	<!-- 채팅창 끝 -->
 	
-		<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+<!-- 		<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
 		  채팅방 생성하기
 		</button>
-		<!-- 모달창 -->
+		모달창
 		<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		  <div class="modal-dialog">
 		    <div class="modal-content">
@@ -169,7 +169,7 @@
 		      </div>
 		    </div>
 		  </div>
-		</div>
+		</div>  -->
 		
 		<!-- 모달창끝 -->
 		
@@ -198,7 +198,7 @@
 	
 		$(document).on("click", ".room-title", function() {
 		  	roomId = $(this).data("roomid");
-		  	alert(roomId);
+
 // 		  	location.href = "/chat/enterRoom/"+roomId;
 		  	ws.send("/pub/chat/message", {"content-type": "application/json;charset=utf-8"}
 	        , JSON.stringify({type:'ENTER',room_id:roomId, sender : sender}));
@@ -213,7 +213,7 @@
 		    		
 		    		 let roomInfo = json.roomInfo;
 		    		 let chatList = json.chatList;
-		    		 alert(roomInfo)
+		    		
 		    		 $(".chatRoom-name").text(roomInfo.room_name);
 		    		 if(roomInfo.sender == "${principal.user.nickName}"){
 		    			 $(".chatRoom-receiver").html(roomInfo.receiver);
@@ -224,6 +224,7 @@
 		    		 $(".roomId").text(roomId);
 		    		 var chatListInfo = "";
 		    		 for(let i=0;i<chatList.length;i++){
+		    			 chatListInfo="";
 		    			 var chat = chatList[i];
 		    			 //시간 자르기
 		    			 var timestampString = chat.reg_date;
@@ -272,7 +273,7 @@
 		
 		//메세지 보내기
 		$("#sendMessage").on("click",e => {
-			alert(" ? ");
+
 			if(subscription == null) return;
 			const message = $("#chatContent").val();//메시지 내용
 			//메시지 보내기
@@ -319,7 +320,7 @@
 		
 		ws.onmessage= function(event){
 			const message2 = event.data
-			alert(message2.length);
+
 		}
 		
 		

@@ -91,7 +91,7 @@
 <!-- 채팅방 폼 -->
 	<div class="chatRoomDialog" style="display:none;">
 	    <div class="chatRoom-header">
-	    <div class="roomId"></div>
+	    <div style="display:none;" class="roomId"></div>
 	      <div class="cover-image">
 	        <img src="/assets/유저.png" alt="" class="userImage">
 	      </div>
@@ -160,7 +160,7 @@
 					
 					 let roomInfo = json.roomInfo;
 		    		 
-		    		 alert(roomInfo)
+		
 		    		 $(".chatRoom-name").text(roomInfo.room_name);
 		    		 if(roomInfo.sender == "${principal.user.nickName}"){
 		    			 $(".chatRoom-receiver").html(roomInfo.receiver);
@@ -182,6 +182,7 @@
 		    			 let chatList = json.chatList;
 		    		 	var chatListInfo = "";
 			    		for(let i=0;i<chatList.length;i++){
+			    			chatListInfo="";
 			    			 var chat = chatList[i];
 			    			 //시간 자르기
 			    			 var timestampString = chat.reg_date;
@@ -196,7 +197,7 @@
 					    			 chatListInfo+=`<div class="chat ch1">
 								    		            <div class="textbox">`+decodeURIComponent(chat.message)+`</div>
 								    		            <div class="sender-time">`+time+`</div>`;
-								   	if(chat.read_yn=='N'){
+								   	if(chat.read_yn=="N"){
 					    		      chatListInfo+=` <div class="sender-readCount">1</div>`;
 								   		
 								   	}
@@ -206,7 +207,7 @@
 								  	chatListInfo += `<div class="chat ch2">
 								    		            <div class="textbox">`+decodeURIComponent(chat.message)+`</div>
 								    		            <div class="receiver-time">`+time+`</div>`
-								   	if(chat.read_yn=='N'){
+								   	if(chat.read_yn=="N"){
 						    		   chatListInfo+=` <div class="receiver-readCount">1</div>`;
 								   		
 								   	}
@@ -231,7 +232,7 @@
 	
 	//메세지 보내기
 	$("#sendMessage").on("click",e => {
-		alert(" ? ");
+
 		if(subscription == null) return;
 		const message = $("#chatContent").val();//메시지 내용
 		//메시지 보내기
@@ -265,7 +266,7 @@
 			data: JSON.stringify(param),
 			dataType:"json",
 			success:function(json){
-				alert(json.bool)
+
 				 if(json.bool == true){
 					 alert("수강신청이 완료되었습니다.");
 					 var course = json.course;
