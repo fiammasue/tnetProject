@@ -251,7 +251,7 @@
 			    (c.writer_status_code IN ('SC04', 'SC05') AND c.writer_nickname = #{nickName})
 			    OR
 			    (c.applyer_status_code IN ('SC04', 'SC05') AND c.applyer_nickname = #{nickName})
-			    AND b.delete_yn = 'N'
+			    AND b.delete_yn = 'Y'
 	</select>
 	
 	<!-- 칸반보드 휴지통 리스트 -->
@@ -275,7 +275,7 @@
 		    (c.writer_status_code IN ('SC09', 'SC12') AND c.writer_nickname = #{nickName})
 		    OR
 		    (c.applyer_status_code IN ('SC09', 'SC12') AND c.applyer_nickname = #{nickName})
-		    AND b.delete_yn = 'N'
+		    AND b.delete_yn = 'Y'
 	</select>
 	
 	
