@@ -36,6 +36,11 @@
         <!-- Notice List 흰색 영역 -->
         <div class="whitearea-Nnc  tap_content" id="tab3">
           <p class="member-list-VMS">Notice List</p>
+          <div id="search" >
+           <select id="search_kind">
+		    <option selected value="title">제목</option>
+		    <option value="delete">삭제여부</option>
+		   </select> <input type="text" id="search_box"/><span id="search_button"> 검색 </span></div>
           <!-- 테이블 -->
           <div id="table">
             <table >

@@ -36,7 +36,7 @@
         </div>
       </div>
       <div class="menubottomletter-rQx">
-        <p class="made-with-by-peterdraw-abr">Made with ♥ by Peterdraw</p>
+        <p class="made-with-by-peterdraw-abr">Made with ♥ by JihyeBeak</p>
         <p class="talent-networks-pronesis-Ux8">
         Talent -NetWork’s  
         <br/>
