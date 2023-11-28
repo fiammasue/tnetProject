@@ -61,4 +61,10 @@ public interface BoardDAO {
 	
 	//제목 출력을 위한 게시글 정보 가져오기
 	public Board selectBoard(int board_id);
+	
+	//메인페이지 재능 게시글 TOP6조회
+	public List<Board> selectBoardTOP6();
+	
+	// 아이콘에서 선택한 재능을 가르칠과목으로 TOP6로 정렬시킴.
+	public List<Board> selectTeachersTOP6(String give_talent);
 }

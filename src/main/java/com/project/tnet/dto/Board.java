@@ -27,8 +27,10 @@ public class Board {
 	private String gender;
 	private String high_code;
 	
-	private String give_talent;		
-	private String receive_talent;
+	private String give_talent;		// 주는재능 코드명
+	private String receive_talent;	// 받는재능 코드명
+	private String giveTalentLowName;
+	private String receiveTalentLowName;
 	private String city_name;
 	private String district_name;
 	private String low_code;

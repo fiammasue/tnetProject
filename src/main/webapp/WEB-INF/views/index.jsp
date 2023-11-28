@@ -30,18 +30,18 @@
             </a>
 
             <ul class="cls">
-              <li><a href="#">영어</a></li>
-              <li><a href="#">한국어</a></li>
-              <li><a href="#">일본어</a></li>
-              <li><a href="#">중국어</a></li>
-              <li><a href="#">독일어</a></li>
-              <li><a href="#">프랑스어</a></li>              
-              <li><a href="#">스페인어</a></li>
-              <li><a href="#">아랍어</a></li>              
-              <li><a href="#">러시아어</a></li>
-              <li><a href="#">터키어</a></li>
-              <li><a href="#">힌디어</a></li>
-              <li><a href="#">포루투칼어</a></li>             
+              <li value="TS01"><a href="javascript:void(0)">영어</a></li>
+              <li value="TS02"><a href="javascript:void(0)">한국어</a></li>
+              <li value="TS03"><a href="javascript:void(0)">일본어</a></li>
+              <li value="TS04"><a href="javascript:void(0)">중국어</a></li>
+              <li value="TS05"><a href="javascript:void(0)">독일어</a></li>
+              <li value="TS06"><a href="javascript:void(0)">프랑스어</a></li>              
+              <li value="TS07"><a href="javascript:void(0)">스페인어</a></li>
+              <li value="TS08"><a href="javascript:void(0)">아랍어</a></li>              
+              <li value="TS09"><a href="javascript:void(0)">러시아어</a></li>
+              <li value="TS10"><a href="javascript:void(0)">터키어</a></li>
+              <li value="TS11"><a href="javascript:void(0)">힌디어</a></li>
+              <li value="TS12"><a href="javascript:void(0)">포루투칼어</a></li>             
             </ul>
           </li>
           <li>
@@ -50,11 +50,10 @@
               <p>art</p>
             </a>  
             <ul class="cls">
-              <li><a href="#">그림</a></li>
-              <li><a href="#">꽃꽂이</a></li>
-              <li><a href="#">도예</a></li>
-              <li><a href="#">POP</a></li>
-              <li><a href="#">헬스</a></li>             
+              <li value="TS22"><a href="javascript:void(0)">그림</a></li>
+              <li value="TS23"><a href="javascript:void(0)">꽃꽂이</a></li>
+              <li value="TS24"><a href="javascript:void(0)">도예</a></li>
+              <li value="TS25"><a href="javascript:void(0)">POP</a></li>
             </ul>          
           </li>
           <li>
@@ -63,15 +62,15 @@
               <p>computer</p>
             </a>
             <ul class="cls">
-              <li><a href="#">JAVA</a></li>
-              <li><a href="#">C언어</a></li>
-              <li><a href="#">C++</a></li>
-              <li><a href="#">python</a></li>
-              <li><a href="#">javascript</a></li>
-              <li><a href="#">html</a></li>
-              <li><a href="#">css</a></li>
-              <li><a href="#">spring</a></li>
-              <li><a href="#">jsp</a></li>
+              <li value="TS13"><a href="javascript:void(0)">JAVA</a></li>
+              <li value="TS14"><a href="javascript:void(0)">C언어</a></li>
+              <li value="TS15"><a href="javascript:void(0)">C++</a></li>
+              <li value="TS16"><a href="javascript:void(0)">python</a></li>
+              <li value="TS17"><a href="javascript:void(0)">javascript</a></li>
+              <li value="TS18"><a href="javascript:void(0)">html</a></li>
+              <li value="TS19"><a href="javascript:void(0)">css</a></li>
+              <li value="TS20"><a href="javascript:void(0)">spring</a></li>
+              <li value="TS21"><a href="javascript:void(0)">jsp</a></li>
             </ul>             
           </li>
           <li>
@@ -80,18 +79,18 @@
               <p>exercise</p>
             </a>
             <ul class="cls">
-              <li><a href="#">헬스</a></li>
-              <li><a href="#">자전거</a></li>
-              <li><a href="#">태권도</a></li>
-              <li><a href="#">권투</a></li>
-              <li><a href="#">배드민턴</a></li>
-              <li><a href="#">주짓수</a></li>
-              <li><a href="#">탁구</a></li>
-              <li><a href="#">요가</a></li>
-              <li><a href="#">축구</a></li>
-              <li><a href="#">골프</a></li>
-              <li><a href="#">테니스</a></li>
-              <li><a href="#">필라테스</a></li>
+              <li value="TS26"><a href="javascript:void(0)">헬스</a></li>
+              <li value="TS27"><a href="javascript:void(0)">자전거</a></li>
+              <li value="TS28"><a href="javascript:void(0)">태권도</a></li>
+              <li value="TS29"><a href="javascript:void(0)">권투</a></li>
+              <li value="TS30"><a href="javascript:void(0)">배드민턴</a></li>
+              <li value="TS31"><a href="javascript:void(0)">주짓수</a></li>
+              <li value="TS32"><a href="javascript:void(0)">탁구</a></li>
+              <li value="TS33"><a href="javascript:void(0)">요가</a></li>
+              <li value="TS34"><a href="javascript:void(0)">축구</a></li>
+              <li value="TS35"><a href="javascript:void(0)">골프</a></li>
+              <li value="TS36"><a href="javascript:void(0)">테니스</a></li>
+              <li value="TS37"><a href="javascript:void(0)">필라테스</a></li>
             </ul>             
           </li>
           <li>
@@ -100,12 +99,12 @@
               <p>music</p>
             </a>
             <ul class="cls">
-              <li><a href="#">피아노</a></li>
-              <li><a href="#">플룻</a></li>
-              <li><a href="#">바이올린</a></li>
-              <li><a href="#">보컬</a></li>
-              <li><a href="#">드럽</a></li>
-              <li><a href="#">첼로</a></li>      
+              <li value="TS38"><a href="javascript:void(0)">피아노</a></li>
+              <li value="TS39"><a href="javascript:void(0)">플룻</a></li>
+              <li value="TS40"><a href="javascript:void(0)">바이올린</a></li>
+              <li value="TS41"><a href="javascript:void(0)">보컬</a></li>
+              <li value="TS42"><a href="javascript:void(0)">드럼</a></li>
+              <li value="TS43"><a href="javascript:void(0)">첼로</a></li>      
             </ul>             
           </li>
           <li>
@@ -114,12 +113,12 @@
               <p>study</p>
             
             <ul class="cls">
-              <li><a href="#">수학</a></li>
-              <li><a href="#">역사</a></li>
-              <li><a href="#">문학</a></li>
-              <li><a href="#">주식</a></li>
-              <li><a href="#">정치</a></li>
-              <li><a href="#">성경</a></li>
+              <li value="TS44"><a href="javascript:void(0)">수학</a></li>
+              <li value="TS45"><a href="javascript:void(0)">역사</a></li>
+              <li value="TS46"><a href="javascript:void(0)">문학</a></li>
+              <li value="TS47"><a href="javascript:void(0)">주식</a></li>
+              <li value="TS48"><a href="javascript:void(0)">정치</a></li>
+              <li value="TS49"><a href="javascript:void(0)">성경</a></li>
             </ul>     
           </li>
         </ul>
@@ -138,115 +137,90 @@
     </article>
 
     <ul class="lesson-cards">
-      <li class="lesson-card">
-        <div class="lesson-image">
-            <img src="/assets/usericon1.png">
-            <a href="#"><span>영어</span></a>
-            <img src="/assets/exchageicon.png">
-            <a href="#"><span>피아노</span></a>
-            <img src="/assets/usericon2.png">
-        </div>
-        <div class="lesson-details">
-            <p class="lesson-description">저는 어디어디살고요 어떤 재능이 필요한데 그 재능을 ...</p>
-            <div class="lesson-meta">
-                <img src="/assets/locationicon.png">
-                <span class="lesson-location">서울시 관악구</span>
-                <input type="button" id="detail" value="DETAIL"></input>
-            </div>
-        </div>
-      </li>
-
-      <li class="lesson-card">
-        <div class="lesson-image">
-            <img src="/assets/usericon1.png">
-            <a href="#"><span id="leftLesson">영어</span></a>
-            <img src="/assets/exchageicon.png">
-            <a href="#"><span>피아노</span></a>
-            <img src="/assets/usericon2.png">
-        </div>
-        <div class="lesson-details">
-            <p class="lesson-description">저는 어디어디살고요 어떤 재능이 필요한데 그 재능을 ...</p>
-            <div class="lesson-meta">            
-              <img src="/assets/locationicon.png">  
-              <span>서울 관악구</span>
-              <input type="button" id="detail" value="DETAIL"></input>
-            </div>
-        </div>
-      </li>
-
-      <li class="lesson-card">
-        <div class="lesson-image">
-            <img src="/assets/usericon1.png">
-            <a href="#"><span>영어</span></a>
-            <img src="/assets/exchageicon.png">
-            <a href="#"><span>피아노</span></a>
-            <img src="/assets/usericon2.png">
-        </div>
-        <div class="lesson-details">
-            <p class="lesson-description">저는 어디어디살고요 어떤 재능이 필요한데 그 재능을 ...</p>
-            <div class="lesson-meta">
-                <img src="/assets/locationicon.png">
-                <span class="lesson-location">서울 관악구</span>
-                <input type="button" id="detail" value="DETAIL"></input>
-            </div>
-        </div>
-      </li>
-      
-      <li class="lesson-card">
-        <div class="lesson-image">
-            <img src="/assets/usericon1.png">
-            <a href="#"><span>영어</span></a>
-            <img src="/assets/exchageicon.png">
-            <a href="#"><span>피아노</span></a>
-            <img src="/assets/usericon2.png">
-        </div>
-        <div class="lesson-details">
-            <p class="lesson-description">저는 어디어디살고요 어떤 재능이 필요한데 그 재능을 ...</p>
-            <div class="lesson-meta">
-                <img src="/assets/locationicon.png">
-                <span class="lesson-location">서울시 관악구</span>
-                <input type="button" id="detail" value="DETAIL"></input>
-            </div>
-        </div>
-      </li>
-
-      <li class="lesson-card">
-        <div class="lesson-image">
-            <img src="/assets/usericon1.png">
-            <a href="#"><span id="leftLesson">영어</span></a>
-            <img src="/assets/exchageicon.png">
-            <a href="#"><span>피아노</span></a>
-            <img src="/assets/usericon2.png">
-        </div>
-        <div class="lesson-details">
-            <p class="lesson-description">저는 어디어디살고요 어떤 재능이 필요한데 그 재능을 ...</p>
-            <div class="lesson-meta">            
-              <img src="/assets/locationicon.png">  
-              <span>서울 관악구</span>
-              <input type="button" id="detail" value="DETAIL"></input>
-            </div>
-        </div>
-      </li>
-
-      <li class="lesson-card">
-        <div class="lesson-image">
-            <img src="/assets/usericon1.png">
-            <a href="#"><span>영어</span></a>
-            <img src="/assets/exchageicon.png">
-            <a href="#"><span>피아노</span></a>
-            <img src="/assets/usericon2.png">
-        </div>
-        <div class="lesson-details">
-            <p class="lesson-description">저는 어디어디살고요 어떤 재능이 필요한데 그 재능을 ...</p>
-            <div class="lesson-meta">
-                <img src="/assets/locationicon.png">
-                <span class="lesson-location">서울 관악구</span>
-                <input type="button" id="detail" value="DETAIL"></input>
-            </div>
-        </div>
-      </li>
-   
+	    <c:forEach var="board" items="${boardList}">
+	      <li class="lesson-card">
+	        <div class="lesson-image">
+	            <img src="/assets/usericon1.png">
+	            <span>${board.giveTalentLowName}</span>
+	            <img src="/assets/exchageicon.png">
+	            <span>${board.receiveTalentLowName}</span>
+	            <img src="/assets/usericon2.png">
+	        </div>
+	        <div class="lesson-details">
+	            <p class="lesson-description">${board.contents}</p>
+	            <div class="lesson-meta">
+	                <img src="/assets/locationicon.png">
+	                <span class="lesson-location">${board.city_name} ${board.district_name}</span>
+	                <!-- <input type="button" id="detail" value="DETAIL"></input> -->
+	                <a href='/board/detail/${board.board_id}'><input type="button" id="detail" value="DETAIL"></input></a>
+	            </div>
+	        </div>
+	      </li>
+		</c:forEach>
     </ul>
   </div>
+  
+ <script>
+    $(document).ready(function () {
+        // li 태그를 클릭했을 때의 이벤트 핸들러를 정의합니다.
+        $("ul.cls li").click(function () {
+            // 클릭한 li 태그의 value 값을 가져옵니다.
+            const param = { give_talent: $(this).attr("value") };
+
+            // AJAX를 통해 컨트롤러에 값을 전달합니다.
+            $.ajax({
+                url:  "<c:url value='/telent/teachers'/>", // 컨트롤러의 URL을 지정합니다.
+                type: "POST", // 또는 "GET" 등 HTTP 요청 방식 선택
+                data: JSON.stringify(param), // 전달할 데이터 설정
+                contentType: 'application/json; charset=UTF-8',
+                success: function (response) {
+                    if (response.status) {
+                        // 성공적으로 데이터를 받아왔을 때 강의 카드를 업데이트합니다.
+                        updateLessonCards(response.teachersList);
+                    }
+                },
+                error: function(error) {
+                    alert("데이터를 가져오는 데 실패했습니다.");
+                }
+            });
+        });
+
+        // 강의 카드를 업데이트하는 함수 정의
+        function updateLessonCards(teachersList) {
+            // 강의 카드를 감싸는 ul 요소를 선택합니다.
+            var lessonCardsUl = $("ul.lesson-cards");
+
+            // ul 요소 안의 기존 내용을 지웁니다.
+            lessonCardsUl.empty();
+
+            // 받아온 teachersList를 이용하여 강의 카드를 동적으로 생성합니다.
+            $.each(teachersList, function (index, teacher) {
+                // 강의 카드를 추가합니다.
+                var lessonCard = $("<li class='lesson-card'>").html(
+                    "<div class='lesson-image'>" +
+                    "<img src='/assets/usericon1.png'>" +
+                    "<a href='#'><span>" + teacher.giveTalentLowName + "</span></a>" +
+                    "<img src='/assets/exchageicon.png'>" +
+                    "<a href='#'><span>" + teacher.receiveTalentLowName + "</span></a>" +
+                    "<img src='/assets/usericon2.png'>" +
+                    "</div>" +
+                    "<div class='lesson-details'>" +
+                    "<p class='lesson-description'>" + teacher.contents + "</p>" +
+                    "<div class='lesson-meta'>" +
+                    "<img src='/assets/locationicon.png'>" +
+                    "<span class='lesson-location'>" + teacher.city_name + " " + teacher.district_name + "</span>" +
+                    "<a href='/board/detail/" + teacher.board_id + "'><input type='button' id='detail' value='DETAIL'></input></a>" +
+                    "</div>" +
+                    "</div>"
+                );
+
+                // 생성한 강의 카드를 ul에 추가합니다.
+                lessonCardsUl.append(lessonCard);
+            });
+        }
+    });
+</script>
+
+
 </body>
 </html>
