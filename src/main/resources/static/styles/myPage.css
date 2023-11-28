@@ -2247,7 +2247,17 @@ button#detail-cancelAccept {
   transition: background-color 0.3s;
 }
 
-button#detail-complete:hover, button#detail-reAccept:hover, button#detail-cancel:hover, button#detail-cancelAccept:hover {
+button#detail-reAccept2 {
+  font-size: 13px;
+  background-color: #27ae60;
+  color: white;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button#detail-complete:hover, button#detail-reAccept:hover, button#detail-cancel:hover, button#detail-cancelAccept:hover, button#detail-reAccept2:hover {
 	background-color: white;
 	color: black;
 }

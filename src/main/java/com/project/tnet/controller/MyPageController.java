@@ -206,7 +206,7 @@ public class MyPageController {
 		// 업데이트된 완료리스트
 		result.put("updatedCompletedWaitingList", myPageService.updateCompletedWaiting(nickName, course_id));
 		model.addAttribute("course", myPageService.updateCompletedWaiting(nickName, course_id));
-		
+
 		return result;
 	}
 	

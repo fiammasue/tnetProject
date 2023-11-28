@@ -429,10 +429,34 @@
 	          </div>
 	       </div>
 	       <div class="button-container detail">
-	           <button id="detail-complete" style="display:none;">진행 완료</button>
-	           <button id="detail-cancel" style="display:none;">진행 취소</button>
-	         <button id="detail-reAccept" style="display:none;">다시 진행</button>
-	         <button id="detail-cancelAccept" style="display:none;">취소 완료</button>
+	          <button id="detail-complete" style="display:none;">진행 완료</button>
+	          <button id="detail-cancel" style="display:none;">진행 취소</button>
+	          <button id="detail-reAccept" style="display:none;">다시 진행</button>
+	          <button id="detail-cancelAccept" style="display:none;">취소 완료</button>
+	       </div>
+       </div>
+   </form>
+   
+   <form id="viewForm2" class="completed-waiting_detail" style="display: none;">
+       <div>
+	       <div class="task-card">
+	          <div class="detail-top">
+	             <p class="status completed-waiting dontMove detail"></p>
+	             <p class="detail-board_id"></p>
+	          </div>
+	          <p class="task-name detail-title"></p>
+	          <div class="details_talent">
+	             <p class="detail-give-talent"></p>
+	             <img class="give-and-take-icon" src="/assets/giveAndTake.png"/>
+	             <p class="detail-receive-talent"></p>
+	          </div>
+	          <div class="details">
+	             <p class="requester detail-user"></p>
+	             <p class="date detail-date"></p>
+	          </div>
+	       </div>
+	       <div class="button-container detail">
+	          <button id="detail-reAccept2">다시 진행</button>
 	       </div>
        </div>
    </form>
@@ -682,12 +706,13 @@
          acceptBucket.appendChild(card);
 
          // 대기칸에서 수락칸으로 이동한 카드에 대한 클릭 이벤트 처리
-          card.addEventListener('click', function (e) {
-              e.preventDefault();
-              const courseId = this.getAttribute('data-courseid');
-              console.log("수락칸 이동: " ,courseId);
-              openCourseModal(courseId);
-          });
+         card.addEventListener('click', function (e) {
+             e.preventDefault();
+             const courseId = this.getAttribute('data-courseid');
+             const boardId = this.getAttribute('data-boardid');
+             console.log("수락칸 이동: " ,courseId);
+             openCourseModal(courseId, boardId);
+         });
           
       });
       
@@ -719,7 +744,7 @@
            statusChange.classList.add('waiting');
            statusChange.textContent = '진행 요청이 왔어요!';
            
-          waitingBucket.appendChild(card);
+           waitingBucket.appendChild(card);
           
       });
 
@@ -1122,7 +1147,7 @@
       
       
       
-      // Step 6: Modal창 상세보기 열기 (수락칸에 있는 카드들만 가능)
+       // Step 6: Modal창 상세보기 열기 (수락칸에 있는 카드들만 가능)
        // 모달 대화 상자 초기화
        $("#viewForm").dialog({
            autoOpen: false, // 처음에는 자동으로 열리지 않음
@@ -1140,19 +1165,22 @@
        });
 
        // 클릭 이벤트 핸들러
-       $(".kanban-board .bucket.accept .tasks .task-card").click(function (e) {
+       $(document).on("click", ".kanban-board .bucket.accept .tasks .task-card", function (e) {
            e.preventDefault();
 
            const courseId = $(this).data("courseid");
+           const boardId = $(this).data("boardid");
            console.log("Clicked Course ID:", courseId);
-           openCourseModal(courseId);
+           console.log("Clicked Board ID:", boardId);
+           openCourseModal(courseId, boardId);
        });
        
        // 클릭 이벤트 핸들러를 통해 모달창을 열기
-       function openCourseModal(courseId) {
+       function openCourseModal(courseId, boardId) {
           
           // courseId를 객체에 담아서 전달
-           const data = { course_id: courseId };
+           const data = { course_id: courseId,
+        		  board_id: boardId};
           
            $.ajax({
                type: "POST",
@@ -1169,7 +1197,7 @@
                    $("#viewForm").dialog("open");
 
                    // 강의 상태에 따라 버튼 처리
-                   ButtonAccordingToCourseStatus(course.status_code, courseId);
+                   ButtonAccordingToCourseStatus(course.status_code, courseId, boardId);
                }
            });
        }
@@ -1197,22 +1225,22 @@
        }
     
        // 강의 상태에 따라 버튼을 처리하는 함수
-       function ButtonAccordingToCourseStatus(status, courseId) {
+       function ButtonAccordingToCourseStatus(status, courseId, boardId) {
            if (status === '진행 결정!') {
-               $("#detail-complete").show().data("courseid", courseId); ;
-               $("#detail-cancel").show().data("courseid", courseId); ;
+               $("#detail-complete").show().data("courseid", courseId).data("boardid", boardId);
+               $("#detail-cancel").show().data("courseid", courseId).data("boardid", boardId);
                $("#detail-reAccept").hide();
                $("#detail-cancelAccept").hide();
            } else if (status === '진행 취소요청 보냄') {
                $("#detail-complete").hide();
                $("#detail-cancel").hide();
-               $("#detail-reAccept").show().data("courseid", courseId); ;
+               $("#detail-reAccept").show().data("courseid", courseId).data("boardid", boardId);
                $("#detail-cancelAccept").hide();
            } else if (status == '진행 취소요청이 왔어요') {
                $("#detail-complete").hide();
                $("#detail-cancel").hide();
                $("#detail-reAccept").hide();
-               $("#detail-cancelAccept").show().data("courseid", courseId); ;
+               $("#detail-cancelAccept").show().data("courseid", courseId).data("boardid", boardId);
            }
        }
           
@@ -1220,18 +1248,23 @@
        $("#detail-complete").click(function(e) {
           e.preventDefault();
           
-          // 클릭 이벤트 핸들러에서 courseId를 얻어오기
+           // 클릭 이벤트 핸들러에서 courseId를 얻어오기
            const courseId = $(this).data("courseid");
+           const boardId = $(this).data("boardid");
            console.log(courseId);
+           console.log("boardId_완료요청: ", boardId);
           
           $.ajax({
                type: "POST",
                url: '/myPage/updateCompletedWaiting',
-               data: { course_id: courseId },
+               data: { 
+            	   	course_id: courseId,
+        	   	   	board_id: boardId
+        	   },
                success: function(response) {
                   const updatedCompletedWaitingList = response.updatedCompletedWaitingList;
                
-                  // "completedWaitingBucket"로부터 카드 리스트를 가져옴
+                    // "completedWaitingBucket"로부터 카드 리스트를 가져옴
                     const completedWaitingBucket = $(".kanban-board .bucket.completed-waiting .tasks");
                     
                     // "acceptBucket"로부터 카드 리스트를 가져옴
@@ -1240,7 +1273,7 @@
                     // "acceptBucket"로부터 해당 테스크 카드를 찾아내어 제거하고
                     const taskCard = $(".kanban-board .bucket.accept .tasks .task-card[data-courseid='" + courseId + "']");
                     taskCard.remove();
-
+                    
                     // 테스크 카드 클래스 변경
                     taskCard.removeClass("task-card").addClass("task-card dontMove");
 
@@ -1260,7 +1293,16 @@
                     completedWaitingBucket.append(taskCardClone);
                     var text = $('#viewForm').find('.detail-board_id').text();
                     var parts = text.split('.'); // 마침표를 기준으로 문자열 분할
-                    var boardId = parts[1]; // 두 번째 부분은 "544"입니다.
+                    var boardId = parts[1]; 
+                    
+
+                    // "rejectBucket"로부터 카드 리스트를 가져옴
+                    const rejectBucket = $(".kanban-board .bucket.reject .tasks");
+                    
+                    // "rejectBucket"로부터 같은 board_id를 가진 해당 테스크 카드들 제거 
+                    const taskCard2 = $(".kanban-board .bucket.reject .tasks .task-card[data-boardid='" + boardId + "']");
+                    console.log("taskCard2는 뭘까:" , taskCard2);
+                    taskCard2.remove();
                     
                     // 강의 완료 요청 보내면 알람 보냄
                     ws.send("/pub/complete/courseAgree",{},JSON.stringify({
@@ -1403,6 +1445,145 @@
           }); 
           
        });
+       
+       
+       // Step 6: Modal창 상세보기 열기 (완료대기칸에 있는 카드들 중 '완료결정기다리는중'만 가능)
+       // 모달 대화 상자 초기화
+       $("#viewForm2").dialog({
+           autoOpen: false, // 처음에는 자동으로 열리지 않음
+           modal: true, // 모달 형식으로 표시
+           width: 440,
+           height: 340,
+           buttons: {
+               "닫기": function() {
+                   $(this).dialog("close");
+               }
+           },
+           close: function() {
+               // 모달이 닫힐 때 수행할 동작
+           }
+       });
+
+       // 클릭 이벤트 핸들러
+       $(document).on("click", ".kanban-board .bucket.completed-waiting .tasks .task-card.dontMove", function (e) {
+           e.preventDefault();
+
+           const courseId = $(this).data("courseid");
+           const boardId = $(this).data("boardid");
+           console.log("Clicked Course ID:", courseId);
+           console.log("Clicked Board ID:", boardId);
+           openCourseModal2(courseId, boardId);
+       });
+       
+       // 클릭 이벤트 핸들러를 통해 모달창을 열기
+       function openCourseModal2(courseId, boardId) {
+          
+          // courseId를 객체에 담아서 전달
+           const data = { course_id: courseId,
+        		  board_id: boardId};
+          
+           $.ajax({
+               type: "POST",
+               url: '/myPage/detailAccept',
+               data: data,
+               success: function (response) {
+                   const course = response.course;
+                   console.log(course);
+                   
+                   // 모달창에 강의 정보 채우기
+                   fillModalWithCourseData2(course);
+
+                   // 모달 대화 상자 열기
+                   $("#viewForm2").dialog("open");
+                   
+                   // 강의 상태에 따라 버튼 처리
+                   ButtonAccordingToCourseStatus2(course.status_code, courseId, boardId);
+                  
+               }
+           });
+       }
+       
+       // 모달창에 강의 정보를 채우는 함수
+       function fillModalWithCourseData2(course) {
+    	   
+           $(".detail-top .status.completed-waiting.dontMove.detail").text(course.status_code);
+           $(".detail-top .detail-board_id").text("no." + course.board_id);
+           $(".task-name.detail-title").text(course.title);
+           $(".detail-give-talent").text(course.give_talent);
+           $(".detail-receive-talent").text(course.receive_talent);
+           $(".details .date.detail-date").text("시작날짜 : " + course.start_date);
+
+           // 사용자 레이블 설정
+           const requesterLabel = (course.applyer_nickname === "${principal.user.nickName}") ? '신청자' : '요청자';
+           const labelText = requesterLabel + ": " + course.applyer_nickname;
+           $(".details .requester.detail-user").text(labelText);
+       }
+    
+       // 강의 상태에 따라 버튼을 처리하는 함수
+       function ButtonAccordingToCourseStatus2(status, courseId, boardId) {
+           if (status === '완료 결정 기다리는 중..') {
+               $("#detail-reAccept2").show().data("courseid", courseId).data("boardid", boardId);
+       
+           }
+       }
+       
+       $("#detail-reAccept2").click(function(e) {
+           e.preventDefault();
+           
+           // 클릭 이벤트 핸들러에서 courseId를 얻어오기
+           const courseId = $(this).data("courseid");
+           console.log(courseId);
+           
+           $.ajax({
+                type: "POST",
+                url: '/myPage/updateReAccept',
+                data: { course_id: courseId },
+                success: function(response) { 
+                   const updatedReAcceptList = response.updatedReAcceptList;
+
+                     
+
+                     // "completedWaitingBucket"로부터 카드 리스트를 가져옴
+                     const completedWaitingBucket = $(".kanban-board .bucket.completed-waiting .tasks");
+                     
+                     // "acceptBucket"로부터 카드 리스트를 가져옴
+                     const acceptBucket = $(".kanban-board .bucket.accept .tasks");
+                     
+                     // "completedWaitingBucket"로부터 해당 테스크 카드를 찾아내어 제거하고
+                     const taskCard = $(".kanban-board .bucket.completed-waiting .tasks .task-card[data-courseid='" + courseId + "']");
+                     taskCard.remove();
+                     
+                     // 테스크 카드 클래스 변경
+                     taskCard.removeClass("dontMove");
+
+                     // status 클래스 변경
+                     const statusElement = taskCard.find(".status");
+                     statusElement.removeClass("completed-waiting dontMove").addClass("accept");
+                     statusElement.text("진행 결정!");
+                     
+                     // title 클래스 변경
+                     const titleElement = taskCard.find(".task-name");
+                     titleElement.removeClass("dontMove");
+                     
+                     // "acceptBucket"로 이동시킬 테스크 카드 생성
+                     const taskCardClone = taskCard.clone();
+
+                     // "acceptBucket"에 테스크 카드 추가
+                     acceptBucket.append(taskCardClone);
+                     var text = $('#viewForm2').find('.detail-board_id').text();
+                     var parts = text.split('.'); // 마침표를 기준으로 문자열 분할
+                     var boardId = parts[1]; 
+                     
+                     
+                     $("#viewForm2").dialog("close");
+                     alert('다시 진행 결정');
+               }
+                
+           }); 
+           
+        });
+       
+       
        
        $(".trash-clear").click(function(e) {
     	   e.preventDefault();

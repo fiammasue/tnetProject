@@ -48,7 +48,7 @@
 		    (c.writer_status_code IN ('SC07', 'SC08', 'SC10') AND c.writer_nickname = #{nickName})
 		    OR
 		    (c.applyer_status_code IN ('SC07', 'SC08', 'SC10') AND c.applyer_nickname = #{nickName})
-		    AND b.delete_yn = 'N'
+		    AND b.delete_yn = 'Y'
 	</select>
 	
 	<!-- 칸반보드 대기 리스트 -->
@@ -118,12 +118,10 @@
 		JOIN status s1 ON c.writer_status_code = s1.status_code
 		JOIN status s2 ON c.applyer_status_code = s2.status_code
 		WHERE
-		    (c.writer_status_code IN ('SC04', 'SC05') AND c.writer_nickname = #{writer_nickname})
+		    ((c.writer_status_code IN ('SC04', 'SC05') AND c.writer_nickname = #{writer_nickname})
 		    OR
-		    (c.applyer_status_code IN ('SC04', 'SC05') AND c.applyer_nickname = #{writer_nickname})
-		    AND b.delete_yn = 'N' and course_id = #{course_id}
-	
-	
+		    (c.applyer_status_code IN ('SC04', 'SC05') AND c.applyer_nickname = #{writer_nickname}))
+		    AND b.delete_yn = 'Y' and course_id = #{course_id}
 	</select>
 	
 	<!-- 완료되었을때의 course -->
@@ -147,7 +145,7 @@
 		    (c.writer_status_code = 'SC06' AND c.writer_nickname = #{writer_nickname})
 		    OR
 		    (c.applyer_status_code = 'SC06' AND c.applyer_nickname = #{writer_nickname})
-		    AND b.delete_yn = 'N' and course_id = #{course_id}
+		    AND b.delete_yn = 'Y' and course_id = #{course_id}
 	
 	
 	</select>
@@ -202,10 +200,10 @@
 		JOIN status s1 ON c.writer_status_code = s1.status_code
 		JOIN status s2 ON c.applyer_status_code = s2.status_code
 		WHERE
-		    (c.writer_status_code = 'SC11' AND c.writer_nickname = #{nickName})
+		    ((c.writer_status_code = 'SC11' AND c.writer_nickname = #{nickName})
 		    OR
-		    (c.applyer_status_code = 'SC11' AND c.applyer_nickname = #{nickName})
-		    AND b.delete_yn = 'N'
+		    (c.applyer_status_code = 'SC11' AND c.applyer_nickname = #{nickName}))
+		    AND c.delete_yn = 'N'
 	</select>
 	
 	<!-- 칸반보드 완료 리스트 -->
@@ -229,7 +227,7 @@
 		    (c.writer_status_code = 'SC06' AND c.writer_nickname = #{nickName})
 		    OR
 		    (c.applyer_status_code = 'SC06' AND c.applyer_nickname = #{nickName})
-		    AND b.delete_yn = 'N'
+		    AND b.delete_yn = 'Y'
 	</select>
 	
 	<!-- 칸반보드 완료대기 리스트 -->
@@ -440,8 +438,8 @@
 	<select id="getDetailAccept" resultType="com.project.tnet.dto.Course">
     	SELECT
     		CASE
-		        WHEN c.writer_status_code IN ('SC07', 'SC08', 'SC10') AND c.writer_nickname = #{nickName} THEN s1.status_contents
-		        WHEN c.applyer_status_code IN ('SC07', 'SC08', 'SC10') AND c.applyer_nickname = #{nickName} THEN s2.status_contents
+		        WHEN c.writer_status_code IN ('SC04', 'SC07', 'SC08', 'SC10') AND c.writer_nickname = #{nickName} THEN s1.status_contents
+		        WHEN c.applyer_status_code IN ('SC04', 'SC07', 'SC08', 'SC10') AND c.applyer_nickname = #{nickName} THEN s2.status_contents
 		        ELSE NULL
 		    END AS status_code,
 		    c.course_id,
@@ -488,6 +486,15 @@
 	        WHERE
 	            board_id = (SELECT board_id FROM course WHERE course_id = #{course_id});
 	      
+	    	
+	    	UPDATE course
+		    SET
+		        delete_yn = 'Y'
+		    WHERE
+		        writer_status_code = 'SC11'
+		        AND board_id = (SELECT board_id FROM course WHERE course_id = #{course_id});
+	        
+	        
 	    END;
 	    ]]>
 	</update>
@@ -513,7 +520,7 @@
 	
 	        UPDATE board
 	        SET
-	            status_code = 'SC07'
+	            status_code = 'SC08'
 	        WHERE
 	            board_id = (SELECT board_id FROM course WHERE course_id = #{course_id});
 	    END;
@@ -527,14 +534,14 @@
 	        SET
 	            writer_status_code = 
 	                CASE
-	                    WHEN writer_status_code = 'SC08' AND writer_nickname = #{nickName} THEN 'SC07'
-	                    WHEN writer_status_code = 'SC10' THEN 'SC07'
+	                    WHEN writer_status_code IN ('SC04', 'SC05', 'SC08') AND writer_nickname = #{nickName} THEN 'SC07'
+	                    WHEN writer_status_code IN ('SC04', 'SC05', 'SC10') THEN 'SC07'
 	                    ELSE writer_status_code
 	                END,
 	            applyer_status_code = 
 	                CASE
-	                    WHEN applyer_status_code = 'SC08' AND applyer_nickname = #{nickName} THEN 'SC07'
-	                    WHEN applyer_status_code = 'SC10' THEN 'SC07'
+	                    WHEN applyer_status_code IN ('SC04', 'SC05', 'SC08') AND applyer_nickname = #{nickName} THEN 'SC07'
+	                    WHEN applyer_status_code IN ('SC04', 'SC05', 'SC10') THEN 'SC07'
 	                    ELSE applyer_status_code
 	                END
 	            
@@ -542,7 +549,7 @@
 	
 	        UPDATE board
 	        SET
-	            status_code = 'SC08'
+	            status_code = 'SC07'
 	        WHERE
 	            board_id = (SELECT board_id FROM course WHERE course_id = #{course_id});
 	    END;
