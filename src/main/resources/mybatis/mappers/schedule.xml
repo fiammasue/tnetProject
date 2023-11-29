@@ -40,7 +40,6 @@
 		    OR
 		    	(c.applyer_status_code = 'SC07' AND c.applyer_nickname = #{nickName})
 		     )
-		    AND b.delete_yn = 'N'
 	</select>
 	
 	<!-- 일정 추가 -->
