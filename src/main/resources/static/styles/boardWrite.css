@@ -12,8 +12,11 @@ ul, li {
 input {
 	border: none;
 }
+header{
+	box-shadow: 0px -1px 5px 2px gray;
+}
 body {
-  width: 146rem;
+  width: 154rem;
   margin: 0 auto;
 }.item--TEG {
   width: 100%;
@@ -28,8 +31,8 @@ body {
   width: 74.2386rem;
   height: 6.0711rem;
   position: absolute;
-  left: 34.9rem;
-  top: 15.6975rem;
+  left: 39.9rem;
+  top: 5.6975rem;
   display: flex;
   align-items: center;
   box-shadow: 0 0.264rem 0.264rem rgba(0, 0, 0, 0.25);
@@ -47,7 +50,7 @@ body {
 }
 .item--TEG .auto-group-ckbr-jBn .writer-tyn {
   margin-bottom: 0.6363rem;
-  font-size: 1.1878rem;
+  font-size: 15px;
   font-weight: 300;
   line-height: 1.2125;
   color: #7a7373;
@@ -59,8 +62,8 @@ body {
   width: 39.9238rem;
   height: 4.2894rem;
   position: absolute;
-  left: 52.0574rem;
-  top: 106.8106rem;
+  left: 57.0574rem;
+  top: 67.8106rem;
   display: flex;
   align-items: center;
 }
@@ -103,6 +106,7 @@ body {
   box-shadow: 0 0.264rem 0.264rem rgba(0, 0, 0, 0.25);
   border-radius: 2.2437rem;
   flex-shrink: 0;
+  cursor:pointer;
 }
 .item--TEG .button-zJ4 {
   box-sizing: border-box;
@@ -110,12 +114,13 @@ body {
   width: 10.7153rem;
   height: 2.3591rem;
   position: absolute;
-  left: 35.1237rem;
-  top: 12.2rem;
+  left: 40.1237rem;
+  top: 2.2rem;
   display: flex;
   align-items: center;
   border: solid 0.066rem #00b074;
   border-radius: 2.2437rem;
+      cursor: pointer;
 }
 .item--TEG .button-zJ4 .vector-36-stroke-t8Y {  
   margin: 0rem 1.401rem 0.073rem 0rem;
@@ -144,8 +149,8 @@ body {
   width: 74.2386rem;
   height: 37.9441rem;
   position: absolute;
-  left: 34.9rem;
-  top: 36.8142rem;
+  left: 39.9rem;
+  top: 26.8142rem;
   border: solid 0.066rem #000000;
   background-color: #ffffff;
 }
@@ -164,10 +169,10 @@ body {
   width: 74.2386rem;
   height: 3.4314rem;
   position: absolute;
-  left: 34.9rem;
-  top: 23.2203rem;
+  left: 39.9rem;
+  top: 13.2203rem;
   display: flex;
-  font-size: 1.2538rem;
+  font-size: 13px;
   font-weight: 400;
   line-height: 1.052631603;
   color: #000000;
@@ -182,8 +187,8 @@ body {
   width: 74.2386rem;
   height: 4rem;
   position: absolute;
-  left: 34.9rem;
-  top: 27.6416rem;
+  left: 39.9rem;
+  top: 17.6416rem;
   display: flex;
   align-items: center;
   border: solid 0.066rem #000000;
@@ -191,7 +196,7 @@ body {
 }
 .item--TEG .auto-group-qnps-4cg .item--YXr {
   margin: 0.198rem 3.811rem 0rem 0rem;
-  font-size: 1.2538rem;
+  font-size: 13px;
   font-weight: 400;
   line-height: 1.2631578627;
   letter-spacing: 0.0125rem;
@@ -267,8 +272,8 @@ body {
   width: 74.2386rem;
   height: 3.4315rem;
   position: absolute;
-  left: 34.9rem;
-  top: 32.2609rem;
+  left: 39.9rem;
+  top: 22.2609rem;
   display: flex;
   align-items: center;
   border: solid 0.066rem #000000;

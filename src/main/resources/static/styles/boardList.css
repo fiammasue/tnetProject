@@ -9,15 +9,19 @@ html {
 ul, li {
 	list-style: none;
 }
+header{
+	box-shadow: 0px -1px 5px 2px gray;
+}
 input {
 	border: none;
 }
 body {
-  width: 146rem;
+  width: 158rem;
   margin:0 auto;
 }.item--XFN {
   position: relative;
-  top: 150px;
+ top: 10px;
+ left:10px;
   box-sizing: border-box;
   padding-bottom: 17.0187rem;
   width: 100%;
@@ -132,16 +136,17 @@ body {
   font-weight: 700;
   line-height: 0.4444444868;
   letter-spacing: 0.0451rem;
-  text-transform: uppercase;
+
   color: #000000;
-  font-family: Roboto, 'Source Sans Pro';
+  /*font-family: Roboto, 'Source Sans Pro';*/
+  font-family: 'Hahmlet', serif;
   white-space: nowrap;
   flex-shrink: 0;
 }
 .item--XFN .auto-group-qmuj-WZn {
-	margin: 3rem 27.009rem 5.758rem 17.373rem;
+	margin: 0rem 27.009rem 1rem 17.373rem;
 	box-sizing: border-box;
-	padding: 0.334rem 2.086rem 0.334rem 6.759rem;
+	padding: 0.334rem 2.086rem 5.334rem 6.759rem;
 	width: calc(100% - 36.3816rem);
 	height: 3.8384rem;
 	display: flex;
@@ -231,6 +236,8 @@ body {
   object-fit: contain;
   vertical-align: top;
   flex-shrink: 0;
+      margin-top: 47px;
+    cursor: pointer;
 }
 .item--XFN .auto-group-dxhj-ErU {
   margin: 0rem 22.753rem 2.253rem 22.7rem;
@@ -2018,14 +2025,13 @@ body {
   border-radius: 8.3444rem;
   flex-shrink: 0;
 }
-.item--XFN .auto-group-yf6p-kc8 .button-6E4 {
-/*margin-bottom: 5.3228rem; */
-    width: 9.0953rem;
-    height: 3.004rem;
+.item--XFN .button-6E4 {
+    width: 14.0953rem;
+    height: 4.004rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.502rem;
+    font-size: 19px;
     font-weight: 500;
     line-height: 1.3333332487;
     letter-spacing: 0.015rem;
@@ -2034,10 +2040,6 @@ body {
     font-family: Roboto, 'Source Sans Pro';
     white-space: nowrap;
     background-color: #00b074;
-    border-radius: 0.3338rem;
-    flex-shrink: 0;
-    /* margin-left: 147px; */
-    position: relative;
-    left: 42px;
-    top: -73px;
+    border-radius: 20px;
+    float: right;
 }

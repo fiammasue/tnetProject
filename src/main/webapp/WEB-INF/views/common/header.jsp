@@ -407,11 +407,12 @@
                    chatListInfo+=`</div>`;
              
           }
+          console.log(chatListInfo)
          $('.wrap').append(chatListInfo); 
          var divElement = $(".wrap");
             $(".wrap").scrollTop(divElement[0].scrollHeight);
       }
-      else if (recv.type_string==="ENTER") {
+      else if (recv.type_string==="ENTER" && recv.sender!="${principal.user.nickName}") {
     
          $(".receiver-readCount").remove();
       }
