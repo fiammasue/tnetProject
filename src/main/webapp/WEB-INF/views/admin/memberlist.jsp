@@ -76,7 +76,7 @@
           <div id = "white_footer_area">
             <!-- 버튼 -->
             <div id = "crud_buttons">
-            <input type="button" id ="button-bQU" value="퇴출"/>
+            <input type="button" id ="button-bQU" value="회원 탈퇴"/>
             </div>
 
             <!-- 페이징부분 -->
@@ -88,9 +88,9 @@
               <div id = "Change number">
                 <span>건수 : </span>  
               <select id="button-bQU">
-				    <option selected value="10">10</option>
-				    <option value="20">20</option>
-				    <option value="30">30</option>
+				    <option selected value="12">12</option>
+				    <option value="24">24</option>
+				    <option value="36">36</option>
 			  </select>
               </div>
               

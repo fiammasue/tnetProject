@@ -160,6 +160,7 @@
   		<c:when test="${empty principal}">
   		
 		    <header>
+		     <div id="header">
 		      <a href='<c:url value="/"/>'><img id="logo" src="/assets/logo.png" alt="" ></a>
 		      <nav id="menubar">
 		        <ul id="topMenu">
@@ -172,6 +173,7 @@
 		    </header>
 	    </c:when>
 	    <c:otherwise>
+	    </div>
 	    	<header>
 		      <a href='<c:url value="/"/>'><img id="logo" src="/assets/logo.png" alt="" ></a>
 		      <nav id="menubar">
