@@ -32,7 +32,7 @@
         <div class="text-label-Kgk">목록으로</div>
       </div>
       <c:if test="${principal.user.nickName ==  board.writer_nickname}">
-	      <div class="group-5-znt">수정</div>
+<!-- 	      <div class="group-5-znt">수정</div> -->
 	      <div class="group-6-TgU">삭제</div>
       </c:if>
     </div>
@@ -71,14 +71,14 @@
       </div>
     </div>
     <div class="frame-45-qdi">
-      <div class="component-9-NNk">
-        <div class="auto-group-ewde-v9N">
-          <img class="attach-rHv" src="/assets/attach.png"/>
-          <div class="jdk-11020windows-x64binexe-NXA">첨부파일 : jdk-11.0.20_windows-x64_bin.exe</div>
-        </div>
+<!--       <div class="component-9-NNk"> -->
+<!--         <div class="auto-group-ewde-v9N"> -->
+<!--           <img class="attach-rHv" src="/assets/attach.png"/> -->
+<!--           <div class="jdk-11020windows-x64binexe-NXA">첨부파일 : jdk-11.0.20_windows-x64_bin.exe</div> -->
+<!--         </div> -->
         
       
-      </div>
+<!--       </div> -->
 
     <div class="auto-group-mjac-BEx">
       <div class="button-W2L">참여하기</div>
@@ -197,8 +197,9 @@
 					    			 chatListInfo+=`<div class="chat ch1">
 								    		            <div class="textbox">`+decodeURIComponent(chat.message)+`</div>
 								    		            <div class="sender-time">`+time+`</div>`;
-								   	if(chat.read_yn=="N"){
-					    		      chatListInfo+=` <div class="sender-readCount">1</div>`;
+								   	
+								   if(chat.read_yn=="N"){
+					    		      chatListInfo+=`<div class="sender-readCount">1</div>`;
 								   		
 								   	}
 								   	chatListInfo+=`</div>`;
@@ -207,14 +208,16 @@
 								  	chatListInfo += `<div class="chat ch2">
 								    		            <div class="textbox">`+decodeURIComponent(chat.message)+`</div>
 								    		            <div class="receiver-time">`+time+`</div>`
-								   	if(chat.read_yn=="N"){
-						    		   chatListInfo+=` <div class="receiver-readCount">1</div>`;
+								  if(chat.read_yn=="N"){
+									  chatListInfo+=`<div class="receiver-readCount">1</div>`;
+									  chatListInfo+=`1111`;
 								   		
 								   	}
 								    	chatListInfo+=`</div>`;
 			    				 
 			    			 }
 			    			$('.wrap').append(chatListInfo); 
+			    			console.log($('.wrap').html())
 			    		 }
 		    		 } 
 			    		 chatRoom.dialog("open");
@@ -231,8 +234,9 @@
 	
 	
 	//메세지 보내기
-	$("#sendMessage").on("click",e => {
-
+	$("#sendMessage").on("click",sendMessageDetail);
+	
+	function sendMessageDetail(){
 		if(subscription == null) return;
 		const message = $("#chatContent").val();//메시지 내용
 		//메시지 보내기
@@ -247,7 +251,16 @@
 														}));
 		//메시지 창 비우기
 		$("#messageBox").val("");
-	});
+	}
+	//메세지 박스에서 enter치면 메세지 전달
+	 $("#messageBox").on("keydown", function(event) {
+	        if (event.keyCode === 13) { 
+	        	 event.preventDefault();
+	        	 sendMessageDetail();
+	        $("#messageBox").val("");
+	        }
+	    });
+	
 	
 	$(".button-W2L").on("click",e => {
 		const param = {
@@ -320,11 +333,11 @@
 			
 		});
 	});
-	//수정하기
-	$(".group-5-znt").on("click",e => {
-		var boardId = $("#board_id").val();
-		location.href="/board/revise/"+boardId;
-	});
+// 	//수정하기
+// 	$(".group-5-znt").on("click",e => {
+// 		var boardId = $("#board_id").val();
+// 		location.href="/board/revise/"+boardId;
+// 	});
 	
 	
 </script>

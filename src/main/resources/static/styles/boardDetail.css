@@ -12,11 +12,14 @@ ul, li {
 input {
 	border: none;
 }
+header{
+	box-shadow: 0px -1px 5px 2px gray;
+}
 body {
-  width: 146rem;
+ width: 154rem;
   margin:0 auto;
 }.item--XQC {
-  top:150px;
+  top:19px;
   box-sizing: border-box;
   padding-bottom: 5.0705rem;
   width: 100%;
@@ -124,7 +127,7 @@ body {
 }
 .item--XQC .auto-group-fgyx-zW4 {
   margin: 0rem 37.8rem 0.565rem 35.669rem;
-  width: calc(100% - 73.4688rem);
+  width: calc(100% - 83.4688rem);
   height: 3.0148rem;
   display: flex;
   align-items: center;
@@ -140,9 +143,10 @@ body {
   border: solid 0.0628rem #00b074;
   border-radius: 2.1355rem;
   flex-shrink: 0;
+      cursor: pointer;
 }
 .item--XQC .auto-group-fgyx-zW4 .button-6oz .vector-36-stroke-Q3z {
-  margin: 0rem 3.167rem 0.058rem 0rem;
+  margin: 0rem 1.167rem 0.058rem 0rem;
   width: 1.6958rem;
   height: 1.4495rem;
   object-fit: contain;
@@ -181,6 +185,7 @@ body {
   flex-shrink: 0;
 }
 .item--XQC .auto-group-fgyx-zW4 .group-6-TgU {
+	margin-left: 10rem;
   width: 7.914rem;
   height: 100%;
   display: flex;
@@ -197,12 +202,13 @@ body {
   background-color: #ffffff;
   border-radius: 3.3289rem;
   flex-shrink: 0;
+  cursor:pointer;
 }
 .item--XQC .auto-group-jkgl-7W8 {
-  margin: 0rem 38.24rem 0.942rem 35.1rem;
+  margin: 0rem 35.24rem 0.942rem 35.1rem;
   box-sizing: border-box;
   padding: 0.72rem 0.789rem 0.798rem 2.261rem;
-  width: calc(100% - 73.3397rem);
+  width: calc(100% - 81.3397rem);
   height: 5.4644rem;
   display: flex;
   align-items: center;
@@ -211,10 +217,10 @@ body {
   flex-shrink: 0;
 }
 .item--XQC .auto-group-jkgl-7W8 .group-30929672-PiY {
-  margin: 0.958rem 32.63rem 0rem 0rem;
-  display: flex;
-  align-items: flex-start;
-  flex-shrink: 0;
+      margin: 0.958rem 40.63rem 0rem 0rem;
+    display: flex;
+    align-items: flex-start;
+    flex-shrink: 0;
 }
 .item--XQC .auto-group-jkgl-7W8 .group-30929672-PiY .item--vTa {
   margin: 0.063rem 2.339rem 0rem 0rem;
@@ -254,22 +260,24 @@ body {
   flex-shrink: 0;
 }
 .item--XQC .auto-group-jkgl-7W8 .auto-group-f1ex-GA4 .auto-group-8whi-by2 {
-  margin: 0rem 0.21rem 0.889rem 0.389rem;
-  width: calc(100% - -6.4011rem);
-  display: flex;
-  align-items: center;
-  flex-shrink: 0;
+    margin: 0rem 9.21rem -0.111rem 0.389rem;
+    width: calc(100% - -6.4011rem);
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
 }
 .item--XQC .auto-group-jkgl-7W8 .auto-group-f1ex-GA4 .auto-group-8whi-by2 .vector-L9v {
-  margin-right: 1.1185rem;
-  width: 1.0677rem;
-  height: 1.5944rem;
-  object-fit: contain;
-  vertical-align: top;
-  flex-shrink: 0;
+	margin-right: 10px;
+    margin-bottom: 8px;
+    margin-left: 43px;
+    width: 1.0677rem;
+    height: 1.5944rem;
+    object-fit: contain;
+    vertical-align: top;
+    flex-shrink: 0;
 }
 .item--XQC .auto-group-jkgl-7W8 .auto-group-f1ex-GA4 .auto-group-8whi-by2 .yeonsul123navercom-fxt {
-  margin: 0rem 1.875rem 0.127rem 0rem;
+  margin: 0rem 0.4rem 0.127rem 0rem;
   font-size: 1.1306rem;
   font-weight: 300;
   line-height: 1.2125;
@@ -332,11 +340,11 @@ body {
   flex-shrink: 0;
 }
 .item--XQC .auto-group-tmvr-Fk4 {
-  margin: 0rem 38.24rem 1.884rem 35.1rem;
+  margin: 0rem 35.24rem 1.884rem 35.1rem;
   box-sizing: border-box;
   padding: 2.073rem 2.512rem 1.692rem 2.512rem;
-  width: calc(100% - 73.3397rem);
-  font-size: 1.3818rem;
+  width: calc(100% - 81.3397rem);
+  font-size: 17px;
   font-weight: 400;
   line-height: 1.2125;
   color: #000000;
@@ -347,7 +355,7 @@ body {
   flex-shrink: 0;
 }
 .item--XQC .group-20-JTS {
-  margin: 0rem 38.24rem 1.005rem 35.1rem;
+  margin: 0rem 35.24rem 1.005rem 35.1rem;
   box-sizing: border-box;
   padding: 2.073rem 1.381rem 0.367rem 1.381rem;
  width: 725.6px;
@@ -358,6 +366,7 @@ body {
   background-color: #ffffff;
   flex-shrink: 0;
   overflow: scroll;
+      font-size: 15px;
 }
 /* 스크롤 디자인 */
 .item--XQC .group-20-JTS::-webkit-scrollbar {
@@ -374,7 +383,7 @@ body {
 }
 .item--XQC .group-20-JTS .item--cDE {
   margin: 0px;
-  font-size: 1.0049rem;
+  font-size: 16px;
   font-weight: 100;
   line-height: 1.2125;
   color: #000000;
@@ -404,7 +413,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.0049rem;
+  font-size: 15px;
   font-weight: 500;
   line-height: 1.5000000474;
   letter-spacing: 0.01rem;
@@ -415,7 +424,7 @@ body {
   flex-shrink: 0;
 }
 .item--XQC .frame-45-qdi {
-  margin: 0rem 38.24rem 18.321rem 35.1rem;
+  margin: 0rem 35.24rem 18.321rem 35.1rem;
   width: calc(100% - 73.3397rem);
   align-items: center;
   display: flex;
@@ -693,6 +702,7 @@ body {
   background-color: #00b074;
   border-radius: 2.1355rem;
   flex-shrink: 0;
+  cursor:pointer;
 }
 .item--XQC .auto-group-mjac-BEx .button-kxG {
   width: 10.9916rem;
@@ -713,4 +723,5 @@ body {
   box-shadow: 0 0.2512rem 0.2512rem rgba(0, 0, 0, 0.25);
   border-radius: 2.1355rem;
   flex-shrink: 0;
+  cursor:pointer;
 }

@@ -62,11 +62,11 @@
 		}
 		
 		.lesson-description2 {
-		  font-size: 0.875rem;
-		    margin-bottom: 16px;
+		     font-size: 15px;
+		    /* margin-bottom: -15px; */
 		    color: #666;
 		    width: 230px;
-		    height: 40px;
+		    height: 30px;
 		    overflow: hidden;
 		}
 		
@@ -76,22 +76,46 @@
 		}
 		
 		.lesson-image2 {
+		    padding: 10px;
 		  display: flex;
 		  align-items: center;
 		  justify-content: space-between; /* 가운데 정렬 및 좌우 정렬 공간 분배 */
 		}
 		
 		#detail2 {
-		  float: right;
-		  padding: 5px 12px; /* 버튼 크기 조절을 위한 패딩 추가 */
-		  background-color: green; color: #fff;
-		  border-radius: 4px; /* 둥근 테두리 적용 (선택 사항) */
+float: right;
+           padding: 6px 14px;
+    background-color: green;
+    color: #fff;
+    border-radius: 4px;
+    font-size: 12px;
+    border-radius: 20px;
+   
+		}
+		#detail2:hover{
+		  
+    background-color: #00a600;
+
 		}
 		select {
 		 width: calc(20% - 20px);
 		}
 		#mForm{
 		width:1200px;
+		}
+		.talentName{
+			    font-size: 15px;
+			
+		}
+		.lesson-location2{
+		font-size: 11px;
+    margin-left: 2px;
+		
+		}
+		.talent-div{
+		    margin: 0px auto;
+    width: 76%;
+		
 		}
   </style>
 </head>
@@ -108,14 +132,14 @@
 	</form>
     <div class="item--XFN">
 
-      <div class="item--Vua">게시판</div>
+      <div class="item--Vua">Telent-NETwork</div>
       <form name="mForm" id="mForm" action="<c:url value='/board/list'/>" method="post">
 	      	<input type="hidden" name="pageNo" id="pageNo" value="${result.board.pageNo }"/>
 	      <div class="auto-group-qmuj-WZn">
 	      <!-- 검색하는 값에 대해서 전달하는 form -->
 	      <!--  현재 페이지 번호  -->
 	        <div class="group-30929677-Xjn">
-	        <select id="cityBox" name="city_code" class="form-select" aria-label="Default select example" style="margin-right:10px;">
+	        <select id="cityBox" name="city_code" class="form-select" aria-label="Default select example" style="margin-right:10px;font-size: 15px;margin-top: 49px;    cursor: pointer;">
 	          <option value="0" >시</option>
 		          <c:forEach var="city" items="${cityList }">
 		          	<option value="${city.city_code}" ${result.board.city_code == city.city_code? 'selected="selected"':''  }>${city.city_name }</option>
@@ -123,7 +147,7 @@
 	        </select>
 	        </div>
 	        <div class="group-30929678-Je4">
-	          <select id="districtBox" name="district_code" class="form-select" aria-label="Default select example">
+	          <select id="districtBox" name="district_code" class="form-select" aria-label="Default select example" style="font-size: 15px;margin-top: 8px;    cursor: pointer;">
 	            <option value="0" >구</option>
 	            <c:forEach var="district" items="${districtList }">
 		          	<option class="district_name" value="${district.district_code}" ${result.board.district_code == district.district_code?  'selected="selected"':'' }>${district.district_name }</option>
@@ -131,7 +155,7 @@
 	          </select>
 	        </div>
 	        <div class="group-30929675-2Cg">
-	          <select id="highBox" name="high_code" class="form-select" aria-label="Default select example" style="margin-right:10px;">
+	          <select id="highBox" name="high_code" class="form-select" aria-label="Default select example" style="margin-right:10px;font-size: 15px;margin-top: 8px;    cursor: pointer;">
 	            <option value="0" >대분류</option>
 	            <c:forEach var="high" items="${talentHighList }">
 		          	<option value="${high.high_code}" ${result.board.high_code == high.high_code? 'selected="selected"':'' }>${high.high_name }</option>
@@ -139,7 +163,7 @@
 	          </select>
 	        </div>
 	        <div class="group-30929676-uQt"> 
-	        <select id="smallBox" name="low_code" class="form-select" aria-label="Default select example">
+	        <select id="smallBox" name="low_code" class="form-select" aria-label="Default select example" style="font-size: 15px;margin-top: 47px;    cursor: pointer;">
 	          <option value="0" >기부받고싶은재능</option>
 	          <c:forEach var="small" items="${talentSmallList }">
 	          	<option class="small_name" value="${small.low_code}" ${result.board.low_code == small.low_code? 'selected="selected"':''} >${small.low_name }</option>
@@ -159,9 +183,9 @@
 		      <li class="lesson-card2">
 		        <div class="lesson-image2">
 		            <img src="/assets/usericon1.png">
-		            <span>${board.give_talent }</span>
+		            <span class="talentName">${board.give_talent }</span>
 		            <img src="/assets/exchageicon.png">
-		            <span>${board.receive_talent }</span>
+		            <span class="talentName">${board.receive_talent }</span>
 		            <img src="/assets/usericon2.png">
 		        </div>
 		        <div class="lesson-details2">
@@ -177,20 +201,23 @@
      </ul>
 
 
+	        <div class="talent-div">
+				<div class="button-6E4">재능교환등록</div>
+	        </div>
 
       <!-- 페이징 -->
       <div class="auto-group-yf6p-kc8">
 
 	      <c:if test="${result.board.navStart != 1 }">
-	        <img onClick="javascript:jsPageNo(${result.board.navStart-1 })" class="circle-rfA" src="/assets/circle-rMe.png"/>
+	        <img onClick="javascript:jsPageNo(${result.board.navStart-1 })" class="circle-rfA" src="/assets/circle-rMe.png" style="cursor: pointer;"/>
 	       </c:if>
 	       <c:forEach var="item" begin="${result.board.navStart}" end="${result.board.navEnd }">
 		        <c:choose>
 		        	<c:when test="${result.board.pageNo == item }">
-		        		<div class="circle-nYp" onClick="javascript:jsPageNo(${item })">${item }</div>
+		        		<div style="cursor: pointer;" class="circle-nYp" onClick="javascript:jsPageNo(${item })">${item }</div>
 		        	</c:when>
 		        	<c:otherwise>
-		        		<div class="circle-dZS" onClick="javascript:jsPageNo(${item })">${item }</div>
+		        		<div style="cursor: pointer;" class="circle-dZS" onClick="javascript:jsPageNo(${item })">${item }</div>
 		        	</c:otherwise>
 		        </c:choose>
 		   </c:forEach>
@@ -198,9 +225,8 @@
 <!-- 		        <div class="circle-nqe">4</div> -->
 <!-- 		        <div class="circle-scC">5</div> -->
 	        <c:if test="${result.board.navEnd != result.board.totalPageSize}">
-	        	<img onClick="javascript:jsPageNo(${result.board.navEnd+1 })" class="circle-kvt" src="/assets/circle.png"/>
+	        	<img onClick="javascript:jsPageNo(${result.board.navEnd+1 })" class="circle-kvt" src="/assets/circle.png" style="cursor: pointer;"/>
 	        </c:if>
-			<div class="button-6E4">게시글작성</div>
 <%--         <div><a href='<c:url value="/ckeditorForm.do"/>'>게시글작성</a></div> --%>
 
       </div>

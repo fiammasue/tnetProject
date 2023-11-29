@@ -196,8 +196,8 @@
 			}
 		});//채팅방폼
 	
-		$(document).on("click", ".room-title", function() {
-		  	roomId = $(this).data("roomid");
+		$(document).on("click", ".chat-room", function() {
+		  	roomId = $(this).find('.room-title').data("roomid");
 
 // 		  	location.href = "/chat/enterRoom/"+roomId;
 		  	ws.send("/pub/chat/message", {"content-type": "application/json;charset=utf-8"}
@@ -272,8 +272,9 @@
 		});
 		
 		//메세지 보내기
-		$("#sendMessage").on("click",e => {
-
+		$("#sendMessage").on("click",sendMessage);
+		
+		function sendMessage(){
 			if(subscription == null) return;
 			const message = $("#chatContent").val();//메시지 내용
 			//메시지 보내기
@@ -288,9 +289,15 @@
 															}));
 			//메시지 창 비우기
 			$("#messageBox").val("");
-		});
-		
-		
+		}
+		//메세지 박스에서 enter치면 메세지 전달
+		 $("#messageBox").on("keydown", function(event) {
+		        if (event.keyCode === 13) { 
+		        	 event.preventDefault();
+		            sendMessage();
+		        $("#messageBox").val("");
+		        }
+		    });
 		//채팅방 생성
 		$("#createRoom").on("click", e =>{
 			const param = {
