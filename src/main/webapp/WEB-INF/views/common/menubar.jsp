@@ -28,10 +28,6 @@
               <img class="icon-Pdr" src="/assets/icon-p7z.png"/>
               <a class="member-list-8LY" href="<c:url value='/admin/memberlist'/>" >Member List</a>
             </div>
-            <div class="group-30929687-Ghe">
-              <img class="icon-alert-circle-1v8" src="/assets/icon-alert-circle-HqJ.png"/>
-              <p class="complain-LSc">Complain</p>
-            </div>
           </div>
         </div>
       </div>

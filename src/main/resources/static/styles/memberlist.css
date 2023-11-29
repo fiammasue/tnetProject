@@ -275,6 +275,7 @@ ul, li {
     flex-direction: column;
     align-content: center;
     flex-wrap: wrap;
+    align-items: center;
 }
 
 /*제목*/
@@ -532,21 +533,15 @@ table {
 
 
 #white_footer_area {
-  display: flex; /* 요소들을 가로로 나열합니다. */
-  justify-content: space-between; /* 요소들을 양쪽으로 정렬합니다. */
-  padding: 10px; /* 필요에 따라 여백을 조절합니다. */
-  position: absolute;
-  bottom: 0;
-  margin-bottom : 40px;
+	display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 16px;
+    width: 123rem;
 }
 
-div#crud_buttons {
-  margin-left: 93px;
-}
-
-#crud_buttons {
-  display: flex; /* 버튼들을 가로로 나열합니다. */
-}
 
 #crud_buttons input[type="button"] {
 	margin-left: 5px;
@@ -559,7 +554,6 @@ div#crud_buttons {
 #paging {
   display: flex;
   align-items: center;
-  margin-left: 71rem;
 }
 
 #paging input[type="text"] {
@@ -659,8 +653,12 @@ input#pagenum {
     border-color: #d2e5d3;
     background-color: #ffffff;
     font-size: 12px;
+    cursor: pointer;
 }
 
+select {
+	cursor: pointer;
+}
 
 select.button-bQU {
     margin-left: 7px;
@@ -680,10 +678,10 @@ span {
     padding-right: 6px;
 }
 
+/*검색부분 div*/
 div#search {
     text-align: center;
     margin-bottom: 10px;
-    width: 303px;
     background: #ecffe9;
     padding: 10px;
     border-radius: 78px;
@@ -693,8 +691,11 @@ div#search {
     align-items: center;
     align-content: center;
     flex-wrap: nowrap;
+    width: 70%;
+    margin-left: -33px;
 }
 
+/*검색 버튼*/
 span#search_button {
     margin-left: 11px;
     border: solid 1px #0a6022;
@@ -710,13 +711,49 @@ span#search_button {
     cursor: pointer;
 }
 
+/*검색 토글*/
 select#search_kind {
     padding: 4px;
     font-size: 10px;
-    margin-right: 5px;
+    margin-right: 10px;
+}
+
+/*검색 input 박스*/
+input#search_box {
+    height: 20px;
+    width: 76%;
+}
+
+/*notice리스트제목 영역*/
+td#notice_title {
+    width: 50rem;
+    cursor: pointer;
 }
 
 
-input#search_box {
-    height: 20px;
+/* 스크롤 디자인 */
+div#table::-webkit-scrollbar {
+  width: 10px;  /* 스크롤바의 너비 */
+}
+div#table::-webkit-scrollbar-thumb {
+  height: 30%; /* 스크롤바의 길이 */
+  background: rgb(210, 210, 210); /* 스크롤바의 색상 */
+  border-radius: 10px;
+}
+ 
+div#table::-webkit-scrollbar-track {
+  background: rgb(255, 255, 255);  /*스크롤바 뒷 배경 색상*/
+}
+
+
+td.table_title {
+    text-align: left;
+}
+
+input#insert_button:hover {
+    cursor: pointer;
+}
+
+input[type="button"] {
+    cursor: pointer;
 }

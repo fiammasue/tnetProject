@@ -59,7 +59,7 @@
                   <tr id = "table_contents">
                   	<td><input type="checkbox" class="checkbox" value="${board.board_id}" ></td>
                     <td>${board.board_id}</td>
-                    <td >${board.title}</td>
+                    <td class="table_title">${board.title}</td>
                     <td>${board.givetalent}</td>
                     <td>${board.receivetalent}</td>
                     <td >${board.writer_nickname}</td>

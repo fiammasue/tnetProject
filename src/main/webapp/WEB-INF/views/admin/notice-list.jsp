@@ -57,7 +57,7 @@
                   <tr id = "table_contents">
                   	<td><input type="checkbox" class="checkbox" value="${notice.notice_no}" ></td>
                     <td class="notice_no">${notice.notice_no}</td>
-                    <td class="title">${notice.title}</td>
+                    <td class="title table_title" id="notice_title">${notice.title}</td>
                     <td >${notice.nickname}</td>
                     <td>${notice.reg_date}</td>
                     <td class="fixed_yn" >${notice.fixed_yn}</td>
@@ -89,9 +89,9 @@
               <div id = "Change number">
               <span>건수 : </span>  
               <select id="button-bQU">
-				    <option selected value="10">10</option>
-				    <option value="20">20</option>
-				    <option value="30">30</option>
+				    <option selected value="12">12</option>
+				    <option value="24">24</option>
+				    <option value="36">36</option>
 			  </select>
               </div>
               
