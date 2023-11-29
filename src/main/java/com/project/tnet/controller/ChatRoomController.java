@@ -57,6 +57,7 @@ public class ChatRoomController {
 			MemberVO member= (MemberVO)userDetails.getUser();
 			chatRoom.setSender(member.getNickName());
 			
+		
 			
 			if (chatRoom.getAgreeChat().equals("수락")) {
 				
@@ -71,7 +72,15 @@ public class ChatRoomController {
 				
 				result.put("exist", (value!=null));
 				if (value != null) {
+					if (chatRoom.getAgreeChat().equals("문의")) {
+						Message message = Message.builder()
+												.receiver(member.getNickName())
+												.room_id(value.getRoom_id())
+												.build();
+						messageService.updateReadCount(message);
+					}
 					result.put("roomInfo", chatRoomService.findRoomById(value.getRoom_id()));
+					System.out.println("chatList ----> " +messageService.selectMessageList(value.getRoom_id()));
 					result.put("chatList",messageService.selectMessageList(value.getRoom_id()));
 				}
 				else {

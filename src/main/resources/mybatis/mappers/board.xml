@@ -6,39 +6,68 @@
 	
 	
 <!--페이징해서 게시판 리스트 가져오기 -->
-<select id="getBoardList" resultType="com.project.tnet.dto.Board" >
-		<![CDATA[
-			select *
-from (select ROWNUM as rnum , A.*
-        from(   	SELECT b.board_id,
-			       b.title,
-			       t.low_name AS givetalent,
-			       t2.low_name AS receivetalent,
-			       b.writer_nickname,
-			       b.read_count,
-			       b.register_date,
-			       s.STATUS_CONTENTS AS status,
-			       u.city_name AS cityname,
-			       u.district_name AS districtname
-			FROM board b       
-			INNER JOIN talent_small t ON b.receive_talent = t.low_code
-			INNER JOIN talent_small t2 ON b.give_talent = t2.low_code
-			INNER JOIN status s ON b.status_code = s.STATUS_CODE
-			INNER JOIN (
-						  SELECT c.city_code,
-						         d.city_code AS district_city_code,
-						         c.city_name,
-						         d.district_name,
-						         d.district_code
-						  FROM city c
-						  INNER JOIN district d ON c.city_code = d.city_code) u 
-			ON b.city_code = u.city_code AND b.district_code = u.district_code
-			WHERE DELETE_YN = 'N'
-			ORDER BY READ_COUNT DESC, BOARD_ID DESC) A)C
-	        where rnum between ${startnum} and ${endnum}
-		]]>
-
-	</select>
+<select id="getBoardList" resultType="com.project.tnet.dto.Board">
+    SELECT
+        p.board_id,
+        p.title,
+        t.low_name AS givetalent,
+        t2.low_name AS receivetalent,
+        p.writer_nickname,
+        p.read_count,
+        p.register_date,
+        s.STATUS_CONTENTS AS status,
+        u.city_name AS cityname,
+        u.district_name AS districtname
+    FROM (
+        SELECT row_sub.*
+        FROM (
+            SELECT rownum as page_num, sub.*
+            FROM (
+                SELECT *
+                FROM board b
+                WHERE delete_yn = 'N'
+                <if test="searchWord != null and searchWord != ''">
+                    <if test="search_kind == 'title'">
+                        AND title LIKE '%' || #{searchWord} || '%'
+                    </if>
+                    <if test="search_kind == 'talent'">
+                        AND board_id IN (
+                            SELECT DISTINCT talent.board_id
+                            FROM (
+                                SELECT *
+                                FROM board b
+                                WHERE delete_yn = 'N'
+                                AND (
+                                    give_talent IN (SELECT low_code FROM talent_small WHERE low_name LIKE '%' || #{searchWord} || '%')
+                                    OR receive_talent IN (SELECT low_code FROM talent_small WHERE low_name LIKE '%' || #{searchWord} || '%')
+                                )
+                            ) talent
+                        )
+                    </if>
+                </if>
+                ORDER BY read_count DESC, board_id DESC
+            ) sub
+            <![CDATA[
+                WHERE rownum <= ${endnum}
+            ]]>
+            ) row_sub
+        WHERE page_num BETWEEN ${startnum} and ${endnum}
+    ) p
+    INNER JOIN talent_small t ON p.receive_talent = t.low_code
+    INNER JOIN talent_small t2 ON p.give_talent = t2.low_code
+    INNER JOIN status s ON p.status_code = s.STATUS_CODE
+    INNER JOIN (
+        SELECT
+            c.city_code,
+            d.city_code AS district_city_code,
+            c.city_name,
+            d.district_name,
+            d.district_code
+        FROM city c
+        INNER JOIN district d ON c.city_code = d.city_code
+    ) u
+    ON p.city_code = u.city_code AND p.district_code = u.district_code
+</select>
 	
 <!--총 게시판 갯수 -->
 		<select id="totalcount" resultType="java.lang.Integer" >

@@ -3,7 +3,6 @@ package com.project.tnet.controller;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.OutputStreamWriter;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -12,7 +11,6 @@ import java.nio.file.StandardOpenOption;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -24,8 +22,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.FileSystemResource;
-import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -106,12 +102,21 @@ public class AdminController {
 	@RequestMapping("/admin/boardlist")
 	public String admin_boardlist(Board board, Model model) {
 		System.out.println("게시판 리스트 출력");
-		System.out.println("현재페이지 : " + board.getPageNo());
+		System.out.println("검색 단어 : "+ board.getSearchWord());
+		System.out.println("검색 종류 : "+ board.getSearch_kind());
+		
+		long startTime = System.currentTimeMillis();  // 메서드 시작 시간 기록
 
 		board.getStartNo();
 		board.getEndNo();
 		model.addAttribute("result", boardservice.GetList(board));
-		return "admin/board-list";
+		
+		
+		long endTime = System.currentTimeMillis();  // 메서드 종료 시간 기록
+	    long elapsedTime = endTime - startTime;  // 실행 시간 계산
+	    System.out.println("메서드 실행 시간: " + elapsedTime + " 밀리초");
+	    
+	    return "admin/board-list";
 	}
 	
 	//관리자 공지사항 목록 페이지

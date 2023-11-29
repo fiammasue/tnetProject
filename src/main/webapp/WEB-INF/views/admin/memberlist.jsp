@@ -31,6 +31,15 @@
         <!-- Member List 흰색 영역 -->
         <div class="whitearea-Nnc  tap_content" id="tab4">
           <p class="member-list-VMS">Member List</p>
+          <div id="search" >
+           <select id="search_kind">
+		    <option selected value="title">닉네임</option>
+		    <option value="talent">성별</option>
+		    <option value="city">이메일</option>
+		   </select>
+		   <input type="text" id="search_box"/>
+		   <span id="search_button"> 검색 </span>
+		   </div>
           <!-- 테이블 -->
  		   <div id="table">
             <table >
@@ -67,7 +76,7 @@
           <div id = "white_footer_area">
             <!-- 버튼 -->
             <div id = "crud_buttons">
-            <input type="button" id ="button-bQU" value="회원 삭제"/>
+            <input type="button" id ="button-bQU" value="회원 탈퇴"/>
             </div>
 
             <!-- 페이징부분 -->
@@ -79,9 +88,9 @@
               <div id = "Change number">
                 <span>건수 : </span>  
               <select id="button-bQU">
-				    <option selected value="10">10</option>
-				    <option value="20">20</option>
-				    <option value="30">30</option>
+				    <option selected value="12">12</option>
+				    <option value="24">24</option>
+				    <option value="36">36</option>
 			  </select>
               </div>
               

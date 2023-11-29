@@ -160,6 +160,7 @@
   		<c:when test="${empty principal}">
   		
 		    <header>
+		     <div id="header">
 		      <a href='<c:url value="/"/>'><img id="logo" src="/assets/logo.png" alt="" ></a>
 		      <nav id="menubar">
 		        <ul id="topMenu">
@@ -172,6 +173,7 @@
 		    </header>
 	    </c:when>
 	    <c:otherwise>
+	    </div>
 	    	<header>
 		      <a href='<c:url value="/"/>'><img id="logo" src="/assets/logo.png" alt="" ></a>
 		      <nav id="menubar">
@@ -270,8 +272,6 @@
 		
 			
 		if (recv.type_string==="ALARM") {
-			alert("ALARM");
-			alert(recv.contents, recv.receiver)
 			if(flag === 0){
 				var bellBadgeElement = document.getElementById("bellBadge");
 				bellBadgeElement.style.display = "block";
@@ -280,7 +280,6 @@
 			
 			
 			if (recv.alarm_code == "A01") {
-				alert('A01')
 				//채팅방의 안읽음 표시 올리기
 				var selectedElement = $('.chat-metadata.room-'+recv.room_id);
 				var deletedElement =$('.unread-messages.count-'+recv.room_id);
@@ -288,6 +287,7 @@
 				deletedElement.remove();
 				
 				countInfo = `<div class="unread-messages count-`+ recv.room_id +`">`+ recv.receiver_count +`</div>`;
+					
 				
 				selectedElement.append(countInfo);
 				
@@ -306,7 +306,6 @@
 				}
 				else if (selectedElement.length === 0){
 					//채팅방이 존재하지 않을시에는 새롭게 추가
-					alert("채팅방ㅅ ㅐ로 생성")
 				const commentListHTML = document.querySelector("#chat");
 					const alarmItem = document.createElement("div");
 		   	          alarmItem.className = "alarm";
@@ -343,7 +342,7 @@
 			else /* if (recv.alarm_code == "A02") */ {
 				//알람이 이제 게시글명과 함께 넘어올꺼임
 				//태그를 추가만 해주면됌
-				alert("다른 알람들")
+		
 				const commentListHTML = document.querySelector("#progress");
 			      const alarmItem = document.createElement("div");
 	   	          alarmItem.className = "alarm";
@@ -385,7 +384,7 @@
 
          // 시:분 부분만 선택
          var time = timePart.substring(0, 5);
-         alert("TALK");
+
          var chatListInfo = "";
           if(recv.sender != "${principal.user.nickName}"){
                  chatListInfo+=`<div class="chat ch1">
@@ -413,16 +412,16 @@
             $(".wrap").scrollTop(divElement[0].scrollHeight);
       }
       else if (recv.type_string==="ENTER") {
-         alert("입장");
+    
          $(".receiver-readCount").remove();
       }
       else if (recv.type_string==="LEAVE") {
-         alert("퇴장");
+
 //          var chatListInfo = `<span class="badge rounded-pill text-bg-warning">`+decodeURIComponent(recv.message)+`</span>`
 //          $("#chatList").append(chatListInfo);
       }
       else if (recv.type_string==="AGREE") {
-         alert("수락 요청")
+       
          var agreeInfo = `
             <div class="task-card" draggable="true" ondragstart="drag(event)" id="course-`+ recv.course_id + `" data-courseid="`+ recv.course_id  +`" data-boardid="`+ recv.board_id  +`">
             <div class="card-top">
@@ -451,7 +450,7 @@
 			
 		}
 		else if (recv.type_string==="AGREE_INVOLVE"){
-			alert("수락요청완료")
+
 			//태그삭제
 			 var className = "course-"+recv.course_id;
 			 var selectedElement = $('[id^="' + className + '"]');
@@ -483,7 +482,7 @@
 			 $(".tasks.accept").append(agreeInfo);
 		}
 		else if (recv.type_string==="COMPLETE_AGREE"){
-			alert("완료 요청 보냄")
+
 			
 			 var className = "course-"+recv.course_id;
 			console.log(className);
@@ -521,7 +520,7 @@
 	          taskCard2.remove();
 		}
 		else if (recv.type_string==="COMPLETE_INVOLVE"){
-			alert("완료요청 성공")
+
 			
 			 var className = "course-"+recv.course_id;
 			 var selectedElement = $('[id^="' + className + '"]');
@@ -674,7 +673,7 @@
    	  	    data: JSON.stringify({ alarm_id: alarmId }),// 컨트롤러로 전송할 데이터
 	        dataType: "json",
 	        success: function(response) {
-	        	 alert(response.message);
+	     
 				 if (response.status) {
 					// 클릭된 버튼과 가장 가까운 .alarm 클래스를 가진 부모 div 제거
 					$(self).closest(".alarm").remove(); 

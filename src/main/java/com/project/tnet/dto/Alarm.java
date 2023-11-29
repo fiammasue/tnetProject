@@ -33,4 +33,5 @@ public class Alarm {
 	private int course_id;//수강신청번호
 	private int board_id;//게시글 번호
 	private String title;//게시글 제목	
+	
 }
