@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.project.tnet.dto.Board;
 import com.project.tnet.dto.NoticeDTO;
 
 @Mapper
@@ -28,4 +29,6 @@ public interface NoticeDAO {
 
 	int insert(NoticeDTO notice);
 
+	//메인페이지 공지사항 jQuery 자동롤링배너 
+	public List<NoticeDTO> selectNoticeTOP5();
 }

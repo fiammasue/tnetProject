@@ -29,8 +29,9 @@ ul {
 header{
   width:100%;    /*  너비 */
   height:70px;   /* 높이 */ 
-  background-color:whitesmoke;
+  background-color:white;
   box-sizing: border-box;   /* 박스 영역은 테두리까지 */ 
+  box-shadow: 0px -1px 5px 2px gray;
 }
 
 /* 로고 */
@@ -174,7 +175,7 @@ header{
 #links{    
   width:100%;   /* 너비 */
   height:100%;   /* 높이 */
-  margin-top:20px;  /* 마진 추가 */
+  margin-top:10px;  /* 마진 추가 */
 }
 #links ul{
   padding:0;  /* 패딩 */ 
@@ -187,6 +188,7 @@ header{
   text-align:center;  /* 가운데 정렬 */
   margin:10px 0;  /* 마진 */
 }
+
 
 #links ul li a p {
   margin-top:15px;  /* 위쪽 마진 */
@@ -208,10 +210,9 @@ ul.cls {
   width:90%;
   background:#f5f5f5;  /* 슬라이드 쇼 비치도록 배경 색 조절 */ 
   margin-left: 3%;
-  border: solid 2px;
-  overflow-y: scroll; /* 수직 스크롤 추가 */
-  overflow-x: hidden; /* 수평 스크롤 숨김 */
-  max-height: 200px; /* 스크롤 가능한 최대 높이 설정 */
+  
+  border-radius: 10px; /* 적절한 값을 사용하여 요소의 경계를 둥글게 만듭니다. */
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* 그림자 효과 추가 */
 }
 
 .cls a{
@@ -224,21 +225,20 @@ ul.cls.visible {
   /* 원하는 스타일을 여기에 추가할 수 있습니다. */
 }
 
-img.icon:hover {
-  transform: scale(1.1); /* 호버 시 1.1배 확대 */
-  transition: transform 0.3s; /* 변환에 대한 애니메이션 지속 시간 설정 */
-}
+/*img.icon:hover {
+  transform: scale(1.1);  호버 시 1.1배 확대 
+  transition: transform 0.3s;  변환에 대한 애니메이션 지속 시간 설정 
+}*/
 
   #links ul.cls li{
     display: inline-block;
-    width: 100%; 
+    width: 47%; 
     margin-right: 3%; /* 간격을 조절 */
     text-align: center; /* 가운데 정렬 */
   }
 
   #links ul.cls li a:hover {
-    color: #f00; /* 마우스 오버하면 글자 색상이 빨간색으로 변경됩니다. */
-    text-decoration:none;  /* 소분류 재능 링크 밑줄 없애기 */
+    font-weight: bold; /* hover 상태에서 텍스트를 굵게 처리합니다. */   
   }
 
   #contents {
@@ -249,14 +249,17 @@ img.icon:hover {
 /* 공지사항 롤링 영역 */
 /**************************************/
 
+#iconUl{
+height: 155px;	
+}
+
 #notice_rolling {
-  background-color: whitesmoke; /* 배경 색상 설정 */
+  background-color: #dfdfe3; /* 배경 색상 설정 */
   padding: 10px; /* 내용과 경계 사이의 간격 설정 */
   margin: 10px 0; /* 상단과 하단 간격 설정 */
   /*border: 1px solid #ccc; /* 테두리 스타일 설정 */
   border: 1px solid white;
   border-radius: 1px; /* 경계를 둥글게 만듭니다. */
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1); /* 그림자 효과 추가 */
   
   /*table을 가운데 정렬시키는 css*/
   display: flex;
@@ -264,6 +267,39 @@ img.icon:hover {
   align-items: center;
 }
 
+/*li태그를 가운데로 만들기위한 css*/
+.rolling {
+  /*position: relative;*/
+  margin-left: 44%;
+/*  width: 50%;
+  height: auto; */
+}
+
+/*li태그를 가운데로 만들기위한 css*/
+.rolling li {
+	text-indent: 20px;
+	text-align: left;
+}
+
+  /* 공지사항 밑줄, 파랑색 속성 제거 css */
+  a.link {
+    text-decoration: none; /* 밑줄 제거 */
+    color: inherit; /* 링크의 기본 색상으로 설정 */
+  }
+
+  a.link:hover {
+    color: inherit; /* 링크의 기본 색상으로 유지 */
+  }
+  
+  .notice span strong {
+  	font-size: 1.1em; /* 예시로 글자 크기를 조절할 수 있습니다. */
+  }
+  
+  #noticeSpan{
+    float: left;
+    width: 45%;
+    text-align: right;
+  }
 /**************************************/
 /* 카드섹션 영역 */
 /**************************************/
@@ -301,7 +337,8 @@ img.icon:hover {
 }
 
 .lesson-details {
-  padding: 16px;
+  padding: 11px;
+  margin-bottom: 10px;
 }
 
 .lesson-title {
@@ -322,6 +359,7 @@ img.icon:hover {
 }
 
 .lesson-image {
+  padding: 16px;
   display: flex;
   align-items: center;
   justify-content: space-between; /* 가운데 정렬 및 좌우 정렬 공간 분배 */
@@ -329,9 +367,17 @@ img.icon:hover {
 
 #detail {
   float: right;
-  padding: 5px 12px; /* 버튼 크기 조절을 위한 패딩 추가 */
+  padding: 3px 12px; /* 버튼 크기 조절을 위한 패딩 추가 */
   background-color: green; color: #fff;
-  border-radius: 4px; /* 둥근 테두리 적용 (선택 사항) */
+  border-radius: 20px; /* 둥근 테두리 적용 (선택 사항) */
+}
+
+#detail:hover{
+	background-color: #00a600;
+}
+
+.lesson-location{
+	margin-left: 2px;
 }
 /******************/
 /*   푸터 영역    */
@@ -342,7 +388,7 @@ footer{
   height:100%;  /* 높이 */
   border-top:2px solid #222;
   text-align: center; /* 내용을 수평 가운데 정렬합니다. */
-  background-color:whitesmoke;
+  background-color:white;
 }
 
 footer ul {

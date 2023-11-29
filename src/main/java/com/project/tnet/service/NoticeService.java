@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.project.tnet.dao.NoticeDAO;
 import com.project.tnet.dto.AttachFile;
+import com.project.tnet.dto.Board;
 import com.project.tnet.dto.NoticeDTO;
 
 @Service
@@ -141,5 +142,10 @@ public class NoticeService {
 			}
 		}
 		return true;
+	}
+	
+	//메인페이지 공지사항 jQuery 자동롤링배너 
+	public List<NoticeDTO> selectNoticeTOP5() {
+		return noticedao.selectNoticeTOP5();
 	}
 }

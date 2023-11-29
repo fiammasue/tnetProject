@@ -8,15 +8,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.project.tnet.config.auth.PrincipalDetails;
+import com.project.tnet.dto.AttachFile;
 import com.project.tnet.dto.Board;
 import com.project.tnet.dto.MemberVO;
+import com.project.tnet.dto.NoticeDTO;
 import com.project.tnet.service.AlarmService;
+import com.project.tnet.service.AttachFileService;
 import com.project.tnet.service.BoardService;
+import com.project.tnet.service.NoticeService;
 
 @Controller
 public class MainController {
@@ -24,10 +29,17 @@ public class MainController {
 	private AlarmService alarmService;
 	@Autowired
 	private BoardService boardService;
+	@Autowired
+	private NoticeService noticeService;
+	@Autowired
+	private AttachFileService attachefileservice;
 	
 	@RequestMapping("/")
 	public String main(Authentication authentication, Model model) {
 
+		List<NoticeDTO> noticeList = noticeService.selectNoticeTOP5();
+		model.addAttribute("noticeList", noticeList);
+		
 		List<Board> boardList = boardService.selectBoardTOP6();
 		model.addAttribute("boardList", boardList);
 		
@@ -45,7 +57,25 @@ public class MainController {
 		}
 		return "index";
 	}
-
+	
+	//공지사항 jQuery 자동롤링배너 상세보기
+	@RequestMapping("/notice/detail/{notice_no}")
+	public String noticeDetail(Model model, NoticeDTO notice,@PathVariable(value="notice_no") int notice_no) {
+		notice.setNotice_no(notice_no);
+		
+		@SuppressWarnings("unchecked")
+		List<AttachFile> filelist = (List<AttachFile>) attachefileservice.getFiles(notice).get("files");
+		System.out.println("filelist : "+ filelist);
+		if(filelist.isEmpty()) {
+			model.addAttribute("attache_bool", false);
+		}else{
+			model.addAttribute("attache_bool", true);
+			model.addAttribute("filelist", filelist );
+		}
+		model.addAttribute("notice", noticeService.getDetail(notice).get("detail"));
+		return "notice/noticeDetail";
+	}
+	
 	// 아이콘에서 선택한 재능을 가르칠과목으로 TOP6로 정렬시킴.	
 	@ResponseBody
 	@RequestMapping("/telent/teachers")
@@ -64,10 +94,10 @@ public class MainController {
 
 	
 	
-	@RequestMapping("/notice/detail")
-	public String noticeDetail() {
-		return "notice/noticeDetail";
-	}
+//	@RequestMapping("/notice/detail")
+//	public String noticeDetail() {
+//		return "notice/noticeDetail";
+//	}
 	@RequestMapping("/notice/revise")
 	public String noticeRevise() {
 		return "notice/noticeRevise";

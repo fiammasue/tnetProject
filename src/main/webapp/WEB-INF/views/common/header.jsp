@@ -163,10 +163,10 @@
 		      <a href='<c:url value="/"/>'><img id="logo" src="/assets/logo.png" alt="" ></a>
 		      <nav id="menubar">
 		        <ul id="topMenu">
-		          <li><a href="#">join </a></li>
-		          <li><a id="loginForm" href="javascript:void(0)">login </a></li>
 		          <li><a href="#">notice</a></li>
 		          <li><a href='<c:url value="/board/list"/>'>lesson</a></li>
+		          <li><a href="#">join </a></li>
+		          <li><a id="loginForm" href="javascript:void(0)">login </a></li>
 		        </ul>
 		      </nav>
 		    </header>
@@ -176,10 +176,10 @@
 		      <a href='<c:url value="/"/>'><img id="logo" src="/assets/logo.png" alt="" ></a>
 		      <nav id="menubar">
 		        <ul id="topMenu">
-		          <li><a href="/logout.do">logout </a></li>
 		          <li><a href="#">notice</a></li>
 		          <li><a href='<c:url value="/board/list"/>'>lesson</a></li>
 		          <li><a href="/myPage/userInfo">mypage</a></li>
+		          <li><a href="/logout.do">logout </a></li>
       		      <li class="position-relative" style="width: 48px; height: 48px;">
    		  	  		<img id="bell" src="/assets/bell3(3).png" alt="" data-bs-target="#staticBackdrop" >
    		  	  		<!-- 헤더 알림테이블의 NEW 배지 -->
@@ -277,14 +277,6 @@
 				bellBadgeElement.style.display = "block";
 				
 			}
-			
-			
-			
-			
-			
-			
-			
-			
 			
 			
 			if (recv.alarm_code == "A01") {
