@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ page import="java.util.Objects" %>
 
 <sec:authorize access="isAuthenticated()"> <!-- 인증이 됐는지안됐는지 확인하는 구문 -->
    <sec:authentication property="principal" var="principal"/> <!-- property로 가져와서 var 데이터타입으로 대입하겠다는뜻 -->
@@ -204,10 +205,10 @@
      <form class="login-form" id="loginFormTag" method="post" action="<c:url value='/auth/login.do'/>" >
        <h4 class="mb-3"><b>로그인</b></h4>
        <div class="form-group">
-         <label for="nickname">닉네임</label>
+         <label for="nickname">이메일</label>
          <input type="text" name = "username" class="form-control" id="nickname" placeholder="" required>
          <div class="invalid-feedback">
-           닉네임을 입력해주세요.
+           이메일을 입력해주세요.
          </div>
        </div>
    
@@ -232,10 +233,12 @@
    </div>
    
 <script>
+// JSP에서 로그인 성공 메시지를 확인하고 alert을 생성하는 함수
+
 	/* 로그인 다이얼로그 창 띄우는 jquery */
 	var loginDialog = $( "#LoginDialog" ).dialog({
 	 autoOpen: false,
-	 height: 500,
+	 height: 420,
 	 width: 500,
 	 modal: true,
 	 close: function() {

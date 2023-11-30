@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 
@@ -34,8 +34,25 @@ public class AuthSucessHandler extends SimpleUrlAuthenticationSuccessHandler {
 		
 		System.out.println("authentication 티넷>>>" + authentication);
 		
-        setDefaultTargetUrl("/");
+		  String url = "/";
+		  String successMessage = "로그인되었습니다."; // 기본적인 성공 메시지
+
+	      System.out.println(">>>>권한 체크 = " + authentication.getAuthorities().toString());
+	      for (GrantedAuthority authority : authentication.getAuthorities()) {
+	          if (authority.getAuthority().contains("ADMIN")) {
+	            System.out.println(">>>관리자 로그인");
+	            url = "/admin/home";
+	         } else {
+	            
+	         }
+	      }
+	      
+	      // 성공 메시지를 세션에 저장
+	        request.getSession().setAttribute("loginSuccessMessage", successMessage);
+	        
+        setDefaultTargetUrl(url);
         
         super.onAuthenticationSuccess(request, response, authentication);
     }
+	
 }
