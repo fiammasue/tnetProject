@@ -550,9 +550,11 @@
 			
 			//태그삭제
 			 var className = "course-"+recv.course_id;
-			 var selectedElement = $('[id^="' + className + '"]');
+			 var selectedElement = $('.tasks.waiting [id^="' + className + '"]');
 			 selectedElement.addClass('fade-out-box');
-			 selectedElement.remove();
+			 setTimeout(function () {
+				 selectedElement.remove();
+	            }, 2000);
 			 
 				var rejectInfo = `
 					<div class="task-card dontMove" draggable="false" id="course-`+ recv.course_id + `" data-courseid="`+ recv.course_id  +`" data-boardid="`+ recv.board_id  +`">
@@ -581,8 +583,8 @@
 			
 			 //태그를 찾아서 클래스를 등록해주고 2초뒤 태그 삭제
              var className1 = "course-"+recv.course_id;
-             var selectedElement1 = $('[id^="' + className + '"]');
-             selectedElement1.addClass('fade-in-box');
+             var selectedElement1 = $('.tasks.reject [id^="' + className + '"]');
+             selectedElement1.addClass('reject_shake');
             
             
              setTimeout(function () {
@@ -593,9 +595,11 @@
 
 			//태그삭제
 			 var className = "course-"+recv.course_id;
-			 var selectedElement = $('[id^="' + className + '"]');
+			 var selectedElement = $('.tasks.reject [id^="' + className + '"]');
 			 selectedElement.addClass('fade-out-box');
-			 selectedElement.remove();
+			 setTimeout(function () {
+				 selectedElement.remove();
+	            }, 2000);
 			 
 				var agreeInfo = `
 					<div class="task-card dontMove" draggable="false" id="course-`+ recv.course_id + `" data-courseid="`+ recv.course_id  +`" data-boardid="`+ recv.board_id  +`">
@@ -623,7 +627,7 @@
 			 $(".tasks.waiting").append(agreeInfo);
 			 //태그를 찾아서 클래스를 등록해주고 2초뒤 태그 삭제
              var className1 = "course-"+recv.course_id;
-             var selectedElement1 = $('[id^="' + className + '"]');
+             var selectedElement1 = $('.tasks.waiting [id^="' + className + '"]');
              selectedElement1.addClass('fade-in-box');
             
             
