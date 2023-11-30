@@ -222,8 +222,8 @@ function drawChart(line_data,id_value) {
                 <!-- 토글 -->
                <div class="group-30929674-c64 custom-select " id="linechart_toggle">
                    <select class="form-select" aria-label="Default select example">
-				    <option selected class="item--iet" value="0" >완료된 수업</option>
-				    <option class="item--iet" value="1" >회원 인원</option>
+				    <option selected class="item--iet" value="0" >회원 인원</option>
+				    <option class="item--iet" value="1" >완료된 수업</option>
 				  </select>
 				  <div class="arrow">
 				    <img src="/assets/polygon-2-Kip.png" alt="Dropdown Arrow">

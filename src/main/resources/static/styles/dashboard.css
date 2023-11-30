@@ -796,6 +796,7 @@ select#telecom {
     font-family: Nunito Sans, 'Source Sans Pro';
     white-space: nowrap;
     flex-shrink: 0;
+    outline: none;
 }
 
 .custom-select .arrow {
