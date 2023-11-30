@@ -266,7 +266,7 @@
 						chatRecvMessage(recv);
 					}, {sender:sender});//보내는 사람을 등록할필요가 있나?
 		},error => {
-			alert("error "+error);
+			console.error('Whoops! Lost connection:', error);
 		});
 	}
 
@@ -484,6 +484,38 @@
 			 
 				// 태그 추가
 			 $(".tasks.accept").append(agreeInfo);
+		}
+		else if (recv.type_string==="REJECT_INVOLVE"){
+			alert("오니?");
+			//태그삭제
+			 var className = "course-"+recv.course_id;
+			 var selectedElement = $('[id^="' + className + '"]');
+			 selectedElement.remove();
+			 
+				var rejectInfo = `
+					<div class="task-card dontMove" draggable="false" id="course-`+ recv.course_id + `" data-courseid="`+ recv.course_id  +`" data-boardid="`+ recv.board_id  +`">
+					<div class="card-top">
+					<p class="status reject dontMove">`+ recv.status_code +`</p>
+					<p class="card-board_id">no. ` + recv.board_id +`</p>
+					</div>
+					<p class="task-name dontMove">` + recv.title + `</p>
+					<div class="details">`
+					
+					if (recv.applyer_nickname == sender) {
+						agreeInfo += `	<p class="requester">신청자 : `+ recv.applyer_nickname + `</p>`
+						
+					}
+					else {
+						agreeInfo += `<p class="requester">요청자 : `+ recv.applyer_nickname +`</p>`
+						
+					}
+	                   
+		            agreeInfo +=   ` <p class="date">`+ recv.start_date+`</p>
+					</div>
+				</div>`;
+			 
+				// 태그 추가
+			 $(".tasks.reject").append(rejectInfo);
 		}
 		else if (recv.type_string==="COMPLETE_AGREE"){
 
@@ -748,7 +780,7 @@
 	    
 	   // #bell(종) 이미지 클릭시 이벤트 처리
 	  $(document).on("click", "#bell", function(e) {
-			
+		  $(".alarm").remove();
 		   // 서버에 AJAX 요청을 보내서 해당 게시글의 내용을 가져옵니다.
 		   $.ajax({
 		      type: "POST",

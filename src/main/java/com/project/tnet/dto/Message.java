@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 public class Message {
 	// 메시지 타입 : 입장, 채팅, 나가기, 알람, 수락요청
 	public enum MessageType {
-	      ENTER, TALK, LEAVE, ALARM, AGREE, AGREE_INVOLVE, COMPLETE_AGREE,COMPLETE_INVOLVE ,RETURN_WAITING
+	      ENTER, TALK, LEAVE, ALARM, AGREE, AGREE_INVOLVE, REJECT_INVOLVE, COMPLETE_AGREE,COMPLETE_INVOLVE ,RETURN_WAITING
 	}
 	
 	private MessageType type; // 메시지 타입

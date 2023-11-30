@@ -29,9 +29,7 @@ public class BoardService {
 		
 		Map<String, Object> map = new HashMap<>();
 		map.put("board", board);
-		System.out.println("board : "+ board );
 		List<Board> list = boardDAO.getBoardList(board);
-		System.out.println("boardList : "+list);
 		map.put("list", list);
 		
 		return map;
@@ -40,7 +38,6 @@ public class BoardService {
 	
 	//게시판 리스트 출력
 	public Map<String, Object> selectBoardList(Board board){
-		System.out.println("board -> "+boardDAO.getTotalCount(board));
 		board.setTotalCount(boardDAO.getTotalCount(board));
 		
 		Map<String, Object> params = new HashMap<>();
@@ -55,7 +52,6 @@ public class BoardService {
 		Map<String, Object> result = new HashMap<>();
 		result.put("board", board);
 		result.put("boardList", boardDAO.selectBoardList(params));
-		System.out.println("boardList ->"+boardDAO.selectBoardList(params));
 		return result;
 	}
 	
