@@ -61,7 +61,8 @@ public class MessageController {
 		
 			
 			message.setType_string(MessageType.ENTER.name());
-			
+			System.out.println("rom -->"+room);
+			System.out.println("message -->"+message);
 			messagingTemplate.convertAndSend("/sub/member/userId/"+room.getReceiver(),message,headerAccessor.getMessageHeaders());
 			messagingTemplate.convertAndSend("/sub/member/userId/"+room.getSender(),message,headerAccessor.getMessageHeaders());
 		} //퇴장하면 접속자수 1감소

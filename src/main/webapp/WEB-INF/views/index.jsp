@@ -5,9 +5,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>  
+  <title>Document</title>
+  
+  <!-- jQuery자동롤링배너CSS -->
+  <style>
+	.notice{width:100%; height:25px; overflow:hidden;} 
+	.rolling{position:relative; width:100%; height:auto;}
+	.rolling li{width:100%; height:25px; line-height:25px;}
+  </style>  
 </head>
 <body>
+
   <div id="container">    
   <div id="slideShow">
     <div id="slides">
@@ -15,14 +23,14 @@
       <img src="/assets/slideshow7.jpg" alt="">
       <img src="/assets/slideshow8.jpg" alt="">
       <img src="/assets/slideshow9.jpg" alt="">
-      <button class="slideShowButton" id="prev">&lang;</button>
-      <button class="slideShowButton" id="next">&rang;</button>
+      <!-- <button class="slideShowButton" id="prev">&lang;</button>
+      <button class="slideShowButton" id="next">&rang;</button> -->
     </div>
   </div>
 
   <div id="contents">
       <div id="links">
-        <ul>
+        <ul id="iconUl">
           <li>        
             <a>
               <img class="icon" src="/assets/icon_language.png">
@@ -125,16 +133,16 @@
       </div>
     </div> 
     
-    <article>
-      <div id="notice_rolling">          
-        <table>
-          <tr>
-            <td><strong>첫 번째 공지사항입니다.</strong></td>
-            <td>내용을 여기에 작성하세요.</td>
-          </tr>            
-        </table>             
-      </div>
-    </article>
+    <div id="notice_rolling">
+		<div class="notice">
+		    <span id="noticeSpan"><strong>공지사항</strong></span>
+			<ul class="rolling">
+			  <c:forEach var="notice" items="${noticeList}">
+				<li><strong><a href='/notice/detail/${notice.notice_no}' class="link">${notice.title}</a></strong></li>
+			  </c:forEach>
+			</ul>
+		</div>
+	</div>
 
     <ul class="lesson-cards">
 	    <c:forEach var="board" items="${boardList}">
@@ -151,7 +159,6 @@
 	            <div class="lesson-meta">
 	                <img src="/assets/locationicon.png">
 	                <span class="lesson-location">${board.city_name} ${board.district_name}</span>
-	                <!-- <input type="button" id="detail" value="DETAIL"></input> -->
 	                <a href='/board/detail/${board.board_id}'><input type="button" id="detail" value="DETAIL"></input></a>
 	            </div>
 	        </div>
@@ -161,6 +168,21 @@
   </div>
   
  <script>
+ document.addEventListener('DOMContentLoaded', function() {
+	    var urlParams = new URLSearchParams(window.location.search);
+	    var exception = urlParams.get('exception');
+
+	    if (exception === 'locked') {
+	        alert("계정이 잠겼습니다.");
+	    } else if (exception === 'expiredAccount'){
+	       alert("유효하지 않은 계정입니다.");
+	    }else if(exception === 'wrongIdPassword'){
+	    	alert("이메일 또는 비밀번호가 일치하지 않습니다.")
+	    }
+	});
+ 
+ 
+ 
     $(document).ready(function () {
         // li 태그를 클릭했을 때의 이벤트 핸들러를 정의합니다.
         $("ul.cls li").click(function () {
@@ -199,9 +221,9 @@
                 var lessonCard = $("<li class='lesson-card'>").html(
                     "<div class='lesson-image'>" +
                     "<img src='/assets/usericon1.png'>" +
-                    "<a href='#'><span>" + teacher.giveTalentLowName + "</span></a>" +
+                    "<span>" + teacher.giveTalentLowName + "</span>" +
                     "<img src='/assets/exchageicon.png'>" +
-                    "<a href='#'><span>" + teacher.receiveTalentLowName + "</span></a>" +
+                    "<span>" + teacher.receiveTalentLowName + "</span>" +
                     "<img src='/assets/usericon2.png'>" +
                     "</div>" +
                     "<div class='lesson-details'>" +
@@ -221,6 +243,25 @@
     });
 </script>
 
-
+<!-- jQuery자동롤링배너 스크립트 -->
+<script>
+$(document).ready(function(){
+	var height =  $(".notice").height(); //공지사항의 높이값을 구해주고~~
+	var num = $(".rolling li").length; // 공지사항의 개수를 알아볼수 있어요! length라는 것으로!
+	var max = height * num; //그렇다면 총 높이를 알 수 있겠죠 ?
+	var move = 0; //초기값을 설정해줍니다.
+	function noticeRolling(){
+		move += height; //여기에서 += 이라는 것은 move = move + height 값이라는 뜻을 줄인 거에요.
+		$(".rolling").animate({"top":-move},600,function(){ // animate를 통해서 부드럽게 top값을 올려줄거에요.
+			if( move >= max ){ //if문을 통해 최대값보다 top값을 많이 올렸다면 다시 !
+				$(this).css("top",0); //0으로 돌려주고~
+				move = 0; //초기값도 다시 0으로!
+			};
+		});
+	};
+	noticeRollingOff = setInterval(noticeRolling,3000); //자동롤링답게 setInterval를 사용해서 1000 = 1초마다 함수 실행!!
+	$(".rolling").append($(".rolling li").first().clone()); //올리다보면 마지막이 안보여서 clone을 통해 첫번째li 복사!
+});
+</script>
 </body>
 </html>

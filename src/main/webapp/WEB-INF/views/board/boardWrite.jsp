@@ -37,7 +37,7 @@
 		<div class="item--TEG">
 			 <form id="mForm" method="post" action="<c:url value=''/>" >
 			  <div class="auto-group-ckbr-jBn">
-			    <p class="item--CLG">글쓰기</p>
+			    <p class="item--CLG">재능등록</p>
 			    <p class="writer-tyn"><span> 작성자 :</span> <span id="name">${principal.user.nickName }</span></p>
 			  </div>
 			  <div class="auto-group-musn-abi">
@@ -64,18 +64,18 @@
 			  </div>
 			  <div class="auto-group-btma-Dc4">
 			    <label for="title" style="margin:0px;">제목 :</label>
-			    <input id="title" type="text" style="margin:0px 10px; height: 15px;width: 100%;" placeholder="제목을 작성해주세요"/>
+			    <input id="title" type="text" style="margin:0px 10px; height: 14px;width: 100%;" placeholder="제목을 작성해주세요"/>
 			  </div>
 			  <div class="auto-group-qnps-4cg">
 			    <p class="item--YXr">위치</p>
-			    <select id="cityBox" name="city_code" class="form-select" aria-label="Default select example" style="margin-right:10px;">
+			    <select id="cityBox" name="city_code" class="form-select" aria-label="Default select example" style="margin-right:10px;cursor:pointer;">
 		          <option value="0" >시</option>
 			          <c:forEach var="city" items="${cityList }">
 			          	<option value="${city.city_code}" ${result.board.city_code == city.city_code? 'selected="selected"':''  }>${city.city_name }</option>
 			          </c:forEach>
 		        </select>
 			    <div class="auto-group-z3ag-QTa">
-			      <select id="districtBox" name="district_code" class="form-select" aria-label="Default select example">
+			      <select id="districtBox" name="district_code" class="form-select" aria-label="Default select example" style="cursor:pointer;">
 		            <option value="0" >구</option>
 		            <c:forEach var="district" items="${districtList }">
 			          	<option class="district_name" value="${district.district_code}" ${result.board.district_code == district.district_code?  'selected="selected"':'' }>${district.district_name }</option>
@@ -86,44 +86,44 @@
 			  <div class="group-18-PKW">
 			    
 			    <p class="item--gZW">기부할재능</p>
-			     <select id="give_highBox" name="give_high_code" class="form-select" aria-label="Default select example" style="margin-right:10px;">
+			     <select id="give_highBox" name="give_high_code" class="form-select" aria-label="Default select example" style="margin-right:10px;cursor:pointer;">
 		            <option value="0" >대분류</option>
 		            <c:forEach var="high" items="${talentHighList }">
 			          	<option value="${high.high_code}" ${result.board.high_code == high.high_code? 'selected="selected"':'' }>${high.high_name }</option>
 			          </c:forEach>
 		          </select>
-			    <select id="give_smallBox" name="give_low_code" class="form-select" aria-label="Default select example">
+			    <select id="give_smallBox" name="give_low_code" class="form-select" aria-label="Default select example" style="cursor:pointer;">
 		          <option value="0" >기부할재능</option>
 		          <c:forEach var="small" items="${talentSmallList }">
 		          	<option class="give_small_name" value="${small.low_code}" ${result.board.low_code == small.low_code? 'selected="selected"':''} >${small.low_name }</option>
 		          </c:forEach>
 		        </select>
 			    <p class="item--i8p">기부 받고 싶은 재능</p>
-			    <select id="receive_highBox" name="receive_high_code" class="form-select" aria-label="Default select example" style="margin-right:10px;">
+			    <select id="receive_highBox" name="receive_high_code" class="form-select" aria-label="Default select example" style="margin-right:10px;cursor:pointer;">
 		            <option value="0" >대분류</option>
 		            <c:forEach var="high" items="${talentHighList }">
 			          	<option value="${high.high_code}" ${result.board.high_code == high.high_code? 'selected="selected"':'' }>${high.high_name }</option>
 			          </c:forEach>
 		          </select>
-			    <select id="receive_smallBox" name="receive_low_code" class="form-select" aria-label="Default select example">
+			    <select id="receive_smallBox" name="receive_low_code" class="form-select" aria-label="Default select example" style="cursor:pointer;">
 		          <option value="0" >기부받고싶은재능</option>
 		          <c:forEach var="small" items="${talentSmallList }">
 		          	<option class="receive_small_name" value="${small.low_code}" ${result.board.low_code == small.low_code? 'selected="selected"':''} >${small.low_name }</option>
 		          </c:forEach>
 		        </select>
 			  </div>
- 			  <div id="addfile" class="button-6oa">첨부파일 추가</div>
-			  <!-- 리스트 총괄하는 div -->
-			  <div class="frame-49-NFJ">
-			    <!-- 한줄에 대한 것을 관리하는 div -->
-			<!--     <div class="component-15-hHa"> -->
-			      <div id="filediv" class="auto-group-rdqs-RjN">
-			   <!--      <div><input type='file' name='file" + cnt + "'/></div> -->
-			      </div>
+<!--  			  <div id="addfile" class="button-6oa">첨부파일 추가</div> -->
+<!-- 			  리스트 총괄하는 div -->
+<!-- 			  <div class="frame-49-NFJ"> -->
+<!-- 			    한줄에 대한 것을 관리하는 div -->
+<!-- 			<!--     <div class="component-15-hHa"> -->
+<!-- 			      <div id="filediv" class="auto-group-rdqs-RjN"> -->
+<!-- 			        <div><input type='file' name='file" + cnt + "'/></div> -->
+<!-- 			      </div> -->
 
-			<!--     </div> -->
-			<!-- 한줄끝 -->
-			  </div>
+<!-- 			<!--     </div> -->
+<!-- 			<!-- 한줄끝 --> 
+<!-- 			  </div> -->
 			  <!-- 리스트총괄 끝 -->
 			  <!-- 헤더 -->
 			</form>
@@ -273,24 +273,31 @@
 	    }); 
 	
 	});
-	 var cnt = 0;
-//파일추가 클릭시 파일input택추가	
-$('#addfile').on('click', function(){
-    alert("Click Event!");
-    
-   
-	if(cnt != 3){
-	    $("#filediv").append("<div><input class='component-15-hHa' type='file' name='file" + cnt + "'/></div>");
-	    cnt++;
-		
-	}
-	else{
-		alert("첨부파일 3개 까지만 가능!")
-	}
-});
+// 	 var cnt = 0;
+// 	//파일추가 클릭시 파일input택추가	
+// 	$('#addfile').on('click', function(){
+// 	    alert("Click Event!");
+	    
+	   
+// 		if(cnt != 3){
+// 		    $("#filediv").append("<div><input class='component-15-hHa' type='file' name='file" + cnt + "'/></div>");
+// 		    cnt++;
+			
+// 		}
+// 		else{
+// 			alert("첨부파일 3개 까지만 가능!")
+// 		}
+// 	});
 
 	
-	
+	$('.button-zJ4').on('click', function(){
+		
+		location.href='/board/list';
+	});
+	$('.button-8Wk').on('click', function(){
+		
+		location.href='/board/list';
+	});
 	
 	
 	

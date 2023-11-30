@@ -67,7 +67,19 @@
 		</selectKey>
 		insert into notice(NOTICE_NO,TITLE,CONTENTS,NICKNAME,FIXED_YN,DELETED_YN)
 					values(#{notice_no},#{title},#{contents},'admin','N','N')
-		
 		</insert>
+
+<!-- 메인페이지 공지사항 jQuery 자동롤링배너 -->
+<select id="selectNoticeTOP5"  parameterType="com.project.tnet.dto.NoticeDTO" resultType="com.project.tnet.dto.NoticeDTO">
+	select NOTICE_NO, title, contents
+	from (
+	    select NOTICE_NO, title, contents
+	    from notice
+	    order by NOTICE_NO DESC
+	)
+	<![CDATA[
+	where rownum <= 5
+	]]>	
+</select>
 
 </mapper>
