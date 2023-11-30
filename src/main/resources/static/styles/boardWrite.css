@@ -6,6 +6,9 @@ html {
 	margin: 0;
 	padding: 0;
 }
+header{
+	box-shadow: 0px -1px 5px 2px gray;
+}
 ul, li {
 	list-style: none;
 }
@@ -16,7 +19,7 @@ header{
 	box-shadow: 0px -1px 5px 2px gray;
 }
 body {
-  width: 154rem;
+ 
   margin: 0 auto;
 }.item--TEG {
   width: 100%;
@@ -24,6 +27,9 @@ body {
   position: relative;
   overflow: hidden;
   background-color: #ffffff;
+  top: 10px;
+      left: 70px;
+          margin-bottom: 10px;
 }
 .item--TEG .auto-group-ckbr-jBn {
   box-sizing: border-box;

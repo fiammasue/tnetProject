@@ -33,7 +33,6 @@ public class BoardController {
 	@RequestMapping("/board/list")
 	public String boardList(Board board, Model model) {
 		
-		System.out.println("board -> "+board);
 		model.addAttribute("result",boardService.selectBoardList(board));
 		model.addAttribute("cityList", boardService.getCityCodeList());
 		model.addAttribute("districtList",boardService.getDistrictByCodeList(board));
@@ -103,7 +102,6 @@ public class BoardController {
 		course.setReceive_talent(board.getReceive_talent());
 		course.setWriter_status_code("SC02");
 		course.setApplyer_status_code("SC03");
-		System.out.println("course -> "+course);
 		
 //		수강신청 해야함
 		List<Course> courseList = courseService.getExistCourse(course);
@@ -111,7 +109,6 @@ public class BoardController {
 			courseService.insertCourse(course);
 			result.put("bool", true);
 			result.put("course", myPageService.getCourse(course));
-			System.out.println("coutseeddf -> "+myPageService.getCourse(course));
 			boardService.updateBoardStatus(board);
 		}
 //		이미 수강신청함

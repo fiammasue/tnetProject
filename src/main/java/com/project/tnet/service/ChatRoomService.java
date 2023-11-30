@@ -36,7 +36,6 @@ public class ChatRoomService {
 			board = boardService.getBoard(board);
 			room.setRoom_name("[수강]"+board.getGive_talent()+"&"+board.getReceive_talent());
 			
-			System.out.println("board = > " +board);
 			
 			Course course = Course.builder()
 					.course_id(room.getCourse_id())
@@ -44,14 +43,9 @@ public class ChatRoomService {
 			
 			course = myPageService.getCoursebyId(course);
 			
-			System.out.println("course = > " +course);
 			
 			room.setReceiver(course.getApplyer_nickname());
 			
-			System.out.println("chatRoom = > " +room);
-			
-			
-			System.out.println("room => "+room);
 			
 		}
 		int result = chatRoomDAO.createRoom(room);

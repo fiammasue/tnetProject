@@ -39,7 +39,6 @@ public class ChatRoomController {
 			PrincipalDetails userDetails = (PrincipalDetails) authentication.getPrincipal();
 			MemberVO member= (MemberVO)userDetails.getUser();
 			room.setUser_id(member.getNickName());
-			System.out.println("roomList => "+chatRoomService.selectRoomList(room));
 			model.addAttribute("roomList", chatRoomService.selectRoomList(room));
 			
 		}
@@ -80,7 +79,6 @@ public class ChatRoomController {
 						messageService.updateReadCount(message);
 					}
 					result.put("roomInfo", chatRoomService.findRoomById(value.getRoom_id()));
-					System.out.println("chatList ----> " +messageService.selectMessageList(value.getRoom_id()));
 					result.put("chatList",messageService.selectMessageList(value.getRoom_id()));
 				}
 				else {
@@ -106,8 +104,6 @@ public class ChatRoomController {
 			message.setReceiver(member.getNickName());
 			//읽음으로 변경
 			messageService.updateReadCount(message);
-			System.out.println("roomSender => "+room.getSender());
-			System.out.println("nickName => "+ member.getNickName());
 			//여기서 읽음 카운트 삭제 해야한다
 			if (room.getSender().equals(member.getNickName())) {
 				chatRoomService.updateSenderReadCountZero(roomId);
@@ -128,7 +124,6 @@ public class ChatRoomController {
 	@ResponseBody
 	public ChatRoom roomInfo(@PathVariable(value="room_id") String roomId) {
 		//구독 신청을 할때 
-	System.out.println("구독하러옴");
 		return chatRoomService.findRoomById(roomId);
 	}
 	

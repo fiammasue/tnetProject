@@ -32,7 +32,7 @@
   position: relative;
   top: -30px;
   left: 95px;
-  z-index: 10;
+  font-size: 15px;
 }
 .wrap {
   padding: 40px 0;
@@ -165,16 +165,21 @@
   resize: none;
       padding: 10px;
       font-size: 15px;
+        background-color: #f7f7f7;
 }
+#messageBox:focus{
+	outline:none;
+	}
 
 #sendMessage{
   position: relative;
-  left: 426px;
+  left: 445px;
   background-color: #f9eb54;
   padding: 10px 20px;
   border: none;
   border-radius: 9px;
   cursor: pointer;
   font-size: 15px;
+
   
 }

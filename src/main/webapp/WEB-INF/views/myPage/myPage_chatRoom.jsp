@@ -111,7 +111,7 @@
 		</div>
 	</div>
 	<!-- 채팅창 -->
-	<div class="chatRoomDialog" style="display:none;">
+	<div class="chatRoomDialog" style="display:none;overflow-x: hidden;padding:0px;">
 	    <div class="chatRoom-header">
 	    <div style="display:none;" class="roomId"></div>
 	      <div class="cover-image">
