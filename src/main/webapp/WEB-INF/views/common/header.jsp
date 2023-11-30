@@ -234,18 +234,6 @@
    
 <script>
 // JSP에서 로그인 성공 메시지를 확인하고 alert을 생성하는 함수
-function showLoginSuccessMessage() {
-    // 세션에서 로그인 성공 메시지를 가져오기
-    var loginSuccessMessage = '<%= Objects.toString(session.getAttribute("loginSuccessMessage"), "") %>';
-    
-    // 로그인 성공 메시지가 비어있지 않다면 alert을 생성
-    if (loginSuccessMessage) {
-        alert(loginSuccessMessage);
-    }
-    
-    // 로그인 성공 메시지를 세션에서 제거
-    <%-- <%= session.removeAttribute("loginSuccessMessage") %>; --%>
-}
 
 	/* 로그인 다이얼로그 창 띄우는 jquery */
 	var loginDialog = $( "#LoginDialog" ).dialog({
@@ -261,7 +249,6 @@ function showLoginSuccessMessage() {
 	/* 로그인 다이얼로그 이벤트핸들러*/
 	$("#loginForm").on("click", function() {
 		loginDialog.dialog("open");
-		   showLoginSuccessMessage(); // alert을 생성하는 함수 호출
 	});
 
 	//웹소켓 연결
