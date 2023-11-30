@@ -689,11 +689,17 @@
          dateElement.textContent = formattedDate;
 
          acceptBucket.appendChild(card);
+         
+      	 // 흔들리는 애니메이션 클래스 추가
+         card.classList.add('accept_shake');
 
          const waitingCards = document.querySelectorAll('.bucket.waiting .task-card');
          waitingCards.forEach(waitingCard => {
             //대기칸에 있는 카드 중에 board_id가 같으면
              if (waitingCard.getAttribute('data-boardid') === boardId) {
+            	 // 흔들리는 애니메이션 클래스 추가
+                 waitingCard.classList.add('reject_shake');
+            	
                  //거절칸에 추가
                  rejectBucket.appendChild(waitingCard);
 
@@ -704,9 +710,14 @@
                  statusChange.classList.remove('waiting');
                  statusChange.classList.add('reject');
                  statusChange.textContent = '진행 요청 거절..';
+                 
+                 // 애니메이션 종료 후 애니메이션 클래스 제거 (2초 후)
+                 setTimeout(function () {
+                     waitingCard.classList.remove('reject_shake');
+                 }, 2000);
+              
              }
          });
-         acceptBucket.appendChild(card);
 
          // 대기칸에서 수락칸으로 이동한 카드에 대한 클릭 이벤트 처리
          card.addEventListener('click', function (e) {
@@ -716,6 +727,11 @@
              console.log("수락칸 이동: " ,courseId);
              openCourseModal(courseId, boardId);
          });
+         
+         // 애니메이션 종료 후 애니메이션 클래스 제거 (2초 후)
+         setTimeout(function () {
+             card.classList.remove('accept_shake');
+         }, 2000);
           
       });
       
@@ -728,8 +744,7 @@
           const statusChange = card.querySelector('.status');
            
           const boardId = card.getAttribute('data-boardid'); // 대기칸으로 이동할 때 board_id를 가져옵니다.
-         
-          console.log(boardId);
+
           // 여기에서 'boardIdExistsInProgress' 함수를 사용하여 진행칸에 동일한 board_id가 있는지 확인합니다.
           if (boardIdExistsInAccept(boardId)) {
               alert('이미 진행이 결정된 강의입니다.');
@@ -738,9 +753,17 @@
           
           // 서버에서 진짜 데이터가 바뀔 수 있도록 함
           const courseId = card.getAttribute('data-courseid');
-          console.log(courseId);
-          updateWaiting(courseId);
+          const courseInvolve = updateWaiting(courseId);
           
+       	  // 다시 진행을 대기로 옮기면 알람메시지 띄움
+          ws.send("/pub/join/reWaiting",{},JSON.stringify({
+                        type:'ALARM'
+                        ,type_string:"ALARM"
+                        ,sender:"${principal.user.nickName}"
+                        ,course_id:courseId
+                        ,board_id:boardId
+                        }));
+       
            //화면 데이터 바뀔 수 있도록 함
            // 클래스명, 상태 코드, 날짜 변경
            statusChange.classList.remove('reject');
@@ -799,7 +822,7 @@
            statusChange.classList.add('reject');
            statusChange.textContent = '진행 요청 거절..';
            
-          rejectBucket.appendChild(card);
+           rejectBucket.appendChild(card);
       });
       
       
@@ -1206,7 +1229,15 @@
                  
                     // 테스크 카드 클래스 변경
                     taskCard.addClass("dontMove");
+					
+                    // 깜빡거리는 효과를 주기 위한 클래스 추가
+                    taskCard.addClass('blink');
 
+                    // 2초 후에 깜빡거리는 효과를 제거
+                    setTimeout(function () {
+                    	taskCard.removeClass('blink');
+                    }, 2000);
+                    
                     // status 클래스 변경
                     const statusElement = taskCard.find(".status");
                     statusElement.addClass("dontMove");
@@ -1246,6 +1277,14 @@
                     // 테스크 카드 클래스 변경
                     taskCard.removeClass("task-card dontMove").addClass("task-card");
 
+                 	// 깜빡거리는 효과를 주기 위한 클래스 추가
+                    taskCard.addClass('blink');
+                 
+                    // 2초 후에 깜빡거리는 효과를 제거
+                    setTimeout(function () {
+                    	taskCard.removeClass('blink');
+                    }, 2000);
+                 
                     // status 클래스 변경
                     const statusElement = taskCard.find(".status");
                     statusElement.removeClass("accept dontMove").addClass("accept");
@@ -1290,6 +1329,14 @@
                     // 테스크 카드 클래스 변경
                     taskCard.removeClass("task-card").addClass("task-card dontMove");
 
+                    // 깜빡거리는 효과를 주기 위한 클래스 추가
+                    taskCard.addClass('blink');
+                    
+                    // 2초 후에 깜빡거리는 효과를 제거
+                    setTimeout(function () {
+                    	taskCard.removeClass('blink');
+                    }, 2000);
+                 
                     // status 클래스 변경
                     const statusElement = taskCard.find(".status");
                     statusElement.removeClass("accept").addClass("trash dontMove");
@@ -1420,6 +1467,14 @@
                      // 테스크 카드 클래스 변경
                      taskCard.removeClass("dontMove");
 
+                     // 깜빡거리는 효과를 주기 위한 클래스 추가
+                     taskCard.addClass('blink');
+                  
+                     // 2초 후에 깜빡거리는 효과를 제거
+                     setTimeout(function () {
+                     	taskCard.removeClass('blink');
+                     }, 2000);
+                  
                      // status 클래스 변경
                      const statusElement = taskCard.find(".status");
                      statusElement.removeClass("completed-waiting dontMove").addClass("accept");
@@ -1431,9 +1486,15 @@
                      
                      // "acceptBucket"로 이동시킬 테스크 카드 생성
                      const taskCardClone = taskCard.clone();
+                     
+                     // 2초 후에 깜빡거리는 효과를 제거
+                     setTimeout(function () {
+                    	 taskCardClone.removeClass('blink');
+                     }, 2000);
 
                      // "acceptBucket"에 테스크 카드 추가
                      acceptBucket.append(taskCardClone);
+                     
                      var text = $('#viewForm2').find('.detail-board_id').text();
                      var parts = text.split('.'); // 마침표를 기준으로 문자열 분할
                      var boardId = parts[1]; 

@@ -17,9 +17,9 @@ body {
   margin:0 auto;
 }.item--mGL {
   box-sizing: border-box;
-  padding-bottom: 16.6587rem;
+  /*padding-bottom: 16.6587rem;*/
   top: 150px;
-  margin-bottom: 70px;
+  margin-bottom: 283px;
   width: 100%;
   overflow: hidden;
   position: relative;

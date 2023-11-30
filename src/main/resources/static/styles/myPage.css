@@ -1978,6 +1978,7 @@ button:hover {
   padding: 5px;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
+  border-radius:5px;
   background-color: white
 }
 
@@ -2000,7 +2001,7 @@ button:hover {
 }
 
 .tasks {
-  padding: 15px;
+  padding-top: 15px;
   max-height: 500px;
   min-height: 500px;
   min-width: 300px;
@@ -2021,12 +2022,69 @@ button:hover {
   background: #84848447;  /*스크롤바 뒷 배경 색상*/
 }
 
+/* 흔들리는 애니메이션 효과를 정의하는 키프레임 */
+@keyframes accept_shake {
+  0% {
+    transform: rotate(0deg)
+    }
+  25% {
+      transform: rotate(-4deg);
+    }
+  50% {
+      transform: rotate(4deg);
+    }
+  75% {
+      transform: rotate(-4deg);
+    }
+  100% {
+      transform: rotate(0deg);
+    }
+}
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.blink {
+  animation: blink 1s infinite;
+}
+@keyframes reject_shake {
+  0% {
+    transform: translateX(0) rotate(0deg);
+  }
+  10% {
+    transform: translateX(10px) rotate(5deg);
+  }
+  50% {
+    transform: translateX(5px) rotate(2deg);
+  }
+  100% {
+    transform: translateX(0) rotate(0deg);
+  }
+}
+ /*대기칸에서 거절칸으로 이동한 카드에 흔들리는 애니메이션을 적용하는 클래스 */
+.reject_shake {
+  animation: reject_shake 1.8s ease-in-out;
+}
+/* 대기칸에서 수락칸으로 이동한 카드에 흔들리는 애니메이션을 적용하는 클래스 */
+.accept_shake {
+  animation: accept_shake 1.8s ease-in-out;
+}
+
 .task-card {
   background-color: #fff;
   border: 1px solid #ccc;
   margin-bottom: 10px;
-  padding: 7px 7px 0 7px;
+  padding: 7px 7px 7px;
   min-width: 250px;
+  border-radius: 5px;
   transition: box-shadow 0.3s ease; /* 트랜지션 효과 추가 */
 }
 
@@ -2187,6 +2245,7 @@ button:hover {
   font-weight: bold;
   flex: 1.5;
   float: left; /* 왼쪽으로 부유시킴 */
+  margin: 3px 0;
 }
 
 .date {
@@ -2194,6 +2253,7 @@ button:hover {
   flex: 1;
   float: right; /* 오른쪽으로 부유시킴 */
   text-align: right; /* 텍스트를 오른쪽으로 정렬함 */
+  margin: 3px 0;
 }
 
 /* 수락 버킷 스타일 */
