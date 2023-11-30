@@ -273,7 +273,6 @@
 	function chatRecvMessage(recv) {
 		console.log(recv)
 		
-			
 		if (recv.type_string==="ALARM") {
 			if(flag === 0){
 				var bellBadgeElement = document.getElementById("bellBadge");
@@ -486,16 +485,60 @@
 			 $(".tasks.accept").append(agreeInfo);
 		}
 		else if (recv.type_string==="REJECT_INVOLVE"){
-			alert("오니?");
+			
 			//태그삭제
 			 var className = "course-"+recv.course_id;
 			 var selectedElement = $('[id^="' + className + '"]');
+			 selectedElement.addClass('fade-out-box');
 			 selectedElement.remove();
 			 
 				var rejectInfo = `
 					<div class="task-card dontMove" draggable="false" id="course-`+ recv.course_id + `" data-courseid="`+ recv.course_id  +`" data-boardid="`+ recv.board_id  +`">
 					<div class="card-top">
 					<p class="status reject dontMove">`+ recv.status_code +`</p>
+					<p class="card-board_id">no. ` + recv.board_id +`</p>
+					</div>
+					<p class="task-name dontMove">` + recv.title + `</p>
+					<div class="details">`
+					
+					if (recv.applyer_nickname == "${principal.user.nickName}") {
+						rejectInfo += `	<p class="requester">신청자 : `+ recv.applyer_nickname + `</p>`
+						
+					}
+					else {
+						rejectInfo += `<p class="requester">요청자 : `+ recv.applyer_nickname +`</p>`
+						
+					}
+	                   
+						rejectInfo +=   ` <p class="date"></p>
+					</div>
+				</div>`;
+			 
+				// 태그 추가
+			 $(".tasks.reject").append(rejectInfo);
+			
+			 //태그를 찾아서 클래스를 등록해주고 2초뒤 태그 삭제
+             var className1 = "course-"+recv.course_id;
+             var selectedElement1 = $('[id^="' + className + '"]');
+             selectedElement1.addClass('fade-in-box');
+            
+            
+             setTimeout(function () {
+               selectedElement1.removeClass('fade-in-box');
+             }, 2000);
+		}
+		else if (recv.type_string==="REWAITING_INVOLVE"){
+
+			//태그삭제
+			 var className = "course-"+recv.course_id;
+			 var selectedElement = $('[id^="' + className + '"]');
+			 selectedElement.addClass('fade-out-box');
+			 selectedElement.remove();
+			 
+				var agreeInfo = `
+					<div class="task-card dontMove" draggable="false" id="course-`+ recv.course_id + `" data-courseid="`+ recv.course_id  +`" data-boardid="`+ recv.board_id  +`">
+					<div class="card-top">
+					<p class="status waiting dontMove">`+ recv.status_code +`</p>
 					<p class="card-board_id">no. ` + recv.board_id +`</p>
 					</div>
 					<p class="task-name dontMove">` + recv.title + `</p>
@@ -510,12 +553,21 @@
 						
 					}
 	                   
-		            agreeInfo +=   ` <p class="date">`+ recv.start_date+`</p>
+		            agreeInfo +=   ` <p class="date"></p>
 					</div>
 				</div>`;
 			 
 				// 태그 추가
-			 $(".tasks.reject").append(rejectInfo);
+			 $(".tasks.waiting").append(agreeInfo);
+			 //태그를 찾아서 클래스를 등록해주고 2초뒤 태그 삭제
+             var className1 = "course-"+recv.course_id;
+             var selectedElement1 = $('[id^="' + className + '"]');
+             selectedElement1.addClass('fade-in-box');
+            
+            
+             setTimeout(function () {
+               selectedElement1.removeClass('fade-in-box');
+             }, 2000);
 		}
 		else if (recv.type_string==="COMPLETE_AGREE"){
 
