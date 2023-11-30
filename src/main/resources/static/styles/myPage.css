@@ -1937,14 +1937,14 @@ button:hover {
 
 /* 스타일 추가: 첫 번째 탭 버튼 활성화 스타일 */
 .tab-button-myPage:first-child.active {
-  background-color: #00b074;
-  color: white;
+  background-color: #041c375e;
+  color: #f4f2f2;
   font-weight: bold;
 }
 
 .tab-button-myPage:last-child.active {
-  background-color: #4f87f5;
-  color: white;
+  background-color: #041c375e;
+  color: #f4f2f2;
   font-weight: bold;
 }
 
@@ -2001,7 +2001,7 @@ button:hover {
 }
 
 .tasks {
-  padding-top: 15px;
+  padding: 15px 5px;
   max-height: 500px;
   min-height: 500px;
   min-width: 300px;
@@ -2258,42 +2258,42 @@ button:hover {
 
 /* 수락 버킷 스타일 */
 .bucket.accept {
-  background-color: #66bb6a; /* 초록색 */
+  background-color: #7ebb6675; /* 초록색 */
   color: #fff;
   border-radius: 7px;
 }
 
 /* 대기 버킷 스타일 */
 .bucket.waiting {
-  background-color: rgba(255, 165, 80); /* 주황색 */
+  background-color: rgb(244 219 104 / 42%); /* 주황색 */
   color: #fff;
   border-radius: 7px;
 }
 
 /* 거절 버킷 스타일 */
 .bucket.reject {
-  background-color: rgba(255, 0, 0, 0.7); /* 빨간색 */
+  background-color: rgb(255 0 0 / 21%); /* 빨간색 */
   color: #fff;
   border-radius: 7px;
 }
 
 /* 완료 버킷 스타일 */
 .bucket.completed {
-  background-color: #4f87f5; /* 파랑색 */
+  background-color: #4f87f599; /* 파랑색 */
   color: #fff;
   border-radius: 7px;
 }
 
 /* 대기 버킷 스타일 */
 .bucket.completed-waiting {
-  background-color: rgba(255, 165, 80); /* 주황색 */
+  background-color: rgb(244 219 104 / 42%); /* 주황색 */
   color: #fff;
   border-radius: 7px;
 }
 
 /* 휴지통 버킷 스타일 */
 .bucket.trash {
-  background-color: rgba(0, 0, 0, 0.7); /* 검은색 */
+  background-color: rgb(0 0 0 / 38%); /* 검은색 */
   color: #fff;
   border-radius: 7px;
 }
@@ -2319,8 +2319,9 @@ button:hover {
 
 button#detail-complete {
   font-size: 13px;
-  background-color: #d6be0f;
-  color: white;
+  background-color: #d6be0f78;
+  color: #605e5e;
+  font-weight: bold;
   border-radius: 5px;
   padding: 5px 10px;
   cursor: pointer;
@@ -2330,7 +2331,7 @@ button#detail-complete {
 button#detail-reAccept {
   font-size: 13px;
   background-color: #4f87f5;
-  color: white;
+  color: #656464;
   border-radius: 5px;
   padding: 5px 10px;
   cursor: pointer;
@@ -2339,8 +2340,9 @@ button#detail-reAccept {
 
 button#detail-cancel {
   font-size: 13px;
-  background-color: #ff5858;
-  color: white;
+  background-color: #ff585894;
+  color: #605e5e;
+  font-weight: bold;
   border-radius: 5px;
   padding: 5px 10px;
   cursor: pointer;
@@ -2350,7 +2352,7 @@ button#detail-cancel {
 button#detail-cancelAccept {
   font-size: 13px;
   background-color: #5f3f3f;
-  color: white;
+  color: #656464;
   border-radius: 5px;
   padding: 5px 10px;
   cursor: pointer;
@@ -2360,7 +2362,7 @@ button#detail-cancelAccept {
 button#detail-reAccept2 {
   font-size: 13px;
   background-color: #27ae60;
-  color: white;
+  color: #656464;
   border-radius: 5px;
   padding: 5px 10px;
   cursor: pointer;
