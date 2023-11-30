@@ -112,7 +112,46 @@
 .alarmChatAnchor:hover {
 	text-decoration: none; /* 밑줄 제거 */
 	color: inherit; /* 부모 엘리먼트의 색상 상속 */
-} 	       	  
+} 
+
+/* fadout 지우기 */
+.fade-out-box {
+  -webkit-animation: completInvolve 1s;
+    animation-fill-mode: forwards;
+}
+
+	@keyframes completInvolve {
+		    from {
+		        opacity: 1;
+		    }
+		    to {
+		        opacity: 0;
+		    }
+	}
+
+	/* fadin 나오기*/
+	.fade-in-box {
+		-webkit-animation: shake 1s;
+	}
+
+	@keyframes shake {
+	  0% {
+	    transform: rotate(0deg)
+	    }
+	  25% {
+	      transform: rotate(-4deg);
+	    }
+	  50% {
+	      transform: rotate(4deg);
+	    }
+	  75% {
+	      transform: rotate(-4deg);
+	    }
+	  100% {
+	      transform: rotate(0deg);
+	    }
+	}
+	       	  
   </style>
   
 </head>
@@ -285,7 +324,6 @@
 				//채팅방의 안읽음 표시 올리기
 				var selectedElement = $('.chat-metadata.room-'+recv.room_id);
 				var deletedElement =$('.unread-messages.count-'+recv.room_id);
-				console.log("deletedElement => ",deletedElement)
 				deletedElement.remove();
 				
 				countInfo = `<div class="unread-messages count-`+ recv.room_id +`">`+ recv.receiver_count +`</div>`;
@@ -296,7 +334,6 @@
 				//채팅방 알림 교체
 				//채팅방에 대한 알람 찾기
 				 var selectedElement = $('input.room-id-'+recv.room_id);
-				console.log("selectedElement - > ",selectedElement);
 				
 				if(selectedElement.length !== 0){
 					//채팅방에 대한 알람 교체
@@ -409,7 +446,6 @@
                    chatListInfo+=`</div>`;
              
           }
-          console.log(chatListInfo)
          $('.wrap').append(chatListInfo); 
          var divElement = $(".wrap");
             $(".wrap").scrollTop(divElement[0].scrollHeight);
@@ -425,6 +461,7 @@
       }
       else if (recv.type_string==="AGREE") {
        
+    	  
          var agreeInfo = `
             <div class="task-card" draggable="true" ondragstart="drag(event)" id="course-`+ recv.course_id + `" data-courseid="`+ recv.course_id  +`" data-boardid="`+ recv.board_id  +`">
             <div class="card-top">
@@ -447,17 +484,31 @@
 	            agreeInfo +=   ` <p class="date"></p>
 				</div>
 			</div>`;
-			
 			$(".tasks.waiting").append(agreeInfo);
-			console.log(agreeInfo);
+			
+			//태그를 찾아서 클래스를 등록해주고 2초뒤 태그 삭제
+			var className = "course-"+recv.course_id;
+			 var selectedElement = $('[id^="' + className + '"]');
+			 selectedElement.addClass('fade-in-box');
+			
+			
+			setTimeout(function () {
+				selectedElement.removeClass('fade-in-box');
+            }, 2000);
+
 			
 		}
 		else if (recv.type_string==="AGREE_INVOLVE"){
-
+//.fade-out-box
 			//태그삭제
 			 var className = "course-"+recv.course_id;
-			 var selectedElement = $('[id^="' + className + '"]');
-			 selectedElement.remove();
+			 var selectedElement = $('.tasks.waiting [id^="' + className + '"]');
+			 console.log(selectedElement)
+			 selectedElement.addClass('fade-out-box');
+			 setTimeout(function () {
+				 selectedElement.remove();
+	            }, 2000);
+			 
 			 
 				var agreeInfo = `
 					<div class="task-card" draggable="true" ondragstart="drag(event)" id="course-`+ recv.course_id + `" data-courseid="`+ recv.course_id  +`" data-boardid="`+ recv.board_id  +`">
@@ -483,6 +534,17 @@
 			 
 				// 태그 추가
 			 $(".tasks.accept").append(agreeInfo);
+				
+			//태그를 찾아서 클래스를 등록해주고 2초뒤 태그 삭제
+				var className1 = "course-"+recv.course_id;
+				 var selectedElement1 = $('.tasks.accept [id^="' + className + '"]');
+				 
+				 selectedElement1.addClass('fade-in-box');
+				
+				
+				setTimeout(function () {
+					selectedElement1.removeClass('fade-in-box');
+	            }, 2000);
 		}
 		else if (recv.type_string==="REJECT_INVOLVE"){
 			
@@ -573,10 +635,11 @@
 
 			
 			 var className = "course-"+recv.course_id;
-			console.log(className);
-			 var selectedElement = $('[id^="' + className + '"]');
-			 console.log(selectedElement)
-			 selectedElement.remove();
+			 var selectedElement = $('.tasks.accept [id^="' + className + '"]');
+			 selectedElement.addClass('fade-out-box');
+			 setTimeout(function () {
+				 selectedElement.remove();
+	            }, 2000);
 			 
 				var agreeInfo = `
 					<div class="task-card" draggable="true" ondragstart="drag(event)" id="course-`+ recv.course_id + `" data-courseid="`+ recv.course_id  +`" data-boardid="`+ recv.board_id  +`">
@@ -603,16 +666,31 @@
 				
 				// 태그 추가
 		    $(".tasks.completed-waiting").append(agreeInfo);
+		  //태그를 찾아서 클래스를 등록해주고 2초뒤 태그 삭제
+			var className1 = "course-"+recv.course_id;
+			 var selectedElement1 = $('.tasks.completed-waiting [id^="' + className + '"]');
+			 
+			 selectedElement1.addClass('fade-in-box');
+			
+			
+			setTimeout(function () {
+				selectedElement1.removeClass('fade-in-box');
+            }, 2000);
+				
 	          const rejectBucket = $(".kanban-board .bucket.reject .tasks");
 	          const taskCard2 = $(".kanban-board .bucket.reject .tasks .task-card[data-boardid='" + recv.board_id + "']");
+	          taskCard2.addClass('fade-out-box');
 	          taskCard2.remove();
 		}
 		else if (recv.type_string==="COMPLETE_INVOLVE"){
 
 			
 			 var className = "course-"+recv.course_id;
-			 var selectedElement = $('[id^="' + className + '"]');
-			 selectedElement.remove();
+			 var selectedElement = $('.tasks.completed-waiting [id^="' + className + '"]');
+			 selectedElement.addClass('fade-out-box');
+			 setTimeout(function () {
+				 selectedElement.remove();
+	            }, 2000);
 			 
 				var agreeInfo = `
 					<div class="task-card" draggable="true" ondragstart="drag(event)" id="course-`+ recv.course_id + `" data-courseid="`+ recv.course_id  +`" data-boardid="`+ recv.board_id  +`">
@@ -639,11 +717,24 @@
 				
 				// 태그 추가
 		    $(".tasks.completed").append(agreeInfo);
+		  //태그를 찾아서 클래스를 등록해주고 2초뒤 태그 삭제
+			var className1 = "course-"+recv.course_id;
+			 var selectedElement1 = $('.tasks.completed [id^="' + className + '"]');
+			 
+			 selectedElement1.addClass('fade-in-box');
+			
+			
+			setTimeout(function () {
+				selectedElement1.removeClass('fade-in-box');
+            }, 2000);
 		}
 		else if(recv.type_string==="RETURN_WAITING"){
 			var className = "course-"+recv.course_id;
-			 var selectedElement = $('[id^="' + className + '"]');
-			 selectedElement.remove();
+			 var selectedElement = $('.tasks.completed-waiting [id^="' + className + '"]');
+			 selectedElement.addClass('fade-out-box');
+			 setTimeout(function () {
+				 selectedElement.remove();
+	            }, 2000);
 			 
 			 var agreeInfo = `
 					<div class="task-card" draggable="true" ondragstart="drag(event)" id="course-`+ recv.course_id + `" data-courseid="`+ recv.course_id  +`" data-boardid="`+ recv.board_id  +`">
@@ -669,6 +760,16 @@
 			 
 				// 태그 추가
 			 $(".tasks.accept").append(agreeInfo);
+			 //태그를 찾아서 클래스를 등록해주고 2초뒤 태그 삭제
+				var className1 = "course-"+recv.course_id;
+				 var selectedElement1 = $('.tasks.accept [id^="' + className + '"]');
+				 
+				 selectedElement1.addClass('fade-in-box');
+				
+				
+				setTimeout(function () {
+					selectedElement1.removeClass('fade-in-box');
+	            }, 2000);
 		}
 		
 		
