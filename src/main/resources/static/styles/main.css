@@ -260,7 +260,7 @@ height: 155px;
 }
 
 #notice_rolling {
-  background-color: #dfdfe3; /* 배경 색상 설정 */
+  background-color: #ebebeb; /* 배경 색상 설정 */
   padding: 10px; /* 내용과 경계 사이의 간격 설정 */
   margin: 10px 0; /* 상단과 하단 간격 설정 */
   /*border: 1px solid #ccc; /* 테두리 스타일 설정 */
@@ -373,9 +373,11 @@ height: 155px;
 
 #detail {
   float: right;
-  padding: 3px 12px; /* 버튼 크기 조절을 위한 패딩 추가 */
-  background-color: green; color: #fff;
+  padding: 5px 12px; /* 버튼 크기 조절을 위한 패딩 추가 */
+  background-color: #7ebb6675; color: #fff;
   border-radius: 20px; /* 둥근 테두리 적용 (선택 사항) */
+  border: none;
+  
 }
 
 #detail:hover{

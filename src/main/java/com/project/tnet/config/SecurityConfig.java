@@ -65,7 +65,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		
         http.csrf().disable()	// csrf 토큰을 비활성화
         	.authorizeRequests() // 요청 URL에 따라 접근 권한을 설정
-			.antMatchers("/", "/auth/**", "/api/auth/**", "/scripts/**","/styles/**","/assets/**", "/**").permitAll() // 해당 경로들은 접근을 허용
+			.antMatchers("/", "/auth/**", "/api/auth/**", "/scripts/**","/styles/**","/assets/**").permitAll() // 해당 경로들은 접근을 허용
 			 //여러개의 권한 중 하나라도 있으면 성공 
 			.antMatchers("/manager/**").hasAnyAuthority("ROLE_MANAGER","ROLE_ADMIN") //MANAGER, ADMIN 권한만 허가 됨 
 			.antMatchers("/admin/**").hasAnyAuthority("ROLE_ADMIN") //ADMIN 권한만 허가  
