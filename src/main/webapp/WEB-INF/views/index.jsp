@@ -15,6 +15,7 @@
   </style>  
 </head>
 <body>
+
   <div id="container">    
   <div id="slideShow">
     <div id="slides">
@@ -22,8 +23,8 @@
       <img src="/assets/slideshow7.jpg" alt="">
       <img src="/assets/slideshow8.jpg" alt="">
       <img src="/assets/slideshow9.jpg" alt="">
-      <button class="slideShowButton" id="prev">&lang;</button>
-      <button class="slideShowButton" id="next">&rang;</button>
+      <!-- <button class="slideShowButton" id="prev">&lang;</button>
+      <button class="slideShowButton" id="next">&rang;</button> -->
     </div>
   </div>
 
@@ -167,6 +168,21 @@
   </div>
   
  <script>
+ document.addEventListener('DOMContentLoaded', function() {
+	    var urlParams = new URLSearchParams(window.location.search);
+	    var exception = urlParams.get('exception');
+
+	    if (exception === 'locked') {
+	        alert("계정이 잠겼습니다.");
+	    } else if (exception === 'expiredAccount'){
+	       alert("유효하지 않은 계정입니다.");
+	    }else if(exception === 'wrongIdPassword'){
+	    	alert("이메일 또는 비밀번호가 일치하지 않습니다.")
+	    }
+	});
+ 
+ 
+ 
     $(document).ready(function () {
         // li 태그를 클릭했을 때의 이벤트 핸들러를 정의합니다.
         $("ul.cls li").click(function () {
