@@ -1132,7 +1132,7 @@ ul.activity-list > li {
 .profile-left {
   padding: 40px 10px;
   float: left;
-  width: 45%;
+  width: 40%;
   height: 100%;
   background-color: #F8F8F8; }
 
@@ -1830,7 +1830,7 @@ ul.activity-timeline > li {
 /* 테이블 헤더 스타일링 */
 .column-header {
   font-weight: bold;
-  background-color: #FFDE69;
+  background-color: #edffea;
   color: #333;
   padding: 10px;
   text-align: center;
@@ -1940,14 +1940,12 @@ button:hover {
   background-color: #00b074;
   color: white;
   font-weight: bold;
-  border: 1.5px solid black;
 }
 
 .tab-button-myPage:last-child.active {
   background-color: #4f87f5;
   color: white;
   font-weight: bold;
-  border: 1.5px solid black;
 }
 
 /* 진행중 탭버튼 완료*/
@@ -2187,7 +2185,7 @@ button:hover {
 .requester {
   font-size: 12px;
   font-weight: bold;
-  flex: 1;
+  flex: 1.5;
   float: left; /* 왼쪽으로 부유시킴 */
 }
 

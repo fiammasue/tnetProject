@@ -482,6 +482,38 @@
 				// 태그 추가
 			 $(".tasks.accept").append(agreeInfo);
 		}
+		else if (recv.type_string==="REJECT_INVOLVE"){
+			alert("오니?");
+			//태그삭제
+			 var className = "course-"+recv.course_id;
+			 var selectedElement = $('[id^="' + className + '"]');
+			 selectedElement.remove();
+			 
+				var rejectInfo = `
+					<div class="task-card dontMove" draggable="false" id="course-`+ recv.course_id + `" data-courseid="`+ recv.course_id  +`" data-boardid="`+ recv.board_id  +`">
+					<div class="card-top">
+					<p class="status reject dontMove">`+ recv.status_code +`</p>
+					<p class="card-board_id">no. ` + recv.board_id +`</p>
+					</div>
+					<p class="task-name dontMove">` + recv.title + `</p>
+					<div class="details">`
+					
+					if (recv.applyer_nickname == sender) {
+						agreeInfo += `	<p class="requester">신청자 : `+ recv.applyer_nickname + `</p>`
+						
+					}
+					else {
+						agreeInfo += `<p class="requester">요청자 : `+ recv.applyer_nickname +`</p>`
+						
+					}
+	                   
+		            agreeInfo +=   ` <p class="date">`+ recv.start_date+`</p>
+					</div>
+				</div>`;
+			 
+				// 태그 추가
+			 $(".tasks.reject").append(rejectInfo);
+		}
 		else if (recv.type_string==="COMPLETE_AGREE"){
 
 			

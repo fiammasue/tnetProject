@@ -115,6 +115,9 @@ public class MyPageService {
 	public Course getCourseAgreeInvolve(Course course) {
 		return myPageDAO.getCourseAgreeInvolve(course);
 	}
+	public Course getCourseRejectInvolve(Course course) {
+		return myPageDAO.getCourseRejectInvolve(course);
+	}
 	public Course getCourseCompleteAgree(Course course) {
 		return myPageDAO.getCourseCompleteAgree(course);
 	}
@@ -125,4 +128,5 @@ public class MyPageService {
 	public boolean trashClear(String nickName, int course_id) throws Exception {
 		return myPageDAO.trashClear(nickName, course_id);
 	}
+
 }

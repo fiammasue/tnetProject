@@ -510,8 +510,8 @@
    /* ************************************************************************** */
    //드래그
    function drag(event) {
-      console.log(event)
-     event.dataTransfer.setData('text', event.target.id);
+      console.log(event);
+      event.dataTransfer.setData('text', event.target.id);
    }
    
    $(document).ready(function() {
@@ -779,8 +779,17 @@
            
           // 서버에서 진짜 데이터가 바뀔 수 있도록 함
           const courseId = card.getAttribute('data-courseid');
-          updateReject(courseId);
-          
+          const boardId = card.getAttribute('data-boardid');
+          const courseInvolve = updateReject(courseId);
+          // 진행 거절하면 알람메시지 띄움
+          ws.send("/pub/join/reject",{},JSON.stringify({
+                        type:'ALARM'
+                        ,type_string:"REJECT_INVOLVE"
+                        ,sender:"${principal.user.nickName}"
+                        ,course_id:courseId
+                        ,board_id:boardId
+                        }));
+       
            //화면 데이터 바뀔 수 있도록 함
            // 클래스명, 상태 코드, 날짜 변경
            statusChange.classList.remove('waiting');
@@ -964,35 +973,7 @@
 
       // Step 5
       // 대기 상태 칸반보드 카드 요소에 드래그 앤 드롭 이벤트를 추가
-      const waitingCards = document.querySelectorAll('.bucket.waiting .task-card');
       
-      waitingCards.forEach(card => {
-          card.setAttribute('draggable', 'true');
-          card.addEventListener('dragstart', function(event) {
-             drag(event);
-          });
-          card.addEventListener('dragend', function(event) {
-              // 드래그 종료 후 필요한 동작 추가
-             event.preventDefault();
-          });
-          card.addEventListener('dragenter', function(event) {
-              // 드래그된 항목이 들어왔을 때 필요한 동작 추가
-             event.preventDefault();
-          });
-          card.addEventListener('dragleave', function(event) {
-              // 드래그된 항목이 범위를 벗어났을 때 필요한 동작 추가
-             event.preventDefault();
-          });
-          card.addEventListener('dragover', function(event) {
-              event.preventDefault();
-          });
-          card.addEventListener('drop', function(event) {
-              event.preventDefault();
-              const courseId = card.getAttribute('data-courseid');
-              event.target.appendChild(document.getElementById(event.dataTransfer.getData('text')));
-
-          });
-      });
       
       // 대기 상태(본인이 신청한글) 칸반보드 카드 요소에 드래그 앤 드롭 이벤트 해제
       const dontMoveCards = document.querySelectorAll('.bucket.waiting .task-card.dontMove');
@@ -1001,36 +982,6 @@
           card.setAttribute('draggable', 'false');
       });
           
-      // 거절 상태 칸반보드 카드 요소에 드래그 앤 드롭 이벤트
-      const rejectCards = document.querySelectorAll('.bucket.reject .task-card');
-
-      rejectCards.forEach(card => {
-          card.setAttribute('draggable', 'true');
-          card.addEventListener('dragstart', function(event) {
-              drag(event);
-          });
-          card.addEventListener('dragend', function(event) {
-              // 드래그 종료 후 필요한 동작 추가
-             event.preventDefault();
-          });
-          card.addEventListener('dragenter', function(event) {
-              // 드래그된 항목이 들어왔을 때 필요한 동작 추가
-             event.preventDefault();
-          });
-          card.addEventListener('dragleave', function(event) {
-              // 드래그된 항목이 범위를 벗어났을 때 필요한 동작 추가
-             event.preventDefault();
-          });
-          card.addEventListener('dragover', function(event) {
-              event.preventDefault();
-          });
-          card.addEventListener('drop', function(event) {
-              event.preventDefault();
-              const courseId = card.getAttribute('data-courseid');
-              event.target.appendChild(document.getElementById(event.dataTransfer.getData('text')));
-
-          });
-      });
       
       // 거절 상태(본인이 신청한글) 칸반보드 카드 요소에 드래그 앤 드롭 이벤트 해제
       const dontMove2Cards = document.querySelectorAll('.bucket.reject .task-card.dontMove');
@@ -1039,65 +990,6 @@
           card.setAttribute('draggable', 'false');
       });
       
-      // 완료 상태 칸반보드 카드 요소에 드래그 앤 드롭 이벤트
-      const completedCards = document.querySelectorAll('.bucket.completed .task-card');
-      
-      completedCards.forEach(card => {
-          card.setAttribute('draggable', 'true');
-          card.addEventListener('dragstart', function(event) {
-             drag(event);
-          });
-          card.addEventListener('dragend', function(event) {
-              // 드래그 종료 후 필요한 동작 추가
-             event.preventDefault();
-          });
-          card.addEventListener('dragenter', function(event) {
-              // 드래그된 항목이 들어왔을 때 필요한 동작 추가
-             event.preventDefault();
-          });
-          card.addEventListener('dragleave', function(event) {
-              // 드래그된 항목이 범위를 벗어났을 때 필요한 동작 추가
-             event.preventDefault();
-          });
-          card.addEventListener('dragover', function(event) {
-              event.preventDefault();
-          });
-          card.addEventListener('drop', function(event) {
-              event.preventDefault();
-              const courseId = card.getAttribute('data-courseid');
-              event.target.appendChild(document.getElementById(event.dataTransfer.getData('text')));
-          });
-      });
-      
-      // 완료대기 상태 칸반보드 카드 요소에 드래그 앤 드롭 이벤트
-      const completedWaitingCards = document.querySelectorAll('.bucket.completed-waiting .task-card');
-      
-      completedWaitingCards.forEach(card => {
-          card.setAttribute('draggable', 'true');
-          card.addEventListener('dragstart', function(event) {
-             drag(event);
-          });
-          card.addEventListener('dragend', function(event) {
-              // 드래그 종료 후 필요한 동작 추가
-             event.preventDefault();
-          });
-          card.addEventListener('dragenter', function(event) {
-              // 드래그된 항목이 들어왔을 때 필요한 동작 추가
-             event.preventDefault();
-          });
-          card.addEventListener('dragleave', function(event) {
-              // 드래그된 항목이 범위를 벗어났을 때 필요한 동작 추가
-             event.preventDefault();
-          });
-          card.addEventListener('dragover', function(event) {
-              event.preventDefault();
-          });
-          card.addEventListener('drop', function(event) {
-              event.preventDefault();
-              const courseId = card.getAttribute('data-courseid');
-              event.target.appendChild(document.getElementById(event.dataTransfer.getData('text')));
-          });
-      });
       
       // 완료대기 상태(본인이 완료요청한 글) 칸반보드 카드 요소에 드래그 앤 드롭 이벤트 해제
       const completedWaiting2Cards = document.querySelectorAll('.bucket.completed-waiting .task-card.dontMove');
@@ -1106,35 +998,6 @@
           card.setAttribute('draggable', 'false');
       });
       
-      // 휴지통 상태 칸반보드 카드 요소에 드래그 앤 드롭 이벤트
-      const trashCards = document.querySelectorAll('.bucket.trash .task-card');
-      
-      trashCards.forEach(card => {
-          card.setAttribute('draggable', 'true');
-          card.addEventListener('dragstart', function(event) {
-             drag(event);
-          });
-          card.addEventListener('dragend', function(event) {
-              // 드래그 종료 후 필요한 동작 추가
-             event.preventDefault();
-          });
-          card.addEventListener('dragenter', function(event) {
-              // 드래그된 항목이 들어왔을 때 필요한 동작 추가
-             event.preventDefault();
-          });
-          card.addEventListener('dragleave', function(event) {
-              // 드래그된 항목이 범위를 벗어났을 때 필요한 동작 추가
-             event.preventDefault();
-          });
-          card.addEventListener('dragover', function(event) {
-              event.preventDefault();
-          });
-          card.addEventListener('drop', function(event) {
-              event.preventDefault();
-              const courseId = card.getAttribute('data-courseid');
-              event.target.appendChild(document.getElementById(event.dataTransfer.getData('text')));
-          });
-      });
       
       // 휴지통 상태 칸반보드 카드 요소에 드래그 앤 드롭 이벤트 해제
       const trash2Cards = document.querySelectorAll('.bucket.completed-waiting .task-card.dontMove');
