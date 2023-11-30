@@ -185,16 +185,27 @@ public class MessageController {
 		
 		
 	}
-	
+	//거절
 	@MessageMapping("/join/reject")
 	public void joinReject(Alarm alarm) {
+		Course c1 = Course.builder()
+				.course_id(alarm.getCourse_id())
+				.build();
+		c1 = myPageService.getCoursebyId(c1);
+		
+		String receiver = "";
+		if(c1.getWriter_nickname().equals(alarm.getSender())) {
+			receiver=c1.getApplyer_nickname();
+		}else {
+			receiver=c1.getWriter_nickname();
+		}
 		//수강신청 거절을 하면 수강거절알람도 가야하고 
 		Alarm result = Alarm.builder()
 				.type_string(MessageType.ALARM.name())
 				.contents("재능 교환이 거절되었습니다.")
 				.alarm_code("A05")
 				.page_type("/myPage/course_proceeding")
-				.receiver(alarm.getReceiver())//무조건상대방
+				.receiver(receiver)//무조건상대방
 				.sender(alarm.getSender())//무조건 글작성자
 				.board_id(alarm.getBoard_id())
 				.read_yn("N")
@@ -202,18 +213,19 @@ public class MessageController {
 		alarmService.insertAlarm(result);
 		Alarm result1 = alarmService.selectProAlarmId(result);
 		result1.setType_string(MessageType.ALARM.name());
-		messagingTemplate.convertAndSend("/sub/member/userId/"+alarm.getReceiver(),result1);
+		messagingTemplate.convertAndSend("/sub/member/userId/"+receiver,result1);
 		
 		//courseID도 같이 넘어가야함
 		Course course = Course.builder()
 								.writer_nickname(alarm.getSender())
+								
 								.course_id(alarm.getCourse_id())
 								.build();
 		
 		course = myPageService.getCourseRejectInvolve(course);
 		course.setType_string(MessageType.REJECT_INVOLVE.name());
 		//상대방에게 전달
-		messagingTemplate.convertAndSend("/sub/member/userId/"+alarm.getReceiver(),course);
+		messagingTemplate.convertAndSend("/sub/member/userId/"+receiver,course);
 		
 		
 	}
