@@ -141,7 +141,7 @@ body {
   height: calc(100% - 0.7694rem);
   display: flex;
   align-items: center;
-  border: solid 0.0628rem #00b074;
+  border: solid 0.0628rem #00a600;
   border-radius: 2.1355rem;
   flex-shrink: 0;
       cursor: pointer;
@@ -162,7 +162,7 @@ body {
   line-height: 1.0909091537;
   letter-spacing: 0.0138rem;
   text-transform: uppercase;
-  color: #00b074;
+  color: #00a600;
   font-family: Roboto, 'Source Sans Pro';
   white-space: nowrap;
   flex-shrink: 0;
@@ -702,7 +702,7 @@ body {
   font-family: Roboto, 'Source Sans Pro';
   white-space: nowrap;
   box-shadow: 0 0.2512rem 0.2512rem rgba(0, 0, 0, 0.25);
-  background-color: #00b074;
+  background-color: #00a600;
   border-radius: 2.1355rem;
   flex-shrink: 0;
   cursor:pointer;
@@ -718,10 +718,10 @@ body {
   line-height: 1.0909091537;
   letter-spacing: 0.0138rem;
   text-transform: uppercase;
-  color: #00b074;
+  color: #00a600;
   font-family: Roboto, 'Source Sans Pro';
   white-space: nowrap;
-  border: solid 0.0628rem #00b074;
+  border: solid 0.0628rem #00a600;
   box-sizing: border-box;
   box-shadow: 0 0.2512rem 0.2512rem rgba(0, 0, 0, 0.25);
   border-radius: 2.1355rem;

@@ -89,7 +89,7 @@ body {
   font-family: Roboto, 'Source Sans Pro';
   white-space: nowrap;
   box-shadow: 0 0.264rem 0.264rem rgba(0, 0, 0, 0.25);
-  background-color: #00b074;
+  background-color: #00a600;
   border-radius: 2.2437rem;
   flex-shrink: 0;
 }
@@ -104,10 +104,10 @@ body {
   line-height: 1.090909067;
   letter-spacing: 0.0145rem;
   text-transform: uppercase;
-  color: #00b074;
+  color: #00a600;
   font-family: Roboto, 'Source Sans Pro';
   white-space: nowrap;
-  border: solid 0.066rem #00b074;
+  border: solid 0.066rem #00a600;
   box-sizing: border-box;
   box-shadow: 0 0.264rem 0.264rem rgba(0, 0, 0, 0.25);
   border-radius: 2.2437rem;
@@ -124,7 +124,7 @@ body {
   top: 2.2rem;
   display: flex;
   align-items: center;
-  border: solid 0.066rem #00b074;
+  border: solid 0.066rem #00a600;
   border-radius: 2.2437rem;
       cursor: pointer;
 }
@@ -144,7 +144,7 @@ body {
   line-height: 1.090909067;
   letter-spacing: 0.0145rem;
   text-transform: uppercase;
-  color: #00b074;
+  color: #00a600;
   font-family: Roboto, 'Source Sans Pro';
   white-space: nowrap;
   flex-shrink: 0;

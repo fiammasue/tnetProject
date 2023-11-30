@@ -88,7 +88,7 @@
 		#detail2 {
 float: right;
     padding: 6px 14px;
-    background-color: rgb(152 152 152);
+    background-color: #7ebb6675;
     color: #fff;
     border-radius: 4px;
     font-size: 12px;
@@ -140,8 +140,9 @@ float: right;
 	      <div class="auto-group-qmuj-WZn">
 	      <!-- 검색하는 값에 대해서 전달하는 form -->
 	      <!--  현재 페이지 번호  -->
+	      <div class="selectBoxDiv">
 	        <div class="group-30929677-Xjn">
-	        <select id="cityBox" name="city_code" class="form-select" aria-label="Default select example" style="margin-right:10px;font-size: 15px;margin-top: 49px;    cursor: pointer;">
+	        <select id="cityBox" name="city_code" class="form-select" aria-label="Default select example" style="font-size: 15px;margin-top: 49px;cursor: pointer;">
 	          <option value="0" >시</option>
 		          <c:forEach var="city" items="${cityList }">
 		          	<option value="${city.city_code}" ${result.board.city_code == city.city_code? 'selected="selected"':''  }>${city.city_name }</option>
@@ -149,7 +150,7 @@ float: right;
 	        </select>
 	        </div>
 	        <div class="group-30929678-Je4">
-	          <select id="districtBox" name="district_code" class="form-select" aria-label="Default select example" style="font-size: 15px;margin-top: 8px;    cursor: pointer;">
+	          <select id="districtBox" name="district_code" class="form-select" aria-label="Default select example" style="font-size: 15px;margin-top: 47px;cursor: pointer;">
 	            <option value="0" >구</option>
 	            <c:forEach var="district" items="${districtList }">
 		          	<option class="district_name" value="${district.district_code}" ${result.board.district_code == district.district_code?  'selected="selected"':'' }>${district.district_name }</option>
@@ -157,7 +158,7 @@ float: right;
 	          </select>
 	        </div>
 	        <div class="group-30929675-2Cg">
-	          <select id="highBox" name="high_code" class="form-select" aria-label="Default select example" style="margin-right:10px;font-size: 15px;margin-top: 8px;    cursor: pointer;">
+	          <select id="highBox" name="high_code" class="form-select" aria-label="Default select example" style="font-size: 15px;margin-top: 46px;cursor: pointer;">
 	            <option value="0" >대분류</option>
 	            <c:forEach var="high" items="${talentHighList }">
 		          	<option value="${high.high_code}" ${result.board.high_code == high.high_code? 'selected="selected"':'' }>${high.high_name }</option>
@@ -165,7 +166,7 @@ float: right;
 	          </select>
 	        </div>
 	        <div class="group-30929676-uQt"> 
-	        <select id="smallBox" name="low_code" class="form-select" aria-label="Default select example" style="font-size: 15px;margin-top: 47px;    cursor: pointer;">
+	        <select id="smallBox" name="low_code" class="form-select" aria-label="Default select example" style="font-size: 15px;margin-top: 47px;cursor: pointer;">
 	          <option value="0" >기부받고싶은재능</option>
 	          <c:forEach var="small" items="${talentSmallList }">
 	          	<option class="small_name" value="${small.low_code}" ${result.board.low_code == small.low_code? 'selected="selected"':''} >${small.low_name }</option>
@@ -174,6 +175,7 @@ float: right;
 	      </div>
 	        <!-- 돋보기를 누르면 검색된다. -->
 	        <img onClick="jsSearchValue()" class="secondary-cricle-button-LFJ" src="/assets/Secondary Cricle Button.png"/>
+	      </div>
 	      </div>
       </form>
 
