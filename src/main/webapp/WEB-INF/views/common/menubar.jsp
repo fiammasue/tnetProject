@@ -8,8 +8,9 @@
       <div class="auto-group-tqda-4PJ">
         <div class="frame-2-naC">
           <div class="main-logo-LLp">
-            <p class="caption-6Kz">Admin Dashboard</p>
-            <p class="t-net-zRN">T-net.</p>
+           <div id="logo_div"></div>
+           	 <p class="t-net-zRN">T-net.</p>
+
           </div>
           <div class="auto-group-e7b6-7Vz tab_menu">
             <div class="group-30929683-3uS defaultarea">
@@ -32,11 +33,11 @@
         </div>
       </div>
       <div class="menubottomletter-rQx">
-        <p class="made-with-by-peterdraw-abr">Made with ♥ by JihyeBeak</p>
+        <p class="made-with-by-peterdraw-abr">Made ♥ by JihyeBeak</p>
         <p class="talent-networks-pronesis-Ux8">
-        Talent -NetWork’s  
+        Talent -NetWork’s 
         <br/>
-        @pro_nesis
+        Admin @pro_nesis
         </p>
       </div>
           </div><!-- 메뉴바 끝 -->

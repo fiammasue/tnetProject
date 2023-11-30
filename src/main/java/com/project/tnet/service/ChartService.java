@@ -234,7 +234,7 @@ public class ChartService {
 			Map<String, Object> map = new HashMap<>();			
 			List<String[]> listStrings = new ArrayList<>();
 			
-			if(kind_of_download.equals("0")) {
+			if(kind_of_download.equals("1")) {
 				System.out.println("완료된 수업 추이");
 				List<ChartDTO> csv = chartdao.getClassCSV();				
 				listStrings.add(new String[]{"년도", "완료된 수업 수"});
@@ -249,7 +249,7 @@ public class ChartService {
 				map.put("csv", listStrings);
 				map.put("name", "com_class.csv");
 				
-			}else if(kind_of_download.equals("1")) {
+			}else if(kind_of_download.equals("0")) {
 				System.out.println("회원 추이");
 				List<ChartDTO> csv = chartdao.getMemberCSV();				
 				listStrings.add(new String[]{"년도", "회원 수"});
