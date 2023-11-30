@@ -275,9 +275,14 @@
 			u.CITY_NAME AS city_name, 
 			u.DISTRICT_NAME AS district_name 
 		from ( 
-		    select BOARD_ID, BOARD.CONTENTS, READ_COUNT, REGISTER_DATE, GIVE_TALENT, RECEIVE_TALENT, CITY_CODE, DISTRICT_CODE 
-		    from BOARD                
-		    order by READ_COUNT DESC
+            select 
+                BOARD_ID, BOARD.CONTENTS, READ_COUNT, REGISTER_DATE, GIVE_TALENT, RECEIVE_TALENT, CITY_CODE, DISTRICT_CODE 
+            from BOARD    
+            where 
+            <![CDATA[ 
+			rownum <= 6 
+			]]>
+            order by READ_COUNT DESC
 		) BOARD
 		JOIN TALENT_SMALL GIVE_TALENT ON GIVE_TALENT.LOW_CODE = BOARD.GIVE_TALENT
 		JOIN TALENT_SMALL RECEIVE_TALENT ON RECEIVE_TALENT.LOW_CODE = BOARD.RECEIVE_TALENT
@@ -290,9 +295,7 @@
 		        FROM CITY c
 		        JOIN DISTRICT d ON c.city_code = d.city_code) u 
 		ON BOARD.city_code = u.city_code AND BOARD.district_code = u.district_code
-		<![CDATA[ 
-		where rownum <= 6
-		]]>
+        order by READ_COUNT desc
 	</select>
 		
 <!-- 아이콘에서 선택한 재능을 가르칠과목으로 TOP6로 정렬시킴.	 -->
