@@ -16,7 +16,7 @@ header{
 	box-shadow: 0px -1px 5px 2px gray;
 }
 body {
- width: 154rem;
+
   margin:0 auto;
 }.item--XQC {
   top:19px;
@@ -29,6 +29,7 @@ body {
   display: flex;
   flex-direction: column;
   background-color: #ffffff;
+      margin-bottom: 23px;
 }
 .item--XQC .auto-group-cdkt-yX6 {
   margin: 0rem 0.309rem 4.016rem 0rem;
@@ -127,7 +128,7 @@ body {
 }
 .item--XQC .auto-group-fgyx-zW4 {
   margin: 0rem 37.8rem 0.565rem 35.669rem;
-  width: calc(100% - 83.4688rem);
+  width: calc(100% - 100.4688rem);
   height: 3.0148rem;
   display: flex;
   align-items: center;
@@ -208,7 +209,7 @@ body {
   margin: 0rem 35.24rem 0.942rem 35.1rem;
   box-sizing: border-box;
   padding: 0.72rem 0.789rem 0.798rem 2.261rem;
-  width: calc(100% - 81.3397rem);
+      width: calc(100% - 98.3397rem);
   height: 5.4644rem;
   display: flex;
   align-items: center;
@@ -217,10 +218,11 @@ body {
   flex-shrink: 0;
 }
 .item--XQC .auto-group-jkgl-7W8 .group-30929672-PiY {
-      margin: 0.958rem 40.63rem 0rem 0rem;
+     /* margin: 0.958rem 40.63rem 0rem 0rem;*/
     display: flex;
     align-items: flex-start;
     flex-shrink: 0;
+        width: 60%;
 }
 .item--XQC .auto-group-jkgl-7W8 .group-30929672-PiY .item--vTa {
   margin: 0.063rem 2.339rem 0rem 0rem;
@@ -252,15 +254,16 @@ body {
   flex-shrink: 0;
 }
 .item--XQC .auto-group-jkgl-7W8 .auto-group-f1ex-GA4 {
-  width: 24.4601rem;
-  height: 100%;
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  flex-shrink: 0;
+ width: 20%;
+    float: right;
+    height: 100%;
+    align-items: center;
+    /* display: flex; */
+    flex-direction: column;
+    flex-shrink: 0;
 }
 .item--XQC .auto-group-jkgl-7W8 .auto-group-f1ex-GA4 .auto-group-8whi-by2 {
-    margin: 0rem 9.21rem -0.111rem 0.389rem;
+    margin: 0rem 9.21rem -0.111rem 1.611rem;
     width: calc(100% - -6.4011rem);
     display: flex;
     align-items: center;
@@ -303,7 +306,7 @@ body {
   flex-shrink: 0;
 }
 .item--XQC .auto-group-jkgl-7W8 .auto-group-f1ex-GA4 .auto-group-ogqn-h8t .group-9-3iY {
-  margin: 0rem 1.265rem 0.063rem 0rem;
+      margin: 10px -0.735rem 0.063rem 12rem;
   height: 1.4rem;
   display: flex;
   align-items: center;
@@ -343,7 +346,7 @@ body {
   margin: 0rem 35.24rem 1.884rem 35.1rem;
   box-sizing: border-box;
   padding: 2.073rem 2.512rem 1.692rem 2.512rem;
-  width: calc(100% - 81.3397rem);
+     width: calc(100% - 98.3397rem);
   font-size: 17px;
   font-weight: 400;
   line-height: 1.2125;

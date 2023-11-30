@@ -54,9 +54,6 @@
             <p class="item-123-PGc">조회수 : ${board.read_count }</p>
             <p class="item-2023-10-22-11-23-12-UKz">게시일 : ${board.register_date }</p>
           </div>
-<%--           <c:if test="${principal.user.nickname !=  board.writer_nickname}"> --%>
-          		<p class="item--n5n">신고 </p>
-<%--           </c:if> --%>
         </div>
       </div>
     </div>
@@ -89,7 +86,7 @@
 </div>
 
 <!-- 채팅방 폼 -->
-	<div class="chatRoomDialog" style="display:none;">
+	<div class="chatRoomDialog" style="display:none;overflow-x: hidden;padding:0px;">
 	    <div class="chatRoom-header">
 	    <div style="display:none;" class="roomId"></div>
 	      <div class="cover-image">
@@ -210,7 +207,6 @@
 								    		            <div class="receiver-time">`+time+`</div>`
 								  if(chat.read_yn=="N"){
 									  chatListInfo+=`<div class="receiver-readCount">1</div>`;
-									  chatListInfo+=`1111`;
 								   		
 								   	}
 								    	chatListInfo+=`</div>`;

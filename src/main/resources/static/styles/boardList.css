@@ -16,21 +16,22 @@ input {
 	border: none;
 }
 body {
-  width: 158rem;
+
   margin:0 auto;
 }.item--XFN {
   position: relative;
  top: 10px;
- left:10px;
+ left:90px;
   box-sizing: border-box;
   padding-bottom: 17.0187rem;
-  width: 100%;
+  width: 90%;
   overflow: hidden;
   position: relative;
   align-items: center;
   display: flex;
   flex-direction: column;
   background-color: #ffffff;
+  margin-bottom: 10px;
 }
 .item--XFN .auto-group-fdk6-zHN {
   margin: 0rem 0.309rem 15.816rem 0rem;
@@ -133,13 +134,13 @@ body {
   align-items: center;
   justify-content: center;
   font-size: 4.506rem;
-  font-weight: 700;
+  font-weight: 600;
   line-height: 0.4444444868;
   letter-spacing: 0.0451rem;
 
   color: #000000;
   /*font-family: Roboto, 'Source Sans Pro';*/
-  font-family: 'Hahmlet', serif;
+  /*font-family: 'Hahmlet', serif;*/
   white-space: nowrap;
   flex-shrink: 0;
 }

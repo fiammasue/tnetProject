@@ -18,7 +18,6 @@ public class MessageService {
 	
 	public Message insertMessage(Message message) {
 		messageDAO.insertMessage(message);
-		System.out.println("메세지를 insert하고 반환된 값 : " +message);
 		return message;
 	}
 	public List<Message> selectMessageList(String room_id){

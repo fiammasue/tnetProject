@@ -266,7 +266,7 @@
 						chatRecvMessage(recv);
 					}, {sender:sender});//보내는 사람을 등록할필요가 있나?
 		},error => {
-			alert("error "+error);
+			console.error('Whoops! Lost connection:', error);
 		});
 	}
 
@@ -780,7 +780,7 @@
 	    
 	   // #bell(종) 이미지 클릭시 이벤트 처리
 	  $(document).on("click", "#bell", function(e) {
-			
+		  $(".alarm").remove();
 		   // 서버에 AJAX 요청을 보내서 해당 게시글의 내용을 가져옵니다.
 		   $.ajax({
 		      type: "POST",
