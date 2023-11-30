@@ -75,7 +75,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.formLogin() // 로그인 폼은
 			.usernameParameter("username")	// 이거 해주면 뭐가 다르나?
             .passwordParameter("password")	// 이거 해주면 뭐가 다르나?
-			.loginPage("/auth/loginForm.do") // 해당 주소로 로그인 페이지를 호출한다. ajax로 구현하면 이거 필요없지않나?
+			.loginPage("/") // 해당 주소로 로그인 페이지를 호출한다. ajax로 구현하면 이거 필요없지않나?
 			.loginProcessingUrl("/auth/login.do") // 해당 URL로 요청이 오면 스프링 시큐리티가 가로채서 로그인처리를 한다. -> loadUserByName
 			.successHandler(authSucessHandler) // 성공시 요청을 처리할 핸들러
 			.failureHandler(authFailureHandler) // 실패시 요청을 처리할 핸들러

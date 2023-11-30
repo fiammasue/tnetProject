@@ -22,16 +22,16 @@ public class AuthFailureHandler extends SimpleUrlAuthenticationFailureHandler {
 	
 	    // exception 관련 메세지 처리
 	    if (exception instanceof LockedException) {
-        	msg = "계정이 잠겼습니다";
+        	msg = "locked";
 	    } else if (exception instanceof DisabledException) {
-        	msg = "DisabledException account";
+        	msg = "disabled";
         } else if(exception instanceof CredentialsExpiredException) {
-        	msg = "CredentialsExpiredException account";
+        	msg = "expiredAccount";
         } else if(exception instanceof BadCredentialsException ) {
-        	msg = "BadCredentialsException account";
+        	msg = "wrongIdPassword";
         }
 	
-	    setDefaultFailureUrl("/auth/loginForm.do?error=true&exception=" + msg);
+	    setDefaultFailureUrl("/?error=true&exception=" + msg);
 	
 	    super.onAuthenticationFailure(request, response, exception);
 	}

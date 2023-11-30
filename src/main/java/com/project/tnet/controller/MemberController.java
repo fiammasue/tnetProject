@@ -40,15 +40,14 @@ public class MemberController {
 //	}
 	
 	//로그인 양식 
-	@GetMapping("/auth/loginForm.do")
-	public String loginForm(Model model,
-			@RequestParam(value = "error", required = false) String error, 
-			@RequestParam(value = "exception", required = false) String exception) {
-		model.addAttribute("error", error);
-		model.addAttribute("exception", exception);
-//		return "member/loginForm";
-		return "redirect:/";
-	}
+//	@GetMapping("/auth/loginForm.do")
+//	public String loginForm(Model model,
+//			@RequestParam(value = "error", required = false) String error, 
+//			@RequestParam(value = "exception", required = false) String exception) {
+//		model.addAttribute("error", error);
+//		model.addAttribute("exception", exception);
+//		return "redirect:/";
+//	}
 	
 
 	//회원 가입 양식 
