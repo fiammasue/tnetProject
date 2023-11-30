@@ -17,7 +17,8 @@
  ********************/
  html {
   position: relative;
-  min-height: 100%; }
+  min-height: 100%;
+  background-color: white; }
 
 body {
   background-color: #F3F5F8;
@@ -38,7 +39,14 @@ th {
   margin-top: 0;
   margin-bottom: 30px;
   font-weight: 300; }
-
+header {
+    width: 100%;
+    height: 70px;
+    background-color: white;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.8);
+    box-shadow: 0px -1px 5px 2px gray;
+}
 footer {
   position: absolute;
   bottom: 0;
@@ -58,6 +66,7 @@ footer {
 /********************
  * LAYOUT
  ********************/
+
 #wrapper .sidebar {
   -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;
@@ -67,9 +76,10 @@ footer {
   width: 260px;
   height: 100%;
   float: left;
-  background-color: #031C33;
+  background-color: whitesmoke;
   position: fixed;
-  left: 0; }
+  left: 0;
+  top: 75px; }
 
 #wrapper .main {
   -webkit-transition: all 0.3s ease-in-out;
@@ -81,7 +91,8 @@ footer {
   left: 0;
   position: relative;
   float: right;
-  background-color: #f5f5fa; }
+  background-color: white;
+  top:10px; }
 
 #wrapper #sidebar-nav,
 #wrapper .main {
@@ -370,10 +381,11 @@ ul.notifications > li {
       color: #fff;
       background-color: transparent; }
       .sidebar .nav > li > a:hover i, .sidebar .nav > li > a:focus i, .sidebar .nav > li > a.active i {
-        color: #00AAFF; }
+        color: black; }
     .sidebar .nav > li > a:focus, .sidebar .nav > li > a.active {
-      background-color: #252c35;
-      border-left-color: #00AAFF; }
+      background-color: lightgray;
+      border-left-color: dimgray;
+      color: black; }
     .sidebar .nav > li > a[data-toggle="collapse"] .icon-submenu {
       display: inline-block;
       vertical-align: middle;
@@ -411,19 +423,25 @@ ul.notifications > li {
       -o-transition: all 0.3s ease-in-out;
       transition: all 0.3s ease-in-out;
       position: relative;
-      top: -2px; }
+      top: -2px;
+      color: black; }
     .sidebar .nav .nav {
       background-color: #252c35; }
       .sidebar .nav .nav > li > a {
         padding-left: 60px;
         padding-top: 10px;
-        padding-bottom: 10px; }
+        padding-bottom: 10px;
+        background-color: lightgray;
+        color: gray; }
         .sidebar .nav .nav > li > a:focus, .sidebar .nav .nav > li > a.active {
           background-color: transparent;
-          border-left-color: transparent; }
+          border-left-color: transparent;
+        background-color: lightgray;
+        color: black;
+        font-weight: bold; }
         .sidebar .nav .nav > li > a.active a {
           color: #fff; }
-
+	
 /********************
  * TYPOGRAPHY
  ********************/
@@ -1112,15 +1130,15 @@ ul.activity-list > li {
   position: relative; }
 
 .profile-left {
-  padding: 40px 0;
+  padding: 40px 10px;
   float: left;
-  width: 35%;
+  width: 45%;
   height: 100%;
   background-color: #F8F8F8; }
 
 .profile-right {
   float: right;
-  width: 60%;
+  width: 50%;
   padding: 100px 50px; }
   .profile-right .heading {
     margin-top: 0; }
@@ -1771,16 +1789,44 @@ ul.activity-timeline > li {
 /* 테이블 전체 스타일링 */
 .table_course {
   width: 90%;
-  margin: 30px auto
+  margin: 20px auto;
 }
 
+.table-container {
+  height: 480px;
+  overflow-y: auto;
+  margin-bottom: 70px;
+}
+
+/* 스크롤 디자인 */
+.table-container::-webkit-scrollbar {
+  width: 10px;  /* 스크롤바의 너비 */
+}
+.table-container::-webkit-scrollbar-thumb {
+  height: 30%; /* 스크롤바의 길이 */
+  background: rgb(214, 214, 214); /* 스크롤바의 색상 */
+  border-radius: 10px;
+}
+ 
+.table-container::-webkit-scrollbar-track {
+  background: white;  /*스크롤바 뒷 배경 색상*/
+}
+    
 .group-table {
   width: 100%;
   min-width: 800px;
-  margin: 10px auto 40px;
+  margin: 0px auto;
   border-collapse: collapse;
 }
 
+.group-table thead th {
+  position: sticky;
+  top: 0;
+}
+.group-table tbody tr:hover {
+	cursor: pointer;
+}
+    
 /* 테이블 헤더 스타일링 */
 .column-header {
   font-weight: bold;
@@ -1799,6 +1845,7 @@ ul.activity-timeline > li {
 }
 .delete-button {
   text-align: left;
+  margin-bottom: 15px;
 }
 .allDelete {
   padding: 10px;
@@ -1944,6 +1991,7 @@ button:hover {
 
 .icon2 {
   width: 35px;
+  margin-left: 75px;
 }
 
 .label {
@@ -1981,8 +2029,13 @@ button:hover {
   margin-bottom: 10px;
   padding: 7px 7px 0 7px;
   min-width: 250px;
+  transition: box-shadow 0.3s ease; /* 트랜지션 효과 추가 */
 }
 
+.tasks .task-card:hover {
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.6); /* 그림자 스타일 지정 */
+}
 .task-card.dontMove {
   background-color: #fff;
   border: 1px solid #aaaaaa;
@@ -2191,7 +2244,6 @@ button:hover {
 .task-group.trash {
   display: flex;
   align-items: center;
-  justify-content: center;
 }
 .task-group.trash .trash-clear {
   align-items: right;
@@ -2266,7 +2318,10 @@ p.detail-give-talent {
 	width:75px;
 	text-align: center;
 }
-
+p.detail-receive-talent {
+	width:75px;
+	text-align: center;
+}
 
 
 /* -------------------------------------- */

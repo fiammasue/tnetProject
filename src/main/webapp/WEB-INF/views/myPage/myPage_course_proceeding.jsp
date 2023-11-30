@@ -1427,7 +1427,7 @@
                     // status 클래스 변경
                     const statusElement = taskCard.find(".status");
                     statusElement.removeClass("accept").addClass("trash dontMove");
-                    statusElement.text("취소된 강의 삭제");
+                    statusElement.text("취소된 강의");
                     
                     // "trashBucket"로 이동시킬 테스크 카드 생성
                     const taskCardClone = taskCard.clone();
@@ -1593,6 +1593,15 @@
        $(".trash-clear").click(function(e) {
     	   e.preventDefault();
     	   
+   		   // 휴지통 내의 각 task-card 선택
+   	       var trashCards = $(".tasks.trash .task-card");
+
+   	       // 휴지통이 비어있는지 확인
+   	       if (trashCards.length === 0) {
+   	           alert("휴지통이 이미 비어있습니다.");
+   	           return;
+   	       }
+    	    
     	   //확인 메시지 표시
     	   var confirmed = confirm("진짜로 휴지통을 비우시겠습니까?");
     	   

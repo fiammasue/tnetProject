@@ -74,7 +74,9 @@
 										<button class="allDelete" onclick="deleteSelectedKanban()">선택삭제</button>
 									</div>
 
+									<div class="table-container">
 									<table class="group-table">
+									<thead>
 										<tr>
 										<th class="column-header"><input type="checkbox" class="checkbox-input" id="select_all_checkbox" onclick="checkSelectAll()"></th>
 										<th class="column-header">게시글 번호</th>
@@ -85,9 +87,10 @@
 										<th class="column-header">진행상태</th>
 										<th class="column-header">삭제여부</th>
 										</tr>
-										
+									</thead>
+									<tbody>
 										<c:forEach var="kanban" items="${kanbanList}">
-										<tr>
+										<tr onclick="window.location.href='/board/detail/${kanban.board_id}'">
 										<td class="data-cell"><input type="checkbox" class="checkbox-input" name="delete_checkbox" value="${kanban.board_id}" onclick="checkSelect()"></td>
 										<td class="data-cell">${kanban.board_id}</td>
 										<td class="data-cell title">${kanban.title}</td>
@@ -104,9 +107,9 @@
 												<td class="empty" colspan="8" style="text-align:center; padding:30px;">검색결과가 없습니다</td>
 											</tr>
 							            </c:if>
-							            
+							        </tbody>	   
 									</table>
-									
+									</div>
 								</div>  
 								  
 							</div>
@@ -130,7 +133,7 @@
 	<!-- JavasSript -->
 	<script src="/scripts/kanbanCheckbox.js"></script>
 	<!-- <script src="/vendor/jquery/jquery.min.js"></script> -->
-	<!-- <script src="/vendor/bootstrap/js/bootstrap.min.js"></script> -->
+	<script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
 	<!-- <script src="/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script> -->
 	<!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
 </body>

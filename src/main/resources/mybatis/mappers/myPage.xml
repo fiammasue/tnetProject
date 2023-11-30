@@ -355,12 +355,6 @@
 	    WHERE
 	        writer_status_code = 'SC02'
 	        AND course_id = #{course_id};
-	
-	    UPDATE board
-	    SET
-	      status_code = 'SC11'
-	    WHERE
-	      board_id = (SELECT board_id FROM course WHERE course_id = #{course_id});
 	  END;
 	  ]]>
     </update>
@@ -482,7 +476,7 @@
 
 	        UPDATE board
 	        SET
-	            status_code = 'SC04'
+	            status_code = 'SC05'
 	        WHERE
 	            board_id = (SELECT board_id FROM course WHERE course_id = #{course_id});
 	      
@@ -520,7 +514,7 @@
 	
 	        UPDATE board
 	        SET
-	            status_code = 'SC08'
+	            status_code = 'SC10'
 	        WHERE
 	            board_id = (SELECT board_id FROM course WHERE course_id = #{course_id});
 	    END;
@@ -578,7 +572,7 @@
 	
 	        UPDATE board
 	        SET
-	            status_code = 'SC12', delete_yn='N'
+	            status_code = 'SC01', delete_yn='N'
 	        WHERE
 	            board_id = (SELECT board_id FROM course WHERE course_id = #{course_id});
 	    END;
