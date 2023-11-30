@@ -87,13 +87,12 @@
 		
 		#detail2 {
 float: right;
-           padding: 6px 14px;
-    background-color: green;
+    padding: 6px 14px;
+    background-color: rgb(152 152 152);
     color: #fff;
     border-radius: 4px;
     font-size: 12px;
     border-radius: 20px;
-   
 		}
 		#detail2:hover{
 		  

@@ -116,9 +116,32 @@
 		JOIN status s1 ON c.writer_status_code = s1.status_code
 		JOIN status s2 ON c.applyer_status_code = s2.status_code
 		WHERE
-		    (c.writer_status_code = 'SC11' AND c.writer_nickname = #{writer_nickname})
+		    ((c.writer_status_code = 'SC11' AND c.writer_nickname = #{writer_nickname})
 		    OR
-		    (c.applyer_status_code = 'SC11' AND c.applyer_nickname = #{writer_nickname})
+		    (c.applyer_status_code = 'SC11' AND c.applyer_nickname = #{writer_nickname}))
+		    and course_id = #{course_id}
+	</select>
+	<!-- 거절일때의 태그 -->
+	<select id="getCourseReWaitingInvolve" resultType="com.project.tnet.dto.Course">
+		SELECT
+		    CASE
+		        WHEN c.writer_status_code = 'SC02' AND c.writer_nickname = #{writer_nickname} THEN s1.status_contents
+		        WHEN c.applyer_status_code = 'SC02' AND c.applyer_nickname = #{writer_nickname} THEN s2.status_contents
+		        ELSE NULL
+		    END AS status_code,
+		    c.course_id,
+		    c.writer_nickname, c.applyer_nickname,
+		    c.board_id,
+		    b.title AS title,
+		    c.start_date
+		FROM course c
+		JOIN board b ON c.board_id = b.board_id
+		JOIN status s1 ON c.writer_status_code = s1.status_code
+		JOIN status s2 ON c.applyer_status_code = s2.status_code
+		WHERE
+		    ((c.writer_status_code = 'SC02' AND c.writer_nickname = #{writer_nickname})
+		    OR
+		    (c.applyer_status_code = 'SC02' AND c.applyer_nickname = #{writer_nickname}))
 		    and course_id = #{course_id}
 	</select>
 	
