@@ -57,6 +57,9 @@ function deleteSelectedKanban() {
 $(document).ready(function() {
     // 모든 삭제 버튼에 대한 클릭 핸들러를 할당
     $(".delete_kanban").click(function() {
+		// 삭제 버튼의 클릭 이벤트에서 링크 이동을 막음
+    	event.stopPropagation();
+    	
         var boardId = $(this).data("board-id");
 		
         // 모달 대화 상자를 열고 boardId 데이터를 설정
