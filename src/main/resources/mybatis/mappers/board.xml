@@ -33,14 +33,16 @@
                     <if test="search_kind == 'talent'">
                         AND board_id IN (
                             SELECT DISTINCT talent.board_id
-                            FROM (
-                                SELECT *
-                                FROM board b
-                                WHERE delete_yn = 'N'
-                                AND (
-                                    give_talent IN (SELECT low_code FROM talent_small WHERE low_name LIKE '%' || #{searchWord} || '%')
-                                    OR receive_talent IN (SELECT low_code FROM talent_small WHERE low_name LIKE '%' || #{searchWord} || '%')
-                                )
+                           FROM (
+                                 SELECT *
+                                    FROM board b
+                                    WHERE delete_yn = 'N'
+                                    AND give_talent IN (SELECT low_code FROM talent_small WHERE low_name LIKE '%' || #{searchWord} || '%')
+                                    UNION ALL
+                                    SELECT *
+                                    FROM board b
+                                    WHERE delete_yn = 'N'
+                                    AND receive_talent IN (SELECT low_code FROM talent_small WHERE low_name LIKE '%' || #{searchWord} || '%')
                             ) talent
                         )
                     </if>
