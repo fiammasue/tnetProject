@@ -78,7 +78,7 @@
 	
 
 	
-	<!-- 게시글 리스트 불러오기 -->
+
 	<select id="selectBoardList" resultType="com.project.tnet.dto.Board">
 			select b.*
 			from (
@@ -105,18 +105,18 @@
 								    AND district_code = #{district_code}
 								  </if>
 								  <if test='low_code != null and  low_code != "0" and  low_code != ""'>
-								    AND board.receive_talent = #{low_code}
+								    AND board.give_talent = #{low_code}
 								  </if>
 								  <if test='high_code != null and high_code != "0" and high_code != ""'>
-		  						    AND ts2.high_code = #{high_code}
+		  						    AND ts1.high_code = #{high_code}
 								  </if> 
 							 </where>        
 			                order by register_date desc
 			                ) a
 			<![CDATA[            
-			        where rownum <= #{endNo}) b
-			    where nrow between #{startNo} and #{endNo}
-			]]>
+			        where rownum <= #{endNo}) b 
+ 			    where nrow between #{startNo} and #{endNo} 
+			]]> 
 	</select>
 	
 	<select id="getTotalCount" resultType="int">
@@ -133,10 +133,10 @@
 								    AND district_code = #{district_code}
 								  </if>
 								  <if test='low_code != null and  low_code != "0" and  low_code != ""'>
-								    AND board.receive_talent = #{low_code}
+								    AND board.give_talent = #{low_code}
 								  </if>
 								  <if test='high_code != null and high_code != "0" and high_code != ""'>
-		  						    AND ts2.high_code = #{high_code}
+		  						    AND ts1.high_code = #{high_code}
 								  </if> 
 							 </where>
 	</select>

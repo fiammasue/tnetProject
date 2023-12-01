@@ -167,7 +167,7 @@ float: right;
 	        </div>
 	        <div class="group-30929676-uQt"> 
 	        <select id="smallBox" name="low_code" class="form-select" aria-label="Default select example" style="font-size: 15px;margin-top: 47px;cursor: pointer;">
-	          <option value="0" >기부받고싶은재능</option>
+	          <option value="0" >기부할 재능</option>
 	          <c:forEach var="small" items="${talentSmallList }">
 	          	<option class="small_name" value="${small.low_code}" ${result.board.low_code == small.low_code? 'selected="selected"':''} >${small.low_name }</option>
 	          </c:forEach>
