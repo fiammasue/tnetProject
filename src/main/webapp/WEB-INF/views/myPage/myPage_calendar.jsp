@@ -89,14 +89,13 @@
 				                        <input type="datetime-local" class="form-control" id="calendar_end_datetime" name="calendar_end_datetime">
 				                    	<label for="calendar_color" class="col-form-label">일정 색상 선택</label>
 										<select class="form-control" id="calendar_color" name="calendar_color">
-										    <option value="#3498db" style="color: #3498db; font-weight:bold;">파란색</option>
-										    <option value="#2ecc71" style="color: #2ecc71; font-weight:bold;">녹색</option>
-										    <option value="#e74c3c" style="color: #e74c3c; font-weight:bold;">빨간색</option>
-										    <option value="#f39c12" style="color: #f39c12; font-weight:bold;">주황색</option>
-										    <option value="#9b59b6" style="color: #9b59b6; font-weight:bold;">보라색</option>
-										    <option value="#1abc9c" style="color: #1abc9c; font-weight:bold;">청록색</option>
-										    <option value="#f1c40f" style="color: #f1c40f; font-weight:bold;">노란색</option>
-										    <option value="#34495e" style="color: #34495e; font-weight:bold;">회색</option>
+										    <option value="#b2d4eb" style="color: #b2d4eb; font-weight:bold;">파란색</option>
+										    <option value="#bcdbb0" style="color: #bcdbb0; font-weight:bold;">연두색</option>
+										    <option value="#fed6d2" style="color: #fed6d2; font-weight:bold;">핑크색</option>
+										    <option value="#ffcf84" style="color: #ffcf84; font-weight:bold;">주황색</option>
+										    <option value="#debbec" style="color: #debbec; font-weight:bold;">보라색</option>
+										    <option value="#f2d673" style="color: #f2d673; font-weight:bold;">노란색</option>
+										    <option value="#a3a9af" style="color: #a3a9af; font-weight:bold;">회색</option>
 										</select>
 				                    </div>
 				                </div>
@@ -275,7 +274,7 @@
                         $("#calendar_content").val("");
                         $("#calendar_start_datetime").val("");
                         $("#calendar_end_datetime").val("");
-                        $("#calendar_color").val("#3498db");  // Set default color
+                        $("#calendar_color").val("#b2d4eb");  // Set default color
                         
                      	// 이벤트 핸들러 등록
                         $("#addCalendar").off("click").on("click", function () {  
