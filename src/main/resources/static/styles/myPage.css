@@ -1830,7 +1830,7 @@ ul.activity-timeline > li {
 /* 테이블 헤더 스타일링 */
 .column-header {
   font-weight: bold;
-  background-color: #edffea;
+  background-color: #7ebb663b;
   color: #333;
   padding: 10px;
   text-align: center;
@@ -1869,8 +1869,8 @@ ul.activity-timeline > li {
 /* 삭제 버튼 스타일링 */
 button.delete_kanban {
   font-size: 13px;
-  background-color: #ff5858;
-  color: white;
+  background-color: rgb(255 0 0 / 12%);
+  color: black;
   border-radius: 5px;
   padding: 5px 10px;
   cursor: pointer;
@@ -2006,6 +2006,7 @@ button:hover {
   min-height: 500px;
   min-width: 300px;
   overflow-y: auto;
+  overflow-x: hidden;
 }
 
 /* 스크롤 디자인 */
@@ -2019,7 +2020,7 @@ button:hover {
 }
  
 .tasks::-webkit-scrollbar-track {
-  background: #84848447;  /*스크롤바 뒷 배경 색상*/
+  background: whitesmoke;  /*스크롤바 뒷 배경 색상*/
 }
 
 /* 흔들리는 애니메이션 효과를 정의하는 키프레임 */
@@ -2086,6 +2087,7 @@ button:hover {
   min-width: 250px;
   border-radius: 5px;
   transition: box-shadow 0.3s ease; /* 트랜지션 효과 추가 */
+  overflow-x: hidden;
 }
 
 .tasks .task-card:hover {
@@ -2096,8 +2098,9 @@ button:hover {
   background-color: #fff;
   border: 1px solid #aaaaaa;
   margin-bottom: 10px;
-  padding: 7px 7px 0 7px;
+  padding: 7px 7px 7px;
   min-width: 250px;
+  border-radius: 5px;
 }
 
 .task-name {
@@ -2258,42 +2261,42 @@ button:hover {
 
 /* 수락 버킷 스타일 */
 .bucket.accept {
-  background-color: #7ebb6675; /* 초록색 */
+  background-color: #c2deb6; /* 초록색 #62954c*/
   color: #fff;
   border-radius: 7px;
 }
 
 /* 대기 버킷 스타일 */
 .bucket.waiting {
-  background-color: rgb(244 219 104 / 42%); /* 주황색 */
+  background-color: rgb(251 240 184); /* 주황색 */
   color: #fff;
   border-radius: 7px;
 }
 
 /* 거절 버킷 스타일 */
 .bucket.reject {
-  background-color: rgb(255 0 0 / 21%); /* 빨간색 */
+  background-color: #faccc7; /* 빨간색 */
   color: #fff;
   border-radius: 7px;
 }
 
 /* 완료 버킷 스타일 */
 .bucket.completed {
-  background-color: #4f87f599; /* 파랑색 */
+  background-color: #96b7f7; /* 파랑색 */
   color: #fff;
   border-radius: 7px;
 }
 
 /* 대기 버킷 스타일 */
 .bucket.completed-waiting {
-  background-color: rgb(244 219 104 / 42%); /* 주황색 */
+  background-color: rgb(251 240 184); /* 주황색 */
   color: #fff;
   border-radius: 7px;
 }
 
 /* 휴지통 버킷 스타일 */
 .bucket.trash {
-  background-color: rgb(0 0 0 / 38%); /* 검은색 */
+  background-color: rgb(161 161 161); /* 검은색 */
   color: #fff;
   border-radius: 7px;
 }
@@ -2330,7 +2333,7 @@ button#detail-complete {
 
 button#detail-reAccept {
   font-size: 13px;
-  background-color: #4f87f5;
+  background-color: #b2ccff;
   color: #656464;
   border-radius: 5px;
   padding: 5px 10px;
@@ -2351,7 +2354,7 @@ button#detail-cancel {
 
 button#detail-cancelAccept {
   font-size: 13px;
-  background-color: #5f3f3f;
+  background-color: #b6a2a2;
   color: #656464;
   border-radius: 5px;
   padding: 5px 10px;
@@ -2361,7 +2364,7 @@ button#detail-cancelAccept {
 
 button#detail-reAccept2 {
   font-size: 13px;
-  background-color: #27ae60;
+  background-color: #adddc1;
   color: #656464;
   border-radius: 5px;
   padding: 5px 10px;

@@ -588,7 +588,7 @@
             
             
              setTimeout(function () {
-               selectedElement1.removeClass('fade-in-box');
+               selectedElement1.removeClass('reject_shake');
              }, 2000);
 		}
 		else if (recv.type_string==="REWAITING_INVOLVE"){
@@ -599,7 +599,7 @@
 			 selectedElement.addClass('fade-out-box');
 			 setTimeout(function () {
 				 selectedElement.remove();
-	            }, 2000);
+	            }, 300);
 			 
 				var agreeInfo = `
 					<div class="task-card dontMove" draggable="false" id="course-`+ recv.course_id + `" data-courseid="`+ recv.course_id  +`" data-boardid="`+ recv.board_id  +`">

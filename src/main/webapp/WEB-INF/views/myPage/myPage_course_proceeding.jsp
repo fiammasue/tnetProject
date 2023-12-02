@@ -1040,11 +1040,11 @@
            autoOpen: false, // 처음에는 자동으로 열리지 않음
            modal: true, // 모달 형식으로 표시
            width: 440,
-           height: 340,
+           height: 280,
            buttons: {
-               "닫기": function() {
-                   $(this).dialog("close");
-               }
+               //"닫기": function() {
+               //    $(this).dialog("close");
+               //}
            },
            close: function() {
                // 모달이 닫힐 때 수행할 동작
@@ -1345,6 +1345,10 @@
                     // "trashBucket"로 이동시킬 테스크 카드 생성
                     const taskCardClone = taskCard.clone();
 
+                    // 2초 후에 깜빡거리는 효과를 제거
+                    setTimeout(function () {
+                    	taskCardClone.removeClass('blink');
+                    }, 2000);
 
                     // "trashBucket"에 테스크 카드 추가
                     $(".kanban-board .bucket.trash .tasks").append(taskCardClone);
@@ -1364,11 +1368,9 @@
            autoOpen: false, // 처음에는 자동으로 열리지 않음
            modal: true, // 모달 형식으로 표시
            width: 440,
-           height: 340,
+           height: 280,
            buttons: {
-               "닫기": function() {
-                   $(this).dialog("close");
-               }
+               
            },
            close: function() {
                // 모달이 닫힐 때 수행할 동작

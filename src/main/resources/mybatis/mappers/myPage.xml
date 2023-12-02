@@ -320,7 +320,7 @@
 		    (c.writer_status_code IN ('SC09', 'SC12') AND c.writer_nickname = #{nickName})
 		    OR
 		    (c.applyer_status_code IN ('SC09', 'SC12') AND c.applyer_nickname = #{nickName})
-		    AND b.delete_yn = 'Y'
+		    AND b.delete_yn = 'N'
 	</select>
 	
 	
@@ -641,13 +641,13 @@
 	                    ELSE applyer_status_code
 	                END
 	            
-	        WHERE course_id = #{course_id};
+	        WHERE course_id IN (#{course_id});
 	
 	        UPDATE board
 	        SET
 	            status_code = 'SC13', delete_yn='Y'
 	        WHERE
-	            board_id = (SELECT board_id FROM course WHERE course_id = #{course_id});
+	            board_id = (SELECT board_id FROM course WHERE course_id IN (#{course_id}));
 	    END;
 	    ]]>
 	</update>

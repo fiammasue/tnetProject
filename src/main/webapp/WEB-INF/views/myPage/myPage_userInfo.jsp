@@ -75,13 +75,13 @@
 									<div class="profile-stat">
 										<div class="row">
 											<div class="col-md-4 stat-item">
-												15 <span>Recruiting</span>
+												2 <span>Recruiting</span>
 											</div>
 											<div class="col-md-4 stat-item">
-												8 <span>Proceeding</span>
+												1 <span>Proceeding</span>
 											</div>
 											<div class="col-md-4 stat-item">
-												52 <span>Stars</span>
+												50 <span>Stars</span>
 											</div>
 										</div>
 									</div>
