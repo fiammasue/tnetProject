@@ -2078,6 +2078,19 @@ button:hover {
 .accept_shake {
   animation: accept_shake 1.8s ease-in-out;
 }
+/* fadout 지우기 */
+.fade-out-box {
+  animation: rejectInvolve 1s;
+  animation-fill-mode: forwards;
+}
+@keyframes rejectInvolve {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
 
 .task-card {
   background-color: #fff;
