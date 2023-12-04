@@ -847,7 +847,6 @@
                              ,board_id:boardId
                              }));
 
-
            //화면 데이터 바뀔 수 있도록 함
            // 클래스명, 상태 코드, 날짜 변경
            statusChange.classList.remove('completed-waiting');
@@ -855,6 +854,12 @@
            statusChange.classList.add('completed');
            statusChange.textContent = '완료된 강의입니다';
 
+           // 흔들리는 애니메이션 클래스 추가
+           card.classList.add('accept_shake');
+           // 애니메이션 종료 후 애니메이션 클래스 제거 (2초 후)
+           setTimeout(function () {
+               card.classList.remove('accept_shake');
+           }, 2000);
 
            completedBucket.appendChild(card);
           
@@ -899,25 +904,32 @@
           const statusChange = card.querySelector('.status');
            
           // 현재 소스 버킷 확인
-           const sourceBucket = findSourceBucket(card);
+          const sourceBucket = findSourceBucket(card);
 
 
-	        // 이동을 허용할지 여부를 판단
-	        if (sourceBucket === completedWaitingBucket) {
-	            return; // 완료대기칸에서 휴지통칸으로의 이동을 방지
-	        }
+	       // 이동을 허용할지 여부를 판단
+	       if (sourceBucket === completedWaitingBucket) {
+	           return; // 완료대기칸에서 휴지통칸으로의 이동을 방지
+	       }
 	        
-		 	    // 서버에서 진짜 데이터가 바뀔 수 있도록 함
-		      const courseId = card.getAttribute('data-courseid');
-		      updateTrash(courseId);
+		   // 서버에서 진짜 데이터가 바뀔 수 있도록 함
+		   const courseId = card.getAttribute('data-courseid');
+		   updateTrash(courseId);
 		    
-		  	  //화면 데이터 바뀔 수 있도록 함
-	        // 클래스명, 상태 코드, 날짜 변경
-	        statusChange.classList.remove('completed-waiting');
-	        statusChange.classList.remove('completed');
-	        statusChange.classList.add('trash');
-	        statusChange.textContent = '완료된 강의 삭제';
+		   //화면 데이터 바뀔 수 있도록 함
+	       // 클래스명, 상태 코드, 날짜 변경
+	       statusChange.classList.remove('completed-waiting');
+	       statusChange.classList.remove('completed');
+	       statusChange.classList.add('trash');
+	       statusChange.textContent = '완료된 강의 삭제';
 	        
+	       // 흔들리는 애니메이션 클래스 추가
+           card.classList.add('accept_shake');
+           // 애니메이션 종료 후 애니메이션 클래스 제거 (2초 후)
+           setTimeout(function () {
+               card.classList.remove('accept_shake');
+           }, 500);
+	           
 	        trashBucket.appendChild(card);
 	        
 	  });
@@ -1173,6 +1185,9 @@
                     const titleElement = taskCard.find(".task-name");
                     titleElement.addClass("dontMove");
                     
+                    // 깜빡거리는 효과를 주기 위한 클래스 추가
+                    taskCard.addClass('accept_shake');
+                 
                     // "completedWaitingBucket"로 이동시킬 테스크 카드 생성
                     const taskCardClone = taskCard.clone();
 
@@ -1182,6 +1197,10 @@
                     var parts = text.split('.'); // 마침표를 기준으로 문자열 분할
                     var boardId = parts[1]; 
                     
+                    // 3초 후에 깜빡거리는 효과를 제거
+                    setTimeout(function () {
+                    	taskCardClone.removeClass('accept_shake');
+                    }, 4000);
 
                     // "rejectBucket"로부터 카드 리스트를 가져옴
                     const rejectBucket = $(".kanban-board .bucket.reject .tasks");
@@ -1189,7 +1208,15 @@
                     // "rejectBucket"로부터 같은 board_id를 가진 해당 테스크 카드들 제거 
                     const taskCard2 = $(".kanban-board .bucket.reject .tasks .task-card[data-boardid='" + boardId + "']");
                     console.log("taskCard2는 뭘까:" , taskCard2);
-                    taskCard2.remove();
+                    
+                 	// 깜빡거리는 효과를 주기 위한 클래스 추가
+                    taskCard2.addClass('fade-out-box');
+                 
+                    
+                    // 3초 후에 깜빡거리는 효과를 제거
+                    setTimeout(function () {
+                    	taskCard2.remove();
+                    }, 2000);
                     
                     // 강의 완료 요청 보내면 알람 보냄
                     ws.send("/pub/complete/courseAgree",{},JSON.stringify({
@@ -1470,12 +1497,12 @@
                      taskCard.removeClass("dontMove");
 
                      // 깜빡거리는 효과를 주기 위한 클래스 추가
-                     taskCard.addClass('blink');
+                     taskCard.addClass('accept_shake');
                   
                      // 2초 후에 깜빡거리는 효과를 제거
                      setTimeout(function () {
-                     	taskCard.removeClass('blink');
-                     }, 2000);
+                     	taskCard.removeClass('accept_shake');
+                     }, 3000);
                   
                      // status 클래스 변경
                      const statusElement = taskCard.find(".status");
@@ -1492,7 +1519,7 @@
                      // 2초 후에 깜빡거리는 효과를 제거
                      setTimeout(function () {
                     	 taskCardClone.removeClass('blink');
-                     }, 2000);
+                     }, 3000);
 
                      // "acceptBucket"에 테스크 카드 추가
                      acceptBucket.append(taskCardClone);
