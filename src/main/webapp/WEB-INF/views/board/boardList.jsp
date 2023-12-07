@@ -105,9 +105,10 @@ float: right;
 		#mForm{
 		width:1200px;
 		}
-		.talentName{
-			    font-size: 15px;
-			
+		.talentName {
+		    font-size: 15px;
+		    width: 75px;
+		    text-align: center;
 		}
 		.lesson-location2{
 		font-size: 11px;

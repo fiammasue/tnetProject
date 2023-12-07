@@ -88,17 +88,17 @@
 								</div>
 								<!-- END PROFILE HEADER -->
 								<!-- PROFILE DETAIL -->
-								<div class="profile-detail">
-									<div class="profile-info">
-										<h4 class="heading">Basic Info</h4>
-										<ul class="list-unstyled list-justify">
-											<li>Email <span>${principal.user.email}</span></li>
-											<li>Phone <span>${principal.user.phoneNum}</span></li>
-											<li>Gender <span>${principal.user.gender}</span></li>
-											<li>Age <span>${principal.user.age}</span></li>
-										</ul>
-									</div>
-								</div>
+							   <div class="profile-detail">
+		                           <div class="profile-info">
+		                              <h4 class="heading">Basic Info</h4>
+		                              <ul class="list-unstyled list-justify">
+		                                 <li>Email <span>${principal.user.email}</span></li>
+		                                 <li>nickName <span>${principal.user.nickName}</span></li>
+		                                 <li>Gender <span>${principal.user.gender}</span></li>
+		                                 <li>Age <span>${principal.user.age_range}</span></li>
+		                              </ul>
+		                           </div>
+		                        </div>
 								<!-- END PROFILE DETAIL -->
 							</div>
 							<!-- END LEFT COLUMN -->
