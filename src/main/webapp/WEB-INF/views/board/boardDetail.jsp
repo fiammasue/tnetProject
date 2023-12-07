@@ -77,10 +77,12 @@
       
 <!--       </div> -->
 
-    <div class="auto-group-mjac-BEx">
-      <div class="button-W2L">참여하기</div>
-      <div class="button-kxG">문의하기</div>
-    </div>
+	<c:if test="${not empty principal.user}">
+	    <div class="auto-group-mjac-BEx">
+	      <div class="button-W2L">참여하기</div>
+	      <div class="button-kxG">문의하기</div>
+	    </div>
+	   </c:if>
   </div>
 </div>
 </div>

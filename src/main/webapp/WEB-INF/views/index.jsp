@@ -149,9 +149,9 @@
 	      <li class="lesson-card">
 	        <div class="lesson-image">
 	            <img src="/assets/usericon1.png">
-	            <span>${board.giveTalentLowName}</span>
+	            <span class="talentName">${board.giveTalentLowName}</span>
 	            <img src="/assets/exchageicon.png">
-	            <span>${board.receiveTalentLowName}</span>
+	            <span class="talentName">${board.receiveTalentLowName}</span>
 	            <img src="/assets/usericon2.png">
 	        </div>
 	        <div class="lesson-details">
